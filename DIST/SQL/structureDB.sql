@@ -2,6 +2,29 @@
 # C:\xampp\htdocs\SA
 # localhost/SA/login.php
 
+/*
+_ORDEM DE CRIAÇÃO_
+turmas
+usuarios
+maquinas
+tipoferramental
+produtos
+pedidos
+ferramental
+ferramental_maquinas
+produtos_maquinas
+fornecedores
+tipopigmentos
+pigmentos
+pigmentos_fornecedores
+tipomaterial
+classematerial
+materiaprima
+materiaprima_pigmentos
+materiaprima_fornecedores
+receitas
+*/
+
 create database LabPlasticos;
 
 use LabPlasticos;
