@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Out-2023 às 02:47
+-- Tempo de geração: 05-Out-2023 às 03:16
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `estoque`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ferramental`
+--
+
+CREATE TABLE `ferramental` (
+  `idFerramental` int(11) NOT NULL COMMENT 'PK - chave identificadora da tabela ferramental.',
+  `idProduto` int(11) NOT NULL COMMENT 'FK - chave estrangeira que irá identificar o produto relacionado ao ferramental usado.',
+  `idTipoFerramental` int(11) NOT NULL COMMENT 'FK - chave estrangeira que irá relacionar o tipo de ferramenta com o ferramental.',
+  `descricao` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'Descrição do ferramental usado'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela com os registros do ferramental usado na receita';
 
 -- --------------------------------------------------------
 
@@ -74,6 +87,17 @@ CREATE TABLE `produtos_maquinas` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tiposferramental`
+--
+
+CREATE TABLE `tiposferramental` (
+  `idTipoFerramental` int(11) NOT NULL COMMENT 'PK - chave identificadora dos registros salvos em tiposFerramental.',
+  `descricao` int(11) NOT NULL COMMENT 'Descrição dos tipos de ferramental.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela com os registros dos tipos de Ferramental dos moldes ';
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `turma`
 --
 
@@ -105,6 +129,14 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Índices para tabela `ferramental`
+--
+ALTER TABLE `ferramental`
+  ADD PRIMARY KEY (`idFerramental`),
+  ADD KEY `FK_idTipoFerramental` (`idTipoFerramental`),
+  ADD KEY `FK_idProduto` (`idProduto`);
+
+--
 -- Índices para tabela `maquinas`
 --
 ALTER TABLE `maquinas`
@@ -133,6 +165,12 @@ ALTER TABLE `produtos_maquinas`
   ADD KEY `FK_idMaquina` (`idMaquina`) USING BTREE;
 
 --
+-- Índices para tabela `tiposferramental`
+--
+ALTER TABLE `tiposferramental`
+  ADD PRIMARY KEY (`idTipoFerramental`);
+
+--
 -- Índices para tabela `turma`
 --
 ALTER TABLE `turma`
@@ -148,6 +186,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `ferramental`
+--
+ALTER TABLE `ferramental`
+  MODIFY `idFerramental` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora da tabela ferramental.';
 
 --
 -- AUTO_INCREMENT de tabela `maquinas`
@@ -174,6 +218,12 @@ ALTER TABLE `produtos_maquinas`
   MODIFY `idProduto_maquina` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora da tabela associativa produtos_maquinas. Mostra qual maquina esta sendo usada para qual produto';
 
 --
+-- AUTO_INCREMENT de tabela `tiposferramental`
+--
+ALTER TABLE `tiposferramental`
+  MODIFY `idTipoFerramental` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora dos registros salvos em tiposFerramental.';
+
+--
 -- AUTO_INCREMENT de tabela `turma`
 --
 ALTER TABLE `turma`
@@ -188,6 +238,13 @@ ALTER TABLE `usuarios`
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `ferramental`
+--
+ALTER TABLE `ferramental`
+  ADD CONSTRAINT `ferramental_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
+  ADD CONSTRAINT `ferramental_ibfk_2` FOREIGN KEY (`idTipoFerramental`) REFERENCES `tiposferramental` (`idTipoFerramental`);
 
 --
 -- Limitadores para a tabela `pedidos`
