@@ -4,18 +4,18 @@
 
 /*
 _ORDEM DE CRIAÇÃO_
-turmas
-usuarios
-maquinas
-tipoferramental
-produtos
-pedidos
-ferramental
-ferramental_maquinas
-produtos_maquinas
-fornecedores
-tipopigmentos
-pigmentos
+ok - turmas
+ok - usuarios
+ok - maquinas
+ok - tipoferramental
+ok - produtos
+ok - pedidos
+ok - ferramental
+ok - ferramental_maquinas
+ok - produtos_maquinas
+ok - fornecedores
+ok - tipopigmentos
+ok - pigmentos
 pigmentos_fornecedores
 tipomaterial
 classematerial
