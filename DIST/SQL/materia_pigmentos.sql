@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Out-2023 às 01:20
+-- Tempo de geração: 06-Out-2023 às 01:31
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -26,10 +26,10 @@ SET time_zone = "+00:00";
 --
 -- Estrutura da tabela `materia_pigmentos`
 --
-
+drop table materia_pigmentos;
 CREATE TABLE `materia_pigmentos` (
   `idMaterialPigmento` int(11) NOT NULL COMMENT 'PK - codigo identificador da tebela materia_pigmentos',
-  `idMaterial` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela materiaPrima',
+  `idMateriaPrima` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela materiaPrima',
   `idPigmento` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela do pigmento',
   `descricao` varchar(80) NOT NULL COMMENT 'descricao da materia_pigmentos'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='tabela com as relações permitidas entre materia e pigmento';
@@ -43,7 +43,8 @@ CREATE TABLE `materia_pigmentos` (
 --
 ALTER TABLE `materia_pigmentos`
   ADD PRIMARY KEY (`idMaterialPigmento`),
-  ADD KEY `idPigmento` (`idPigmento`);
+  ADD KEY `idPigmento` (`idPigmento`),
+  ADD KEY `idMaterial` (`idMateriaPrima`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -63,7 +64,8 @@ ALTER TABLE `materia_pigmentos`
 -- Limitadores para a tabela `materia_pigmentos`
 --
 ALTER TABLE `materia_pigmentos`
-  ADD CONSTRAINT `materia_pigmentos_ibfk_1` FOREIGN KEY (`idPigmento`) REFERENCES `pigmentos` (`idPigmento`);
+  ADD CONSTRAINT `materia_pigmentos_ibfk_1` FOREIGN KEY (`idPigmento`) REFERENCES `pigmentos` (`idPigmento`),
+  ADD CONSTRAINT `materia_pigmentos_ibfk_2` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
