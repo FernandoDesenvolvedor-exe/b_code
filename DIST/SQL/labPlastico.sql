@@ -1,11 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 06-Out-2023 às 02:52
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+drop database lab_plasticos;
+create database lab_plasticos;
+use lab_plasticos;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -236,7 +231,8 @@ ALTER TABLE `classe_material`
 --
 ALTER TABLE `ferramental`
   ADD PRIMARY KEY (`idFerramental`),
-  ADD KEY `FK_idProduto` (`idProduto`);
+  ADD KEY `FK_idProduto` (`idProduto`) USING BTREE,
+  ADD KEY `FK_idTipoFerramental` (`idTipoFerramental`) USING BTREE;
 
 --
 -- Índices para tabela `ferramental_maquinas`
@@ -310,7 +306,9 @@ ALTER TABLE `receita`
 --
 ALTER TABLE `tipo_materia_prima`
   ADD PRIMARY KEY (`idTipoMateriaPrima`);
-
+  
+alter table `tipos_ferramental`
+  ADD PRIMARY KEY (`idTipoFerramental`);
 --
 -- Índices para tabela `tipo_pigmentos`
 --
@@ -430,10 +428,13 @@ ALTER TABLE `usuarios`
 
 --
 -- Limitadores para a tabela `ferramental`
---
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `turma_ibfk_1` FOREIGN KEY (`idTurma`) REFERENCES `turma` (`idTurma`);
+  
+
 ALTER TABLE `ferramental`
   ADD CONSTRAINT `ferramental_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
-  ADD CONSTRAINT `ferramental_ibfk_2` FOREIGN KEY (`idTipoFerramental`) REFERENCES `tiposferramental` (`idTipoFerramental`);
+  ADD CONSTRAINT `ferramental_ibfk_2` FOREIGN KEY (`idTipoFerramental`) REFERENCES `tipos_ferramental` (`idTipoFerramental`);
 
 --
 -- Limitadores para a tabela `ferramental_maquinas`
