@@ -4,24 +4,24 @@
 
 /*
 _ORDEM DE CRIAÇÃO_
-ok - turmas
-ok - usuarios
-ok - maquinas
-ok - tipoferramental
-ok - produtos
-ok - pedidos
-ok - ferramental
-ok - ferramental_maquinas
-ok - produtos_maquinas
-ok - fornecedores
-ok - tipopigmentos
-ok - pigmentos
-pigmentos_fornecedores
-tipomaterial
-classematerial
-materiaprima
-materiaprima_pigmentos
-materiaprima_fornecedores
+ok- - turmas
+ok- - usuarios
+ok- - maquinas
+ok- - tipoferramental
+ok- - produtos
+ok- - pedidos
+ok- - ferramental
+ok- - ferramental_maquinas
+ok- - produtos_maquinas
+ok- - fornecedores
+ok- - tipopigmentos
+ok- - pigmentos
+ok- - pigmentos_fornecedores
+ok- - tipomaterial
+ok- - classematerial
+ok- - materiaprima
+ok- - materiaprima_pigmentos
+ok- - materiaprima_fornecedores
 receitas
 */
 

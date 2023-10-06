@@ -43,7 +43,7 @@ CREATE TABLE `receitas` (
 --
 ALTER TABLE `receitas`
   ADD PRIMARY KEY (`idReceita`),
-  ADD KEY `fk_produtos` (`idProduto`);
+  ADD KEY `pk_produtos` (`idProduto`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -64,6 +64,7 @@ ALTER TABLE `receitas`
 --
 ALTER TABLE `receitas`
   ADD CONSTRAINT `fk_produtos` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`);
+  ADD CONSTRAINT `fk_materia_prima` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
