@@ -1,4 +1,4 @@
-drop database lab_plasticos;
+#drop database lab_plasticos;
 create database lab_plasticos;
 use lab_plasticos;
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `classe_material` (
-  `idClasse` int(11) NOT NULL COMMENT 'PK - chave identificadora que guarda a id de cada classe da matéria prima',
+  `idClasse` int(11) NOT NULL COMMENT 'PK - chave identificadora que guarda o id de cada classe da matéria prima',
   `descricao` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'Descrição da classe da matéria prima(comodities, engenharia)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Registro da classe associada a uma matéria prima';
 
@@ -197,7 +197,7 @@ CREATE TABLE `turma` (
   `idTurma` int(11) NOT NULL COMMENT 'PK - chave identificadora da turma a qual o usuário pertence\r\nOBS: o admin não necessita estar em uma turma',
   `turno` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Mostra a qual turno uma turma pertence',
   `nomeTurma` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da turma. \r\nEx: TDesi Senai/N1',
-  `ativo` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
+  `ativo` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta pode ou não pode ser usada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que salva as informações sobre a turma dos usuários ';
 
 -- --------------------------------------------------------
@@ -336,7 +336,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `classe_material`
 --
 ALTER TABLE `classe_material`
-  MODIFY `idClasse` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora que guarda a id de cada classe da matéria prima';
+  MODIFY `idClasse` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora que guarda o id de cada classe da matéria prima';
 
 --
 -- AUTO_INCREMENT de tabela `ferramental`
