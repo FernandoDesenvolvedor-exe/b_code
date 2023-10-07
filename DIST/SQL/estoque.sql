@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/10/2023 às 02:40
+-- Tempo de geração: 07/10/2023 às 03:30
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -59,6 +59,17 @@ CREATE TABLE `ferramental_maquna` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `fornecedores`
+--
+
+CREATE TABLE `fornecedores` (
+  `idFornecedor` int(11) NOT NULL COMMENT 'PK - chave identificadora das ids de cada fornecedor',
+  `descricao` varchar(50) NOT NULL COMMENT 'Descrição de cada fornecedor(Nome);'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro dos fornecedores de materiais do laboratório';
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `maquinas`
 --
 
@@ -66,6 +77,17 @@ CREATE TABLE `maquinas` (
   `idMaquina` int(11) NOT NULL COMMENT 'PK - chave identificadora das maquinas usadas para fazer os produtos',
   `decricao` varchar(50) NOT NULL COMMENT 'descrição da maquina registrada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela para registro das maquinas a serem usadas na receita';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `materia_fornecedor`
+--
+
+CREATE TABLE `materia_fornecedor` (
+  `idMateriaPrima` int(11) NOT NULL COMMENT 'PK/FK - chave composta que relaciona uma matéria prima com um fornecedor.',
+  `idFornecedor` int(11) NOT NULL COMMENT 'PK/FK - chave composta que relaciona um fornecedor com uma matéria prima.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro da relação de uma matéria prima com um fornecedor';
 
 -- --------------------------------------------------------
 
@@ -118,6 +140,17 @@ CREATE TABLE `pigmentos` (
   `descricao` varchar(80) NOT NULL COMMENT 'descricao do pigmento',
   `idTipoPigmento` int(11) NOT NULL COMMENT 'FK - tipo de pigmento'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pigmento_fornecedor`
+--
+
+CREATE TABLE `pigmento_fornecedor` (
+  `idPigmentos` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela pigmentos com uma id da tabela fornecedores',
+  `idFornecedor` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela fornecedores com uma id da tabela pigmentos '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro da relação entre um fornecedor e um pigmento';
 
 -- --------------------------------------------------------
 
@@ -241,10 +274,24 @@ ALTER TABLE `ferramental_maquna`
   ADD KEY `FK_idFerramental` (`idFerramental`);
 
 --
+-- Índices de tabela `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  ADD PRIMARY KEY (`idFornecedor`);
+
+--
 -- Índices de tabela `maquinas`
 --
 ALTER TABLE `maquinas`
   ADD PRIMARY KEY (`idMaquina`);
+
+--
+-- Índices de tabela `materia_fornecedor`
+--
+ALTER TABLE `materia_fornecedor`
+  ADD PRIMARY KEY (`idMateriaPrima`,`idFornecedor`),
+  ADD KEY `FK_idMateriaPrima` (`idMateriaPrima`),
+  ADD KEY `FK_idFornecedor` (`idFornecedor`);
 
 --
 -- Índices de tabela `materia_pigmento`
@@ -276,6 +323,14 @@ ALTER TABLE `pedidos`
 ALTER TABLE `pigmentos`
   ADD PRIMARY KEY (`idPigmento`),
   ADD KEY `FK_idTipoPigmento` (`idTipoPigmento`);
+
+--
+-- Índices de tabela `pigmento_fornecedor`
+--
+ALTER TABLE `pigmento_fornecedor`
+  ADD PRIMARY KEY (`idPigmentos`,`idFornecedor`),
+  ADD KEY `FK_idPigmento` (`idPigmentos`),
+  ADD KEY `FK_idFornecedor` (`idFornecedor`);
 
 --
 -- Índices de tabela `produtos`
@@ -345,6 +400,12 @@ ALTER TABLE `classe_material`
 --
 ALTER TABLE `ferramental`
   MODIFY `idFerramental` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora das ids de cada fornecedor';
 
 --
 -- AUTO_INCREMENT de tabela `maquinas`
@@ -425,6 +486,13 @@ ALTER TABLE `ferramental_maquna`
   ADD CONSTRAINT `pk_ferramental_maquina` FOREIGN KEY (`idFerramental`) REFERENCES `ferramental` (`idFerramental`);
 
 --
+-- Restrições para tabelas `materia_fornecedor`
+--
+ALTER TABLE `materia_fornecedor`
+  ADD CONSTRAINT `materia_fornecedor_ibfk_1` FOREIGN KEY (`idFornecedor`) REFERENCES `fornecedores` (`idFornecedor`),
+  ADD CONSTRAINT `materia_fornecedor_ibfk_2` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`);
+
+--
 -- Restrições para tabelas `materia_pigmento`
 --
 ALTER TABLE `materia_pigmento`
@@ -450,6 +518,13 @@ ALTER TABLE `pedidos`
 --
 ALTER TABLE `pigmentos`
   ADD CONSTRAINT `pigmentos_ibfk_1` FOREIGN KEY (`idTipoPigmento`) REFERENCES `tipo_pigmentos` (`idTipoPigmento`);
+
+--
+-- Restrições para tabelas `pigmento_fornecedor`
+--
+ALTER TABLE `pigmento_fornecedor`
+  ADD CONSTRAINT `pigmento_fornecedor_ibfk_1` FOREIGN KEY (`idFornecedor`) REFERENCES `fornecedores` (`idFornecedor`),
+  ADD CONSTRAINT `pigmento_fornecedor_ibfk_2` FOREIGN KEY (`idPigmentos`) REFERENCES `pigmentos` (`idPigmento`);
 
 --
 -- Restrições para tabelas `produto_maquina`
