@@ -1,6 +1,7 @@
 <?php
     include('function.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,6 +18,6 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
 </head>
 <body>
-    
+    <img src="DIST/assets/images/logoSenai300x82.jpg" alt="Faz o L">
 </body>
 </html>
