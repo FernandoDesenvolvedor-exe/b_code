@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/10/2023 às 03:30
+-- Tempo de geração: 11/10/2023 às 05:31
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -110,7 +110,8 @@ CREATE TABLE `materia_prima` (
   `idMateriaPrima` int(11) NOT NULL COMMENT 'PK - chave identificadora das matérias primas salvas no estoque ',
   `idClasse` int(11) NOT NULL COMMENT 'FK - chave estrangeira que identifica a classe da matéria prima(comodities e engenharia) ',
   `idTipoMateria` int(11) NOT NULL COMMENT 'FK - chave estrangeira que identifica o tipo de matéria prima(virgem, reciclado, remoido, scrap). ',
-  `descricao` varchar(50) NOT NULL COMMENT 'Descrição da matéria prima(Nome). '
+  `descricao` varchar(50) NOT NULL COMMENT 'Descrição da matéria prima(Nome). ',
+  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de uma matéria prima guardada no estoque'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Salva os registros de Cadastros e alterações no estoque';
 
 -- --------------------------------------------------------
@@ -126,7 +127,8 @@ CREATE TABLE `pedidos` (
   `DataHora_aberto` datetime NOT NULL COMMENT 'Salva a data e a hora em que o pedido foi aberto',
   `DataHora_fechado` datetime NOT NULL COMMENT 'Salva a data e a hora em que o pedido foi fechado',
   `Status` tinyint(1) NOT NULL COMMENT 'Identifica se um pedido está em aberto ou se ja foi fechado:\r\naberto(1);\r\nfechado(2)',
-  `Observacoes` varchar(80) DEFAULT NULL COMMENT 'Permite gravar observações sobre um pedido. Ex: \r\npedido feito programou 500g de matéria prima para fazer 500 copos mas acabou fazendo apenas 490 copos.'
+  `Observacoes` varchar(80) DEFAULT NULL COMMENT 'Permite gravar observações sobre um pedido. Ex: \r\npedido feito programou 500g de matéria prima para fazer 500 copos mas acabou fazendo apenas 490 copos.',
+  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de um produto a ser feito no pedido'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que registra os pedidos feito pelo usuário';
 
 -- --------------------------------------------------------
@@ -138,7 +140,8 @@ CREATE TABLE `pedidos` (
 CREATE TABLE `pigmentos` (
   `idPigmento` int(11) NOT NULL COMMENT 'PK - codigo identificador do pigmento',
   `descricao` varchar(80) NOT NULL COMMENT 'descricao do pigmento',
-  `idTipoPigmento` int(11) NOT NULL COMMENT 'FK - tipo de pigmento'
+  `idTipoPigmento` int(11) NOT NULL COMMENT 'FK - tipo de pigmento',
+  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de material de pigmento guardado no estoque'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -177,13 +180,16 @@ CREATE TABLE `produto_maquina` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `receita`
+-- Estrutura para tabela `receitas`
 --
 
-CREATE TABLE `receita` (
-  `idProduto` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela produto com uma id da tabela materia_prima',
-  `idMateriaPrima` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela materia_prima com uma id da tabela produto.'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela associativa que relaciona materia_prima com produtos';
+CREATE TABLE `receitas` (
+  `idReceita` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `observacoes` varchar(50) DEFAULT NULL,
+  `idProduto` int(11) NOT NULL,
+  `idMateriaPrima` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -347,12 +353,12 @@ ALTER TABLE `produto_maquina`
   ADD KEY `FK_idProduto` (`idProduto`);
 
 --
--- Índices de tabela `receita`
+-- Índices de tabela `receitas`
 --
-ALTER TABLE `receita`
-  ADD PRIMARY KEY (`idProduto`,`idMateriaPrima`),
+ALTER TABLE `receitas`
+  ADD PRIMARY KEY (`idReceita`),
   ADD KEY `FK_idMateriaPrima` (`idMateriaPrima`),
-  ADD KEY `FK_idProduto` (`idProduto`) USING BTREE;
+  ADD KEY `FK_idProduto` (`idProduto`);
 
 --
 -- Índices de tabela `tipos_ferramental`
@@ -534,11 +540,11 @@ ALTER TABLE `produto_maquina`
   ADD CONSTRAINT `produto_maquina_ibfk_2` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`);
 
 --
--- Restrições para tabelas `receita`
+-- Restrições para tabelas `receitas`
 --
-ALTER TABLE `receita`
-  ADD CONSTRAINT `receita_ibfk_1` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`),
-  ADD CONSTRAINT `receita_ibfk_2` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`);
+ALTER TABLE `receitas`
+  ADD CONSTRAINT `receitas_ibfk_1` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`),
+  ADD CONSTRAINT `receitas_ibfk_2` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`);
 
 --
 -- Restrições para tabelas `usuarios`
