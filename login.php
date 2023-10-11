@@ -9,7 +9,6 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="dist/assets/images/favicon.png">
-        <title>Matrix Template - The Ultimate Multipurpose admin template</title>
         <!-- Custom CSS -->
         <link href="dist/css/style.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -18,10 +17,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <title>Login | LabPlasticos</title>
+        <title>Login</title>
     </head>
 
-    <body>
+    <body background-color: white>
                 <!-- ============================================================== -->
                 <!-- Login box.scss -->
                 <!-- ============================================================== -->
