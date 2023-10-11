@@ -1,5 +1,5 @@
 <?php
-    include('function.php');
+    include('dist/php/function.php');
 ?>
 
 <!DOCTYPE html>
