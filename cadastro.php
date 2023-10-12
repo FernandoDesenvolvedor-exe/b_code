@@ -63,13 +63,7 @@
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
-                                <!-- turma -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="mdi-account-multiple"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
-                                </div>
+                                
                                 <!-- email -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -90,6 +84,24 @@
                                         <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder=" Confirm Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                                </div>
+                                <!-- turma -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
+                                    
+                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" style="width: max-content;">
+                                            <option>Select</option>
+                                            <optgroup label="Matutino">
+                                                <option value="MT-1">mofas com a pomba na balaia</option>
+                                            </optgroup>
+                                            <optgroup label="Vespertino">
+                                                <option value="VP-1">aaaai chaves</option>
+                                            </optgroup>
+                                            <optgroup label="Noite">
+                                                <option value="NT-1">To indo ali</option>
+                                            </optgroup>
+                                        </select></div>
                                 </div>
                             </div>
                         </div>
