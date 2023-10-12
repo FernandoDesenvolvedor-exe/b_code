@@ -11,7 +11,7 @@
     //var_dump($login.''.$senha);
     //die();
 
-    include('conexao.php');
+    include('connection.php');
 
     $_SESSION['msgLogin'] = '';
     
@@ -50,10 +50,6 @@
                         break;
 
                         case 2:
-                            header('location:../telaEmpresa.php');
-                        break;
-
-                        case 3:
                             header('location:../telaComum.php');
                         break;
 

@@ -14,7 +14,7 @@
         <!-- icone senai 16x16 -->
         <link rel="icon" type="image/png" sizes="16x16" href="dist/assets/images/logoLabPlasticos16x16.png">
         <!-- Custom CSS -->
-        <link href="dist/css/style.min.css" rel="stylesheet">
+        <link href="dist/css/style.min.css" rel="stylesheet">   
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,9 +22,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <title>Login</title>
+        <style>
+            body{
+                background-color: light aqua important;
+            }
+        </style>
     </head>
 
-    <body>
+    <body background-color:  >
             <!-- ============================================================== -->
             <!-- Login box.scss -->
             <!-- ============================================================== -->
@@ -44,8 +49,8 @@
             <!-- ============================================================== -->
             <!-- Login box.scss -->
             <!-- ============================================================== -->
-            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-                <div class="auth-box bg-dark border-top border-secondary">
+            <div class="auth-wrapper d-flex no-block justify-content-center bg-cyan align-items-center">
+                <div class="auth-box bg-blue border-top border-secondary">
                     <div id="loginform">
                         <div class="text-center p-t-20 p-b-20">
                             <img src="dist/assets/images/logoSenai300x82.jpg" alt="logo"/>
@@ -60,23 +65,23 @@
                                 <div class="col-12">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                         </div>
                                         <input type="text" class="form-control form-control-lg" id="idLogin" name="nLogin" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                            <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                         </div>
                                         <input type="password" class="form-control form-control-lg" id="idSenha" name="nSenha" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row border-top border-secondary">
+                            <div>
                                 <div class="col-12">
                                     <div class="form-group">
                                             <div class="p-t-20">                                        
-                                                <button class="btn btn-success float-right" type="submit">Login</button>
+                                                <button class="btn btn-info float-right" type="submit">Login</button>
                                             </div>
                                         </div>
                                     </div>
