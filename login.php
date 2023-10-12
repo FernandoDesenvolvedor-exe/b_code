@@ -55,7 +55,7 @@
                             <br>
                         </div>
                         <!-- Form -->
-                        <form class="form-horizontal m-t-20" id="loginform" method="POST" action="">
+                        <form class="form-horizontal m-t-20" id="loginform" method="POST" action="php/validaLogin.php">
                             <div class="row p-b-30">
                                 <div class="col-12">
                                     <div class="input-group mb-3">
