@@ -1,22 +1,28 @@
 <?php
-    //coloca um limite de tempo 
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
-    }  
+    }      
 
-    include("connection.php");
-    
-    $login = $_POST["nLogin"];
-    $senha = $_POST["nSenha"];
+    //stripslashes coloca uma barra dps de um caractere especial para evitar errro no codigo sql
+
+    $login = stripslashes($_POST['nLogin']);
+    $senha = stripslashes($_POST['nSenha']);
+
+    //var_dump($login.''.$senha);
+    //die();
+
+    include('conexao.php');
 
     $_SESSION['msgLogin'] = '';
-
-    $sql = "SELECT login, senha, tipo, ativo"
+    
+    $sql = "SELECT *"
             ." FROM usuarios" 
             ." WHERE login = '".$login."';";
 
+    //var_dump($sql);
+
     $result = mysqli_query($conn, $sql);
-    mysqli_close($conn);  
+    mysqli_close($conn);    
 
     //valida Email
     if (mysqli_num_rows($result) > 0) {        
@@ -38,7 +44,7 @@
 
                     $_SESSION['tipo'] = $campo['tipo'];
 
-                    switch($campo['idUsuario']){
+                    switch($campo['id_usuario']){
                         case 1:
                             header('location:../telaAdmin.php');
                         break;
@@ -76,5 +82,7 @@
         $_SESSION['msgLogin'] = 'email nao cadastrado';
         header('location:../login.php');
     };
+
+    //header('location: ../categoria.php');
 
 ?>

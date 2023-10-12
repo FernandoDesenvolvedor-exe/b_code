@@ -68,19 +68,20 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg" id="idSenha" name="nSenha" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                                        <input type="password" class="form-control form-control-lg" id="idSenha" name="nSenha" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row border-top border-secondary">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <div class="p-t-20">                                        
-                                        <button class="btn btn-success float-right" type="submit">Login</button>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                            <div class="p-t-20">                                        
+                                                <button class="btn btn-success float-right" type="submit">Login</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>
