@@ -443,9 +443,10 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #3e5569;
+  color: #ffffff;
   text-align: left;
-  background-color: #eef5f9; }
+  background-color: #ffffff; 
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
