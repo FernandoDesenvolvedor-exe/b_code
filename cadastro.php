@@ -1,5 +1,5 @@
 <?php
-    include('dist/php/function.php');
+    include('php/function.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,9 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
 </head>
 <body>
+    
     <div class="main-wrapper">
+        
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
@@ -38,17 +40,27 @@
             <div class="auth-box bg-dark border-top border-secondary">
                 <div>
                     <div class="text-center p-t-20 p-b-20">
-                        <span class="db"><img src="dist\assets\images\logoSenai300x82.jpg" alt="logo" /></span>
+                        <p>
+                            <span class="db"><img src="dist\assets\images\logoSenai300x82.jpg" alt="logo" /></span>
+                        </p>
+                        
                     </div>
                     <!-- Form -->
                     <form class="form-horizontal m-t-20" action="index.html">
                         <div class="row p-b-30">
                             <div class="col-12">
+                                <!-- User -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Primeiro nome" aria-label="Username" aria-describedby="basic-addon1" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 <!-- email -->
                                 <div class="input-group mb-3">
@@ -57,12 +69,14 @@
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
+                                <!-- senha -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
                                 </div>
+                                <!-- confirma senha -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
@@ -75,7 +89,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="p-t-20">
-                                        <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
+                                            <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
                                     </div>
                                 </div>
                             </div>
@@ -103,10 +117,10 @@
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="dist/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="dist/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->
