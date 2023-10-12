@@ -22,29 +22,32 @@
     //var_dump($sql);
 
     $result = mysqli_query($conn, $sql);
-    mysqli_close($conn);    
+    mysqli_close($conn);     
 
     //valida Email
     if (mysqli_num_rows($result) > 0) {        
-
+        
         $array = array();
 
         while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            array_push($array, $linha);
+            array_push($array, $linha);            
         }
 
-        foreach($array as $campo){
-            //validar Senha
+        foreach($array as $campo){      
             //var_dump($campo['senha'].'/'.md5($_POST['nSenha']));
-            //die();
+            //die(); //teste para caso senha esteja errada
+
+            //validar Senha
             if($campo['senha'] == md5($_POST['nSenha'])){
+                    
                 //valida se conta esta ativa
                 if($campo['ativo'] == 'S'){
+
                     //joga o usuario pra dela de acordo com o nivel de acesso dele
 
                     $_SESSION['tipo'] = $campo['tipo'];
 
-                    switch($campo['id_usuario']){
+                    switch($campo['idUsuario']){
                         case 1:
                             header('location:../telaAdmin.php');
                         break;
@@ -56,6 +59,7 @@
                         default:
                             $_SESSION['msgLogin'] = 'Nivel de acesso do usuário invalido';
                             header('location:../login.php');
+                            die();
                         break;
                     }
 
