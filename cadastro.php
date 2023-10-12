@@ -46,19 +46,27 @@
                         
                     </div>
                     <!-- Form -->
-                    <form class="form-horizontal m-t-20" action="index.html">
+                    <form class="form-horizontal m-t-20" action="php/validaCadastro.php">
                         <div class="row p-b-30">
                             <div class="col-12">
-                                <!-- User -->
+                                <!-- User nome -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder="Primeiro nome" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
+                                <!-- sobrenome -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
+                                </div>
+                                <!-- turma -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="mdi-account-multiple"></i></span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
