@@ -1,8 +1,8 @@
-delete from usuarios;
-delete from turma;
-delete from materia_prima;
-delete from tipo_materia_prima;
-delete from classe_material;
+#delete from usuarios;
+#delete from turma;
+#delete from materia_prima;
+#delete from tipo_materia_prima;
+#delete from classe_material;
 
 INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
 (1, 'N', 'T DESI 2022', 'S');
