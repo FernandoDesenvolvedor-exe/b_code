@@ -84,7 +84,7 @@
                     <!-- ============================================================== -->
                     <!-- End Logo -->
                     <!-- ============================================================== -->
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" style='background-color: Info;'data-navbarbg="skin5">
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent"  data-navbarbg="skin5">
                         <!-- ============================================================== -->
                         <!-- toggle and nav items -->
                         <!-- ============================================================== -->
