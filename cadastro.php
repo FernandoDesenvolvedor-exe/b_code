@@ -16,10 +16,12 @@
     <title>Cadastro - LabPlasticos</title>
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
+   
 </head>
+
 <body>
     
-    <div class="main-wrapper">
+    <div class="main-wrapper" >
         
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
@@ -54,13 +56,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Primeiro nome" aria-label="Username" aria-describedby="basic-addon1" required>
-                                </div>
-                                <!-- sobrenome -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
-                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1" required>
                                     <input type="text" class="form-control form-control-lg" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 
@@ -69,39 +65,31 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 <!-- senha -->
                                 <div class="input-group mb-3">
+                                    <!-- senha -->
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
-                                </div>
-                                <!-- confirma senha -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder=" Confirm Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Senha" aria-label="Password" aria-describedby="basic-addon1" required>
+                                    <!-- confirma senha -->
+                                    <input type="text" class="form-control form-control-lg" placeholder="Confirmar senha" aria-label="Password" aria-describedby="basic-addon1" required>
+                                
                                 </div>
                                 <!-- turma -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
                                     
-                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" style="width: max-content;">
-                                            <option>Select</option>
-                                            <optgroup label="Matutino">
-                                                <option value="MT-1">mofas com a pomba na balaia</option>
-                                            </optgroup>
-                                            <optgroup label="Vespertino">
-                                                <option value="VP-1">aaaai chaves</option>
-                                            </optgroup>
-                                            <optgroup label="Noite">
-                                                <option value="NT-1">To indo ali</option>
-                                            </optgroup>
-                                        </select></div>
+                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;" style="width: fiauto ;">
+                                            <?php 
+                                                echo listaTurmas();
+                                            ?>    
+                                            
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +97,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="p-t-20">
-                                            <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
+                                            <button class="btn btn-block btn-lg btn-info" type="submit">Cadastrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +135,6 @@
     <script>
     $('[data-toggle="tooltip"]').tooltip();
     $(".preloader").fadeOut();
-    </script>
-    
+    </script>    
 </body>
 </html>
