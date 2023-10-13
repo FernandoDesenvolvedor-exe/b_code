@@ -38,8 +38,8 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-            <div class="auth-box bg-dark border-top border-secondary">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-cyan">
+            <div class="auth-box bg-white border-top border-secondary">
                 <div>
                     <div class="text-center p-t-20 p-b-20">
                         <p>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row border-top border-secondary">
+                        <div class="border-secondary">
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="p-t-20">

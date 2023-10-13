@@ -1,6 +1,6 @@
 <?php
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
-    include("php/function.php");
+    //include("php/function.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

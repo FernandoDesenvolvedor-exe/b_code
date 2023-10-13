@@ -82,7 +82,4 @@
         $_SESSION['msgLogin'] = 'email nao cadastrado';
         header('location:../login.php');
     };
-
-    //header('location: ../categoria.php');
-
 ?>
