@@ -54,16 +54,16 @@
                             <b class="logo-icon p-l-10">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="dist/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                                <img src="dist/assets/images/logoLabPlasticos_menuSideBar.png" alt="homepage" class="light-logo" />
                             
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
+                                                         
                             <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <img src="dist/assets/images/logo-text.png" alt="homepage" class="light-logo" />
-                                
+                                <img src="dist/assets/images/textoLabPlasticos.png" alt="homepage" class="light-logo" />                               
                             </span>
+                            
                             <!-- Logo icon -->
                             <!-- <b class="logo-icon"> -->
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -90,21 +90,7 @@
                         <!-- ============================================================== -->
                         <ul class="navbar-nav float-left mr-auto">
                             <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                            <!-- ============================================================== -->
-                            <!-- create new -->
-                            <!-- ============================================================== -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
-                                <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
+                                                        
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
@@ -122,7 +108,7 @@
                             <!-- Comment -->
                             <!-- ============================================================== -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                                <a class="nav-link dropdown-toggle waves-effect waves-info" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Action</a>
@@ -290,7 +276,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Form Basic</h4>
+                            <h4 class="page-title">Cadastro de Materiais</h4>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
