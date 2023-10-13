@@ -15,8 +15,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="dist/assets/images/logoLabPlasticos16x16.png">
     <title>Cadastro - LabPlasticos</title>
     <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" rel="stylesheet">
-   
+    <link rel="stylesheet" type="text/css" href="dist/assets/libs/select2/dist/css/select2.min.css">
+    <!--  <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css"> -->
+    <link href="dist/css/style.min.css" rel="stylesheet"> 
+
+    <!--
+        ERRO: Não tá encontrando -> LabPlasticos/dist/css/icons/material-design-iconic-font/css/materialdesignicons.min.css.map
+    -->
 </head>
 
 <body>
@@ -85,7 +92,6 @@
                                     
                                         <select class="select2 form-control custom-select" style="width: 100%; height:36px;" style="width: fiauto ;">
                                             <?php 
-                                                
                                                 echo listaTurmas();
                                             ?>    
                                             
