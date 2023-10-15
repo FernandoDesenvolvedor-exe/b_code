@@ -89,13 +89,9 @@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                    
-                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;" style="width: fiauto ;">
-                                            <?php 
-                                                echo listaTurmas();
-                                            ?>    
-                                            
-                                        </select>
+                                        <?php 
+                                            echo listaTurmas();
+                                        ?> 
                                     </div>
                                 </div>
                             </div>
