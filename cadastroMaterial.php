@@ -325,7 +325,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
                                     <div class="col-md-9">     
                                         <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
-                                            <?php createSelect("idMateriaPrima","materia_prima","idTipoMateriaPrima","tipo_materia_prima");?>      
+                                            <?php echo fillSelectMateriaPrima();?>      
                                         </select>                                                         
                                     </div>
                                 </div>
@@ -334,7 +334,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
                                     <div class="col-md-9">
                                         <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>
-                                            <?php //createSelect("idPigmento","pigmentos","idTipoPigmento","tipo_pigmentos");?>
+                                            <?php echo fillSelectPigmento();?>
                                         </select>
                                     </div>
                                 </div>
@@ -364,11 +364,8 @@
                                 <div style="align-itens= side;" class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
-                                        <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 20%; height:36px;">
-                                            <option value="1">Virgem</option>
-                                            <option value= "2">Reciclado</option>  
-                                            <option value="3">Remoido</option>
-                                            <option value= "4">Scrap</option>                                                                                   
+                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">                                               <option value="1">Virgem</option>
+                                            <?php echo fillSelectFornecedor()?>                                                                                 
                                         </select>
                                         <form action="php/saveCadastro.php?tipo=AF">
                                             <label for="iFornecedor">Adicionar fornecedor</label>
