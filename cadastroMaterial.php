@@ -319,22 +319,23 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="idMAterial" name= "nMaterial "placeholder="Nome do material">
                                     </div>
-                                </div>
+                                </div>                                                              
 
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
-                                    <div class="col-md-9">
-                                        <select id="iRelacao" name="nRelacao" class='select2 form-control m-t-15' multiple='multiple' style='height: 36px; width: 100%;'>      
-                                            <?php createSelect("idMateriaPrima","materia_prima");?>
-                                        </select>                       
+                                    <div class="col-md-9">     
+                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
+                                            <?php createSelect("idMateriaPrima","materia_prima","","");?>      
+                                        </select>                                                         
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
                                     <div class="col-md-9">
-                                        <select id="iRelacao" name="nRelacao" class='select2 form-control m-t-15' multiple='multiple' style='height: 36px; width: 100%;'>      
-                                            <?php createSelect("idPigmentos","pigmentos");?>
-                                        </select>                       
+                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>
+                                            <?php //createSelect("idPigmento","pigmentos","idTipoPigmento","tipo_pigmentos");?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -347,6 +348,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
                                     <div class="col-md-9">
@@ -356,8 +358,9 @@
                                             <option value="3">Remoido</option>
                                             <option value= "4">Scrap</option>                                                                                   
                                         </select>
-                                    </div>
+                                    </div>                                    
                                 </div>
+
                                 <div style="align-itens= side;" class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
@@ -374,18 +377,21 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                     <div class="col-sm-9">
                                         <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" id= "iObservacoes" name="nObservacoes"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Imagem</label>
                                     <div class="col-sm-9">

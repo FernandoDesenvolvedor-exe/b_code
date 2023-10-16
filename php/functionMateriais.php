@@ -1,5 +1,5 @@
 <?php
-    function createSelect($id,$tabela){
+    function createSelect($IdTabela_primaria,$tabela_primaria,$idTabela_secundaria,$tabela_secundaria){
 
         // acessa a conexão com o banco de dados 
         include("connection.php");
@@ -7,7 +7,16 @@
         //inicializa variavel select 
         $select = "";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
-        $sql = "SELECT ".$id.", descricao FROM ".$tabela."";
+
+        if($tabela_secundaria == ""){
+            $sql = "SELECT ".$IdTabela_primaria.", descricao FROM ".$tabela_primaria."";
+        }else{
+            $sql = "SELECT tabP.".$nomeId." as id, tabP.descricao as material, tabS.descricao as tipo FROM ".$tabela_primaria." as tabP"
+                    ." INNER JOIN $tabela_secundaria as tabS"
+                    ." ON tabP.".$idTabela_secundaria." = tabS.".$idTabela_secundaria.";";
+        }
+        
+
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
@@ -26,13 +35,17 @@
             }
             
             foreach($array as $campo){
-                $select .= " <option value=".$campo['idMateriaPrima'].">"
-                            ."".$campo['descricao']."</option>";                                  
-                                       
+                if($tabela_secundaria == ""){
+                    $select .="<option value=".$campo['id'].">".$campo['descricao']."</option>";                                  
+                }else{
+                    $select .="<option value=".$campo['id'].">".$campo['material']."".$campo['tipo']."</option>";
+                }                                       
             }
         }        
         
-        return var_dump($select);
+        var_dump($select);
+        //die();
+        return $select;
     }
 
     function createTable(){
