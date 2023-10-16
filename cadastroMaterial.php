@@ -31,12 +31,14 @@
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
+        <!--
         <div class="preloader">
             <div class="lds-ripple">
                 <div class="lds-pos"></div>
                 <div class="lds-pos"></div>
             </div>
         </div>
+        -->
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -324,6 +326,14 @@
                                     <div class="col-md-9">
                                         <select id="iRelacao" name="nRelacao" class='select2 form-control m-t-15' multiple='multiple' style='height: 36px; width: 100%;'>      
                                             <?php createSelect("idMateriaPrima","materia_prima");?>
+                                        </select>                       
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
+                                    <div class="col-md-9">
+                                        <select id="iRelacao" name="nRelacao" class='select2 form-control m-t-15' multiple='multiple' style='height: 36px; width: 100%;'>      
+                                            <?php createSelect("idPigmentos","pigmentos");?>
                                         </select>                       
                                     </div>
                                 </div>
