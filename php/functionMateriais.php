@@ -1,15 +1,21 @@
 <?php        
-    function createSelectMateriaPrima(){
+    function fillSelectMateriaPrima(){
 
         // acessa a conexão com o banco de dados         
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "";     
+        $select = "<option>Selecione um material</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
-        $sql = "SELECT idMateriaPrima, descricao FROM materia_prima"
-                .";";
+        $sql = "SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
+                ." tipo.descricao as tipos," 
+                ." class.descricao as classe"
+                ." FROM materia_prima as mat"
+                ." LEFT JOIN tipo_materia_prima as tipo"
+                ." ON mat.idTipoMateria = tipo.idTipoMateriaPrima"
+                ." LEFT JOIN classe_material as class"
+                ." ON mat.idClasse = class.idClasse;";
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
@@ -28,16 +34,89 @@
             }
             
             foreach($array as $campo){
-                if($tabela_secundaria == ""){
-                    $select .="<option value=".$campo[$IdTabela_primaria].">".$campo['descricao']."</option>";                                  
-                }else{
-                    $select .="<option value=".$campo['id'].">".$campo['material']."".$campo['tipo']."</option>";
-                }                                       
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                                                     
             }
-        }        
+        }     
         
-        var_dump($select);
-        //die();
+        return $select;
+    }
+
+    function fillSelectFornecedor(){
+
+        // acessa a conexão com o banco de dados         
+        include("connection.php");
+
+        //inicializa variavel select 
+        $select = "<option>Selecione um material</option>";     
+        //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
+
+        $sql = "SELECT * FROM fornecedores;";
+
+        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+        //executa o script sql na variavel $sql,
+        //salva o resultado em $result
+        //mysqli_close($conn) fecha a conexão
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+        if(mysqli_num_rows($result) > 0){
+            //Cria e inicializa uma array 
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+            
+            foreach($array as $campo){
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                                                     
+            }
+        }     
+        
+        return $select;
+    }
+
+    function fillSelectPigmento(){
+
+        // acessa a conexão com o banco de dados         
+        include("connection.php");
+
+        //inicializa variavel select 
+        $select = "<option>Selecione um pigmento</option>";     
+        //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
+
+        $sql = "SELECT p.idPigmento as id, p.descricao as nome, tipo.descricao as tipos" 
+                ." FROM pigmentos as p"
+                ." LEFT JOIN tipo_pigmentos as tipo"
+                ." ON p.idTipoPigmento = tipo.idTipoPigmento;";
+
+        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+        //executa o script sql na variavel $sql,
+        //salva o resultado em $result
+        //mysqli_close($conn) fecha a conexão
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+        if(mysqli_num_rows($result) > 0){
+            //Cria e inicializa uma array 
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+            
+            foreach($array as $campo){
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']."</option>";                                  
+                                                     
+            }
+        }
+
         return $select;
     }
 
