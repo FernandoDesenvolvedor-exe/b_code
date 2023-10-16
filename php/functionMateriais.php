@@ -36,7 +36,7 @@
             
             foreach($array as $campo){
                 if($tabela_secundaria == ""){
-                    $select .="<option value=".$campo['id'].">".$campo['descricao']."</option>";                                  
+                    $select .="<option value=".$campo[$IdTabela_primaria].">".$campo['descricao']."</option>";                                  
                 }else{
                     $select .="<option value=".$campo['id'].">".$campo['material']."".$campo['tipo']."</option>";
                 }                                       
