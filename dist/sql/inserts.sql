@@ -4,8 +4,8 @@
 #delete from tipo_materia_prima;
 #delete from classe_material;
 
-INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
-(1, 'N', 'T DESI 2022', 'S');
+INSERT INTO `turma` (`turno`, `nomeTurma`, `ativo`) VALUES
+('N', 'T DESI 2022', 'S');
 
 INSERT INTO `usuarios` (`login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
 ('a@teste.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', 1, 1, 'S'),
@@ -30,3 +30,4 @@ INSERT INTO `materia_prima` (`idClasse`, `idTipoMateria`, `descricao`, `quantida
 (2, 1, 'Polistileno', 100),
 (2, 3, 'Exopor', 50),
 (1, 1, 'Java', 1);
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -33,12 +33,12 @@
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-        <div class="preloader">
+        <!-- <div class="preloader">
             <div class="lds-ripple">
                 <div class="lds-pos"></div>
                 <div class="lds-pos"></div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
@@ -87,7 +87,7 @@
                                 </div>
                                 <!-- turma -->
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend"style='width: 100%; height:36px;'>
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
                                         <?php 
                                             echo listaTurmas();

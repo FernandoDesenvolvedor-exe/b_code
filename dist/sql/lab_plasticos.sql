@@ -1,21 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 13/10/2023 às 18:24
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+DROP DATABASE lab_plasticos;
+CREATE DATABASE lab_plasticos;
 
 --
 -- Banco de dados: `lab_plasticos`
@@ -26,6 +10,8 @@ SET time_zone = "+00:00";
 --
 -- Estrutura para tabela `classe_material`
 --
+DROP DATABASE lab_plasticos;
+CREATE DATABASE lab_plasticos;
 
 CREATE TABLE `classe_material` (
   `idClasse` int(11) NOT NULL COMMENT 'PK - chave identificadora que guarda a id de cada classe da matéria prima',
