@@ -13,12 +13,10 @@
 */
     function listaTurmas(){
         include('connection.php');
-
         $sqlMatutino = "select idTurma, nomeTurma from turmas where ativo=1 and turno='M';";
         $sqlVespertino = "select idTurma, nomeTurma from turmas where ativo=1 and turno='V';";
         $sqlNoturno = "select idTurma,nomeTurma from turmas where ativo=1 and turno='N';";
-        $listaTurmas = "<select class='select2 form-control custom-select' style='width: 100%; height:36px;' style='width: fiauto ;'>"
-                        ."<option>Select</option>";
+        $listaTurmas = "<option>Select</option>";
 
         //Matutino
         $listaTurmas.="<optgroup label='Matutino'>";
@@ -50,7 +48,7 @@
                 array_push($array,$linha);
             }
             foreach($array as $campo){
-                $listaTurmas .= "<option value='".$campo['idTurma']."'>".$campo['nomeTurma']."</option>";
+                $listaTurmas .= "<option value='".$campo['idTurma']."'>".$campo['nomeTurma']."</option>;";
             }
             
         }
@@ -68,10 +66,10 @@
                 array_push($array, $linha);
             }
             foreach($array as $campo){
-                $listaTurmas .= "<option value='".$campo['idTurma']."'>".$campo['nomeTurma']."</option>";
+                $listaTurmas .= "<option value='".$campo['idTurma']."'>".$campo['nomeTurma']."</option>;";
             }
         }
-        $listaTurmas .= "</optgroup></select>";
+        $listaTurmas .= "</optgroup>";
 
         return $listaTurmas;
     }
