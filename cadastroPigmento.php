@@ -225,12 +225,11 @@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>                      
-                            <li class="sidebar-item"><a href="cadastroMaterial.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Cadastro de materiais </span></a>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Cadastro de materiais</span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="cadastroMaterial.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Matéria Prima </span></a></li>
                                     <li class="sidebar-item"><a href="cadastroPigmento.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Pigmentos </span></a></li>
-                                </ul>
-                        
+                                </ul>                        
                             </li>
                             <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
@@ -340,6 +339,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
                                     <div class="col-md-9">
@@ -351,24 +351,28 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="iFornecedor" name="nFornecedor" placeholder="Nome do fornecedor aqui">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" id= "iObservacoes" name="nObservacoes"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Imagem</label>
                                     <div class="col-sm-9">
@@ -376,10 +380,11 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary">Submit</button>
-                                </div>
+                                </div>                            
                             </div>
                         </form>
                     </div>
