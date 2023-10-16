@@ -1,22 +1,15 @@
-<?php
-    function createSelect($IdTabela_primaria,$tabela_primaria,$idTabela_secundaria,$tabela_secundaria){
+<?php        
+    function createSelectMateriaPrima(){
 
-        // acessa a conexão com o banco de dados 
+        // acessa a conexão com o banco de dados         
         include("connection.php");
 
         //inicializa variavel select 
         $select = "";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
-        if($tabela_secundaria == ""){
-            $sql = "SELECT ".$IdTabela_primaria.", descricao FROM ".$tabela_primaria."";
-        }else{
-            $sql = "SELECT tabP.".$nomeId." as id, tabP.descricao as material, tabS.descricao as tipo FROM ".$tabela_primaria." as tabP"
-                    ." INNER JOIN $tabela_secundaria as tabS"
-                    ." ON tabP.".$idTabela_secundaria." = tabS.".$idTabela_secundaria.";";
-        }
-        
-
+        $sql = "SELECT idMateriaPrima, descricao FROM materia_prima"
+                .";";
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,

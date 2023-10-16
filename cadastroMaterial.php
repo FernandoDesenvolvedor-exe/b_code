@@ -325,7 +325,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
                                     <div class="col-md-9">     
                                         <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
-                                            <?php createSelect("idMateriaPrima","materia_prima","","");?>      
+                                            <?php createSelect("idMateriaPrima","materia_prima","idTipoMateriaPrima","tipo_materia_prima");?>      
                                         </select>                                                         
                                     </div>
                                 </div>
