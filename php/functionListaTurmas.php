@@ -1,23 +1,11 @@
 <?php 
-/*
-<option>Select</option>
-    <optgroup label="Matutino">
-        <option value="MT-1">mofas com a pomba na balaia</option>
-    </optgroup>
-    <optgroup label="Vespertino">
-        <option value="VP-1">aaaai chaves</option>
-    </optgroup>
-    <optgroup label="Noite">
-        <option value="NT-1">To indo ali</option>
-    </optgroup>
-*/
     function listaTurmas(){
         include('connection.php');
         $sqlMatutino = "select idTurma, nomeTurma from turma where ativo='S' and turno='M';";
         $sqlVespertino = "select idTurma, nomeTurma from turma where ativo='S' and turno='V';";
         $sqlNoturno = "select idTurma,nomeTurma from turma where ativo='S' and turno='N';";
-        
-        $listaTurmas = "<select class='select2 form-control custom-select' style='width: 100%; height:36px;'>"
+
+        $listaTurmas = "<select class='select2 form-control custom-select' style='width: 100%; height:100%;'>"
         ."<option>Select</option>";
 
         //Matutino

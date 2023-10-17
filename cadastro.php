@@ -55,7 +55,7 @@
                         
                     </div>
                     <!-- Form -->
-                    <form class="form-horizontal m-t-20" action="php/validaCadastro.php">
+                    <form class="form-horizontal m-t-20" method="post" action="php/validaCadastroUsuario.php">
                         <div class="row p-b-30">
                             <div class="col-12">
                                 <!-- User nome -->
@@ -86,8 +86,8 @@
                                 
                                 </div>
                                 <!-- turma -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend"style='width: 100%; height:36px;'>
+                                <div class="input-group mb-3" style=''>
+                                    <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
                                         <?php 
                                             echo listaTurmas();
