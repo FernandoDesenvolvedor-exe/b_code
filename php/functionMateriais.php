@@ -13,7 +13,7 @@
                 ." class.descricao as classe"
                 ." FROM materia_prima as mat"
                 ." LEFT JOIN tipo_materia_prima as tipo"
-                ." ON mat.idTipoMateria = tipo.idTipoMateriaPrima"
+                ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima"
                 ." LEFT JOIN classe_material as class"
                 ." ON mat.idClasse = class.idClasse;";
 
