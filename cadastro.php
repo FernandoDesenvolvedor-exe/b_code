@@ -90,7 +90,25 @@
                                     <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
                                         <?php 
-                                            echo listaTurmas();
+                                            echo selectTurmas();
+                                        ?> 
+                                    </div>
+                                </div>
+                                <!-- Tipo Usuario -->
+                                <div class="input-group mb-3" style=''>
+                                    <div class="input-group-prepend" style='width: 100%; height:100%;'>
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
+                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                            <option>Nivel de Acesso</option>
+                                            <optgroup label="Niveis">
+                                                <option value="1">Alaska</option>
+                                                <option value="2">Hawaii</option>
+                                                <option value="2">Hawaii</option>
+                                            </optgroup>
+                                        </select>
+                                        
+                                        <?php 
+                                            echo selectTipUsuario();
                                         ?> 
                                     </div>
                                 </div>

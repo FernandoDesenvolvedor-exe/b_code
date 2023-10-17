@@ -2,7 +2,7 @@
     
     include("functionBanco.php");
     include("functionMateriais.php");
-    include("functionListaTurmas.php");
+    include("functionSelectTurmas.php");
 
 ?>
 

@@ -3,6 +3,7 @@
 #delete from materia_prima;
 #delete from tipo_materia_prima;
 #delete from classe_material;
+#delete from materia_prima;
 
 INSERT INTO `turma` (`turno`, `nomeTurma`, `ativo`) VALUES
 ('N', 'T DESI 2022', 'S'),
