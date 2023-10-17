@@ -279,7 +279,7 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IM">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IM&">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->
@@ -290,8 +290,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="iDescricao" name= "nDescricao"placeholder="Nome do material">
                                     </div>
-                                </div>                                                              
-
+                                </div> 
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
                                     <div class="col-md-9">     
@@ -300,7 +299,6 @@
                                         </select>                                                         
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmentos</label>
                                     <div class="col-md-9">
@@ -357,7 +355,7 @@
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" onclick="var el = document.getElementby('iMateria')[0];" class="btn btn-primary">Submit</button>
                                 </div>                      
                             </div>
                         </form>
@@ -423,6 +421,20 @@
         <script src="dist/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="dist/assets/libs/quill/dist/quill.min.js"></script>
         <script>
+            function getSelectValues(select){
+                var result = [];
+                var options = select && select.options;
+                var opt;
+            
+                for (var i=0, iLen=options.length; i<iLen; i++) {
+                    opt = options[i];
+                
+                    if (opt.selected) {
+                        result.push(opt.value || opt.text);
+                    }
+                }
+                return result;
+            }
             //***********************************//
             // For select 2
             //***********************************//

@@ -3,14 +3,17 @@
     include('function.php');
 
     $tipo = $_GET["tipo"];
+    $r_pigmento = $_GET['nPigmento'];
     $descricao = $_POST['nDescricao'];
-    $r_material = $_POST['nMateria'];
-    $r_pigmento = $_POST['nPigmento'];
+    $r_material = $_POST['nMateria'];        
     $classe = $_POST['nClasse'];
     $tipoMaterial = $_POST['nTipo'];
     $fornecedor = $_POST['nFornecedor'];
     $quantidade = $_POST['nQuandtidade'];
-    $observacoes = $_POST['nObservacoes'];    
+    $observacoes = $_POST['nObservacoes']; 
+    
+    var_dump($r_material);
+    die();
 
     if($tipo == 'IM'){        
         
