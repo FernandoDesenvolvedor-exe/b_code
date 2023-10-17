@@ -1,5 +1,5 @@
 <?php 
-    function validaMateriaPrima($descricao,$relacao,$classe,$tipo,$fornecedor,$quantidade,$observacoes){
+    function validaMateriaPrima($descricao,$tipo,$classe,$quantidade,$observações){
 
         include('conexao.php');
 
@@ -19,7 +19,7 @@
                 $nome = $campo['descricao'];  
                 
                 if ($id == 0) {
-                    $sql = "INSERT INTO categorias(idClasse,idTipoMateriaPrima,descricao,quantidade,observacoes)" 
+                    $sql = "INSERT INTO categorias(idMateriaPrima, idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
                             ." VALUES(".$classe.",".$tipo.",".$descricao.",".$quantidade.",".$observacoes.")"
                             ." WHERE idMateriaPrima = ".$id.";";
                             

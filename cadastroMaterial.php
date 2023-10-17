@@ -322,14 +322,14 @@
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="idMAterial" name= "nMaterial "placeholder="Nome do material">
+                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao "placeholder="Nome do material">
                                     </div>
                                 </div>                                                              
 
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
                                     <div class="col-md-9">     
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
+                                        <select class='select2 form-control m-t-15' id="iMateria" name="nMateria" multiple='multiple' style='height: 36px;width: 100%;'>                                   
                                             <?php echo fillSelectMateriaPrima();?>      
                                         </select>                                                         
                                     </div>
@@ -338,7 +338,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
                                     <div class="col-md-9">
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>
+                                        <select class='select2 form-control m-t-15' id="iPigmento" name="nPigmento" multiple='multiple' style='height: 36px;width: 100%;'>
                                             <?php echo fillSelectPigmento();?>
                                         </select>
                                     </div>
@@ -347,7 +347,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
                                     <div class="col-md-9">
-                                        <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                        <select id="iClasse" name="nClasse" id="iClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                             <option value="1">Comodities</option>
                                             <option value= "2">Engenharia</option>                                           
                                         </select>
@@ -355,7 +355,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
+                                    <label class="col-md-3 m-t-15" id="iTippo" style="text-align: right;">Tipo de matéria prima</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                             <option value="1">Virgem</option>
@@ -366,7 +366,7 @@
                                     </div>                                    
                                 </div>
 
-                                <div style="align-itens= side;" class="form-group row">
+                                <div style="align-itens= side;" id="iFornecedor" class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
                                         <select class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           

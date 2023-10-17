@@ -15,7 +15,7 @@
 
     if($tipo == 'IM'){        
         
-        $sql = validaMateriaPrima($descricao,$relacao,$classe,$tipoMaterial,$fornecedor,$quantidade,$observacoes);
+        $sql = validaMateriaPrima($descricao,$tipo,$classe,$quantidade,$observações);
         
     }elseif($tipo == 'IP') {          
 
