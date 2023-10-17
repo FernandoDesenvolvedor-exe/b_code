@@ -1,0 +1,9 @@
+.container-btn{
+    display: block;
+}
+
+.btn-adicionar{
+    border: none; 
+    background-color: white; 
+    color: blue;
+}

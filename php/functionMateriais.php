@@ -49,7 +49,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um material</option>";     
+        $select = "<option>Selecione um Fornecedor</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         $sql = "SELECT * FROM fornecedores;";
@@ -72,7 +72,7 @@
             
             foreach($array as $campo){
                 
-                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                $select .="<option value=".$campo['idFornecedor'].">".$campo['descricao']."</option>";                                  
                                                      
             }
         }     
