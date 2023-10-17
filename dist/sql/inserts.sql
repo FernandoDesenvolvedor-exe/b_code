@@ -4,6 +4,18 @@
 #delete from tipo_materia_prima;
 #delete from classe_material;
 #delete from materia_prima;
+INSERT INTO `tipo_pigmentos` (descricao) VALUES
+('MB'),
+('MTB');
+
+INSERT INTO `pigmentos` (descricao, idTipoPigmento, quantidade, codigo, lote) VALUES
+('Verde claro', 1, 200, '5415466','B/656482'),
+('Azul escuro', 2, 245, '48684Ad874','C/64882'),
+('Vermelho', 1, 300, '94686545','A/48654'); 
+
+INSERT INTO `pigmentos` (descricao, idTipoPigmento, quantidade) VALUES
+('MB'),
+('MTB');
 
 INSERT INTO `turma` (`turno`, `nomeTurma`, `ativo`) VALUES
 ('N', 'T DESI 2022', 'S'),
