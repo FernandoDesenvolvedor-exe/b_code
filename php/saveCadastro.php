@@ -1,23 +1,23 @@
 <?php   
     include('connection.php');
-    include('function.php');
+    include('function.php');  
 
     $tipo = $_GET["tipo"];
-    $r_pigmento = $_GET['nPigmento'];
-    $descricao = $_POST['nDescricao'];
-    $r_material = $_POST['nMateria'];        
+    $descricao = $_POST['nDescricao'];      
     $classe = $_POST['nClasse'];
     $tipoMaterial = $_POST['nTipo'];
     $fornecedor = $_POST['nFornecedor'];
     $quantidade = $_POST['nQuandtidade'];
+
+    if($_POST['nObservacoes'] == ""){
+        $observacoes = ""; 
+    }
+
     $observacoes = $_POST['nObservacoes']; 
-    
-    var_dump($r_material);
-    die();
 
     if($tipo == 'IM'){        
         
-        $sql = validaMateriaPrima($descricao,$tipo,$classe,$quantidade,$observações);
+        $sql = validaMateriaPrima($descricao,$tipoMaterial,$classe,$quantidade,$observações);
         
     }elseif($tipo == 'IP') {          
 
@@ -29,9 +29,8 @@
         $sql= validaFornecedor($fornecedor);
     }
 
-    $result = mysqli_query($conn,$sql);
-    
+    $result = mysqli_query($conn,$sql);    
     mysqli_close($conn);  
 
-    header('location: ../cadastroFornecedor.php');
+    header('location: ../cadastroMaterial.php');
 ?>

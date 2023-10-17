@@ -1,9 +1,13 @@
 <?php 
     function validaMateriaPrima($descricao,$tipo,$classe,$quantidade,$observações){
 
-        include('conexao.php');
+        include('connection.php');
 
         $sql= "SELECT * FROM materia_prima;";
+
+        if($observações == ""){
+            $observacoes = null;
+        }
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -19,7 +23,7 @@
                 $nome = $campo['descricao'];  
                 
                 if ($id == 0) {
-                    $sql = "INSERT INTO categorias(idMateriaPrima, idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
+                    $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
                             ." VALUES(".$classe.",".$tipo.",".$descricao.",".$quantidade.",".$observacoes.")"
                             ." WHERE idMateriaPrima = ".$id.";";
                             
