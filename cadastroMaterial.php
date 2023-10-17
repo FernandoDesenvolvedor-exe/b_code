@@ -225,10 +225,7 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Charts</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="estoque.php" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Estoque</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>   
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Cadastro de materiais</span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="cadastroMaterial.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Matéria Prima </span></a></li>
@@ -236,38 +233,7 @@
                                     <li class="sidebar-item"><a href="cadastroOutros.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Outros </span></a></li>
                                 </ul>                        
                             </li>
-                            <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icons </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons </span></a></li>
-                                    <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome Icons </span></a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="index2.html" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Dashboard-2 </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a></li>
-                                    <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Register </span></a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span class="hide-menu">Errors </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403 </span></a></li>
-                                    <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404 </span></a></li>
-                                    <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405 </span></a></li>
-                                    <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500 </span></a></li>
-                                </ul>
-                            </li>
+                            <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>                                                     
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -322,7 +288,7 @@
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao "placeholder="Nome do material">
+                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao"placeholder="Nome do material">
                                     </div>
                                 </div>                                                              
 
@@ -336,7 +302,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmentos</label>
                                     <div class="col-md-9">
                                         <select class='select2 form-control m-t-15' id="iPigmento" name="nPigmento" multiple='multiple' style='height: 36px;width: 100%;'>
                                             <?php echo fillSelectPigmento();?>
@@ -347,7 +313,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
                                     <div class="col-md-9">
-                                        <select id="iClasse" name="nClasse" id="iClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                        <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                             <option value="1">Comodities</option>
                                             <option value= "2">Engenharia</option>                                           
                                         </select>
@@ -355,7 +321,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" id="iTippo" style="text-align: right;">Tipo de matéria prima</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                             <option value="1">Virgem</option>
@@ -366,10 +332,10 @@
                                     </div>                                    
                                 </div>
 
-                                <div style="align-itens= side;" id="iFornecedor" class="form-group row">
+                                <div style="align-itens= side;"  class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
-                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
+                                        <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
                                             <?php echo fillSelectFornecedor()?>                                                                                 
                                         </select>
                                     </div>
@@ -391,7 +357,7 @@
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>                      
                             </div>
                         </form>

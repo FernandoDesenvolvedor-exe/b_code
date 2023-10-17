@@ -1,17 +1,16 @@
 <?php   
-    include('conexao.php');
+    include('connection.php');
     include('function.php');
 
     $tipo = $_GET["tipo"];
-    $idMat = $_GET["idMateriaPrima"];
-    $idFor = $_GET["idFornecedores"];
-    $descricao = $_POST['nMaterial'];
-    $relacao = $_POST['nRelacao'];
+    $descricao = $_POST['nDescricao'];
+    $r_material = $_POST['nMateria'];
+    $r_pigmento = $_POST['nPigmento'];
     $classe = $_POST['nClasse'];
     $tipoMaterial = $_POST['nTipo'];
     $fornecedor = $_POST['nFornecedor'];
     $quantidade = $_POST['nQuandtidade'];
-    $observacoes = $_POST['nObservacoes'];
+    $observacoes = $_POST['nObservacoes'];    
 
     if($tipo == 'IM'){        
         
