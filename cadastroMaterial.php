@@ -19,12 +19,16 @@
         <link rel="stylesheet" type="text/css" href="dist/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
         <link rel="stylesheet" type="text/css" href="dist/assets/libs/quill/dist/quill.snow.css">
         <link href="dist/css/style.min.css" rel="stylesheet">
+        <link href="dist/css/subStyle.css" rel="stylesheet" >
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+        <!--[if lt IE 9]-->
+        <!--CUSTOM SCRIPT-->
+        <script defer src="dist/js/script.js"></script>
+        <!--
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]
+        -->
     </head>
 
     <body>
@@ -364,14 +368,9 @@
                                 <div style="align-itens= side;" class="form-group row">
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
-                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">                                               <option value="1">Virgem</option>
+                                        <select class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
                                             <?php echo fillSelectFornecedor()?>                                                                                 
                                         </select>
-                                        <form action="php/saveCadastro.php?tipo=AF">
-                                            <label for="iFornecedor">Adicionar fornecedor</label>
-                                            <input id="iFornecedor" name="nFornecedor" type="text" class="form-control" id="iFornecedor" name="nFornecedor" placeholder="Nome do fornecedor aqui" style="width: 20%; height:36px;">
-                                            <input type="submit" value="Adicionar">
-                                        </form>
                                     </div>
                                 </div>
 
@@ -388,22 +387,44 @@
                                         <textarea class="form-control" id= "iObservacoes" name="nObservacoes"></textarea>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-primary">Submit</button>
+                                </div>                      
+                            </div>
+                        </form>
+                    </div>   
 
+                    <div class="card">
+                        <!-- ============================================================== -->
+                        <!-- Cria um formulário -->
+                        <!-- ============================================================== -->
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=AF">
+                            <div class="card-body">
+                                <!-- ============================================================== -->
+                                <!-- Titulo da div -->
+                                <!-- ============================================================== -->
+                                <h4 class="card-title">Adicionar Fornecedor</h4>
                                 <div class="form-group row">
-                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Imagem</label>
+                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Nome do Fornecedor</label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="form-control" id="iImagem" name= "nImagem">
+                                        <input id="iFornecedor" name="nFornecedor" type="text" class="form-control" id="iFornecedor" name="nFornecedor" placeholder="Nome do fornecedor aqui" style="width: 20%; height:36px;">
                                     </div>
-                                </div>
+                                </div>  
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
-                        </form>
+                        </form>        
                     </div>
-                    
+                    <div class="card-body">
+                        <label for="">Não encontrou um fornecedor?</label> 
+                        <button id="btn-show-hide">clique aqui</button>
+                    </div>
+
                     <!-- ============================================================== -->
                     <!-- End PAge Content -->
                     <!-- ============================================================== -->

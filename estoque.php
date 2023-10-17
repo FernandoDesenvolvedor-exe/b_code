@@ -309,7 +309,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Basic Datatable</h5>
                                     <div class="table-responsive">                                        
-                                        <?php createTable();?>                                           
+                                        <?php echo createTable();?>                                           
                                     </div>
                                 </div>
                             </div>
