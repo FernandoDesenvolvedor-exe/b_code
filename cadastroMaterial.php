@@ -4,25 +4,25 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
 
-    <?php include('pages/cabecalho.php');?>
+    <?php include('links/cabecalho.php');?>
 
     <body>
 
         <div id="main-wrapper">  
 
-            <?php include('pages/preloader.php');?> 
+            <?php include('links/preloader.php');?> 
 
             <?php 
                 if(validaAcesso() == 1){
-                    include('pages/menu_admin.php');
+                    include('links/menu_admin.php');
                 }else if(validaAcesso() == 2){
-                    include('pages/menu_comum.php');
+                    include('links/menu_comum.php');
                 }                
             ?>     
 
             <div class="page-wrapper">      
                 
-                <?php include('pages/side_bar_direita.php');?>
+                <?php include('links/side_bar_direita.php');?>
 
                 <div class="container-fluid">               
                     <!-- ============================================================== -->
@@ -103,7 +103,7 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('pages/jQuery.php');?>
+        <?php include('links/jQuery.php');?>
 
         <!-- javascript desta pagina -->
         <script src="dist/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

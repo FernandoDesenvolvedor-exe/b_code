@@ -7,6 +7,7 @@
 
     $login = stripslashes($_POST['nLogin']);
     $senha = stripslashes($_POST['nSenha']);
+    $tipoAcesso = $_GET['tipo'];
 
     //var_dump($login.''.$senha);
     //die();
@@ -49,7 +50,7 @@
 
                     switch($campo['idUsuario']){
                         case 1:
-                            header('location:../telaAdmin.php');
+                            header('location:../telaAdmin.php?tipo');
                         break;
 
                         case 2:

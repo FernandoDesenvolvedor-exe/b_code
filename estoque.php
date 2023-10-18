@@ -4,19 +4,27 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
 
-    <?php include('pages/cabecalho.php');?>
+    <?php include('links/cabecalho.php');?>
 
     <body>
 
         <div id="main-wrapper">  
 
-            <?php include('pages/menu.php');?>     
+            <?php include('links/preloader.php');?> 
+
+            <?php 
+                if(validaAcesso() == 1){
+                    include('links/menu_admin.php');
+                }else if(validaAcesso() == 2){
+                    include('links/menu_comum.php');
+                }                
+            ?>     
 
             <div class="page-wrapper">      
                 
-                <?php include('pages/side_bar_direita.php');?>
+                <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">
+                <div class="container-fluid">   
 
                     <div class="row">
                         <div class="col-12">
@@ -62,7 +70,7 @@
         <!-- End Wrapper -->
         <!-- ============================================================== -->
         
-        <?php include('pages/jQuery.php');?>
+        <?php include('links/jQuery.php');?>
         
         <!-- this page js -->
         <script src="dist/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>

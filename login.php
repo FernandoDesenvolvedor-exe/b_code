@@ -5,15 +5,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <?php include('pages/cabecalho.php');?>
+    <?php include('links/cabecalho.php');?>
 
     <body>
-            <!-- ============================================================== -->
-            <!-- Login box.scss -->
-            <!-- ============================================================== -->
         <div class="main-wrapper">
             
-            <?php include('pages/preloader.php');?> 
+            <?php include('links/preloader.php');?> 
             
             <!-- Login box.scss -->            
             <div class="auth-wrapper d-flex no-block justify-content-center bg-cyan align-items-center">
@@ -58,32 +55,12 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- Login box.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper scss in scafholding.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper scss in scafholding.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right Sidebar -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right Sidebar -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- All Required js -->
-        <!-- ============================================================== -->
-        <script src="dist/assets/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="dist/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="dist/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- ============================================================== -->
+
+        <!-- Linhas de javaScript em geral -->
+        <?php include('links/jQuery.php');?>
+
         <!-- This page plugin js -->
-        <!-- ============================================================== -->
         <script>
 
         $('[data-toggle="tooltip"]').tooltip();
