@@ -7,7 +7,6 @@
     <?php include('links/cabecalho.php');?>
 
     <body>
-
         <div id="main-wrapper">  
 
             <?php include('links/preloader.php');?> 
