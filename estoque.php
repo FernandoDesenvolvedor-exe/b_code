@@ -12,12 +12,8 @@
 
             <?php include('links/preloader.php');?> 
 
-            <?php 
-                if(validaAcesso() == 1){
-                    include('links/menu_admin.php');
-                }else if(validaAcesso() == 2){
-                    include('links/menu_comum.php');
-                }                
+            <?php                 
+                include('links/menu.php');                           
             ?>     
 
             <div class="page-wrapper">      
