@@ -58,7 +58,7 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/jQuery.php');?>
+        <?php include('links/script.php');?>
 
         <!-- This page plugin js -->
         <script>

@@ -10,17 +10,9 @@
 
         <div id="main-wrapper">  
 
-            <?php include('links/preloader.php');?>
+            <?php include('links/preloader.php');?> 
 
-            <?php 
-                $tipoAcesso = $_GET['tipo'];
-
-                if(validaAcesso() == 1){
-                    include('links/menu_admin.php');
-                }else if(validaAcesso() == 2){
-                    include('links/menu_comum.php');
-                }                
-            ?>     
+            <?php  include('links/menu.php');?>       
 
             <div class="page-wrapper">      
                 
@@ -149,7 +141,7 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/jQuery.php');?>
+        <?php include('links/script.php');?>
 
         <!-- This Page JS -->
         <script src="dist/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

@@ -12,22 +12,16 @@
 
             <?php include('links/preloader.php');?> 
 
-            <?php 
-                if(validaAcesso() == 1){
-                    include('links/menu_admin.php');
-                }else if(validaAcesso() == 2){
-                    include('links/menu_comum.php');
-                }                
-            ?>     
+            <?php  include('links/menu.php');?>     
 
             <div class="page-wrapper">      
                 
                 <?php include('links/side_bar_direita.php');?>
 
                 <div class="container-fluid">               
-                    <!-- ============================================================== -->
+                    
                     <!-- Start Page Content -->
-                    <!-- ============================================================== -->
+                    
                     <div class="card">
 
                         <!-- Cria um formulário -->                            
@@ -103,7 +97,7 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/jQuery.php');?>
+        <?php include('links/script.php');?>
 
         <!-- javascript desta pagina -->
         <script src="dist/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

@@ -12,9 +12,7 @@
 
             <?php include('links/preloader.php');?> 
 
-            <?php                 
-                include('links/menu.php');                           
-            ?>     
+            <?php include('links/menu.php');?>     
 
             <div class="page-wrapper">      
                 
@@ -66,7 +64,7 @@
         <!-- End Wrapper -->
         <!-- ============================================================== -->
         
-        <?php include('links/jQuery.php');?>
+        <?php include('links/script.php');?>
         
         <!-- this page js -->
         <script src="dist/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
