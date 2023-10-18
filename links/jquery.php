@@ -14,7 +14,3 @@
 <script src="dist/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="dist/js/custom.min.js"></script>
-<!-- this page js -->
-<script src="dist/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-<script src="dist/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-<script src="dist/assets/extra-libs/DataTables/datatables.min.js"></script>

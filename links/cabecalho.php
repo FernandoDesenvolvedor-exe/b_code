@@ -6,11 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="dist/assets/images/logoLabPlasticos16x16.png">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="dist/assets/extra-libs/multicheck/multicheck.css">
     <link href="dist/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="dist/css/style.min.css" rel="stylesheet">    
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/subStyle.css" rel="stylesheet" > 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->   
 </head>
