@@ -84,7 +84,7 @@
                             
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">Salvar</button>
+                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
                                 </div>                      
                             </div>
                         </form>

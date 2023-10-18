@@ -6,14 +6,11 @@
         $sql= "SELECT * FROM materia_prima;";
 
         if($observações == ""){
-            $observacoes = null;
+            $observacoes = 'null';
         }
 
-        var_dump($observacoes);
-        die();
-
         $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
+        mysqli_close($conn); 
 
         if(mysqli_num_rows($result) > 0){    
             $array = array();
@@ -23,15 +20,40 @@
             }
             foreach($array as $campo){
                 $id = $campo['idMateriaPrima'];
-                $nome = $campo['descricao'];  
+                $nome = $campo['descricao'];
+
                 
-                if ($id == 0) {
-                    $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
-                            ." VALUES(".$classe.",".$tipo.",".$descricao.",".$quantidade.",".$observacoes.")"
-                            ." WHERE idMateriaPrima = ".$id.";";
-                            
-                    break;
-                }            
+                if($id == 0){
+                    if($id == mysqli_num_rows($result)){
+                        if($observacoes == 'null'){
+                            $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
+                                ." VALUES(".$classe.",".$tipo.",'".$descricao."',".$quantidade.",null);"; 
+                                var_dump($tipo);                           
+                            break;
+    
+                        }else{
+                            $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
+                                ." VALUES(".$classe.",".$tipo.",'".$descricao."',".$quantidade.",".$observacoes.")"; 
+                            break;
+    
+                        }
+                    } 
+                }else{
+                    if($id == mysqli_num_rows($result)){
+                        if($observacoes == 'null'){
+                            $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
+                                ." VALUES(".$classe.",".$tipo.",'".$descricao."',".$quantidade.",null);"; 
+                                var_dump($tipo);                           
+                            break;
+
+                        }else{
+                            $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, observacoes)" 
+                                ." VALUES(".$classe.",".$tipo.",'".$descricao."',".$quantidade.",".$observacoes.")"; 
+                            break;
+
+                        }
+                    }
+                }    
             }
         }    
         

@@ -10,25 +10,25 @@
     $quantidade = $_POST['nQuandtidade'];
 
     if($_POST['nObservacoes'] == ""){
-        $observacoes = ""; 
+        $observacoes = " ";
     }
 
     $observacoes = $_POST['nObservacoes']; 
 
-    if($tipo == 'IM'){        
+    if($validacao == 'IM'){        
         
         $sql = validaMateriaPrima($descricao,$tipoMaterial,$classe,$quantidade,$observações);
         
-    }elseif($tipo == 'IP') {          
+    }elseif($validacao == 'IP') {          
 
         $sql = "UPDATE categorias" 
                 ." SET descricao = '".$descricao."'"
                 ." WHERE idCategoria =".$id.";"; 
 
-    }elseif($tipo == 'AF') {
+    }elseif($validacao == 'AF') {
         $sql= validaFornecedor($fornecedor);
     }
-    
+
     $result = mysqli_query($conn,$sql);    
     mysqli_close($conn);  
 
