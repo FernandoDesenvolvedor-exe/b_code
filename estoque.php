@@ -64,18 +64,7 @@
         <!-- End Wrapper -->
         <!-- ============================================================== -->
         
-        <?php include('links/script.php');?>
-        
-        <!-- this page js -->
-        <script src="dist/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-        <script src="dist/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-        <script src="dist/assets/extra-libs/DataTables/datatables.min.js"></script>
-        <script>
-            /****************************************
-                *       Basic Table                   *
-                ****************************************/
-            $('#zero_config').DataTable();
-        </script>                   
+        <?php include('links/script.php');?>           
     </body>
 
 </html>

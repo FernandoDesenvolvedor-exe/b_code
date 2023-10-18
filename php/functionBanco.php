@@ -9,6 +9,9 @@
             $observacoes = null;
         }
 
+        var_dump($observacoes);
+        die();
+
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 

@@ -11,9 +11,9 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="dist/assets/images/logoLabPlasticos16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoLabPlasticos16x16.png">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="dist/assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/select2/dist/css/select2.min.css">
     <!--  <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
     <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css"> -->
@@ -159,10 +159,10 @@
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="dist/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="dist/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="dist/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->
@@ -177,7 +177,7 @@
     <script src="dist/js/sidebarmenu.js"></script>
     <script src="dist/js/custom.min.js"></script>
     <script src="dist/js/waves.js"></script> 
-    <script src="dist/assets/libs/toastr/build/toastr.min.js"></script>
+    <script src="assets/libs/toastr/build/toastr.min.js"></script>
     <script>
         $(function() {
             // Success Type

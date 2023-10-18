@@ -1,6 +1,6 @@
 <?php
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
-    //include("php/function.php");
+    include("php/function.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,7 +17,7 @@
                 <div class="auth-box bg-blue border-top border-secondary">
                     <div id="loginform">
                         <div class="text-center p-t-20 p-b-20">
-                            <img src="dist/assets/images/logoSenai300x82.jpg" alt="logo"/>
+                            <img src="assets/images/logoSenai300x82.jpg" alt="logo"/>
                             <br>
                             <br>
                             <br>
@@ -60,24 +60,7 @@
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
 
-        <!-- This page plugin js -->
-        <script>
-
-        $('[data-toggle="tooltip"]').tooltip();
-        $(".preloader").fadeOut();
-        // ============================================================== 
-        // Login and Recover Password 
-        // ============================================================== 
-        $('#to-recover').on("click", function() {
-            $("#loginform").slideUp();
-            $("#recoverform").fadeIn();
-        });
-        $('#to-login').click(function(){
-            
-            $("#recoverform").hide();
-            $("#loginform").fadeIn();
-        });
-        </script>
+        
         
     </body>
 </html>

@@ -2,7 +2,7 @@
     include('connection.php');
     include('function.php');  
 
-    $tipo = $_GET["tipo"];
+    $validacao = $_GET["validacao"];
     $descricao = $_POST['nDescricao'];      
     $classe = $_POST['nClasse'];
     $tipoMaterial = $_POST['nTipo'];
@@ -28,7 +28,7 @@
     }elseif($tipo == 'AF') {
         $sql= validaFornecedor($fornecedor);
     }
-
+    
     $result = mysqli_query($conn,$sql);    
     mysqli_close($conn);  
 
