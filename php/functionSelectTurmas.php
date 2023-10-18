@@ -5,8 +5,8 @@
         $sqlVespertino = "select idTurma, nomeTurma from turma where ativo='S' and turno='V';";
         $sqlNoturno = "select idTurma,nomeTurma from turma where ativo='S' and turno='N';";
 
-        $listaTurmas = "<select class='select2 form-control custom-select' style='width: 100%; height:100%;'>"
-        ."<option>Select turma</option>";
+        $listaTurmas = "<select name='nTurma' class='select2 form-control custom-select' style='width: 100%; height:100%;' required>"
+        ."<option value=null>Select turma*</option>";
 
         //Matutino
         $listaTurmas.="<optgroup label='Matutino'>";
