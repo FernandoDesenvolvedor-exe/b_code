@@ -3,9 +3,10 @@
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
-
-    <?php include('links/cabecalho.php');?>
-
+    <head>
+        <?php include('links/cabecalho.php');?>   
+    </head>    
+    
     <body>
         <div id="main-wrapper">  
 

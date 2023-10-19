@@ -4,9 +4,10 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
-    <?php include('links/cabecalho.php');?>
-
+    <head>
+        <?php include('links/cabecalho.php');?>   
+    </head>
+    
     <body>
         <div class="main-wrapper">
             
