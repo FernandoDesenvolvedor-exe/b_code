@@ -1,5 +1,8 @@
 <?php
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
+
     include('php/function.php');
 ?>
 
@@ -56,7 +59,7 @@
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg" name="nNome" placeholder="Nome*" aria-label="Username" aria-describedby="basic-addon1" required>
-                                    <input type="text" class="form-control form-control-lg" name="nSobrenome" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control form-control-lg" name="nSobrenome" placeholder="Sobrenome*" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 
                                 <!-- email -->
@@ -64,7 +67,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" name="nEmail" placeholder="Email*" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    <input type="email" class="form-control form-control-lg" name="nEmail" placeholder="Email*" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 <!-- senha -->
                                 <div class="input-group mb-3">
@@ -91,9 +94,11 @@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                        <?php 
-                                            echo selectTurmas();
-                                        ?> 
+                                        <select name='nTurma' class='select2 form-control custom-select' style='width: 100%; height:100%;'>
+                                            <?php 
+                                                echo selectTurmas();
+                                            ?> 
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- Tipo Usuario -->
@@ -101,7 +106,7 @@
                                     <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
                                             <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                <option value=null>Nivel de Acesso*</option>
+                                                <option value="">Nivel de Acesso*</option>
                                                 <optgroup label="Niveis">
                                                     <option value="1">Administrador</option>
                                                     <option value="2">Comum</option>
@@ -123,15 +128,15 @@
                         </div>
                     </form>
                     <?php
-                        echo $_SESSION['msgAviso'];
-                        $_SESSION['msgAviso'] = '';
-                        session_destroy();
-                    ?>
-                    <?php  
-                        //echo '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
-                        /*.'<span class="input-group-text bg-warning text-white" id="basic-addon2" style="height:100%;"><i class="mdi mdi-alert"></i></span>'*/
-                        //.'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">Selecione todos os campos*</div></div></div>';
-                
+                        
+                        if(isset($_SESSION['msgErro'])){
+                            echo $_SESSION['msgErro'];
+                            unset($_SESSION['msgErro']);
+                        
+                        }
+                        //parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY)=='error=1' -> Pega a oq tiver depois do ? na URL
+                            
+                        
                     ?>
                 </div>
             </div>
@@ -157,7 +162,7 @@
     </div>
     
     <!-- ============================================================== -->
-    <!-- All Required js -->
+    <!-- All js -->
     <!-- ============================================================== -->
     <script src="dist/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
