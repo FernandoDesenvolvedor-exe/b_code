@@ -13,7 +13,16 @@
 <!--Menu sidebar -->
 <script src="dist/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
-
+<!-- Cadastro Usuario -->
+<script src="assets/libs/toastr/build/toastr.min.js"></script>
+<script>
+    $(function() {
+        // Success Type
+        $('#ts-warning').on('click', function() {
+            toastr.warning('Selecione todos os campos');
+        });
+    });
+</script>
 
 <!-- Java Script pagina cadastroMaterial-->
 <script src="dist/js/custom.min.js"></script>
