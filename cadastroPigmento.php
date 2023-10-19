@@ -36,21 +36,21 @@
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao "placeholder="Nome do pigmento">
+                                        <input type="text" class="form-control" id="iDescricao" name="nDescricao" placeholder="Nome do pigmento">
                                     </div>
                                 </div> 
 
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Código</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iCodigo" name= "nCodigo "placeholder="Opcional">
+                                        <input type="text" class="form-control" id="iCodigo" name="nCodigo" placeholder="Opcional">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Lote</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iLote" name= "nLote" placeholder="Opcional">
+                                        <input type="text" class="form-control" id="iLote" name="nLote" placeholder="Opcional">
                                     </div>
                                 </div>
 

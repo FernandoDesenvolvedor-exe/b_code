@@ -8,14 +8,17 @@
     include('connection.php');
     include('function.php');  
 
-    if($validacao == 'IM'){ 
-        $validacao = $_GET["validacao"];
-        $descricao = $_POST['nDescricao'];
-        $classe = $_POST['nClasse'];
-        $tipoMaterial = $_POST['nTipo'];
-        $fornecedor = $_POST['nFornecedor'];
-        $quantidade = $_POST['nQuandtidade'];
-        $observacoes = $_POST['nObservacoes'];       
+    var_dump($_POST['nDescricao'],$_POST['nCodigo'],$_POST['nLote']);
+    die();
+    $validacao = $_GET["validacao"];
+    $descricao = $_POST['nDescricao'];    
+    $tipoMaterial = $_POST['nTipo'];
+    $quantidade = $_POST['nQuandtidade'];
+    $observacoes = $_POST['nObservacoes'];
+    $fornecedor = $_POST['nFornecedor'];       
+    
+    if($validacao == 'IM'){         
+        $classe = $_POST['nClasse'];       
         
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
                 ." VALUES(".$classe.",".$tipoMaterial.",'".$descricao."',".$quantidade.", 1, '".$observacoes."');";
@@ -34,14 +37,8 @@
         
     }elseif($validacao == 'IP') {
         
-        $validacao = $_GET["validacao"];
-        $descricao = $_POST['nDescricao'];
         $codigo = $_POST['nCodigo'];
         $lote = $_POST['nLote'];    
-        $tipoMaterial = $_POST['nTipo'];
-        $fornecedor = $_POST['nFornecedor'];
-        $quantidade = $_POST['nQuandtidade'];
-        $observacoes = $_POST['nObservacoes']; 
 
         $sql = "INSERT INTO pigmentos(descicao, idTipoPigmento, quantidade, codigo, lote, observacoes, ativo)" 
                 ." VALUES(".$descricao.",".$tipoMaterial.",'".$quantidade."',".$codigo.",".$lote.", 1, '".$observacoes."');";
