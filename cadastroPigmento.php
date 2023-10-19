@@ -26,7 +26,7 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IP">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IP">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->
@@ -88,7 +88,7 @@
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
                                 </div>                      
                             </div>
                         </form>
