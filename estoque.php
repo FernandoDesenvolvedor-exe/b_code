@@ -7,14 +7,11 @@
     <?php include('links/cabecalho.php');?>
 
     <body>
-
         <div id="main-wrapper">  
 
             <?php include('links/preloader.php');?> 
 
-            <?php                 
-                include('links/menu.php');                           
-            ?>     
+            <?php include('links/menu.php');?>     
 
             <div class="page-wrapper">      
                 
@@ -66,18 +63,7 @@
         <!-- End Wrapper -->
         <!-- ============================================================== -->
         
-        <?php include('links/jQuery.php');?>
-        
-        <!-- this page js -->
-        <script src="dist/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-        <script src="dist/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-        <script src="dist/assets/extra-libs/DataTables/datatables.min.js"></script>
-        <script>
-            /****************************************
-                *       Basic Table                   *
-                ****************************************/
-            $('#zero_config').DataTable();
-        </script>                   
+        <?php include('links/script.php');?>           
     </body>
 
 </html>

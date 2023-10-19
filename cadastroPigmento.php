@@ -10,17 +10,9 @@
 
         <div id="main-wrapper">  
 
-            <?php include('links/preloader.php');?>
+            <?php include('links/preloader.php');?> 
 
-            <?php 
-                $tipoAcesso = $_GET['tipo'];
-
-                if(validaAcesso() == 1){
-                    include('links/menu_admin.php');
-                }else if(validaAcesso() == 2){
-                    include('links/menu_comum.php');
-                }                
-            ?>     
+            <?php  include('links/menu.php');?>       
 
             <div class="page-wrapper">      
                 
@@ -34,55 +26,39 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IM">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IP">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->
                                 <!-- ============================================================== -->
                                 <h4 class="card-title">Matéria Prima</h4>
+
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="idMAterial" name= "nMaterial "placeholder="Nome do material">
+                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao "placeholder="Nome do pigmento">
                                     </div>
-                                </div>                                                              
+                                </div> 
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
-                                    <div class="col-md-9">     
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
-                                            <?php echo fillSelectMateriaPrima();?>      
-                                        </select>                                                         
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Código</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iCodigo" name= "nCodigo "placeholder="Opcional">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
-                                    <div class="col-md-9">
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>
-                                            <?php echo fillSelectPigmento();?>
-                                        </select>
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Lote</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iLote" name= "nLote" placeholder="Opcional">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
-                                    <div class="col-md-9">
-                                        <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Comodities</option>
-                                            <option value= "2">Engenharia</option>                                           
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Virgem</option>
-                                            <option value= "2">Reciclado</option>  
-                                            <option value="3">Remoido</option>
-                                            <option value= "4">Scrap</option>                                                                                   
+                                            <?php echo optionsTipoPigmento()?>                                                                                
                                         </select>
                                     </div>                                    
                                 </div>
@@ -106,13 +82,13 @@
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes"></textarea>
+                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Opcional"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
                                 </div>                      
                             </div>
                         </form>
@@ -149,61 +125,6 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/jQuery.php');?>
-
-        <!-- This Page JS -->
-        <script src="dist/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="dist/js/pages/mask/mask.init.js"></script>
-        <script src="dist/assets/libs/select2/dist/js/select2.full.min.js"></script>
-        <script src="dist/assets/libs/select2/dist/js/select2.min.js"></script>
-        <script src="dist/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-        <script src="dist/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-        <script src="dist/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-        <script src="dist/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-        <script src="dist/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="dist/assets/libs/quill/dist/quill.min.js"></script>
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
-
-            /*colorpicker*/
-            $('.demo').each(function() {
-            //
-            // Dear reader, it's actually very easy to initialize MiniColors. For example:
-            //
-            //  $(selector).minicolors();
-            //
-            // The way I've done it below is just for the demo, so don't get confused
-            // by it. Also, data- attributes aren't supported at this time...they're
-            // only used for this demo.
-            //
-            $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
-
-                    change: function(value, opacity) {
-                        if (!value) return;
-                        if (opacity) value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
-            });
-
-        </script>
+        <?php include('links/script.php');?>
     </body>
 </html>
