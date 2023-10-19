@@ -27,16 +27,7 @@
 <script src="assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
 <script src="assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/libs/quill/dist/quill.min.js"></script>
-<script>
-    function alterarValorObs(){
-        var obs = document.getElementById('#iObservacoes');
 
-        if(obs.value == ""){
-            obs.value = "null";
-        }
-    }
-
-</script>
 
 <script>
             

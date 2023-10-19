@@ -1,6 +1,30 @@
 <?php        
-    function fillSelectMateriaPrima(){
+    function optionsTipoPigmento(){
 
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+        $sql = "SELECT * FROM tipo_pigmentos;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 1){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+                $select .= "<option value ='".$campo['idTipoPigmento']."'>".$campo['descricao']."</option>";
+            }
+        }
+
+        return $select;
+    }
+
+    function fillSelectMateriaPrima(){
         // acessa a conexão com o banco de dados         
         include("connection.php");
 

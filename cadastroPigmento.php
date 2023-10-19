@@ -26,55 +26,39 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IM">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IP">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->
                                 <!-- ============================================================== -->
                                 <h4 class="card-title">Matéria Prima</h4>
+
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="idMAterial" name= "nMaterial "placeholder="Nome do material">
+                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao "placeholder="Nome do pigmento">
                                     </div>
-                                </div>                                                              
+                                </div> 
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de materiais</label>
-                                    <div class="col-md-9">     
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>                                   
-                                            <?php echo fillSelectMateriaPrima();?>      
-                                        </select>                                                         
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Código</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iCodigo" name= "nCodigo "placeholder="Opcional">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Relação de Pigmntos</label>
-                                    <div class="col-md-9">
-                                        <select class='select2 form-control m-t-15' multiple='multiple' style='height: 36px;width: 100%;'>
-                                            <?php echo fillSelectPigmento();?>
-                                        </select>
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Lote</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iLote" name= "nLote" placeholder="Opcional">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
-                                    <div class="col-md-9">
-                                        <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Comodities</option>
-                                            <option value= "2">Engenharia</option>                                           
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Virgem</option>
-                                            <option value= "2">Reciclado</option>  
-                                            <option value="3">Remoido</option>
-                                            <option value= "4">Scrap</option>                                                                                   
+                                            <?php echo optionsTipoPigmento()?>                                                                                
                                         </select>
                                     </div>                                    
                                 </div>
@@ -98,7 +82,7 @@
                                 <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes"></textarea>
+                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Opcional"></textarea>
                                     </div>
                                 </div>
                             </div>
