@@ -20,8 +20,7 @@
 
                 <div class="container-fluid">               
                     
-                    <!-- Start Page Content -->
-                    
+                    <!-- Start Page Content -->                    
                     <div class="card">
 
                         <!-- Cria um formulário -->                            
@@ -33,7 +32,7 @@
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao"placeholder="Nome do material">
+                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material">
                                     </div>
                                 </div> 
                                 <div class="form-group row">
