@@ -8,7 +8,6 @@
     </head>
     
     <body>
-
         <div id="main-wrapper">  
 
             <?php include('links/preloader.php');?> 
@@ -27,7 +26,7 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=AF">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?tipo=IF">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->
