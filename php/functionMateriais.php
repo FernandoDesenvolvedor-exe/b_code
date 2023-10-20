@@ -39,7 +39,8 @@
                 ." LEFT JOIN tipo_materia_prima as tipo"
                 ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima"
                 ." LEFT JOIN classe_material as class"
-                ." ON mat.idClasse = class.idClasse;";
+                ." ON mat.idClasse = class.idClasse"
+                ." WHERE mat.ativo = 1;";
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
@@ -63,8 +64,8 @@
                                                      
             }
         }     
-        
-        return $select;
+
+        return $select;        
     }
 
     function fillSelectFornecedor(){
@@ -76,8 +77,8 @@
         $select = "<option>Selecione um Fornecedor</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
-        $sql = "SELECT * FROM fornecedores;";
-
+        $sql = "SELECT * FROM fornecedores"
+                ." WHERE ativo = 1;";
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
         //salva o resultado em $result
@@ -116,7 +117,8 @@
         $sql = "SELECT p.idPigmento as id, p.descricao as nome, tipo.descricao as tipos" 
                 ." FROM pigmentos as p"
                 ." LEFT JOIN tipo_pigmentos as tipo"
-                ." ON p.idTipoPigmento = tipo.idTipoPigmento;";
+                ." ON p.idTipoPigmento = tipo.idTipoPigmento"
+                ." WHERE p.ativo = 1;";
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
@@ -193,8 +195,7 @@
                             ." <td>".$campo['tipo']."</td>"
                             ." <td>".$campo['id']."</td>"
                             ." <td>".$campo['qtd']."</td>"
-                        ." </tr>";                       
-                                       
+                        ." </tr>";    
             }
 
             $lista.="</tbody>"
