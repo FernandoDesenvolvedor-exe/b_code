@@ -59,7 +59,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <?php echo optionsTipoPigmento()?>                                                                                
+                                            <?php echo optionsTipoPigmento();?>                                                                                
                                         </select>
                                     </div>                                    
                                 </div>
@@ -68,7 +68,7 @@
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
                                         <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
-                                            <?php echo fillSelectFornecedor()?>                                                                                 
+                                            <?php echo fillSelectFornecedor();?>                                                                                 
                                         </select>
                                     </div>
                                 </div>
