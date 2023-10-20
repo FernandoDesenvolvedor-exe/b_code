@@ -8,10 +8,9 @@
     include('connection.php');
     include('function.php'); 
 
-    $validacao = $_GET["validacao"];     
-    
+    $validacao = $_GET["validacao"];   
 
-    if($validacao == 'IM'){    //insert materia prima
+    if($validacao == 'IMP'){    //insert materia prima
 
         $descricao = stripslashes($_POST['nDescricao']);
         $quantidade = stripslashes($_POST['nQuandtidade']);
@@ -130,7 +129,7 @@
 
         header('location: ../cadastroOutros.php');
     
-    }else if($validacao = 'IR'){  // Insert Relação entre um pigmento e matéria prima
+    }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e matéria prima  
 
         $pigmento = $_POST['nPigmento'];
 
@@ -142,8 +141,20 @@
             $result = mysqli_query($conn, $sql);
         }
 
+        //fecha a conexão
         mysqli_close($conn);
 
         header('location: ../cadastroRelacao.php');
+    }else if($validacao == 'IM'){   // Insert um cadastro de mauina   
+
+        $descricao = $_POST['nMaquina'];
+
+        $sql = "INSERT INTO maquinas(descricao, ativo)"
+                ." VALUES('".$descricao."', 1);";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('location: ../cadastroMaquina.php');
     }
 ?>
