@@ -24,7 +24,7 @@
         return $select;
     }
 
-    function fillSelectMateriaPrima(){
+    function optionsMaterial(){
         // acessa a conexão com o banco de dados         
         include("connection.php");
 
