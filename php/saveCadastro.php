@@ -12,12 +12,12 @@
     
     if($validacao == 'IM'){    //insert materia prima
 
-        $descricao = $_POST['nDescricao'];
-        $quantidade = $_POST['nQuandtidade'];
-        $classe = $_POST['nClasse'];       
-        $tipoMaterial = $_POST['nTipo'];
-        $observacoes = $_POST['nObservacoes'];
-        $fornecedor = $_POST['nFornecedor'];
+        $descricao = stripslashes($_POST['nDescricao']);
+        $quantidade = stripslashes($_POST['nQuandtidade']);
+        $classe = stripslashes($_POST['nClasse']);       
+        $tipoMaterial = stripslashes($_POST['nTipo']);
+        $observacoes = stripslashes($_POST['nObservacoes']);
+        $fornecedor = stripslashes($_POST['nFornecedor']);
 
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
@@ -40,13 +40,13 @@
 
     }else if($validacao == 'IP') {    //insert pigmento
 
-        $descricao = $_POST['nDescricao'];
-        $quantidade = $_POST['nQuandtidade'];          
-        $tipoMaterial = $_POST['nTipo'];
-        $observacoes = $_POST['nObservacoes'];
-        $fornecedor = $_POST['nFornecedor'];
-        $codigo = $_POST['nCodigo'];
-        $lote = $_POST['nLote'];   
+        $descricao = stripslashes($_POST['nDescricao']);
+        $quantidade = stripslashes($_POST['nQuandtidade']);          
+        $tipoMaterial = stripslashes($_POST['nTipo']);
+        $observacoes = stripslashes($_POST['nObservacoes']);
+        $fornecedor = stripslashes($_POST['nFornecedor']);
+        $codigo = stripslashes($_POST['nCodigo']);
+        $lote = stripslashes($_POST['nLote']);   
 
         //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO pigmentos(descricao, idTipoPigmento, quantidade, codigo, lote, ativo, observacoes)" 
@@ -71,7 +71,7 @@
 
     }else if($validacao == 'IF') {        //insert fornecedor
 
-        $descricao = $_POST['nFornecedor'];
+        $descricao = stripslashes($_POST['nFornecedor']);
         //Script SQL que insere na tabela fornecedores os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO fornecedores(descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
@@ -82,9 +82,11 @@
         //fecha a conexão
         mysqli_close($conn);
 
+        header('location: ../cadastroOutros.php');
+
     }else if($validacao == 'iCM'){  //insert classe materia prima        
 
-        $descricao = $_POST['nClasse'];
+        $descricao = stripslashes($_POST['nClasse']);
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO classe_material(descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
@@ -95,9 +97,11 @@
         //fecha a conexão
         mysqli_close($conn);
 
+        header('location: ../cadastroOutros.php');
+
     }else if($validacao == 'ITM'){   // insert tipo materia prima
  
-        $descricao = $_POST['nTipoMateria'];
+        $descricao = stripslashes($_POST['nTipoMateria']);
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO tipo_materia_prima(descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
@@ -108,9 +112,11 @@
         //fecha a conexão
         mysqli_close($conn);
 
+        header('location: ../cadastroOutros.php');
+
     }else if($validacao == 'ITP'){    // insert tipo pigmentos
 
-        $descricao = $_POST['nTipoPigmento'];
+        $descricao = stripslashes($_POST['nTipoPigmento']);
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO tipo_pigmentos (descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
@@ -120,18 +126,23 @@
 
         //fecha a conexão
         mysqli_close($conn);
+
+        header('location: ../cadastroOutros.php');
     
     }else if($validacao = 'IR'){  // Insert Relação entre um pigmento e matéria prima
 
         $pigmento = $_POST['nPigmento'];
 
         for($i = 0; $i < count($_POST['nMateriaPrima']); $i++){
-
+            
             $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
                     ."VALUES(".$_POST['nMateriaPrima'][$i].", ".$pigmento.");";
 
+            $result = mysqli_query($conn, $sql);
         }
 
-        var_dump($_POST['nMateriaPrima'][0]);
+        mysqli_close($conn);
+
+        header('location: ../cadastroOutros.php');
     }
 ?>
