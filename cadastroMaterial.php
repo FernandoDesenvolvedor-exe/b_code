@@ -25,7 +25,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IM">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IMP">
                             <div class="card-body">
                                 
                                 <!-- Titulo da div -->
@@ -40,8 +40,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
                                     <div class="col-md-9">
                                         <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Comodities</option>
-                                            <option value= "2">Engenharia</option>                                           
+                                            <?php echo optionClaseMaterial();?>                                         
                                         </select>
                                     </div>
                                 </div>
@@ -50,10 +49,7 @@
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
                                     <div class="col-md-9">
                                         <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <option value="1">Virgem</option>
-                                            <option value= "2">Reciclado</option>  
-                                            <option value="3">Remoido</option>
-                                            <option value= "4">Scrap</option>                                                                                   
+                                            <?php echo optionTipoMaterial();?>
                                         </select>
                                     </div>                                    
                                 </div>
