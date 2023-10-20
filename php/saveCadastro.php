@@ -143,6 +143,6 @@
 
         mysqli_close($conn);
 
-        header('location: ../cadastroOutros.php');
+        header('location: ../cadastroRelacao.php');
     }
 ?>
