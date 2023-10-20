@@ -4,12 +4,15 @@
 
         include('connection.php');
 
-        $sql = "SELECT ".$idName." FROM ".$tableName.";";
+        $sql = "SELECT ".$idName."" 
+                ." FROM ".$tableName.""
+                ." ORDER BY ".$idName." DESC limit 1;";
+        
         $id = '';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
-        
+
         if(mysqli_num_rows($result) > 0){
             $array = array();
 
@@ -18,7 +21,9 @@
             }
 
             foreach($array as $campo){
-                $id = $campo['idMateriaPrima'];
+                $id = $campo[$idName];
+
+                
             }
         }
 
