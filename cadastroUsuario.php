@@ -144,7 +144,15 @@
     </div>
 </div>
 <?php include('links/script.php'); ?>
-
+<script>
+    <?php 
+        if(isset($_SESSION['msgErro'])){
+            echo $_SESSION['msgErro'];
+            unset($_SESSION['msgErro']);
+        
+        }
+    ?>
+</script>
     <!--<div class="main-wrapper" >
          !-- Preloader - style you can find in spinners.css
         <div class="preloader">

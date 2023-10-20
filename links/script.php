@@ -14,16 +14,34 @@
 <script src="dist/js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <!-- Cadastro Usuario -->
+
 <script src="assets/libs/toastr/build/toastr.min.js"></script>
+
+<!-- Avisos na lateral
 <script>
     $(function() {
         // Success Type
+        $('#ts-success').on('click', function() {
+            toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+        });
+
+        // Success Type
+        $('#ts-info').on('click', function() {
+            toastr.info('We do have the Kapua suite available.', 'Turtle Bay Resort');
+        });
+
+        // Success Type
         $('#ts-warning').on('click', function() {
-            toastr.warning('Selecione todos os campos');
+            toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!');
+        });
+
+        // Success Type
+        $('#ts-error').on('click', function() {
+            toastr.error('I do not think that word means what you think it means.', 'Inconceivable!');
         });
     });
 </script>
-
+-->
 <!-- Java Script pagina cadastroMaterial-->
 <script src="dist/js/custom.min.js"></script>
 <script src="assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

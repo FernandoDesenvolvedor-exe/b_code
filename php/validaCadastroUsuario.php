@@ -86,5 +86,13 @@
         header('location: ../cadastroUsuario.php');
         die();
     }
+    //Inserir dados no Banco
+    INSERT INTO `usuarios` (`login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
+('a@teste.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', 1, 1, 'S'),
+('b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 'S'),
+('c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'Testudo de teste', 1, 2, 'N');
+    $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo , ativo) values"
+                ."('login', md5('senha'), 'nome' , 'sobrenome', idTurma, tipo , 'ativo')";
+    mysqli_query($conn, $sqlInsert);
 
 ?>
