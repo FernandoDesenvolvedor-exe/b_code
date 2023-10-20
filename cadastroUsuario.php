@@ -129,8 +129,6 @@
                         
                         }
                         //parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY)=='error=1' -> Pega a oq tiver depois do ? na URL
-                            
-                        
                     ?>
                 </div>
             </div>
@@ -146,9 +144,9 @@
 <?php include('links/script.php'); ?>
 <script>
     <?php 
-        if(isset($_SESSION['msgErro'])){
-            echo $_SESSION['msgErro'];
-            unset($_SESSION['msgErro']);
+        if(isset($_SESSION['msgAlert'])){
+            echo $_SESSION['msgAlert'];
+            unset($_SESSION['msgAlert']);
         
         }
     ?>
