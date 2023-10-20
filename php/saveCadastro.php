@@ -10,6 +10,7 @@
 
     $validacao = $_GET["validacao"];     
     
+
     if($validacao == 'IM'){    //insert materia prima
 
         $descricao = stripslashes($_POST['nDescricao']);
