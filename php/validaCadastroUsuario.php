@@ -17,9 +17,6 @@
 
     $_SESSION['msgErro'] = '';
 
-    //=========================================TESTE=====================================================================================
-    $_SESSION['msgAlert'] = alert(2,"Titulo de teste", "Mensagem de teste");
-    //=========================================FIM TESTE=================================================================================
 
     $abreHTMLalert = '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
                     .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
@@ -98,4 +95,5 @@
                 ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu." , 'S');";
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
+    
 ?>

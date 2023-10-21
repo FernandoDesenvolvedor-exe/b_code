@@ -4,6 +4,7 @@
     include("functionMateriais.php");
     include("functionSelectTurmas.php");
     include('functionValidaDados.php');
+    //include('functionAlerts.php');
 
 ?>
 

@@ -114,15 +114,35 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="p-t-20">
-                                            <button class="btn btn-block btn-lg btn-info" type="submit">Cadastrar</button>
-                                            
+                                        <!--<button class="btn btn-block btn-lg btn-info" type="submit">Cadastrar</button>-->
+                                        <button type="button" class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#Modal2">
+                                            Cadastrar
+                                        </button>
+                                        <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar cadastro</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Deseja mesmo cadastrar este usuario?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Cadastrar Usuario</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
                     <?php
-                        
                         if(isset($_SESSION['msgErro'])){
                             echo $_SESSION['msgErro'];
                             unset($_SESSION['msgErro']);
@@ -142,15 +162,6 @@
     </div>
 </div>
 <?php include('links/script.php'); ?>
-<script>
-    <?php 
-        if(isset($_SESSION['msgAlert'])){
-            echo $_SESSION['msgAlert'];
-            unset($_SESSION['msgAlert']);
-        
-        }
-    ?>
-</script>
     <!--<div class="main-wrapper" >
          !-- Preloader - style you can find in spinners.css
         <div class="preloader">
