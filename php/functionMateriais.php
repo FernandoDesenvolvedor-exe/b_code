@@ -24,7 +24,57 @@
         return $select;
     }
 
-    function fillSelectMateriaPrima(){
+    function optionTipoMaterial(){
+
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+        $sql = "SELECT * FROM tipo_materia_prima WHERE ativo = 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 1){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+                $select .= "<option value ='".$campo['idTipoMateriaPrima']."'>".$campo['descricao']."</option>";
+            }
+        }
+
+        return $select;
+    }
+
+    function optionClaseMaterial(){
+
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+        $sql = "SELECT * FROM classe_material WHERE ativo = 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 1){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+                $select .= "<option value ='".$campo['idClasse']."'>".$campo['descricao']."</option>";
+            }
+        }
+
+        return $select;
+    }
+
+    function optionsMaterial(){
         // acessa a conexão com o banco de dados         
         include("connection.php");
 

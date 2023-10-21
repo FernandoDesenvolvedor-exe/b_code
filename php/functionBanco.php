@@ -22,7 +22,6 @@
 
             foreach($array as $campo){
                 $id = $campo[$idName];
-
                 
             }
         }

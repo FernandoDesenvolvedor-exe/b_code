@@ -1,11 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Out-2023 às 00:42
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- Tempo de geração: 20/10/2023 às 14:59
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
+
+CREATE DATABASE lab_plasticos;
+USE lab_plasticos;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,133 +27,108 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `classe_material`
+-- Estrutura para tabela `classe_material`
 --
 
 CREATE TABLE `classe_material` (
   `idClasse` int(11) NOT NULL COMMENT 'PK - chave identificadora que guarda a id de cada classe da matéria prima',
-  `descricao` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'Descrição da classe da matéria prima(comodities, engenharia)'
+  `descricao` varchar(32) NOT NULL COMMENT 'Descrição da classe da matéria prima(comodities, engenharia)',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Registro da classe associada a uma matéria prima';
 
 --
--- Extraindo dados da tabela `classe_material`
+-- Despejando dados para a tabela `classe_material`
 --
 
-INSERT INTO `classe_material` (`idClasse`, `descricao`) VALUES
-(1, 'Comodities'),
-(2, 'Engenharia');
+INSERT INTO `classe_material` (`idClasse`, `descricao`, `ativo`) VALUES
+(1, 'Comodities', 1),
+(2, 'Engenharia', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ferramental_maquina`
+-- Estrutura para tabela `ferramental_maquina`
 --
 
 CREATE TABLE `ferramental_maquina` (
   `idFerramental` int(11) NOT NULL COMMENT 'PK/FK - Chave composta que relaciona um molde com uma maquina',
   `idMaquina` int(11) NOT NULL COMMENT 'PK/FK - Chave composta que relaciona uma maquina com um molde'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela associativa que relaciona ferramental com maquinas';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela associativa que relaciona ferramental com maquinas';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fornecedores`
+-- Estrutura para tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
   `idFornecedor` int(11) NOT NULL COMMENT 'PK - chave identificadora das ids de cada fornecedor',
   `descricao` varchar(50) NOT NULL COMMENT 'Descrição de cada fornecedor(Nome);',
   `ativo` tinyint(1) NOT NULL COMMENT 'Verifica se este fornecedor irá aparecer nas pesquisas.'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Registro dos fornecedores de materiais do laboratório';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro dos fornecedores de materiais do laboratório';
 
 --
--- Extraindo dados da tabela `fornecedores`
+-- Despejando dados para a tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`idFornecedor`, `descricao`, `ativo`) VALUES
-(1, 'COLORFIX', 0),
-(2, 'CRISTAL MASTER', 0);
+(1, 'COLORFIX', 1),
+(2, 'CRISTAL MASTER', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `maquinas`
+-- Estrutura para tabela `maquinas`
 --
 
 CREATE TABLE `maquinas` (
   `idMaquina` int(11) NOT NULL COMMENT 'PK - chave identificadora das maquinas usadas para fazer os produtos',
-  `decricao` varchar(50) COLLATE utf8_bin NOT NULL COMMENT 'descrição da maquina registrada'
+  `decricao` varchar(50) NOT NULL COMMENT 'descrição da maquina registrada',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela para registro das maquinas a serem usadas na receita';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `materia_fornecedor`
+-- Estrutura para tabela `materia_fornecedor`
 --
 
 CREATE TABLE `materia_fornecedor` (
   `idMateriaPrima` int(11) NOT NULL COMMENT 'PK/FK - chave composta que relaciona uma matéria prima com um fornecedor.',
   `idFornecedor` int(11) NOT NULL COMMENT 'PK/FK - chave composta que relaciona um fornecedor com uma matéria prima.'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Registro da relação de uma matéria prima com um fornecedor';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro da relação de uma matéria prima com um fornecedor';
 
---
--- Extraindo dados da tabela `materia_fornecedor`
---
-
-INSERT INTO `materia_fornecedor` (`idMateriaPrima`, `idFornecedor`) VALUES
-(10, 1),
-(12, 1),
-(13, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `materia_pigmento`
+-- Estrutura para tabela `materia_pigmento`
 --
 
 CREATE TABLE `materia_pigmento` (
   `idMateriaPrima` int(11) NOT NULL,
   `idPigmento` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `materia_prima`
+-- Estrutura para tabela `materia_prima`
 --
 
 CREATE TABLE `materia_prima` (
   `idMateriaPrima` int(11) NOT NULL COMMENT 'PK - chave identificadora das matérias primas salvas no estoque ',
   `idClasse` int(11) NOT NULL COMMENT 'FK - chave estrangeira que identifica a classe da matéria prima(comodities e engenharia) ',
   `idTipoMateriaPrima` int(11) NOT NULL COMMENT 'FK - chave estrangeira que identifica o tipo de matéria prima(virgem, reciclado, remoido, scrap). ',
-  `descricao` varchar(50) COLLATE utf8_bin NOT NULL COMMENT 'Descrição da matéria prima(Nome). ',
+  `descricao` varchar(50) NOT NULL COMMENT 'Descrição da matéria prima(Nome). ',
   `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de uma matéria prima guardada no estoque',
   `ativo` tinyint(1) NOT NULL COMMENT 'Verifica se a matéria prima vai aparecer em uma consulta.',
-  `observacoes` text COLLATE utf8_bin DEFAULT NULL COMMENT 'Variável que registra texto de observações sobre uma matéria prima'
+  `observacoes` text DEFAULT NULL COMMENT 'Variável que registra texto de observações sobre uma matéria prima'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Salva os registros de Cadastros e alterações no estoque';
-
---
--- Extraindo dados da tabela `materia_prima`
---
-
-INSERT INTO `materia_prima` (`idMateriaPrima`, `idClasse`, `idTipoMateriaPrima`, `descricao`, `quantidade`, `ativo`, `observacoes`) VALUES
-(1, 1, 2, 'plastico', 500, 1, NULL),
-(2, 1, 1, 'Polistileno', 300, 1, NULL),
-(4, 1, 3, 'Sódio', 200, 1, NULL),
-(5, 2, 1, 'Polistileno', 100, 1, NULL),
-(6, 2, 3, 'Exopor', 50, 1, NULL),
-(7, 1, 1, 'Java', 1, 1, NULL),
-(8, 1, 1, 'Polimeros', 500, 1, ''),
-(9, 1, 1, 'Polimeros', 500, 1, ''),
-(10, 2, 1, 'Caramelo', 500, 1, ''),
-(11, 1, 1, 'pomedro', 325, 1, ''),
-(12, 2, 1, 'Madeira', 325, 1, ''),
-(13, 2, 2, 'Aluminio', 100, 1, '');
-
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedidos`
+-- Estrutura para tabela `pedidos`
 --
 
 CREATE TABLE `pedidos` (
@@ -160,14 +138,15 @@ CREATE TABLE `pedidos` (
   `DataHora_aberto` datetime NOT NULL COMMENT 'Salva a data e a hora em que o pedido foi aberto',
   `DataHora_fechado` datetime NOT NULL COMMENT 'Salva a data e a hora em que o pedido foi fechado',
   `Status` tinyint(1) NOT NULL COMMENT 'Identifica se um pedido está em aberto ou se ja foi fechado:\r\naberto(1);\r\nfechado(2)',
-  `Observacoes` varchar(80) COLLATE utf8_bin DEFAULT NULL COMMENT 'Permite gravar observações sobre um pedido. Ex: \r\npedido feito programou 500g de matéria prima para fazer 500 copos mas acabou fazendo apenas 490 copos.',
-  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de um produto a ser feito no pedido'
+  `Observacoes` varchar(80) DEFAULT NULL COMMENT 'Permite gravar observações sobre um pedido. Ex: \r\npedido feito programou 500g de matéria prima para fazer 500 copos mas acabou fazendo apenas 490 copos.',
+  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de um produto a ser feito no pedido',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que registra os pedidos feito pelo usuário';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pigmentos`
+-- Estrutura para tabela `pigmentos`
 --
 
 CREATE TABLE `pigmentos` (
@@ -179,75 +158,64 @@ CREATE TABLE `pigmentos` (
   `lote` varchar(32) DEFAULT NULL COMMENT 'Lote em que o pigmento foi comprado',
   `ativo` tinyint(1) NOT NULL COMMENT 'Verifica se o pigmento foi excluído do estoque ou não',
   `observacoes` text DEFAULT NULL COMMENT 'Observações que o usuário pode fazer sobre o pigmento'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `pigmentos`
+-- Despejando dados para a tabela `pigmentos`
 --
 
 INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
 (1, 'Verde claro', 1, 200, '5415466', 'B/656482', 1, NULL),
 (2, 'Azul escuro', 2, 245, '48684Ad874', 'C/64882', 1, NULL),
-(3, 'Vermelho', 1, 300, '94686545', 'A/48654', 1, NULL),
-(4, 'Rosa', 1, 100, 'DS5995-89D', '64821', 1, ''),
-(5, 'Verde folha', 2, 325, 'a789B/6S', '778945', 1, ''),
-(6, 'Verde folha', 2, 325, 'a789B/6S', '778945', 1, ''),
-(7, 'Azul marinho', 2, 100, '', '', 0, ''),
-(8, 'Azul marinho', 2, 100, '', '', 1, ''),
-(9, 'Marrom', 1, 500, '', '', 1, ''),
-(10, 'asdas', 1, 100, '', '', 1, ''),
-(11, 'asdasd', 1, 100, '', '', 0, ''),
-(12, 'asdasd', 1, 100, '', '', 0, ''),
-(13, 'asdasd', 1, 100, '', '', 0, ''),
-(14, 'asdasd', 1, 100, '', '', 0, ''),
-(15, 'asdasd', 1, 100, '', '', 0, ''),
-(16, 'asdasd', 1, 100, '', '', 0, ''),
-(17, 'asdasd', 1, 100, '', '', 0, '');
+(3, 'Vermelho', 1, 300, '94686545', 'A/48654', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pigmento_fornecedor`
+-- Estrutura para tabela `pigmento_fornecedor`
 --
 
 CREATE TABLE `pigmento_fornecedor` (
   `idPigmentos` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela pigmentos com uma id da tabela fornecedores',
   `idFornecedor` int(11) NOT NULL COMMENT 'PK/FK chave composta que relaciona uma id da tabela fornecedores com uma id da tabela pigmentos '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Registro da relação entre um fornecedor e um pigmento';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro da relação entre um fornecedor e um pigmento';
 
 --
--- Extraindo dados da tabela `pigmento_fornecedor`
+-- Despejando dados para a tabela `pigmento_fornecedor`
 --
 
 INSERT INTO `pigmento_fornecedor` (`idPigmentos`, `idFornecedor`) VALUES
-(8, 1);
+( 1, 1),
+(2,2),
+(3,1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
   `idProduto` int(11) NOT NULL COMMENT 'PK - chave identificadora da tabela produtos, onde cada id representa um produto feito.',
-  `decricao` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'descrição do produto feito'
+  `decricao` varchar(80) NOT NULL COMMENT 'descrição do produto feito',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que identifica o produto feito ';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto_maquina`
+-- Estrutura para tabela `produto_maquina`
 --
 
 CREATE TABLE `produto_maquina` (
   `idProduto` int(11) NOT NULL COMMENT 'PK/FK Chave composta que relaciona id da tabela produtos com uma id da tabela de maquinas',
   `idMaquina` int(11) NOT NULL COMMENT 'PK/FK Chave composta que relaciona id da tabela maquinas com uma id da tabela de produtos'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela associativa que relaciona uma maquina a um produto ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela associativa que relaciona uma maquina a um produto ';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `receitas`
+-- Estrutura para tabela `receitas`
 --
 
 CREATE TABLE `receitas` (
@@ -255,75 +223,81 @@ CREATE TABLE `receitas` (
   `quantidade` int(11) NOT NULL,
   `observacoes` varchar(50) DEFAULT NULL,
   `idProduto` int(11) NOT NULL,
-  `idMateriaPrima` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idMateriaPrima` int(11) NOT NULL,
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipos_ferramental`
+-- Estrutura para tabela `tipos_ferramental`
 --
 
 CREATE TABLE `tipos_ferramental` (
   `idTiposFerramental` int(11) NOT NULL COMMENT 'PK - chave identificadora das ids dos tipos de moldes das maquinas.',
-  `descricao` varchar(50) NOT NULL COMMENT 'Descrição do molde a ser usado(Nome e algumas observações).'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela de registro dos tipos de moldes usados no laboratório';
+  `descricao` varchar(50) NOT NULL COMMENT 'Descrição do molde a ser usado(Nome e algumas observações).',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela de registro dos tipos de moldes usados no laboratório';
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_materia_prima`
+-- Estrutura para tabela `tipo_materia_prima`
 --
 
 CREATE TABLE `tipo_materia_prima` (
   `idTipoMateriaPrima` int(11) NOT NULL COMMENT 'PK - chave identificadora de id dos tipos de matéria prima',
-  `descricao` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'Descrição dos tipos de matéria prima(virgem, reciclado, remoído, scrap);'
+  `descricao` varchar(32) NOT NULL COMMENT 'Descrição dos tipos de matéria prima(virgem, reciclado, remoído, scrap);',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável registra se uma id vai estar ativa(1) ou inativa(0).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela identificadora dos tipos de matéria prima ';
 
 --
--- Extraindo dados da tabela `tipo_materia_prima`
+-- Despejando dados para a tabela `tipo_materia_prima`
 --
 
-INSERT INTO `tipo_materia_prima` (`idTipoMateriaPrima`, `descricao`) VALUES
-(1, 'Virgem'),
-(2, 'Reciclado'),
-(3, 'Remoido'),
-(4, 'Scrap');
+INSERT INTO `tipo_materia_prima` (`idTipoMateriaPrima`, `descricao`, `ativo`) VALUES
+(1, 'Virgem', 0),
+(2, 'Reciclado', 0),
+(3, 'Remoido', 0),
+(4, 'Scrap', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_pigmentos`
+-- Estrutura para tabela `tipo_pigmentos`
 --
 
 CREATE TABLE `tipo_pigmentos` (
   `idTipoPigmento` int(11) NOT NULL COMMENT 'PK - codigo identificador dos tipos de pigmentos',
-  `descricao` varchar(80) NOT NULL COMMENT 'descricao do tipo pigmento'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `descricao` varchar(80) NOT NULL COMMENT 'descricao do tipo pigmento',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Variável que registra se esta id será ativa(1) ou inativa(0) '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tipo_pigmentos`
+-- Despejando dados para a tabela `tipo_pigmentos`
 --
 
-INSERT INTO `tipo_pigmentos` (`idTipoPigmento`, `descricao`) VALUES
-(1, 'MB'),
-(2, 'MTB');
+INSERT INTO `tipo_pigmentos` (`idTipoPigmento`, `descricao`, `ativo`) VALUES
+(1, 'MB', 0),
+(2, 'MTB', 0),
+(3, 'MB', 0),
+(4, 'MTB', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turma`
+-- Estrutura para tabela `turma`
 --
 
 CREATE TABLE `turma` (
   `idTurma` int(11) NOT NULL COMMENT 'PK - chave identificadora da turma a qual o usuário pertence\r\nOBS: o admin não necessita estar em uma turma',
-  `turno` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Mostra a qual turno uma turma pertence',
-  `nomeTurma` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da turma. \r\nEx: TDesi Senai/N1',
-  `ativo` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
+  `turno` char(1) DEFAULT NULL COMMENT 'Mostra a qual turno uma turma pertence',
+  `nomeTurma` varchar(32) DEFAULT NULL COMMENT 'Nome da turma. \r\nEx: TDesi Senai/N1',
+  `ativo` char(1) DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que salva as informações sobre a turma dos usuários ';
 
 --
--- Extraindo dados da tabela `turma`
+-- Despejando dados para a tabela `turma`
 --
 
 INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
@@ -334,22 +308,22 @@ INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL COMMENT 'Pk - Chave identificadora dos usuários que farão uso do sistema',
-  `login` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'Identificação de login do usuário',
-  `senha` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'Senha de acesso ao sistema para o usuário.',
-  `nome` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'Nome do usuário.',
-  `sobrenome` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'Registra o sobrenome do usuários',
+  `login` varchar(80) NOT NULL COMMENT 'Identificação de login do usuário',
+  `senha` varchar(32) NOT NULL COMMENT 'Senha de acesso ao sistema para o usuário.',
+  `nome` varchar(80) NOT NULL COMMENT 'Nome do usuário.',
+  `sobrenome` varchar(80) NOT NULL COMMENT 'Registra o sobrenome do usuários',
   `idTurma` int(11) NOT NULL COMMENT 'FK - Chave estrangeira da tabela turma que permite ver a qual turma um usuário está cadastrado.',
   `tipo` tinyint(1) NOT NULL COMMENT 'Nível de acesso dos usuários:\r\nadministrador(1);\r\nusuário comum(2).  ',
-  `ativo` char(1) COLLATE utf8_bin NOT NULL COMMENT 'Serve para ver se uma conta ainda está ativa.'
+  `ativo` char(1) NOT NULL COMMENT 'Serve para ver se uma conta ainda está ativa.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela de registro dos usuários cadastrados  no sistema';
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
@@ -362,13 +336,13 @@ INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idT
 --
 
 --
--- Índices para tabela `classe_material`
+-- Índices de tabela `classe_material`
 --
 ALTER TABLE `classe_material`
   ADD PRIMARY KEY (`idClasse`);
 
 --
--- Índices para tabela `ferramental_maquina`
+-- Índices de tabela `ferramental_maquina`
 --
 ALTER TABLE `ferramental_maquina`
   ADD PRIMARY KEY (`idFerramental`,`idMaquina`),
@@ -376,19 +350,19 @@ ALTER TABLE `ferramental_maquina`
   ADD KEY `FK_idFerramental` (`idFerramental`);
 
 --
--- Índices para tabela `fornecedores`
+-- Índices de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`idFornecedor`);
 
 --
--- Índices para tabela `maquinas`
+-- Índices de tabela `maquinas`
 --
 ALTER TABLE `maquinas`
   ADD PRIMARY KEY (`idMaquina`);
 
 --
--- Índices para tabela `materia_fornecedor`
+-- Índices de tabela `materia_fornecedor`
 --
 ALTER TABLE `materia_fornecedor`
   ADD PRIMARY KEY (`idMateriaPrima`,`idFornecedor`),
@@ -396,7 +370,7 @@ ALTER TABLE `materia_fornecedor`
   ADD KEY `FK_idFornecedor` (`idFornecedor`);
 
 --
--- Índices para tabela `materia_pigmento`
+-- Índices de tabela `materia_pigmento`
 --
 ALTER TABLE `materia_pigmento`
   ADD PRIMARY KEY (`idMateriaPrima`,`idPigmento`),
@@ -404,7 +378,7 @@ ALTER TABLE `materia_pigmento`
   ADD KEY `FK_idMateriaPrima` (`idMateriaPrima`);
 
 --
--- Índices para tabela `materia_prima`
+-- Índices de tabela `materia_prima`
 --
 ALTER TABLE `materia_prima`
   ADD PRIMARY KEY (`idMateriaPrima`),
@@ -412,7 +386,7 @@ ALTER TABLE `materia_prima`
   ADD KEY `FK_idTipoMateria` (`idTipoMateriaPrima`);
 
 --
--- Índices para tabela `pedidos`
+-- Índices de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`idPedido`),
@@ -420,14 +394,14 @@ ALTER TABLE `pedidos`
   ADD KEY `FK_idUsuario` (`idUsuario`);
 
 --
--- Índices para tabela `pigmentos`
+-- Índices de tabela `pigmentos`
 --
 ALTER TABLE `pigmentos`
   ADD PRIMARY KEY (`idPigmento`),
   ADD KEY `FK_idTipoPigmento` (`idTipoPigmento`);
 
 --
--- Índices para tabela `pigmento_fornecedor`
+-- Índices de tabela `pigmento_fornecedor`
 --
 ALTER TABLE `pigmento_fornecedor`
   ADD PRIMARY KEY (`idPigmentos`,`idFornecedor`),
@@ -435,13 +409,13 @@ ALTER TABLE `pigmento_fornecedor`
   ADD KEY `FK_idFornecedor` (`idFornecedor`);
 
 --
--- Índices para tabela `produtos`
+-- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`idProduto`);
 
 --
--- Índices para tabela `produto_maquina`
+-- Índices de tabela `produto_maquina`
 --
 ALTER TABLE `produto_maquina`
   ADD PRIMARY KEY (`idProduto`,`idMaquina`),
@@ -449,7 +423,7 @@ ALTER TABLE `produto_maquina`
   ADD KEY `FK_idProduto` (`idProduto`);
 
 --
--- Índices para tabela `receitas`
+-- Índices de tabela `receitas`
 --
 ALTER TABLE `receitas`
   ADD PRIMARY KEY (`idReceita`),
@@ -457,38 +431,38 @@ ALTER TABLE `receitas`
   ADD KEY `FK_idProduto` (`idProduto`);
 
 --
--- Índices para tabela `tipos_ferramental`
+-- Índices de tabela `tipos_ferramental`
 --
 ALTER TABLE `tipos_ferramental`
   ADD PRIMARY KEY (`idTiposFerramental`);
 
 --
--- Índices para tabela `tipo_materia_prima`
+-- Índices de tabela `tipo_materia_prima`
 --
 ALTER TABLE `tipo_materia_prima`
   ADD PRIMARY KEY (`idTipoMateriaPrima`);
 
 --
--- Índices para tabela `tipo_pigmentos`
+-- Índices de tabela `tipo_pigmentos`
 --
 ALTER TABLE `tipo_pigmentos`
   ADD PRIMARY KEY (`idTipoPigmento`);
 
 --
--- Índices para tabela `turma`
+-- Índices de tabela `turma`
 --
 ALTER TABLE `turma`
   ADD PRIMARY KEY (`idTurma`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`),
   ADD KEY `FK_idTurma` (`idTurma`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -525,7 +499,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `pigmentos`
 --
 ALTER TABLE `pigmentos`
-  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - codigo identificador do pigmento', AUTO_INCREMENT=18;
+  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - codigo identificador do pigmento', AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -555,7 +529,7 @@ ALTER TABLE `tipo_materia_prima`
 -- AUTO_INCREMENT de tabela `tipo_pigmentos`
 --
 ALTER TABLE `tipo_pigmentos`
-  MODIFY `idTipoPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - codigo identificador dos tipos de pigmentos', AUTO_INCREMENT=3;
+  MODIFY `idTipoPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - codigo identificador dos tipos de pigmentos', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `turma`
