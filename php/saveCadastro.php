@@ -131,7 +131,7 @@
     
     }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e matéria prima  
 
-        $pigmento = $_POST['nPigmento'];
+        $pigmento = stripslashes($_POST['nPigmento']);
 
         for($i = 0; $i < count($_POST['nMateriaPrima']); $i++){
             
@@ -145,9 +145,10 @@
         mysqli_close($conn);
 
         header('location: ../cadastroRelacao.php');
+
     }else if($validacao == 'IM'){   // Insert um cadastro de mauina   
 
-        $descricao = $_POST['nMaquina'];
+        $descricao = stripslashes($_POST['nMaquina']);
 
         $sql = "INSERT INTO maquinas(descricao, ativo)"
                 ." VALUES('".$descricao."', 1);";
@@ -156,5 +157,32 @@
         mysqli_close($conn);
 
         header('location: ../cadastroMaquina.php');
+    }else if($validacao == 'IF'){
+        $descricao = stripslashes($_POST['nMolde']);
+
+    }else if($validacao == 'ITF'){
+        $descricao = stripslashes($_POST['nTipo']);
+
+        $sql = "INSERT INTO tipos_ferramental(descricao, ativo) VALUES ('".$descricao."', 1);";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('location: ../cadastroMaquina.php');
+        
+    }else if($validacao == "CP"){ // Insere dados na tabela produtos
+
+        $descricao = stripslashes($_POST['nProduto']);
+        $observacoes = stripslashes($_POST['nObservacoes']);
+        $img = $_POST['nImagem'];
+
+        $sql = "INSERT INTO produtos(descricao, foto, observacao, ativo)"
+                ." VALUES ('".$descricao."', '".$img."', '".$observacoes."', 1)";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('location: ../cadastroProdutos.php');
+
     }
 ?>
