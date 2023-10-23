@@ -52,6 +52,7 @@
                         <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IF">                            
                             
                             <div class="card-body">
+
                                 <h4 class="card-title">Molde</h4>
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
@@ -59,16 +60,43 @@
                                         <input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">
                                     </div>
                                 </div>
-                            </div> 
 
-                            <div class="form-group row">
-                                <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
-                                <div class="col-md-9">
-                                    <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                        <?php echo optionsMaterial(2);?>                                         
-                                    </select>
-                                </div>
-                            </div>  
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
+                                    <div class="col-md-9">
+                                        <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                            <?php echo optionTipoFerramental();?>                                         
+                                        </select>
+                                    </div>
+                                </div>  
+
+                            </div>                             
+                            
+                            <div class="border-top">
+
+                                <div class="card-body">
+                                    <button type="button" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                                </div>     
+
+                            </div>
+                        </form>
+                    </div>
+
+                     <!-- Cria um formulário para registrar Moldes -->
+                     <div class="card">                        
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITF">                            
+                            
+                            <div class="card-body">
+                                
+                                <h4 class="card-title">Tipo de molde</h4>
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iTipoMolde" name= "nTipoMolde" placeholder="Nome do material">
+                                    </div>
+                                </div> 
+
+                            </div>                             
                             
                             <div class="border-top">
 

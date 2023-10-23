@@ -161,7 +161,7 @@
         $descricao = stripslashes($_POST['nMolde']);
 
     }else if($validacao == 'ITF'){
-        $descricao = stripslashes($_POST['nTipo']);
+        $descricao = stripslashes($_POST['nTipoMolde']);
 
         $sql = "INSERT INTO tipos_ferramental(descricao, ativo) VALUES ('".$descricao."', 1);";
 

@@ -170,6 +170,7 @@
                         <li class="sidebar-item"><a href="cadastroOutros.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Outros </span></a></li>
                     </ul>                        
                 </li>
+                <li class="sidebar-item"><a href="cadastroMaquina.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Maquinário </span></a></li>                                                     
                 <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>                                                     
             </ul>
         </nav>

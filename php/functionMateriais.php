@@ -159,7 +159,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um material</option>";     
+        $select = "<option>Selecione um opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso = 1){
@@ -172,10 +172,31 @@
                 ." LEFT JOIN classe_material as class"
                 ." ON mat.idClasse = class.idClasse"
                 ." WHERE mat.ativo = 1;";
+            
+        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+        //executa o script sql na variavel $sql,
+        //salva o resultado em $result
+        //mysqli_close($conn) fecha a conexão
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+        if(mysqli_num_rows($result) > 0){
+            //Cria e inicializa uma array 
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+            
+            foreach($array as $campo){
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                                                     
+            }
+        }     
 
         }else if($caso == 2){
-
-            $select = "<option> Selecione uma opção </option>";
 
             $sql="SELECT mat.descricao as material,"
                 ." mat.idMateriaPrima as idMaterial,"
@@ -206,32 +227,8 @@
                     $select .= "<option value='".$campo['idMaterial']."'></option>";
                 }
             }
-        }
-
-        
-        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
-        //executa o script sql na variavel $sql,
-        //salva o resultado em $result
-        //mysqli_close($conn) fecha a conexão
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
-
-        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
-        if(mysqli_num_rows($result) > 0){
-            //Cria e inicializa uma array 
-            $array = array();
-
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                array_push($array, $linha);
-            }
-            
-            foreach($array as $campo){
-                
-                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
-                                                     
-            }
-        }     
-
+        }       
+       
         return $select;        
     }
 
