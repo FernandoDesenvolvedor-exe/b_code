@@ -94,6 +94,7 @@
                 ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".intval($turma).", ".intval($tipoUsu)." , 'S');";
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
-    
+    header('location: ../cadastroUsuario.php');
+    die();
     
 ?>
