@@ -9,7 +9,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        if(mysqli_num_rows($result) > 1){
+        if(mysqli_num_rows($result) > 0){
             $array = array();
 
             while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -34,7 +34,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        if(mysqli_num_rows($result) > 1){
+        if(mysqli_num_rows($result) > 0){
             $array = array();
 
             while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -59,7 +59,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        if(mysqli_num_rows($result) > 1){
+        if(mysqli_num_rows($result) > 0){
             $array = array();
 
             while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -74,15 +74,96 @@
         return $select;
     }
 
-    function optionsMaterial(){
+    function optionTipoFerramental(){
+
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+
+        $sql = "SELECT * FROM tipos_ferramental WHERE ativo = 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+                $select .= "<option value ='".$campo['idTiposFerramental']."'>".$campo['descricao']."</option>";
+            }
+        }
+
+        return $select;
+    }
+
+    function optionMaquina(){
+
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+
+        $sql = "SELECT * FROM maquinas WHERE ativo = 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+
+                $select .= "<option value ='".$campo['idMaquina']."'>".$campo['descricao']."</option>";
+
+            }
+        }
+
+        return $select;
+    }
+
+    function optionFerramental(){
+
+        include('connection.php');
+
+        $select = "<option> Selecione uma opção </option>";
+
+        $sql = "SELECT * FROM `ferramental` WHERE ativo = 1;";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+
+            foreach($array as $campo){
+                $select .= "<option value ='".$campo['idFerramental']."'>".$campo['descricao']."</option>";
+            }
+        }
+
+        return $select;
+    }
+
+    function optionsMaterial($caso){
         // acessa a conexão com o banco de dados         
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um material</option>";     
+        $select = "<option>Selecione um opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
-        $sql = "SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
+        if($caso = 1){
+            $sql = "SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
                 ." tipo.descricao as tipos," 
                 ." class.descricao as classe"
                 ." FROM materia_prima as mat"
@@ -91,7 +172,7 @@
                 ." LEFT JOIN classe_material as class"
                 ." ON mat.idClasse = class.idClasse"
                 ." WHERE mat.ativo = 1;";
-
+            
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
         //salva o resultado em $result
@@ -115,6 +196,39 @@
             }
         }     
 
+        }else if($caso == 2){
+
+            $sql="SELECT mat.descricao as material,"
+                ." mat.idMateriaPrima as idMaterial,"
+                ." tipo.descricao as tipoMaterial,"
+                ." classe.descricao as matClass,"
+                ." FROM materia_fornecedor as relacao"
+                ." INNER JOIN materia_prima as mat"
+                ." ON mat.idMateriaPrima = relacao.idMateriaPrima"
+                ." LEFT JOIN tipo_materia_prima as tipo"
+                ." ON tipo.idTipoMateriaPrima = mat.idTipoMateriaPrima"
+                ." LEFT JOIN classe_material as classe"
+                ." ON classe.idClasse = mat.idClasse;"
+                ." LEFT JOIN fornecedores as f"
+                ." ON f.idFornecedor = relacao.idFornecedor"
+                ." WHERE mat.ativo = 1;";
+
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+
+            if(mysqli_num_rows($result) > 0){
+                $array = array();
+
+                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    array_push($array, $linha);
+                }
+
+                foreach($array as $campo){
+                    $select .= "<option value='".$campo['idMaterial']."'></option>";
+                }
+            }
+        }       
+       
         return $select;        
     }
 
