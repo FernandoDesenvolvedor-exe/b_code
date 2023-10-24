@@ -60,7 +60,7 @@
                             
                             <div class="card-body">
 
-                                <h4 class="card-title">Molde</h4>
+                                <h4 class="card-title">Ferramental</h4>
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
                                     <div class="col-sm-9">
