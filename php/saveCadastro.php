@@ -205,7 +205,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        header('location: ../cadastroProdutos.php');
+        header('location: ../cadastroMaquina.php');
 
     }
 ?>
