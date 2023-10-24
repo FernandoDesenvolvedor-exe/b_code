@@ -146,19 +146,30 @@
 
         header('location: ../cadastroRelacao.php');
 
-    }else if($validacao == 'IM'){   // Insert um cadastro de mauina   
+    }else if($validacao == 'IM'){   // Insert um cadastro de maquina   
 
         $descricao = stripslashes($_POST['nMaquina']);
+        $observacoes = stripslashes($_POST['nMObservacoes']);
 
-        $sql = "INSERT INTO maquinas(descricao, ativo)"
-                ." VALUES('".$descricao."', 1);";
+        $sql = "INSERT INTO maquinas(descricao, ativo, observacoes)"
+                ." VALUES('".$descricao."', 1, '".$observacoes."');";
 
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
         header('location: ../cadastroMaquina.php');
-    }else if($validacao == 'IF'){
+
+    }else if($validacao == 'IMF'){
         $descricao = stripslashes($_POST['nMolde']);
+        $observacoes = stripslashes($_POST['nFObservacoes']);
+        $tipoFerramental = $_POST['nTipoFerramental'];
+
+        $sql = "INSERT INTO ferramental(descricao, ativo, observacoes, idTiposFerramental) VALUES ('".$descricao."', 1,'".$observacoes."', ".$tipoFerramental.");";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('locaation: ../cadastroMaquina.php');
 
     }else if($validacao == 'ITF'){
         $descricao = stripslashes($_POST['nTipoMolde']);

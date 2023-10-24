@@ -35,6 +35,13 @@
                                         <input type="text" class="form-control" id="iMaquina" name= "nMaquina" placeholder="Nome do material">
                                     </div>
                                 </div> 
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Observações</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id= "iMObservacoes" name="nMObservacoes" placeholder="Campo não obrigatório"></textarea>
+                                    </div>
+                                </div> 
                             </div>   
                             
                             <div class="border-top">
@@ -49,7 +56,7 @@
 
                     <!-- Cria um formulário para registrar Moldes -->
                     <div class="card">                        
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IF">                            
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IMF">                            
                             
                             <div class="card-body">
 
@@ -70,12 +77,19 @@
                                     </div>
                                 </div>  
 
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Observações</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id= "iFObservacoes" name="nFObservacoes" placeholder="Campo não obrigatório"></textarea>
+                                    </div>
+                                </div> 
+
                             </div>                             
                             
                             <div class="border-top">
 
                                 <div class="card-body">
-                                    <button type="button" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
                                 </div>     
 
                             </div>
@@ -90,7 +104,7 @@
                                 
                                 <h4 class="card-title">Tipo de molde</h4>
                                 <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do tipo de ferramental</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="iTipoMolde" name= "nTipoMolde" placeholder="Nome do material">
                                     </div>
@@ -101,7 +115,7 @@
                             <div class="border-top">
 
                                 <div class="card-body">
-                                    <button type="button" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
                                 </div>     
 
                             </div>
