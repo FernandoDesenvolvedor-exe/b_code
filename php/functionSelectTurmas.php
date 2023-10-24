@@ -12,7 +12,7 @@
         
         $result = mysqli_query($conn, $sqlMatutino);
         //=========================================TESTE=====================================================================================
-        $_SESSION['msgAlert'] = alert(1,"Titulo de teste", "Mensagem de teste");
+        //$_SESSION['msgAlert'] = alert(1,"Titulo de teste", "Mensagem de teste");
         //=========================================FIM TESTE=================================================================================
 
 

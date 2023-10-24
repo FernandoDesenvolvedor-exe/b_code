@@ -90,10 +90,10 @@
         die();
     }
     //____________________________________________Inserir dados no Banco___________________________________________________________________-
-
     $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo , ativo) values"
-                ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu." , 'S');";
+                ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".intval($turma).", ".intval($tipoUsu)." , 'S');";
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
+    
     
 ?>
