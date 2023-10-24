@@ -195,5 +195,17 @@
 
         header('location: ../cadastroProdutos.php');
 
+    }else if($validacao == 'IRMF'){
+
+        $idMaquina = $_POST['nRMaquina'];
+        $idFerramental = $_POST['nRFerramental'];
+
+        $sql = "INSERT INTO ferramental_maquina(idFerramental, idMaquina) VALUES(".$idFerramental.", ".$idMaquina.");";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('location: ../cadastroProdutos.php');
+
     }
 ?>

@@ -96,13 +96,13 @@
                         </form>
                     </div>
 
-                     <!-- Cria um formulário para registrar Moldes -->
+                     <!-- Cria um formulário para registrar um ferramental -->
                      <div class="card">                        
                         <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITF">                            
                             
                             <div class="card-body">
                                 
-                                <h4 class="card-title">Tipo de molde</h4>
+                                <h4 class="card-title">Tipo de Ferramental</h4>
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do tipo de ferramental</label>
                                     <div class="col-sm-9">
@@ -156,30 +156,6 @@
                         </form>
                     </div> 
 
-                    <div class="card">
-
-                        <!-- Cria um formulário para registrar maquinas -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITF">
-                            
-                            <div class="card-body">                                
-                                <!-- Titulo da div -->
-                                <h4 class="card-title">tipos de Ferramental</h4>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Descrição do tipo de ferramental</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iTipo" name= "nTipo" placeholder="Nome do material">
-                                    </div>
-                                </div> 
-                            </div>   
-                            
-                            <div class="border-top">
-                                <div class="card-body">
-                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
-                                </div>     
-                            </div>
-
-                        </form>
-                    </div>
                 </div>
 
                 <footer class="footer text-center">
