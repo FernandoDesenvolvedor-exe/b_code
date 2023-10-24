@@ -146,7 +146,7 @@
     <?php 
         if(isset($_SESSION['msgAlert'])){
             echo $_SESSION['msgAlert'];
-            unset($_SESSION['msgAlert']);
+            unset($_SESSION['msgAlert'])
         
         }
     ?>
