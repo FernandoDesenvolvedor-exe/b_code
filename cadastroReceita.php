@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do Produto">
+                                <?php echo optionProdutos();?>
                             </div>
                         </div> 
                         <div class="form-group row">

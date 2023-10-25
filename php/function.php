@@ -6,6 +6,7 @@
     include('functionValidaDados.php');
     include('functionMaquinario.php');
     include('functionAlerts.php');
+    include('functionProduto.php');
 
 ?>
 
