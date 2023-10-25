@@ -21,7 +21,7 @@
                 <!-- Logo text -->
                                                 
                 <span class="logo-text">
-                    <h5>Cadastro de Materiais</h5>                               
+                    <h3>LabPlásticos</h3>                               
                 </span>
             </a>
             <!-- ============================================================== -->
