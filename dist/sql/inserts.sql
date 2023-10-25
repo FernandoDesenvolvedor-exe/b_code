@@ -5,6 +5,10 @@
 #delete from classe_material;
 #delete from materia_prima;
 
+#drop database lab_plasticos;
+#create database lab_plasticos;
+#use lab_plasticos;
+
 INSERT INTO `tipo_pigmentos` (descricao,ativo) VALUES
 ('MB',1),
 ('MTB',1);

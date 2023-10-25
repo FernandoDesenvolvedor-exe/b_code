@@ -44,17 +44,17 @@
                 //valida se conta esta ativa
                 if($campo['ativo'] == 'S'){
 
-                    //joga o usuario pra dela de acordo com o nivel de acesso dele
+                    //joga o usuario pra tela de acordo com o nivel de acesso dele
 
                     $_SESSION['tipo'] = $campo['tipo'];
 
-                    switch($campo['idUsuario']){
+                    switch(intval($campo['tipo'])){
                         case 1:
-                            header('location:../telaAdmin.php');
+                            header('location:../index.html');
                         break;
 
                         case 2:
-                            header('location:../telaComum.php');
+                            header('location:../index.html');
                         break;
 
                         default:

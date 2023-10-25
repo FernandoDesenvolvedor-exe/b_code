@@ -9,12 +9,12 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <!-- Logo icon -->
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="assets/images/logoLabPlasticos_menuSideBar.png" alt="homepage" class="light-logo" />
+                    <img src="assets/images/logoLabPlasticos_menuSideBar.png" alt="homepage" class="light-logo" style="margin-left:0px" />
                 
                 </b>
                 <!--End Logo icon -->
@@ -160,7 +160,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="estoque.php" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consultas</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Cadastro de materiais</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
@@ -172,7 +172,15 @@
                 </li>
                 <li class="sidebar-item"><a href="cadastroMaquina.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Maquinário </span></a></li>                                                     
                 <li class="sidebar-item"><a href="cadastroProdutos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Produto </span></a></li>                                                     
-                <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>                                                     
+                <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>     
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
+                <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
+                        <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio2 </span></a></li>
+                        <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
+                        <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
+                    </ul> 
+                </li>                                               
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
