@@ -25,7 +25,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=CP">
+                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IPR">
                             <div class="card-body">
                                 
                                 <!-- Titulo da div -->
@@ -38,18 +38,27 @@
                                 </div> 
 
                                 <div class="form-group row">
-                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Imagem do produto</label>
                                     <div class="col-md-9">
                                         <input type="file" class="form-control" id="iImagem" name= "nImagem">
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
+                                    <div class="col-md-9">
+                                        <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                            <?php echo optionTipoFerramental();?>                                         
+                                        </select>
+                                    </div>
+                                </div> 
                             </div>    
 
                             <div class="border-top">
