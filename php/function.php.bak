@@ -1,0 +1,14 @@
+<?php    
+    
+    include("functionBanco.php");
+    include("functionMateriais.php");
+    include("functionSelectTurmas.php");
+    include('functionValidaDados.php');
+<<<<<<< HEAD
+    include('functionMaquinario.php');
+=======
+    include('functionAlerts.php');
+>>>>>>> bef09feea247032670201533fddd152899c39c87
+
+?>
+
