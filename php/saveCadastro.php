@@ -59,7 +59,7 @@
         $idMaterial = buscaId("pigmentos","idPigmento");
 
         //Script SQL a ser enviado ao banco de dados
-        $sql =" INSERT INTO pigmento_fornecedor(idPigmentos, idFornecedor) VALUES (".$idMaterial.",".$fornecedor.");";
+        $sql =" INSERT INTO pigmento_fornecedor(idPigmento, idFornecedor) VALUES (".$idMaterial.",".$fornecedor.");";
         
         //envia um script sql para o banco de dados executar
         $result = mysqli_query($conn,$sql); 
@@ -69,7 +69,7 @@
 
         header('location: ../cadastroPigmento.php');
 
-    }else if($validacao == 'IF') {        //insert fornecedor
+    }else if($validacao == 'IF') { //insert fornecedor
 
         $descricao = stripslashes($_POST['nFornecedor']);
         //Script SQL que insere na tabela fornecedores os valores indicados, id é AUTO-INCREMENT
@@ -129,7 +129,7 @@
 
         header('location: ../cadastroOutros.php');
     
-    }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e matéria prima  
+    }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e uma ou mais matérias primas
 
         $pigmento = stripslashes($_POST['nPigmento']);
 
@@ -169,37 +169,37 @@
 
         header('location: ../cadastroMaquina.php');
         
-    }else if($validacao == 'IRMF'){ //Insert quando um molde esta em uma maquina
-
-        $idMaquina = $_POST['nRMaquina'];
-        $idFerramental = $_POST['nRFerramental'];
-
-        $sql = "INSERT INTO ferramental_maquina(idFerramental, idMaquina) VALUES(".$idFerramental.", ".$idMaquina.");";
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
-        header('location: ../cadastroMaquina.php');
-
-    } else if($validacao == 'IPR'){       
+    }else if($validacao == 'IPR'){       // Insert de produto e ferramental.
 
         $descPdto = stripslashes($_POST['nProduto']);
         $imgPdto = $_POST['nImagem'];
         $descFerr = stripslashes($_POST['nMolde']);
         $idTipoFerr = $_POST['nTipoFerramental'];
+        $pigmento = stripslashes($_POST['nPigmento']);
 
         $sql = "INSERT INTO produtos(descricao, imagem, ativo)"
                 ."VALUES('".$descPdto."', '".$imgPdto."', 1);";
 
         $result = mysqli_query($conn, $sql);
         
-        //Traz o id dos dados Inseridos acima na tabela 
+        //Traz o ultimo id da tabela enviada nos parametros. Enviar nome da tabela e nome da coluna id  
         $idPdto = buscaId("produtos","idProduto");
 
         $sql = "INSERT INTO ferramental(descricao, ativo, idTiposFerramental, idProduto)"
                 ." VALUES ('".$descFerr."', 1, ".$idTipoFerr.",".$idPdto.");";
 
         $result = mysqli_query($conn, $sql);
+
+        $idFerr = buscaId('ferramental', 'idFerramental');
+
+        for($i = 0; $i < count($_POST['nMaquina']); $i++){
+            
+            $sql = "INSERT INTO ferramental_maquina(idFerramental, idMaquina)" 
+                    ."VALUES(".$idFerr.", ".$_POST['nMaquina'][$i].");";
+
+            $result = mysqli_query($conn, $sql);
+        }
+        
         mysqli_close($conn);
 
         header('location: ../cadastroProdutos.php');
