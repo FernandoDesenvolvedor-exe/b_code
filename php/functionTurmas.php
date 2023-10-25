@@ -1,5 +1,5 @@
 <?php 
-    function selectTurmas(){
+    function optionTurmas(){
         include('connection.php');
         
         $sqlMatutino = "select idTurma, nomeTurma from turma where ativo='S' and turno='M';";
@@ -11,11 +11,6 @@
         //Matutino
         
         $result = mysqli_query($conn, $sqlMatutino);
-        //=========================================TESTE=====================================================================================
-        //$_SESSION['msgAlert'] = alert(1,"Titulo de teste", "Mensagem de teste");
-        //=========================================FIM TESTE=================================================================================
-
-
         
         if(mysqli_num_rows($result)>0){
             $listaTurmas.="<optgroup label='Matutino'>";

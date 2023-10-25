@@ -27,7 +27,7 @@
                         <!-- ============================================================== -->
                         <!-- Cria um formulário -->
                         <!-- ============================================================== -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IPG">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IPG">
                             <div class="card-body">
                                 <!-- ============================================================== -->
                                 <!-- Titulo da div -->

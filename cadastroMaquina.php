@@ -25,7 +25,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário para registrar maquinas -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IM">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IM">
                             <div class="card-body">                                
                                 <!-- Titulo da div -->
                                 <h4 class="card-title">Máquina</h4>
@@ -56,7 +56,7 @@
 
                      <!-- Cria um formulário para registrar um ferramental -->
                      <div class="card">                        
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITF">                            
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=ITF">                            
                             
                             <div class="card-body">
                                 
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="card">
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IRMF">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IRMF">
                             <div class="card-body">
                                 <h4 class="card-title">Compatibilidade maquina/molde</h4>
                                 

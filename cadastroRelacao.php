@@ -24,7 +24,7 @@
                     <!-- Start Page Content -->                    
                     <div class="card">
                         <!-- Cria um formulário -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IR">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IR">
                             <div class="card-body">
                                 
                                 <!-- Titulo da div -->

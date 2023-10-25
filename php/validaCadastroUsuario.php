@@ -90,14 +90,10 @@
         die();
     }
     //____________________________________________Inserir dados no Banco___________________________________________________________________-
-    $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo , ativo) values"
-                ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".intval($turma).", ".intval($tipoUsu)." , 'S');";
-    mysqli_query($conn, $sqlInsert);
-    mysqli_close($conn);
+    saveUsuario($email, $senha, $nome, $sobrenome, $turma, $tipoUsu);
     $abreHTMLalert = '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
-                    .'<div class="alert alert-success" role="alert" style="width:100%; height:100%">';
-    $_SESSION['msgErro'] = $abreHTMLalert.'Usuario cadastrado com sucesso.'.$fechaHTMLalert;
+                        .'<div class="alert alert-success" role="alert" style="width:100%; height:100%">';
+    $_SESSION['msgErro'] = $abreHTMLalert.'Usuario cadastrado com sucesso.✔'.$fechaHTMLalert;
     header('location: ../cadastroUsuario.php');
     die();
-    
 ?>

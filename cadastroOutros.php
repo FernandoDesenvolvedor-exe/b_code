@@ -24,7 +24,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=IF">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IF">
                             <div class="card-body">
 
                                 <!-- Titulo da div -->
@@ -46,7 +46,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=iCM">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=iCM">
                             <div class="card-body">
 
                                 <!-- Titulo da div -->
@@ -69,7 +69,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITM">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=ITM">
                             <div class="card-body">
 
                                 <!-- Titulo da div -->
@@ -92,7 +92,7 @@
                     <div class="card">
 
                         <!-- Cria um formulário para adicionar um tipo de pigmento  -->
-                        <form method="POST" class="form-horizontal" action= "php/saveCadastro.php?validacao=ITP">
+                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=ITP">
                             <div class="card-body">
 
                                 <!-- Titulo da div -->
