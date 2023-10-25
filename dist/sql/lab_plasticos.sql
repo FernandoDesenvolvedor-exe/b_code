@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Out-2023 às 02:26
+-- Tempo de geração: 25-Out-2023 às 02:47
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -167,15 +167,15 @@ CREATE TABLE `materia_prima` (
 --
 
 CREATE TABLE `pedidos` (
-  `idPedido` int(11) NOT NULL COMMENT 'PK - chave identificadora da tabela Pedidos.',
-  `idProduto` int(11) NOT NULL COMMENT 'FK - Chave estrangeira para identificar qual o produto relacionado ao pedido',
-  `idUsuario` int(11) NOT NULL COMMENT 'FK - Chave estrangeira para identificar qual o usuário abriu o pedido',
-  `DataHora_aberto` datetime NOT NULL COMMENT 'Salva a data e a hora em que o pedido foi aberto',
-  `DataHora_fechado` datetime DEFAULT NULL COMMENT 'Salva a data e a hora em que o pedido foi fechado',
-  `Status` tinyint(1) NOT NULL COMMENT 'Identifica se um pedido está em aberto ou se ja foi fechado:\r\naberto(1);\r\nfechado(2)',
-  `Observacoes` varchar(80) COLLATE utf8_bin DEFAULT NULL COMMENT 'Permite gravar observações sobre um pedido. Ex: \r\npedido feito programou 500g de matéria prima para fazer 500 copos mas acabou fazendo apenas 490 copos.',
-  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de um produto a ser feito no pedido'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que registra os pedidos feito pelo usuário';
+  `idPedidos` int(11) NOT NULL COMMENT 'PK - chave identificadora de IDs da tabela pedidos',
+  `idProduto` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela produtos',
+  `idUsuario` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela usuarios',
+  `dataHora_aberto` datetime NOT NULL COMMENT 'Data e hora da abertura deste pedido',
+  `dataHora_fechado` datetime NOT NULL COMMENT 'Data e hora do fechamento deste pedido',
+  `status` tinyint(1) NOT NULL COMMENT 'Status do pedido\r\n(1-aberto/0-fechado)',
+  `observacoes` text DEFAULT NULL COMMENT 'Registro não obrigatório de observações do usuário',
+  `quantidade` int(11) NOT NULL COMMENT 'Registra a quantidade de produtos selecionadas no pedido'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra no banco de dados  um pedido';
 
 -- --------------------------------------------------------
 
@@ -446,7 +446,7 @@ ALTER TABLE `materia_prima`
 -- Índices para tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`idPedido`),
+  ADD PRIMARY KEY (`idPedidos`),
   ADD KEY `FK_idProduto` (`idProduto`),
   ADD KEY `FK_idUsuario` (`idUsuario`);
 
@@ -556,7 +556,7 @@ ALTER TABLE `materia_prima`
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora da tabela Pedidos.';
+  MODIFY `idPedidos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela pedidos';
 
 --
 -- AUTO_INCREMENT de tabela `pigmentos`
@@ -650,6 +650,13 @@ ALTER TABLE `materia_pigmento`
 ALTER TABLE `materia_prima`
   ADD CONSTRAINT `materia_prima_ibfk_1` FOREIGN KEY (`idClasse`) REFERENCES `classe_material` (`idClasse`),
   ADD CONSTRAINT `materia_prima_ibfk_2` FOREIGN KEY (`idTipoMateriaPrima`) REFERENCES `tipo_materia_prima` (`idTipoMateriaPrima`);
+
+--
+-- Limitadores para a tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
+  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`);
 
 --
 -- Limitadores para a tabela `pigmento_fornecedor`
