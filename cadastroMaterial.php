@@ -58,7 +58,7 @@
                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                     <div style="display:inline;" class="col-sm-9">
                                         <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
-                                            <?php echo fillSelectFornecedor();?>                                                                                 
+                                            <?php echo optionFornecedor();?>                                                                                 
                                         </select>
                                     </div>
                                 </div>

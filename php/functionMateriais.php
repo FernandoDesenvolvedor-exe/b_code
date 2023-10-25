@@ -1,5 +1,5 @@
 <?php        
-    function optionsTipoPigmento(){
+    function optionTipoPigmento(){
 
         include('connection.php');
 
@@ -74,7 +74,7 @@
         return $select;
     }    
 
-    function optionsMaterial($caso){
+    function optionMaterial($caso){
         // acessa a conexão com o banco de dados         
         include("connection.php");
 
@@ -152,7 +152,7 @@
         return $select;        
     }
 
-    function fillSelectFornecedor(){
+    function optionFornecedor(){
 
         // acessa a conexão com o banco de dados         
         include("connection.php");
@@ -189,7 +189,7 @@
         return $select;
     }
 
-    function fillSelectPigmento(){
+    function optionPigmento(){
 
         // acessa a conexão com o banco de dados         
         include("connection.php");
