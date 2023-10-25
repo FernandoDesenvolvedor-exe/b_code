@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Out-2023 às 02:47
+-- Tempo de geração: 26-Out-2023 às 00:33
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -184,38 +184,15 @@ CREATE TABLE `pedidos` (
 --
 
 CREATE TABLE `pigmentos` (
-  `idPigmento` int(11) NOT NULL COMMENT 'PK - codigo identificador do pigmento',
-  `descricao` varchar(80) NOT NULL COMMENT 'descricao do pigmento',
-  `idTipoPigmento` int(11) NOT NULL COMMENT 'FK - tipo de pigmento',
-  `quantidade` int(11) NOT NULL COMMENT 'Mostra a quantidade de material de pigmento guardado no estoque',
-  `codigo` varchar(32) DEFAULT NULL COMMENT 'Código de identificação do pigmento',
-  `lote` varchar(32) DEFAULT NULL COMMENT 'Lote em que o pigmento foi comprado',
-  `ativo` tinyint(1) NOT NULL COMMENT 'Verifica se o pigmento foi excluído do estoque ou não',
-  `observacoes` text DEFAULT NULL COMMENT 'Observações que o usuário pode fazer sobre o pigmento'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `pigmentos`
---
-
-INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
-(1, 'Verde claro', 1, 200, '5415466', 'B/656482', 1, NULL),
-(2, 'Azul escuro', 2, 245, '48684Ad874', 'C/64882', 1, NULL),
-(3, 'Vermelho', 1, 300, '94686545', 'A/48654', 1, NULL),
-(4, 'Rosa', 1, 100, 'DS5995-89D', '64821', 1, ''),
-(5, 'Verde folha', 2, 325, 'a789B/6S', '778945', 1, ''),
-(6, 'Verde folha', 2, 325, 'a789B/6S', '778945', 1, ''),
-(7, 'Azul marinho', 2, 100, '', '', 0, ''),
-(8, 'Azul marinho', 2, 100, '', '', 1, ''),
-(9, 'Marrom', 1, 500, '', '', 1, ''),
-(10, 'asdas', 1, 100, '', '', 1, ''),
-(11, 'asdasd', 1, 100, '', '', 0, ''),
-(12, 'asdasd', 1, 100, '', '', 0, ''),
-(13, 'asdasd', 1, 100, '', '', 0, ''),
-(14, 'asdasd', 1, 100, '', '', 0, ''),
-(15, 'asdasd', 1, 100, '', '', 0, ''),
-(16, 'asdasd', 1, 100, '', '', 0, ''),
-(17, 'asdasd', 1, 100, '', '', 0, '');
+  `idPigmento` int(11) NOT NULL COMMENT 'PK - chave identificadora de IDs da tabela pigmentos',
+  `descricao` varchar(80) NOT NULL COMMENT 'Registra a descrição de um item desta tabela',
+  `idTipoPigmento` int(11) NOT NULL COMMENT 'FK - chave estrangeira que identificadora de IDs da tabela tipos_pigmentos',
+  `quantidade` int(11) NOT NULL COMMENT 'Registra a quantidade de um item registrado ',
+  `codigo` varchar(50) NOT NULL COMMENT 'Registra o código de um item ',
+  `lote` varchar(50) NOT NULL COMMENT 'Registra o lote de um item ',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o item está ativo (1-ativo / 0-inativo)',
+  `observacoes` text DEFAULT NULL COMMENT 'Registra observações não obrigatórias feitas pelo usuário '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os pigmentos do laboratório de plásticos';
 
 -- --------------------------------------------------------
 
@@ -226,7 +203,7 @@ INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidad
 CREATE TABLE `pigmento_fornecedor` (
   `idPigmento` int(11) NOT NULL COMMENT 'PK/FK - chave composta identificadora de IDs da tabela pigmentos',
   `idFornecedor` int(11) NOT NULL COMMENT 'PK/FK - chave composta identificadora de IDs da tabela fornecedores'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela associativa entre pigmentos e fornecedores';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que associa um pigmento com um fornecedor';
 
 -- --------------------------------------------------------
 
@@ -269,14 +246,14 @@ CREATE TABLE `produto_maquina` (
 --
 
 CREATE TABLE `receitas` (
-  `idReceita` int(11) NOT NULL COMMENT 'PK - chave identificadora de IDs da tabela receitas',
-  `quantidade` int(11) NOT NULL COMMENT 'registra a quantidade de matéria prima usada ',
-  `observacoes` varchar(50) DEFAULT NULL COMMENT 'Registra observações feitas pelo usuário',
-  `idProduto` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela produtos',
-  `idMateriaPrima` int(11) NOT NULL COMMENT 'FK - chave estrangeira da tabela matéria_prima',
-  `ativo` tinyint(4) NOT NULL COMMENT 'Verifica se esta receita esta ativa',
-  `quantidadeMateriaPrima` int(11) NOT NULL COMMENT 'Registra a quantidade de matéria prima na receita'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idReceita` int(11) NOT NULL COMMENT 'PK - chave identificadora de IDs da tabela receitas ',
+  `idProduto` int(11) NOT NULL COMMENT 'FK - chave estrangeira referenciando um item da tabela produtos',
+  `idMateriaPrima` int(11) NOT NULL COMMENT 'FK - chave estrangeira referenciando um item da tabela materia_prima',
+  `quantidade` int(11) NOT NULL COMMENT 'Registra a quantidade de material usado nesta receita',
+  `observacoes` text DEFAULT NULL COMMENT 'Registra observações não obrigatórias feitas pelo usuário',
+  `ativo` tinyint(1) NOT NULL COMMENT 'Registra se este item está ativo\r\n(1- ativo/ 0 - inativo)',
+  `descricao` varchar(80) NOT NULL COMMENT 'Descrição desta receita'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra as receitas geradas no pedido';
 
 -- --------------------------------------------------------
 
@@ -562,7 +539,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `pigmentos`
 --
 ALTER TABLE `pigmentos`
-  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - codigo identificador do pigmento', AUTO_INCREMENT=18;
+  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela pigmentos';
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -580,7 +557,7 @@ ALTER TABLE `produto_maquina`
 -- AUTO_INCREMENT de tabela `receitas`
 --
 ALTER TABLE `receitas`
-  MODIFY `idReceita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela receitas';
+  MODIFY `idReceita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela receitas ';
 
 --
 -- AUTO_INCREMENT de tabela `tipos_ferramental`
@@ -659,11 +636,17 @@ ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`);
 
 --
+-- Limitadores para a tabela `pigmentos`
+--
+ALTER TABLE `pigmentos`
+  ADD CONSTRAINT `pigmentos_ibfk_1` FOREIGN KEY (`idTipoPigmento`) REFERENCES `tipo_pigmentos` (`idTipoPigmento`);
+
+--
 -- Limitadores para a tabela `pigmento_fornecedor`
 --
 ALTER TABLE `pigmento_fornecedor`
-  ADD CONSTRAINT `pigmento_fornecedor_ibfk_1` FOREIGN KEY (`idPigmento`) REFERENCES `pigmentos` (`idPigmento`),
-  ADD CONSTRAINT `pigmento_fornecedor_ibfk_2` FOREIGN KEY (`idFornecedor`) REFERENCES `fornecedores` (`idFornecedor`);
+  ADD CONSTRAINT `pigmento_fornecedor_ibfk_1` FOREIGN KEY (`idFornecedor`) REFERENCES `fornecedores` (`idFornecedor`),
+  ADD CONSTRAINT `pigmento_fornecedor_ibfk_2` FOREIGN KEY (`idPigmento`) REFERENCES `pigmentos` (`idPigmento`);
 
 --
 -- Limitadores para a tabela `produto_maquina`
@@ -671,6 +654,13 @@ ALTER TABLE `pigmento_fornecedor`
 ALTER TABLE `produto_maquina`
   ADD CONSTRAINT `produto_maquina_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
   ADD CONSTRAINT `produto_maquina_ibfk_2` FOREIGN KEY (`idMaquina`) REFERENCES `maquinas` (`idMaquina`);
+
+--
+-- Limitadores para a tabela `receitas`
+--
+ALTER TABLE `receitas`
+  ADD CONSTRAINT `receitas_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
+  ADD CONSTRAINT `receitas_ibfk_2` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`);
 
 --
 -- Limitadores para a tabela `usuarios`
