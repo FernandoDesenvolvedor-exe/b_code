@@ -14,12 +14,12 @@
 
     //var_dump($nome,$sobrenome,$email,$senha,$confirmSenha,$turma,$tipoUsu);
     //var_dump(filter_var($email, FILTER_VALIDATE_EMAIL));
-
+    
     $_SESSION['msgErro'] = '';
 
-
-    $abreHTMLalert = '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
-                    .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $abreHTMLalert = '<div class="input-group mb-3">'
+                        .'<div class="input-group-prepend" style="width: 100%; height:100%;">'
+                            .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
     $fechaHTMLalert = '</div></div></div>';
 
     //_________________________SEGURANÇA CONTRA ATAQUE DE INSERÇÃO DE CÓDIGO NO CADASTRO_________________________
@@ -94,6 +94,9 @@
                 ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".intval($turma).", ".intval($tipoUsu)." , 'S');";
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
+    $abreHTMLalert = '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
+                    .'<div class="alert alert-success" role="alert" style="width:100%; height:100%">';
+    $_SESSION['msgErro'] = $abreHTMLalert.'Usuario cadastrado com sucesso.'.$fechaHTMLalert;
     header('location: ../cadastroUsuario.php');
     die();
     

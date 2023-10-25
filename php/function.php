@@ -5,7 +5,7 @@
     include("functionSelectTurmas.php");
     include('functionValidaDados.php');
     include('functionMaquinario.php');
-    //include('functionAlerts.php');
+    include('functionAlerts.php');
 
 ?>
 
