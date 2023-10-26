@@ -79,77 +79,75 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione uma opção</option>";     
+        $select = "<option>Selecione um opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
-        switch($caso){
-            case 1:
-                $sql ="SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
-                    ." tipo.descricao as tipos," 
-                    ." class.descricao as classe"
-                    ." FROM materia_prima as mat"
-                    ." LEFT JOIN tipo_materia_prima as tipo"
-                    ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima"
-                    ." LEFT JOIN classe_material as class"
-                    ." ON mat.idClasse = class.idClasse"
-                    ." WHERE mat.ativo = 1;";
+
+        if($caso = 1){
+            $sql = "SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
+                ." tipo.descricao as tipos," 
+                ." class.descricao as classe"
+                ." FROM materia_prima as mat"
+                ." LEFT JOIN tipo_materia_prima as tipo"
+                ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima"
+                ." LEFT JOIN classe_material as class"
+                ." ON mat.idClasse = class.idClasse"
+                ." WHERE mat.ativo = 1;";
             
-                //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
-                //executa o script sql na variavel $sql,
-                //salva o resultado em $result
-                //mysqli_close($conn) fecha a conexão
-                $result = mysqli_query($conn,$sql);
-                mysqli_close($conn);
+        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+        //executa o script sql na variavel $sql,
+        //salva o resultado em $result
+        //mysqli_close($conn) fecha a conexão
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
 
-                //este if verifica se foi encontrado um linha correspondente ao que foi enviado
-                if(mysqli_num_rows($result) > 0){
-                    //Cria e inicializa uma array 
-                    $array = array();
+        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+        if(mysqli_num_rows($result) > 0){
+            //Cria e inicializa uma array 
+            $array = array();
 
-                    while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                        array_push($array, $linha);
-                    }
-                    
-                    foreach($array as $campo){
-                        
-                        $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
-                                                            
-                    }
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+            
+            foreach($array as $campo){
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                                                     
+            }
+        }     
+
+        }else if($caso == 2){
+
+            $sql="SELECT mat.descricao as material,"
+                ." mat.idMateriaPrima as idMaterial,"
+                ." tipo.descricao as tipoMaterial,"
+                ." classe.descricao as matClass,"
+                ." FROM materia_fornecedor as relacao"
+                ." INNER JOIN materia_prima as mat"
+                ." ON mat.idMateriaPrima = relacao.idMateriaPrima"
+                ." LEFT JOIN tipo_materia_prima as tipo"
+                ." ON tipo.idTipoMateriaPrima = mat.idTipoMateriaPrima"
+                ." LEFT JOIN classe_material as classe"
+                ." ON classe.idClasse = mat.idClasse;"
+                ." LEFT JOIN fornecedores as f"
+                ." ON f.idFornecedor = relacao.idFornecedor"
+                ." WHERE mat.ativo = 1;";
+
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+
+            if(mysqli_num_rows($result) > 0){
+                $array = array();
+
+                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    array_push($array, $linha);
                 }
-            case 2:
-                $sql="SELECT mat.descricao as material,"
-                    ." mat.idMateriaPrima as idMaterial,"
-                    ." tipo.descricao as tipoMaterial,"
-                    ." classe.descricao as matClass,"
-                    ." FROM materia_fornecedor as relacao"
-                    ." INNER JOIN materia_prima as mat"
-                    ." ON mat.idMateriaPrima = relacao.idMateriaPrima"
-                    ." LEFT JOIN tipo_materia_prima as tipo"
-                    ." ON tipo.idTipoMateriaPrima = mat.idTipoMateriaPrima"
-                    ." LEFT JOIN classe_material as classe"
-                    ." ON classe.idClasse = mat.idClasse;"
-                    ." LEFT JOIN fornecedores as f"
-                    ." ON f.idFornecedor = relacao.idFornecedor"
-                    ." WHERE mat.ativo = 1;";
 
-                $result = mysqli_query($conn, $sql);
-                mysqli_close($conn);
-
-                if(mysqli_num_rows($result) > 0){
-                    $array = array();
-
-                    while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                        array_push($array, $linha);
-                    }
-
-                    foreach($array as $campo){
-                        $select .= "<option value='".$campo['idMaterial']."'></option>";
-                    }
+                foreach($array as $campo){
+                    $select .= "<option value='".$campo['idMaterial']."'></option>";
                 }
-            case 3:
-        }
-             
-
-             
+            }
+        }       
        
         return $select;        
     }
