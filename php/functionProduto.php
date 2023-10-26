@@ -68,7 +68,7 @@
                                         ."</div>"
                                     ."</div>"
                                     ."<div class='el-card-content'>"
-                                        ."<h4 class='m-b-0'>Project title</h4> <span class='text-muted'>".$campo['p.descricao']."</span>" 
+                                        ."<h4 class='m-b-0'>".$campo['p.descricao']."</h4> <span class='text-muted'></span>" 
                                     ."</div>"
                                 ."</div>"
                             ."</div>"
