@@ -6,6 +6,5 @@
     include('functionProduto.php');
     include('functionTurmas.php');
     include('functionUsuario.php');
-    include('functionProduto.php');
 ?>
 
