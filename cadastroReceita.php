@@ -35,7 +35,7 @@
                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
                             <div class="col-md-9">
                                 <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
-                                    <?php echo optionPigmento(1);?>
+                                    <?php echo optionPigmento();?>
                                 </select>
                             </div>
                         </div>

@@ -48,10 +48,10 @@
 
             foreach($array as $campo){
 
-                $card .= "<div class='col-lg-3 col-md-6'>"
+                $card = "<div class='col-lg-3 col-md-6'>"
                             ."<div class='card'>"
                                 ."<div class='el-card-item'>"
-                                    ."<div class='el-card-avatar el-overlay-1'> <img src='assets/images/big/img1.jpg' alt='user' />"
+                                    ."<div class='el-card-avatar el-overlay-1'> <img src='assets/images/big/img1.jpg' alt='user'/>"
                                         ."<div class='el-overlay'>"
                                             ."<ul class='list-style-none el-info'>"
                                                 ."<li class='el-item'>"
@@ -67,9 +67,9 @@
                                             ."</ul>"
                                         ."</div>"
                                     ."</div>"
-                                        ."<div class='el-card-content'>"
-                                            ."<h4 class='m-b-0'>Project title</h4> <span class='text-muted'>subtitle of project</span>" 
-                                        ."</div>"
+                                    ."<div class='el-card-content'>"
+                                        ."<h4 class='m-b-0'>Project title</h4> <span class='text-muted'>".$campo['p.descricao']."</span>" 
+                                    ."</div>"
                                 ."</div>"
                             ."</div>"
                         ."</div>";
