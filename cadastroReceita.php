@@ -28,14 +28,16 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <?php echo optionProdutos();?>
+                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                    <?php echo optionProdutos();?>                                        
+                                </select>
                             </div>
                         </div> 
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
                             <div class="col-md-9">
                                 <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
-                                    <?php echo optionPigmento();?>
+                                    <?php echo optionMateria();?>
                                 </select>
                             </div>
                         </div>
