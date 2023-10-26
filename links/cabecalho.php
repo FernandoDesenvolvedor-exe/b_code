@@ -15,5 +15,6 @@
     <link rel="stylesheet" type="text/css" href="assets/extra-libs/multicheck/multicheck.css">
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="dist/css/style.min.css" rel="stylesheet">
-    <link href="dist/css/subStyle.css" rel="stylesheet" > 
+    <link href="dist/css/subStyle.css" rel="stylesheet" >     
+    <link href="assets/libs/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->   

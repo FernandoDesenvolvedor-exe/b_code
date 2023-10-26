@@ -1,5 +1,6 @@
 <?php    
     include('functionAlerts.php');
+<<<<<<< Updated upstream
     include('functionBanco.php');
     include('functionMaquinario.php');
     include('functionMateriais.php');
@@ -10,5 +11,9 @@
     include('validaDados.php');
     include('validaLogin.php');
     
+=======
+    include('functionProduto.php')
+
+>>>>>>> Stashed changes
 ?>
 

@@ -131,5 +131,9 @@
     });
 </script>
 
+<!-- Js da tela de cadastro de pedidos -->
+<script src="assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="assets/libs/magnific-popup/meg.init.js"></script>
+
 
 

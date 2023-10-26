@@ -17,8 +17,9 @@
 
             <div class="page-wrapper">      
                 
-                <?php include('links/side_bar_direita.php');?>
+                <?php include('links/side_bar_direita.php');?>                
 
+<<<<<<< Updated upstream
                 <div class="container-fluid">               
                     
                     <!-- Start Page Content -->                    
@@ -85,6 +86,15 @@
                             </div>
                         </form>
                     </div>  
+=======
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <div class="row el-element-overlay">
+                        <?php echo cardProduto()?>
+                    </div>
+>>>>>>> Stashed changes
                 </div>
 
                 <footer class="footer text-center">
