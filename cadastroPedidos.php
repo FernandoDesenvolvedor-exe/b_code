@@ -19,82 +19,28 @@
                 
                 <?php include('links/side_bar_direita.php');?>                
 
-<<<<<<< Updated upstream
-                <div class="container-fluid">               
-                    
-                    <!-- Start Page Content -->                    
-                    <div class="card">
+                <div class="container-fluid">   
 
-                        <!-- Cria um formulário -->                            
-                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IMP">
-                            <div class="card-body">
-                                
-                                <!-- Titulo da div -->
-                                <h4 class="card-title">Pedido</h4>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material">
-                                    </div>
-                                </div> 
-                                <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
-                                    <div class="col-md-9">
-                                        <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <?php echo optionClaseMaterial();?>                                         
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
-                                    <div class="col-md-9">
-                                        <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <?php echo optionTipoMaterial();?>
-                                        </select>
-                                    </div>                                    
-                                </div>
-
-                                <div style="align-itens= side;"  class="form-group row">
-                                    <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
-                                    <div style="display:inline;" class="col-sm-9">
-                                        <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
-                                            <?php echo fillSelectFornecedor();?>                                                                                 
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
-                                    <div class="col-sm-9">
-                                        <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="border-top">
-                                <div class="card-body">
-                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
-                                </div>                      
-                            </div>
-                        </form>
-                    </div>  
-=======
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
                     <div class="row el-element-overlay">
-                        <?php echo cardProduto()?>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="el-card-item">
+                                    <div class="el-card-avatar el-overlay-1"> <img src="assets/images/big/img3.jpg" alt="user" />
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                                <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="assets/images/big/img3.jpg"><i class="mdi mdi-magnify-plus"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="el-card-content">
+                                        <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
->>>>>>> Stashed changes
+
                 </div>
 
                 <footer class="footer text-center">
