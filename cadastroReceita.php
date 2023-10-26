@@ -57,7 +57,7 @@
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                             <div class="col-sm-9">
                                 
-                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width= 10%;" min="0">
+                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:10%;" min="0">
                             </div>
                         </div>
 

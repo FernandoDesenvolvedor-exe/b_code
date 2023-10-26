@@ -314,7 +314,7 @@ CREATE TABLE `turma` (
   `idTurma` int(11) NOT NULL COMMENT 'PK - chave identificadora da turma a qual o usuário pertence\r\nOBS: o admin não necessita estar em uma turma',
   `turno` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Mostra a qual turno uma turma pertence',
   `nomeTurma` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da turma. \r\nEx: TDesi Senai/N1',
-  `ativo` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
+  `ativo` tinyint(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que salva as informações sobre a turma dos usuários ';
 
 --
@@ -336,11 +336,11 @@ CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL COMMENT 'PK - chave identificadora de IDs da tabela usuarios',
   `login` varchar(80) NOT NULL COMMENT 'Registra o login de um usuário',
   `senha` varchar(32) NOT NULL COMMENT 'Registra a senha de um usuário',
-  `nome` int(80) NOT NULL COMMENT 'Registra o primeiro nome do usuário',
-  `sobrenome` int(80) NOT NULL COMMENT 'Registra o sobrenome do usuário',
+  `nome` varchar(80) NOT NULL COMMENT 'Registra o primeiro nome do usuário',
+  `sobrenome` varchar(80) NOT NULL COMMENT 'Registra o sobrenome do usuário',
   `idTurma` int(11) NOT NULL COMMENT 'FK - chave estrangeira que Registra a ID da turma do usuário',
   `tipo` tinyint(1) NOT NULL COMMENT 'Registra o tipo de usuário',
-  `ativo` char(1) NOT NULL COMMENT 'Registra se o usuário estiver ativo'
+  `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o usuário estiver ativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os cadastros de suuarios';
 
 --
