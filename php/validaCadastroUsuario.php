@@ -51,9 +51,9 @@
     }
 
     //_____________________________________________________________VALIDAÇÃO DOS DADOS__________________________________________________
-    
+    //var_dump($tipoUsu, $turma);
+
     //Valida se adm n tem turma 
-    var_dump($tipoUsu, $turma);
     if($tipoUsu==1 and $turma!=''){
         $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (administrador) não pode ter turma!'.$fechaHTMLalert;
         header('location: ../cadastroUsuario.php');

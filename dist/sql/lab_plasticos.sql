@@ -180,10 +180,18 @@ CREATE TABLE `pigmentos` (
   `observacoes` text DEFAULT NULL COMMENT 'Registra observações não obrigatórias feitas pelo usuário '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os pigmentos do laboratório de plásticos';
 
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `pigmentos` (`descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
+(1,'Verde claro', 1, 200, '5415466','B/656482',1,''),
+(2,'Azul escuro', 2, 245, '48684Ad874','C/64882',1,''),
+(3,'Vermelho', 1, 300, '94686545','A/48654',1,''); 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pigmento_fornecedor`
+-- Estrutura da tabela `pigmentos`
 --
 
 CREATE TABLE `pigmento_fornecedor` (
@@ -338,10 +346,21 @@ CREATE TABLE `usuarios` (
   `senha` varchar(32) NOT NULL COMMENT 'Registra a senha de um usuário',
   `nome` varchar(80) NOT NULL COMMENT 'Registra o primeiro nome do usuário',
   `sobrenome` varchar(80) NOT NULL COMMENT 'Registra o sobrenome do usuário',
-  `idTurma` int(11) NOT NULL COMMENT 'FK - chave estrangeira que Registra a ID da turma do usuário',
+  `idTurma` int(11) COMMENT 'FK - chave estrangeira que Registra a ID da turma do usuário',
   `tipo` tinyint(1) NOT NULL COMMENT 'Registra o tipo de usuário',
   `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o usuário estiver ativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os cadastros de suuarios';
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuario`,`login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
+(1,'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', 0, 1, 'S'),
+(2,'a@teste.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', 1, 1, 'S'),
+(3,'b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 'S'),
+(4,'c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'Testudo de teste', 1, 2, 'N');
+
 
 --
 -- Índices para tabelas despejadas
