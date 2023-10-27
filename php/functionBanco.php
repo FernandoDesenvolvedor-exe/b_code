@@ -1,12 +1,11 @@
 <?php 
 
-    function buscaId ($tableName, $idName){
+    function buscaId($tableName, $idName){
 
         include('connection.php');
 
-        $sql = "SELECT ".$idName."" 
-                ." FROM ".$tableName.""
-                ." ORDER BY ".$idName." DESC limit 1;";
+        $sql = "SELECT MAX(".$idName.") as maior" 
+                ." FROM ".$tableName.";";
         
         $id = '';
 
@@ -21,12 +20,12 @@
             }
 
             foreach($array as $campo){
-                $id = $campo[$idName];
+                $id = $campo['maior'];
                 
             }
         }
 
-        return ($id);
+        return $id;
     }
 
     function createTable(){
