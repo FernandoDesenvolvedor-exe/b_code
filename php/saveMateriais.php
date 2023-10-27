@@ -172,20 +172,18 @@
     }else if($validacao == 'IPR'){       // Insert de produto e ferramental.
 
         $descPdto = stripslashes($_POST['nProduto']);
-        $imgPdto = $_POST['nImagem'];
         $descFerr = stripslashes($_POST['nMolde']);
         $idTipoFerr = $_POST['nTipoFerramental'];
-        $pigmento = stripslashes($_POST['nPigmento']);
 
-        $sql = "INSERT INTO produtos(descricao, imagem, ativo)"
-                ."VALUES('".$descPdto."', '".$imgPdto."', 1);";
+        $sql = "INSERT INTO produtos(descricao, ativo)"
+                ."VALUES('".$descPdto."', 1);";
 
-        $result = mysqli_query($conn, $sql);
-        
+        //$result = mysqli_query($conn, $sql);        
+
         //Traz o ultimo id da tabela enviada nos parametros. Enviar nome da tabela e nome da coluna id  
         $idPdto = buscaId("produtos","idProduto");
 
-        $sql = "INSERT INTO ferramental(descricao, ativo, idTiposFerramental, idProduto)"
+        $sql = "INSERT INTO ferramental (descricao, ativo, idTiposFerramental, idProduto)"
                 ." VALUES ('".$descFerr."', 1, ".$idTipoFerr.",".$idPdto.");";
 
         $result = mysqli_query($conn, $sql);
@@ -201,6 +199,44 @@
         }
         
         mysqli_close($conn);
+
+        //VERIFICA SE TEM IMAGEM NO INPUT
+        if($_FILES['nImagem']['tmp_name'] != ""){
+
+            //Usar o mesmo nome do arquivo original
+            //$nomeArq = $_FILES['Foto']['name'];
+            //...
+            //OU
+            //Pega a extensão do arquivo e cria um novo nome pra ele (MD5 do nome original)
+            $extensao = pathinfo($_FILES['nImagem']['name'], PATHINFO_EXTENSION);
+            $novoNome = md5($_FILES['nImagem']['name']).'.'.$extensao;        
+            
+            //Verificar se o diretório existe, ou criar a pasta
+            if(is_dir('../dist/img/')){
+                //Existe
+                $diretorio = '../dist/img/';
+            }else{
+                //Criar pq não existe
+                $diretorio = mkdir('../dist/img/');
+            }
+    
+            //Cria uma cópia do arquivo local na pasta do projeto
+            move_uploaded_file($_FILES['nImagem']['tmp_name'], $diretorio.$novoNome);
+    
+            //Caminho que será salvo no banco de dados
+            $dirImagem = 'dist/img/'.$novoNome;
+    
+            include("conexao.php");
+            //UPDATE
+            $sql = "UPDATE produtos "
+                    ." SET imagem = '".$dirImagem."'"
+                    ." WHERE idProduto = ".$idPdto.";";
+                    
+            $result = mysqli_query($conn,$sql);
+            mysqli_close($conn);
+        }
+
+        die();
 
         header('location: ../cadastroProdutos.php');
     }
