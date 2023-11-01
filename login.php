@@ -1,4 +1,8 @@
 <?php
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
+    
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
     include("php/function.php");
 ?>
@@ -52,6 +56,20 @@
                                     </div>
                                 </div>
                             </div>
+                                <p>
+                                    <?PHP 
+                                    if(isset($_SESSION['msgLogin']) && $_SESSION['msgLogin'] != ''){  
+                                        echo $_SESSION['msgLogin'];
+                                        unset($_SESSION['msgLogin']);
+                                        
+                                    } 
+                                    if(isset($_SESSION['idUsuario']) && $_SESSION['idUsuario'] != ''){  
+                                        echo $_SESSION['idUsuario'];
+                                        unset($_SESSION['idUsuario']);
+                                        
+                                    } 
+                                    ?> 
+                                </p>
                         </form>
                     </div>
                 </div>

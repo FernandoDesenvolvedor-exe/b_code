@@ -25,13 +25,13 @@
         return $select;
     }
 
-    function cardProduto(){
+    function cardProduto(){       
 
         include('connection.php');
 
         $card = "";    
                     
-        $sql = "SELECT idProduto, descricao, imagem FROM produtos"
+        $sql = "SELECT idProduto, descricao, imagem FROM receita"
                 ." WHERE ativo = 1;";
                     
         $result = mysqli_query($conn,$sql);
@@ -45,31 +45,33 @@
             }
 
             foreach($array as $campo){
-
+                
                 $card = "<div class='col-lg-3 col-md-6'>"
-                            ."<div class='card'>"
-                                ."<div class='el-card-item'>"
-                                    ."<div class='el-card-avatar el-overlay-1'> <img src='".$campo['imagem']."' alt='user'/>"
-                                        ."<div class='el-overlay'>"
-                                            ."<ul class='list-style-none el-info'>"
-                                                ."<li class='el-item'>"
-                                                    ."<a class='btn default btn-outline image-popup-vertical-fit el-link' href='".$campo['imagem']."'>"
-                                                        ."<i class='mdi mdi-magnify-plus'></i>"
-                                                    ."</a>"
-                                                ."</li>"
-                                                ."<li class='el-item'>"
-                                                    ."<a class='btn default btn-outline el-link' href='javascript:void(0);'>"
-                                                        ."<i class='mdi mdi-link'></i>"
-                                                    ."</a>"
-                                                ."</li>"
-                                            ."</ul>"
+                            ."<form method='POST' action='cadastroPedido.php? img=".$campo['imagem']."'>"
+                                ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
+                                    ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
+                                        ."<div class='el-card-avatar el-overlay-1'> <img name='nImg' src='".$campo['imagem']."' alt='user'/>"
+                                            ."<div class='el-overlay'>"
+                                                ."<ul class='list-style-none el-info'>"
+                                                    ."<li class='el-item'>"
+                                                        ."<a class='btn default btn-outline' href='".$campo['imagem']."'>"
+                                                        ."</a>"
+                                                    ."</li>"
+                                                    ."<li class='el-item'>"
+                                                        ."<a class='btn default btn-outline el-link' href='javascript:void(0);'>"
+                                                            ."<i class='mdi mdi-link'></i>"
+                                                        ."</a>"
+                                                    ."</li>"
+                                                ."</ul>"
+                                            ."</div>"
                                         ."</div>"
-                                    ."</div>"
-                                    ."<div class='el-card-content'>"
-                                        ."<h4 class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
+                                        ."<div class='el-card-content'>"
+                                            ."<h4 value='".$campo['idProduto']."' id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
+                                            ."<button type='submit' value='Selecionar' class='btn btn-primary'> Selecionar </button>"
+                                        ."</div>" 
                                     ."</div>"
                                 ."</div>"
-                            ."</div>"
+                            ."</form>"
                         ."</div>";
             }   
 

@@ -1,8 +1,4 @@
 
-drop database lab_plasticos;
-create database lab_plasticos;
-use lab_plasticos;
-
 --
 -- Banco de dados: `lab_plasticos`
 --
@@ -49,7 +45,13 @@ CREATE TABLE `ferramental` (
 
 INSERT INTO `ferramental` (`idFerramental`, `descricao`, `ativo`, `idTiposFerramental`, `idProduto`) VALUES
 (2, 'CAP654845', 1, 1, 2),
-(3, 'BEC5788', 1, 2, 3);
+(3, 'BEC5788', 1, 2, 3),
+(4, 'arroz', 1, 3, 1),
+(5, 'CAND5189', 1, 1, 10),
+(6, 'LAGf48548', 1, 1, 10),
+(7, 'LAGf48548', 1, 1, 10),
+(8, 'LAGf48548', 1, 1, 10),
+(9, 'LAGf48548', 1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -61,6 +63,19 @@ CREATE TABLE `ferramental_maquina` (
   `idFerramental` int(11) NOT NULL COMMENT 'PK/FK - chave composta identificadora de IDs da tabela ferramental',
   `idMaquina` int(11) NOT NULL COMMENT 'PK/FK - chave composta identificadora de IDs da tabela maquinas'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela associativa entre ferramental e maquinas';
+
+--
+-- Extraindo dados da tabela `ferramental_maquina`
+--
+
+INSERT INTO `ferramental_maquina` (`idFerramental`, `idMaquina`) VALUES
+(5, 1),
+(5, 2),
+(6, 1),
+(6, 2),
+(7, 1),
+(8, 1),
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -180,18 +195,10 @@ CREATE TABLE `pigmentos` (
   `observacoes` text DEFAULT NULL COMMENT 'Registra observações não obrigatórias feitas pelo usuário '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os pigmentos do laboratório de plásticos';
 
---
--- Extraindo dados da tabela `produtos`
---
-
-INSERT INTO `pigmentos` (`descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
-('Verde claro', 1, 200, '5415466','B/656482',1,''),
-('Azul escuro', 2 , 245, '48684Ad874','C/64882',1,''),
-('Vermelho', 3, 300, '94686545','A/48654',1,''); 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pigmentos`
+-- Estrutura da tabela `pigmento_fornecedor`
 --
 
 CREATE TABLE `pigmento_fornecedor` (
@@ -208,7 +215,7 @@ CREATE TABLE `pigmento_fornecedor` (
 CREATE TABLE `produtos` (
   `idProduto` int(11) NOT NULL COMMENT 'PK - chave identificadora da tabela produtos, onde cada id representa um produto feito.',
   `descricao` varchar(80) COLLATE utf8_bin NOT NULL COMMENT 'descrição do produto feito',
-  `imagem` blob DEFAULT NULL COMMENT 'Imagem do produto',
+  `imagem` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'Guarda caminho da imagem do produto',
   `ativo` tinyint(1) NOT NULL COMMENT 'Verifica se este produto esta ativa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que identifica o produto feito ';
 
@@ -218,8 +225,15 @@ CREATE TABLE `produtos` (
 
 INSERT INTO `produtos` (`idProduto`, `descricao`, `imagem`, `ativo`) VALUES
 (1, 'Suporte de carregador', '', 1),
-(2, 'Capa de celular', 0x436170747572612064652074656c6120323032332d31302d3137203230343334322e706e67, 1),
-(3, 'Becker', 0x436170747572612064652074656c6120323032332d31302d3234203139323930322e706e67, 1);
+(2, 'Capa de celular', 'Captura de tela 2023-10-17 204342.png', 1),
+(3, 'Becker', 'Captura de tela 2023-10-24 192902.png', 1),
+(4, 'Copo', 'dist/img/copo/copo.jpeg', 1),
+(5, 'canudo', '', 1),
+(6, 'canudo', '', 1),
+(7, 'canudo', '', 1),
+(8, 'canudo', NULL, 1),
+(9, 'canudo', NULL, 1),
+(10, 'canudo', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -322,7 +336,7 @@ CREATE TABLE `turma` (
   `idTurma` int(11) NOT NULL COMMENT 'PK - chave identificadora da turma a qual o usuário pertence\r\nOBS: o admin não necessita estar em uma turma',
   `turno` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Mostra a qual turno uma turma pertence',
   `nomeTurma` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da turma. \r\nEx: TDesi Senai/N1',
-  `ativo` tinyint(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
+  `ativo` tinyint(1) DEFAULT NULL COMMENT 'Se a conta podea ou não pode ser usada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabela que salva as informações sobre a turma dos usuários ';
 
 --
@@ -330,9 +344,9 @@ CREATE TABLE `turma` (
 --
 
 INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
-(1, 'N', 'T DESI 2022', 'S'),
-(2, 'M', 'Estilos de Moda', 'S'),
-(3, 'V', 'Mecânica', 'S');
+(1, 'N', 'T DESI 2022', 0),
+(2, 'M', 'Estilos de Moda', 0),
+(3, 'V', 'Mecânica', 0);
 
 -- --------------------------------------------------------
 
@@ -346,7 +360,7 @@ CREATE TABLE `usuarios` (
   `senha` varchar(32) NOT NULL COMMENT 'Registra a senha de um usuário',
   `nome` varchar(80) NOT NULL COMMENT 'Registra o primeiro nome do usuário',
   `sobrenome` varchar(80) NOT NULL COMMENT 'Registra o sobrenome do usuário',
-  `idTurma` int(11) COMMENT 'FK - chave estrangeira que Registra a ID da turma do usuário',
+  `idTurma` int(11) DEFAULT NULL COMMENT 'FK - chave estrangeira que Registra a ID da turma do usuário',
   `tipo` tinyint(1) NOT NULL COMMENT 'Registra o tipo de usuário',
   `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o usuário estiver ativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os cadastros de suuarios';
@@ -355,12 +369,13 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`,`login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
-(1,'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', 0, 1, 'S'),
-(2,'a@teste.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', 1, 1, 'S'),
-(3,'b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 'S'),
-(4,'c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'Testudo de teste', 1, 2, 'N');
-
+INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
+(1, 'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', NULL, 1, 1),
+(2, 'a@teste.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', NULL, 1, 1),
+(3, 'b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 1),
+(4, 'c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'Testudo de teste', 1, 2, 1),
+(5, 'adm1@adm.com', '81dc9bdb52d04dc20036dbd8313ed055', 'adm', 'adm', NULL, 1, 1),
+(6, 'ad@ad.v', '81dc9bdb52d04dc20036dbd8313ed055', 'daniel', 'dani', 2, 2, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -498,7 +513,7 @@ ALTER TABLE `turma`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `FK_idTurma` (`idTurma`);
+  ADD KEY `idTurma` (`idTurma`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -514,7 +529,7 @@ ALTER TABLE `classe_material`
 -- AUTO_INCREMENT de tabela `ferramental`
 --
 ALTER TABLE `ferramental`
-  MODIFY `idFerramental` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela ferramental', AUTO_INCREMENT=4;
+  MODIFY `idFerramental` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela ferramental', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
@@ -550,7 +565,7 @@ ALTER TABLE `pigmentos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora da tabela produtos, onde cada id representa um produto feito.', AUTO_INCREMENT=4;
+  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora da tabela produtos, onde cada id representa um produto feito.', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produto_maquina`
@@ -592,7 +607,7 @@ ALTER TABLE `turma`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela usuarios';
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela usuarios', AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas
@@ -666,10 +681,4 @@ ALTER TABLE `produto_maquina`
 ALTER TABLE `receitas`
   ADD CONSTRAINT `receitas_ibfk_1` FOREIGN KEY (`idProduto`) REFERENCES `produtos` (`idProduto`),
   ADD CONSTRAINT `receitas_ibfk_2` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`);
-
---
--- Limitadores para a tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idTurma`) REFERENCES `turma` (`idTurma`);
 COMMIT;

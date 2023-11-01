@@ -21,8 +21,8 @@
 
                 <div class="container-fluid">   
                     <div class="row el-element-overlay">
-                        <?php echo cardProduto(); ?>
-                    </div>          
+                        <?php echo cardProduto();?>
+                    </div>  
                 </div>
 
                 <footer class="footer text-center">
