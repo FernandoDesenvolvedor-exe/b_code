@@ -185,9 +185,9 @@ CREATE TABLE `pigmentos` (
 --
 
 INSERT INTO `pigmentos` (`descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
-(1,'Verde claro', 1, 200, '5415466','B/656482',1,''),
-(2,'Azul escuro', 2, 245, '48684Ad874','C/64882',1,''),
-(3,'Vermelho', 1, 300, '94686545','A/48654',1,''); 
+('Verde claro', 1, 200, '5415466','B/656482',1,''),
+('Azul escuro', 2 , 245, '48684Ad874','C/64882',1,''),
+('Vermelho', 3, 300, '94686545','A/48654',1,''); 
 -- --------------------------------------------------------
 
 --
