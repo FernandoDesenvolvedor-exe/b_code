@@ -6,7 +6,7 @@
         $sqlVespertino = "select idTurma, nomeTurma from turma where ativo='S' and turno='V';";
         $sqlNoturno = "select idTurma,nomeTurma from turma where ativo='S' and turno='N';";
 
-        $listaTurmas = "<option value=''>Select turma</option>";
+        $listaTurmas = "<option value=null>Select turma</option>";
 
         //Matutino
         

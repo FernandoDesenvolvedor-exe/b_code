@@ -42,19 +42,21 @@
             if($campo['senha'] == md5($_POST['nSenha'])){
                     
                 //valida se conta esta ativa
-                if($campo['ativo'] == 'S'){
+                if($campo['ativo'] == 1){
 
                     //joga o usuario pra tela de acordo com o nivel de acesso dele
-
+                    $_SESSION['idUsuario']=$campo['idUsuario'];
                     $_SESSION['tipo'] = $campo['tipo'];
 
                     switch(intval($campo['tipo'])){
                         case 1:
-                            header('location:../index.html');
+                            $_SESSION['msgLogin'] = 'Entrou Adm';
+                            header('location:../login.php');
                         break;
 
                         case 2:
-                            header('location:../index.html');
+                            $_SESSION['msgLogin'] = 'Entrou comum';
+                            header('location:../login.php');
                         break;
 
                         default:

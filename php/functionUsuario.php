@@ -4,11 +4,19 @@
             session_start();
         }
         include("connection.php");
-        //____________________________________________Inserir dados no Banco___________________________________________________________________-
-        $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo , ativo) values"
-                    ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".intval($turma).", ".intval($tipoUsu).", 1);";
+        //____________________________________________Inserir dados no Banco___________________________________________________________________
+        $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo, ativo) values"
+                    ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu.", 1);";
+        
+        
+        
+        var_dump($nome,$sobrenome,$email,$senha,$turma,$tipoUsu,'    SQl:    '."Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo , ativo) values"
+        ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu.", 1);");
+        var_dump($sqlInsert);
+        
         mysqli_query($conn, $sqlInsert);
         mysqli_close($conn);
-        
     }
+    
+
 ?>

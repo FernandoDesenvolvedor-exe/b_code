@@ -54,13 +54,13 @@
     //var_dump($tipoUsu, $turma);
 
     //Valida se adm n tem turma 
-    if($tipoUsu==1 and $turma!=''){
+    if($tipoUsu==1 and $turma!='null'){
         $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (administrador) não pode ter turma!'.$fechaHTMLalert;
         header('location: ../cadastroUsuario.php');
         die();     
     }
     //Valida se comum tem turma
-    if($tipoUsu==2 and $turma==''){
+    if($tipoUsu==2 and $turma=='null'){
         $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (comum) deve ter turma!'.$fechaHTMLalert;
         header('location: ../cadastroUsuario.php');
         die();  
