@@ -20,6 +20,11 @@
                 <?php include('links/side_bar_direita.php');?>                
 
                 <div class="container-fluid">   
+                               
+                    <div style="text-align: center;" class="card">
+                        <h1>Selecione um produto</h1>
+                    </div>
+
                     <div class="row el-element-overlay">
                         <?php echo cardProduto();?>
                     </div>  
