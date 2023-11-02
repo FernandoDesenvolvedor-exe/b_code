@@ -50,17 +50,17 @@
 
                     switch(intval($campo['tipo'])){
                         case 1:
-                            $_SESSION['msgLogin'] = 'Entrou Adm';
-                            header('location:../login.php');
+                            //$_SESSION['msgLogin'] = 'Entrou Adm';
+                            header('location:../index.php');
                         break;
 
                         case 2:
-                            $_SESSION['msgLogin'] = 'Entrou comum';
-                            header('location:../login.php');
+                            //$_SESSION['msgLogin'] = 'Entrou comum';
+                            header('location:../index.php');
                         break;
 
                         default:
-                            $_SESSION['msgLogin'] = 'Nivel de acesso do usuário invalido';
+                            $_SESSION['msgLogin'] = 'Nivel de acesso do usuário inválido.';
                             header('location:../login.php');
                             die();
                         break;
@@ -68,13 +68,13 @@
 
                 }else{
                     //usuario Inativo
-                    $_SESSION['msgLogin'] = 'usuario Inativo';
+                    $_SESSION['msgLogin'] = 'Usuário inativo.';
                     header('location:../login.php');
                     die();
                 }
             }else{
                 //senha incorreta
-                $_SESSION['msgLogin'] = 'senha incorreta';
+                $_SESSION['msgLogin'] = 'Senha incorreta.';
                 header('location:../login.php');
                 die();
             }
@@ -82,7 +82,7 @@
         
     } else {
         //menssagem de email nao cadastrado
-        $_SESSION['msgLogin'] = 'email nao cadastrado';
+        $_SESSION['msgLogin'] = 'Email não cadastrado.';
         header('location:../login.php');
     };
 ?>
