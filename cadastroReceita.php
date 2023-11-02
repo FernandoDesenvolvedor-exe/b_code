@@ -22,6 +22,12 @@
             <div class="card">
                 <!-- Cria um formulário -->                            
                 <form method="POST" class="form-horizontal" action= "php/saveReceita.php">
+                    
+                            
+
+
+
+
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
@@ -32,15 +38,28 @@
                                     <?php echo optionProdutos();?>                                        
                                 </select>
                             </div>
-                        </div> 
+                        </div>
+                        
+                        <!-- Adicionar -->
+                        <!-- -----------Modal-------------------------------------------------------------------------------------------------------------- -->
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
-                            <div class="col-md-9">
-                                <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
+                            <div onClick="quantidadeMaterial();" class="col-md-9" id='qntMaterial' >
+                                <select onClick="quantidadeMaterial();" id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
                                     <?php echo optionMaterial(1);?>
                                 </select>
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Material</label>
+                            <div class="col-sm-9" >
+                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:10%;" min="0">
+                            </div>
+                            <input type="button" on>
+                        </div>
+
+                        <!-- ----------------------------------------------------------------------------------------------------------------- -->
 
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
@@ -52,10 +71,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
-                            <div class="col-sm-9">
+                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Pigmento</label>
+                            <div class="col-sm-9" id='qntM'>
                                 
-                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:10%;" min="0">
+                                <!-- <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:10%;" min="0"> -->
+                                
                             </div>
                         </div>
 
@@ -65,7 +85,13 @@
                                 <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> 
+
+
+
+
+
+
                     
                     <div class="border-top">
                         <div class="card-body">
@@ -83,6 +109,16 @@
 </div>
 
     <?php include('links/script.php'); ?>
+    <script>
+            function quantidadeMaterial(){
+                var qntM = document.getElementById('qntM');
+                //var materiais = document.getElementById('iMateriaPrima')
+                //console.log(materiais[].lenght)
+                //for(i=0;i<materiais.lenght)
+                qntM.createElement    
+            }
+            
+        </script>
 </body>
     
 </html>

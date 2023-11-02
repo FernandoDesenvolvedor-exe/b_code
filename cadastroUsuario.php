@@ -110,7 +110,7 @@
                                                         Cadastrar
                                                     </button>
                                                     <?php 
-                                                        // echo alert(2,'Confirmar cadastro','Deseja mesmo cadastrar este usuario?');
+                                                        //echo alert(2,'Confirmar cadastro','Deseja mesmo cadastrar este usuario?');
                                                     ?>
                                                 </div>
                                             </div>
