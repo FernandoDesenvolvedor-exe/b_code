@@ -1,21 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 02-Nov-2023 às 01:23
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+drop database lab_plasticos;
+create database lab_plasticos;
+use lab_plasticos;
 
 --
 -- Banco de dados: `lab_plasticos`
@@ -179,6 +165,19 @@ CREATE TABLE `materia_prima` (
   `observacoes` text DEFAULT NULL COMMENT 'Registra uma observação não obrigatória feita pelo usuário'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra as matérias primas do laboratório';
 
+--
+-- Despejando dados para a tabela `materia_prima`
+--
+
+INSERT INTO `materia_prima` (`idMateriaPrima`, `idClasse`, `idTipoMateriaPrima`, `descricao`, `quantidade`, `ativo`, `observacoes`) VALUES
+(1, 1, 2, 'plastico', 500, 1, NULL),
+(2, 1, 1, 'Polistileno', 300, 1, NULL),
+(3, 2, 4, 'Polioneto de carbonato', 400, 1, NULL),
+(4, 1, 3, 'Sódio', 200, 1, NULL),
+(5, 2, 1, 'Polistileno', 100, 1, NULL),
+(6, 2, 3, 'Exopor', 50, 1, NULL),
+(7, 1, 1, 'Java', 1, 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -212,6 +211,15 @@ CREATE TABLE `pigmentos` (
   `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o item está ativo (1-ativo / 0-inativo)',
   `observacoes` text DEFAULT NULL COMMENT 'Registra observações não obrigatórias feitas pelo usuário '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra os pigmentos do laboratório de plásticos';
+
+--
+-- Despejando dados para a tabela `pigmentos`
+--
+
+INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
+(1, 'Verde claro', 1, 200, '5415466', 'B/656482', 1, ''),
+(2, 'Azul escuro', 2, 245, '48684Ad874', 'C/64882', 1, ''),
+(3, 'Vermelho', 1, 300, '94686545', 'A/48654', 1, '');
 
 -- --------------------------------------------------------
 
@@ -567,7 +575,7 @@ ALTER TABLE `maquinas`
 -- AUTO_INCREMENT de tabela `materia_prima`
 --
 ALTER TABLE `materia_prima`
-  MODIFY `idMateriaPrima` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela materia_prima';
+  MODIFY `idMateriaPrima` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela materia_prima',AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
@@ -579,7 +587,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `pigmentos`
 --
 ALTER TABLE `pigmentos`
-  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela pigmentos';
+  MODIFY `idPigmento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK - chave identificadora de IDs da tabela pigmentos',AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
