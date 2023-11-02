@@ -172,8 +172,8 @@
                         <li class="sidebar-item"><a href="cadastroOutros.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Outros </span></a></li>
                     </ul>                        
                 </li>
-                <li class="sidebar-item"><a href="cadastroMaquina.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Maquinário </span></a></li>                                                     
-                <li class="sidebar-item"><a href="cadastroProdutos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Produto </span></a></li>                                                     
+                <li class="sidebar-item"><a href="maquina.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Maquinário </span></a></li>                                                     
+                <li class="sidebar-item"><a href="produtos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>                                                     
                 <li class="sidebar-item"><a href="cadastroUsuario.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>     
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
                 <ul aria-expanded="false" class="collapse  first-level">

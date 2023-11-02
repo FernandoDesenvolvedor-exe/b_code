@@ -19,24 +19,34 @@
                 
                 <?php //include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">               
+                <div class="container-fluid">    
                     
                     <!-- Start Page Content -->                    
                     <div class="card" style='height:800px; width:800px; item-align: center; align-self: center !important;'>
 
                         <!-- Cria um formulário -->                            
                         <form method="POST" class="form-horizontal" action= "">
+
+                            <h1 style="text-align: center;"> <?php echo $_GET['produto']; ?> </h1>
+
                             <div class="card-body" style="alignt-items:middle;">
 
                                 <div  style="text-align: center;"> 
+
                                     <img style='max-heigth:300px; width:300px;' src="<?php echo $_GET['img']; ?>"> 
+
                                 </div>   
+
                                 <br>
-                                <div class="form-group row" style="text-align: center ;">                                    
-                                    <div class="col-md-9">
-                                        <label class="col-md-3 m-t-15" style="text-align:right;">Classe do material</label>
+
+                                <div class="form-group row" style="align-self: center;">        
+
+                                    <div class="col-md-9">                              
+
                                         <input type="number" min="50">
+
                                     </div>
+
                                 </div>
 
                             </div>
