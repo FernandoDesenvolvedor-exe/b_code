@@ -42,7 +42,7 @@
                 ." ON p.idProduto = f.idProduto"
                 ." LEFT JOIN tipos_ferramental as t"
                 ." ON t.idTiposFerramental = f.idTiposFerramental" 
-                ." where p.ativo = 1;";
+                ." where f.ativo = 1;";
 
         $table = "";
 
@@ -67,24 +67,49 @@
                             ."<td>".$campo['peso']."</td>"
                             ."<td>".$campo['molde']."</td>"
                             ."<td>".$campo['tipo']."</td>"
-                            ."<td>"
+                            ."<td text-align='center'>"
                                 ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idP']."'>"
                                     ."Alterar"
                                 ."</button>"
+
+                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idP']."'>"
+                                    ."Desativar"
+                                ."</button>"
                             ."</td>"
+
+                            ."<div class='modal fade' id='ExcluiModal".$campo['idP']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                                ."<div class='modal-dialog' role='document '>"
+                                    ."<div class='modal-content'>"
+                                        .'<div class="modal-header">'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>'
+                                            .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                                                .'<span aria-hidden="true ">&times;</span>'
+                                            .'</button>'
+                                        .'</div>'                                  
+                                        .'<div class="modal-body">'
+                                            .'<form method="POST" action="php/saveProdutos.php? validacao=DPF&idProduto='.$campo["idP"].'">'
+                                                .'<label> Confirmar esta ação? </label>'
+                                                .'<div align-items="right">'
+                                                    .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
+                                                .'</div>'
+                                            .'</form>'
+                                        .'</div>'
+                                    .'</div>'
+                                .'</div>'
+                            .'</div>'
 
 
                             ."<div class='modal fade' id='EditaModal".$campo['idP']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
-                                            .'<h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Alterar produto e/ou molde</h5>'
                                             .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                                                 .'<span aria-hidden="true ">&times;</span>'
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
-                                            .'<form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php?validacao=IPR">'
+                                            .'<form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php?validacao=UPF">'
                                                 .'<div class="card-body">'
                                                     
                                                     .'<h4 class="card-title">Produto e molde</h4>'
@@ -92,7 +117,7 @@
                                                     .'<div class="form-group row">'
                                                         .'<label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do produto</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
+                                                            .'<input type="text" value="'.$campo["produto"].'" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div> '
 
@@ -106,14 +131,14 @@
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
+                                                            .'<input type="text" value="'.$campo['molde'].'" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div>'
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Peso</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
+                                                            .'<input type="number" value="'.$campo['peso'].'" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
                                                         .'</div>'
                                                     .'</div>'
 
@@ -121,7 +146,8 @@
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>'
                                                         .'<div class="col-md-9">'
                                                             .'<select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                                .'<?php echo optionTipoFerramental();?>'                                         
+                                                                .'<option value="'.$campo["idTipo"].'">'.$campo["tipo"].'</option>'
+                                                                .'<?php echo optionTipoFerramental(); ?>'                                         
                                                             .'</select>'
                                                         .'</div>'
                                                     .'</div>' 
@@ -130,7 +156,7 @@
                                                         .'<label class="col-md-3 m-t-15"  style="text-align: right;">Maquinas Compatíveis</label>'
                                                         .'<div class="col-md-9">'
                                                             .'<select id="iMaquina[]" name="nMaquina[]" multiple = "multiple" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                                .'<?php echo optionMaquina();?>'
+                                                                 .'<?php echo optionMaquina(); ?>'
                                                             .'</select>'
                                                         .'</div>'
                                                     .'</div>'

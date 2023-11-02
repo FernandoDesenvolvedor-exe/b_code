@@ -19,18 +19,18 @@
                 
                 <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">               
+                <div class="container-fluid">      
+                    
+                    <h4 class="card-title">Tabela de produtos</h4>
                     
                     <!-- Start Page Content -->                    
-                    <div class="card">
+                    <div class="card">     
 
-                        <h5 class="card-title">Tabela de produtos</h5>
-
-                        <div class="table-responsive">
-
-                        <button type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#Modal1">
-                            Novo produto/molde
-                        </button>
+                        <div>
+                            <button style="width: 150px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#Modal1">
+                                Novo produto/molde
+                            </button>
+                        </div>
 
                         <!-- MODAL -->
                         <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
@@ -43,7 +43,8 @@
                                         </button>
                                     </div>                                    
                                     <div class="modal-body">
-                                        <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php?validacao=IPR">
+
+                                        <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php? validacao=IPF">
                                             <div class="card-body">
                                                 
                                                 <h4 class="card-title">Produto e molde</h4>
@@ -103,9 +104,10 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                                
                         </div>
 
+                        <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
