@@ -3,7 +3,7 @@ function optionTipoFerramental(){
 
     include('connection.php');
 
-    $select = "<option> Selecione uma opção </option>";
+    $select = "<option value=''> Selecione uma opção </option>";
 
     $sql = "SELECT * FROM tipos_ferramental WHERE ativo = 1;";
 
@@ -29,7 +29,7 @@ function optionMaquina(){
 
     include('connection.php');
 
-    $select = "<option> Selecione uma opção </option>";
+    $select ="<option value=''> Selecione uma opção </option>";
 
     $sql = "SELECT * FROM maquinas WHERE ativo = 1;";
 
@@ -45,7 +45,7 @@ function optionMaquina(){
 
         foreach($array as $campo){
 
-            $select .= "<option value ='".$campo['idMaquina']."'>".$campo['descricao']."</option>";
+            $select .= "<option value='".$campo['idMaquina']."'>".$campo['descricao']."</option>";
 
         }
     }
@@ -57,7 +57,7 @@ function optionFerramental(){
 
     include('connection.php');
 
-    $select = "<option> Selecione uma opção </option>";
+    $select = "<option value=''> Selecione uma opção </option>";
 
     $sql = "SELECT * FROM `ferramental` WHERE ativo = 1;";
 

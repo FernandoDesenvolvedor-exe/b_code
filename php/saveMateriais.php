@@ -159,15 +159,5 @@
 
         header('location: ../cadastroMaquina.php');
 
-    }else if($validacao == 'ITF'){ // Insert um cadastro de um tipo de ferramental
-        $descricao = stripslashes($_POST['nTipoMolde']);
-
-        $sql = "INSERT INTO tipos_ferramental(descricao, ativo) VALUES ('".$descricao."', 1);";
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
-        header('location: ../cadastroMaquina.php');
-        
     }
 ?>

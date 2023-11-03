@@ -20,14 +20,15 @@
                 <?php include('links/side_bar_direita.php');?>                
 
                 <div class="container-fluid">   
-                               
-                    <div style="text-align: center;" class="card">
-                        <h1>Selecione um produto</h1>
-                    </div>
 
-                    <div class="row el-element-overlay">
+                    <h1 style="text-align:center;">Selecione um produto</h1>   
+                        
+                    <div style="display: inline-flex;">
+
                         <?php echo cardProduto();?>
-                    </div>  
+
+                    </div>              
+
                 </div>
 
                 <footer class="footer text-center">
@@ -35,6 +36,9 @@
                 </footer>
             </div>
         </div>
+        
+        <script src="assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+        <script src="assets/libs/magnific-popup/meg.init.js"></script>
 
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>

@@ -1,5 +1,6 @@
 <?php 
     function alert($tipo, $titulo, $mensagem){
+        
         switch($tipo){
             case 1:
                 $alert='<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'

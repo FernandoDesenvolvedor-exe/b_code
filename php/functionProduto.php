@@ -42,7 +42,7 @@
                 ." ON p.idProduto = f.idProduto"
                 ." LEFT JOIN tipos_ferramental as t"
                 ." ON t.idTiposFerramental = f.idTiposFerramental" 
-                ." where f.ativo = 1;";
+                ." where p.ativo = 1;";
 
         $table = "";
 
@@ -109,7 +109,7 @@
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
-                                            .'<form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php?validacao=UPF">'
+                                            .'<form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php?validacao=UPF&idProduto='.$campo['idP'].'&idFerramental='.$campo['idMolde'].'">'
                                                 .'<div class="card-body">'
                                                     
                                                     .'<h4 class="card-title">Produto e molde</h4>'
@@ -117,7 +117,7 @@
                                                     .'<div class="form-group row">'
                                                         .'<label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do produto</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="text" value="'.$campo["produto"].'" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
+                                                            .'<input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div> '
 
@@ -131,14 +131,14 @@
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="text" value="'.$campo['molde'].'" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
+                                                            .'<input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div>'
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Peso</label>'
                                                         .'<div class="col-sm-9">'
-                                                            .'<input type="number" value="'.$campo['peso'].'" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
+                                                            .'<input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
                                                         .'</div>'
                                                     .'</div>'
 
@@ -146,8 +146,7 @@
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>'
                                                         .'<div class="col-md-9">'
                                                             .'<select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                                .'<option value="'.$campo["idTipo"].'">'.$campo["tipo"].'</option>'
-                                                                .'<?php echo optionTipoFerramental(); ?>'                                         
+                                                                .''.optionTipoFerramental().''                                         
                                                             .'</select>'
                                                         .'</div>'
                                                     .'</div>' 
@@ -156,7 +155,7 @@
                                                         .'<label class="col-md-3 m-t-15"  style="text-align: right;">Maquinas Compatíveis</label>'
                                                         .'<div class="col-md-9">'
                                                             .'<select id="iMaquina[]" name="nMaquina[]" multiple = "multiple" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                                 .'<?php echo optionMaquina(); ?>'
+                                                                 .''.optionMaquina().''
                                                             .'</select>'
                                                         .'</div>'
                                                     .'</div>'
@@ -203,32 +202,22 @@
 
             foreach($array as $campo){
                 
-                $card = "<div class='col-lg-3 col-md-6'>"
-                            ."<form method='POST' action='cadastroPedido.php? img=".$campo['imagem']."&produto=".$campo['descricao']."'>"
-                                ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
-                                    ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
-                                        ."<div class='el-card-avatar el-overlay-1'> <img name='nImg' src='".$campo['imagem']."' alt='user'/>"
-                                            ."<div class='el-overlay'>"
-                                                ."<ul class='list-style-none el-info'>"
-                                                    ."<li class='el-item'>"
-                                                        ."<a class='btn default btn-outline' href='".$campo['imagem']."'>"
-                                                        ."</a>"
-                                                    ."</li>"
-                                                    ."<li class='el-item'>"
-                                                        ."<a class='btn default btn-outline el-link' href='javascript:void(0);'>"
-                                                            ."<i class='mdi mdi-link'></i>"
-                                                        ."</a>"
-                                                    ."</li>"
-                                                ."</ul>"
+                $card .="<div class='row el-element-overlay'> "
+                            ."<div class='col-lg-3 col-md-6'>"
+                                ."<form method='POST' action='cadastroPedido.php? img=".$campo['imagem']."&produto=".$campo['descricao']."'>"
+                                    ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
+                                        ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
+                                            ."<div class='el-card-avatar el-overlay-1'>"                                            
+                                                ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['imagem']."' alt='user'/>"
                                             ."</div>"
+                                            ."<div class='el-card-content'>"
+                                                ."<h4 value='".$campo['idProduto']."' id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
+                                                ."<button type='submit' value='Selecionar' class='btn btn-primary'> Selecionar </button>"
+                                            ."</div>" 
                                         ."</div>"
-                                        ."<div class='el-card-content'>"
-                                            ."<h4 value='".$campo['idProduto']."' id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
-                                            ."<button type='submit' value='Selecionar' class='btn btn-primary'> Selecionar </button>"
-                                        ."</div>" 
                                     ."</div>"
-                                ."</div>"
-                            ."</form>"
+                                ."</form>"
+                            ."</div>"
                         ."</div>";
             }   
 

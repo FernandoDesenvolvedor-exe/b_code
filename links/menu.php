@@ -161,7 +161,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li>
-                <li class="sidebar-item"><a href="pedidos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de pedidos </span></a></li>     
+                <li class="sidebar-item"><a href="pedidos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Pedidos </span></a></li>     
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="estoque.php" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Consultas</span></a></li>
                 <li class="sidebar-item"><a href="cadastroReceita.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de Receitas </span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Cadastro de materiais</span></a>
