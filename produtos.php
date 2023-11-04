@@ -7,13 +7,11 @@
         <?php include('links/cabecalho.php');?>  
         
         <style>
-        .modal .modal-dialog { width: 60%; } 
+            .modal .modal-dialog { width: 60%; } 
         </style>
     </head> 
     
     <body>
-
-    
 
         <div id="main-wrapper">  
 
@@ -43,7 +41,7 @@
                                 </button>                            
 
                                 <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddRelacao">
-                                    Nova relação entre máquina e molde
+                                    Compatibilidade máquina/molde
                                 </button>
                             </div>                            
                         </div>                              
@@ -181,7 +179,7 @@
                                     <div class="modal-body">
 
                                         <!-- Cria um formulário para registrar maquinas -->                            
-                                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IM">
+                                        <form method="POST" class="form-horizontal" action= "php/saveProdutos.php? validacao=IM">
                                             <div class="card-body">                                
                                                 <!-- Titulo da div -->
                                                 <h4 class="card-title">Máquina</h4>
@@ -224,7 +222,7 @@
                                         </button>
                                     </div>                                    
                                     <div class="modal-body">
-                                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IRMF">
+                                        <form method="POST" class="form-horizontal" action= "php/saveProdutos.php? validacao=IRMF">
                                             <div class="card-body">
                                                 <h4 class="card-title">Compatibilidade maquina/molde</h4>
                                                 

@@ -201,6 +201,30 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
         
+    } else if($validacao == 'IM'){   // Insert um cadastro de maquina   
+
+        $descricao = stripslashes($_POST['nMaquina']);
+        $observacoes = stripslashes($_POST['nMObservacoes']);
+
+        $sql = "INSERT INTO maquinas(descricao, ativo, observacoes)"
+                ." VALUES('".$descricao."', 1, '".$observacoes."');";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        header('location: ../cadastroMaquina.php');
+
+    } else if($validacao == 'IRMF'){   // Insert um cadastro de maquina   
+
+        $maquina = stripslashes($_POST['nRMaquina']);
+        $molde = stripslashes($_POST['nRFerramental']);
+
+        $sql = "INSERT INTO ferramental_maquina(idFerramental, idMaquina)"
+                ." VALUES(".$maquina.", ".$molde.");";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
     }
 
     header('location: ../produtos.php');
