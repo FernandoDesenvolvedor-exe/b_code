@@ -67,7 +67,7 @@
                             ."<td>".$campo['peso']."</td>"
                             ."<td>".$campo['molde']."</td>"
                             ."<td>".$campo['tipo']."</td>"
-                            ."<td text-align='center'>"
+                            ."<td style='padding=50px; text-align=center;'>"
                                 ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idP']."'>"
                                     ."Alterar"
                                 ."</button>"
