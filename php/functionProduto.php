@@ -150,15 +150,6 @@
                                                             .'</select>'
                                                         .'</div>'
                                                     .'</div>' 
-                                                    
-                                                    .'<div class="form-group row">'
-                                                        .'<label class="col-md-3 m-t-15"  style="text-align: right;">Maquinas Compatíveis</label>'
-                                                        .'<div class="col-md-9">'
-                                                            .'<select id="iMaquina[]" name="nMaquina[]" multiple = "multiple" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                                 .''.optionMaquina().''
-                                                            .'</select>'
-                                                        .'</div>'
-                                                    .'</div>'
                                                 .'</div>    '
 
                                                 .'<div class="border-top">'
