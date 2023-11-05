@@ -17,14 +17,14 @@
         $classe = stripslashes($_POST['nClasse']);       
         $tipoMaterial = stripslashes($_POST['nTipo']);
         $observacoes = stripslashes($_POST['nObservacoes']);
-        $fornecedor = stripslashes($_POST['nFornecedor']);
-
+        $fornecedor = stripslashes($_POST['nFornecedor']);        
+        
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
                 ." VALUES(".$classe.",".$tipoMaterial.",'".$descricao."',".$quantidade.", 1, '".$observacoes."');";
 
         //envia um script sql para o banco de dados executar
-        $result = mysqli_query($conn,$sql);  
+        $result = mysqli_query($conn,$sql);
         
         //Traz o id dos dados Inseridos acima na tabela 
         $idMaterial = buscaId("materia_prima","idMateriaPrima");
@@ -32,13 +32,24 @@
         $sql =" INSERT INTO materia_fornecedor(idMateriaPrima, idFornecedor) VALUES (".$idMaterial.",".$fornecedor.");";
         
         $result = mysqli_query($conn,$sql);
+
+        if (count($_POST['nPigmento']) > 0){ 
+
+            for($n = 0; $n < count($_POST['nPigmento']); $n++){
+                
+                $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
+                        ."VALUES(".$idMaterial.", ".$_POST['nPigmento'][$n].");";
+    
+                $result = mysqli_query($conn, $sql);
+            } 
+        }
         
         //fecha a conexão
         mysqli_close($conn);
 
     }else if($validacao == 'DMP') {  // DESATIVA UM CADASTRO DE MATERIA_PRIMA
 
-        $sql='UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+        $sql='UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -194,8 +205,6 @@
         header('location: ../cadastroOutros.php');
     
     }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e uma ou mais matérias primas
-
-        $pigmento = stripslashes($_POST['nPigmento']);
 
         for($i = 0; $i < count($_POST['nMateriaPrima']); $i++){
             

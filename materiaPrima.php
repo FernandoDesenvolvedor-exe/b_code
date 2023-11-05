@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <!-- MODAL NOVO TIPO DE MATÈRIA PRIMA -->
+                    <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->
                     <div class="modal fade" id="modalAddClasse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                         <div class="modal-dialog" role="document ">                                
                             <div class="modal-content">
@@ -223,6 +223,15 @@
                                                 <div class="col-sm-9">
                                                     <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
+                                            <div class="col-md-9">
+                                                <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
+                                                    <?php echo optionPigmento(); ?>
+                                                </select>
                                             </div>
                                         </div>
                                         

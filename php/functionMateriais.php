@@ -85,7 +85,7 @@
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
-                                            .'<form method="POST" action="php/saveMateriais.php? validacao=DMP&idMaa='.$campo["idMateria"].'">'
+                                            .'<form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'">'
                                                 .'<label> Confirmar esta ação? </label>'
                                                 .'<div align-items="right">'
                                                     .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'

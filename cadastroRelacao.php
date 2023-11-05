@@ -33,7 +33,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
                                     <div class="col-md-9">
-                                        <select id="iPigmento" name="nPigmento" class="select2 form-control m-t-15" style="width: 100%; height:36px;">
+                                        <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
                                             <?php echo optionPigmento(); ?>
                                         </select>
                                     </div>
