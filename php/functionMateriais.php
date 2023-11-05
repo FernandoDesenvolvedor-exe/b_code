@@ -234,7 +234,7 @@
                                 .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'">'
                                     .'Alterar'
                                 .'</button>'
-                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'">'
+                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'">'
                                     .'Desativar'
                                 .'</button>'
                             .'</td>'

@@ -24,19 +24,19 @@
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;"> 
                         <div>                                
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddMaterial">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
                                 Nova Materia Prima
                             </button>         
                             
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipo">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
                                 Novo Tipo de Material
                             </button>         
                             
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddClasse">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
                                 Nova Classe de Material
                             </button>       
                             
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
                                 Novo Fornecedor
                             </button>
                         </div>                 
