@@ -113,37 +113,6 @@
 
         header('location: ../materiaPrima.php');
 
-    }else if($validacao == 'IPG') {    //insert pigmento
-
-        $descricao = stripslashes($_POST['nDescricao']);
-        $quantidade = stripslashes($_POST['nQuandtidade']);          
-        $tipoMaterial = stripslashes($_POST['nTipo']);
-        $observacoes = stripslashes($_POST['nObservacoes']);
-        $fornecedor = stripslashes($_POST['nFornecedor']);
-        $codigo = stripslashes($_POST['nCodigo']);
-        $lote = stripslashes($_POST['nLote']);   
-
-        //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
-        $sql = "INSERT INTO pigmentos(descricao, idTipoPigmento, quantidade, codigo, lote, ativo, observacoes)" 
-                ." VALUES('".$descricao."',".$tipoMaterial.",".$quantidade.",'".$codigo."','".$lote."', 1, '".$observacoes."');";
-
-        //envia um script sql para o banco de dados executar
-        $result = mysqli_query($conn,$sql); 
-
-        //Traz o id dos dados Inseridos acima na tabela 
-        $idMaterial = buscaId("pigmentos","idPigmento");
-
-        //Script SQL a ser enviado ao banco de dados
-        $sql =" INSERT INTO pigmento_fornecedor(idPigmento, idFornecedor) VALUES (".$idMaterial.",".$fornecedor.");";
-        
-        //envia um script sql para o banco de dados executar
-        $result = mysqli_query($conn,$sql); 
-
-        //fecha a conexão
-        mysqli_close($conn);
-
-        header('location: ../cadastroPigmento.php');
-
     }else if($validacao == 'IF') { //insert fornecedor
 
         $descricao = stripslashes($_POST['nFornecedor']);
@@ -188,36 +157,6 @@
         mysqli_close($conn);
 
         header('location: ../cadastroOutros.php');
-
-    }else if($validacao == 'ITP'){    // insert tipo pigmentos
-
-        $descricao = stripslashes($_POST['nTipoPigmento']);
-        //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
-        $sql = "INSERT INTO tipo_pigmentos (descricao, ativo)" 
-                ." VALUES('".$descricao."', 1);";
-
-        //envia um script sql para o banco de dados executar      
-        $result = mysqli_query($conn,$sql); 
-
-        //fecha a conexão
-        mysqli_close($conn);
-
-        header('location: ../cadastroOutros.php');
-    
-    }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e uma ou mais matérias primas
-
-        for($i = 0; $i < count($_POST['nMateriaPrima']); $i++){
-            
-            $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
-                    ."VALUES(".$_POST['nMateriaPrima'][$i].", ".$pigmento.");";
-
-            $result = mysqli_query($conn, $sql);
-        }
-
-        //fecha a conexão
-        mysqli_close($conn);
-
-        header('location: ../materiaPrima.php');
 
     }
 

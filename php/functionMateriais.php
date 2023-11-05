@@ -188,6 +188,173 @@
         return $table;
     }
 
+    function dataTablePigmento(){
+
+        include('connection.php');
+    
+        $sql = "SELECT p.idPigmento as idPigmento," 
+                ." p.descricao as pigmento,"
+                ." p.idTipoPigmento as idTipo,"
+                ." p.quantidade as qtde,"
+                ." p.observacoes as obs,"
+                ." t.descricao as tipo,"
+                ." f.descricao as fonecedor"
+                ." FROM pigmentos as p"
+                ." LEFT JOIN tipo_pigmentos as t"
+                ." ON p.idTipoPigmento = t.idTipoPigmento"
+                ." RIGHT JOIN pigmento_fornecedor as pf"
+                ." ON p.idPigmento = pf.idPigmento"
+                ." LEFT JOIN fornecedores as f"
+                ." ON f.idFornecedor = pf.idFornecedor"
+                ." WHERE p.ativo = 1;";
+    
+        $table = "";
+    
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+    
+        if (mysqli_num_rows($result) > 0){
+    
+            $array = array();
+    
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+                array_push($array,$linha);
+            }
+    
+            foreach($array as $campo){
+                
+                $table .=   
+                        '<tr align-items="center";>'
+                            .'<td>'.$campo['pigmento'].'</td>'
+                            .'<td>'.$campo['fonecedor'].'</td>'
+                            .'<td>'.$campo['tipo'].'</td>'
+                            .'<td>'.$campo['qtde'].'g</td>'
+                            .'<td>'.$campo['obs'].'</td>'
+                            .'<td>'                                                
+                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'">'
+                                    .'Alterar'
+                                .'</button>'
+                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'">'
+                                    .'Desativar'
+                                .'</button>'
+                            .'</td>'
+
+
+
+    
+                            // MODAL DESATIVA CADASTRO DE PIGMENTO
+                            ."<div class='modal fade' id='modalExcluiPigmento".$campo['idPigmento']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                                ."<div class='modal-dialog' role='document '>"
+                                    ."<div class='modal-content'>"
+                                        .'<div class="modal-header">'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>'
+                                            .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                                                .'<span aria-hidden="true ">&times;</span>'
+                                            .'</button>'
+                                        .'</div>'                                  
+                                        .'<div class="modal-body">'
+                                        .''
+                                        .'  <form method="POST" action="php/savePigmentos.php? validacao=D&id='.$campo["idPigmento"].'">'
+                                        .'      <label> Confirmar esta ação? </label>'
+                                        .'      <div align-items="right">'
+                                        .'          <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
+                                        .'      </div>'
+                                        .'  </form>'
+                                        .''
+                                        .'</div>'
+                                    .'</div>'
+                                .'</div>'
+                            .'</div>' 
+
+                            // MODAL NOVA MATÈRIA PRIMA -->
+                            .'<div class="modal fade" id="modalAlteraPigmento'.$campo['idPigmento'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'
+                            .'    <div class="modal-dialog" role="document ">'
+                            .'        <div class="modal-content">'
+                            .'            <div class="modal-header">'
+                            .'                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>'
+                            .'                <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                            .'                    <span aria-hidden="true ">&times;</span>'
+                            .'                </button>'
+                            .'            </div>'
+                            .'            <div class="modal-body">'
+                            .''
+                            .'                    <form method="POST" class="form-horizontal" action= "php/savePigmentos.php?validacao=U&id='.$campo['idPigmento'].'">'
+                            .'                    <div class="card-body">'
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>'
+                            .'                            <div class="col-sm-9">'
+                            .'                                <input type="text" class="form-control" id="iDescricao" name="nDescricao" placeholder="Nome do pigmento">'
+                            .'                            </div>'
+                            .'                        </div> '
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Código</label>'
+                            .'                            <div class="col-sm-9">'
+                            .'                                <input type="text" class="form-control" id="iCodigo" name="nCodigo" placeholder="Opcional">'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Lote</label>'
+                            .'                            <div class="col-sm-9">'
+                            .'                                <input type="text" class="form-control" id="iLote" name="nLote" placeholder="Opcional">'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>'
+                            .'                            <div class="col-md-9">'
+                            .'                                <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
+                            .'                                    <?php echo optionTipoPigmento();?>                                                                                '
+                            .'                                </select>'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .''
+                            .'                        <div style="align-itens= side;" class="form-group row">'
+                            .'                            <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>'
+                            .'                            <div style="display:inline;" class="col-sm-9">'
+                            .'                                <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           '
+                            .'                                    <?php echo optionFornecedor();?>                                                                                 '
+                            .'                                </select>'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>'
+                            .'                            <div class="col-sm-9">'
+                            .'                                <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .''
+                            .'                        <div class="form-group row">'
+                            .'                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>'
+                            .'                            <div class="col-sm-9">'
+                            .'                                <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Opcional"></textarea>'
+                            .'                            </div>'
+                            .'                        </div>'
+                            .'                    </div>'
+                            .'                    <div class="border-top">'
+                            .'                        <div class="card-body">'
+                            .'                            <button type="submit" class="btn btn-primary">Salvar</button>'
+                            .'                        </div>                      '
+                            .'                    </div>'
+                            .'                </form>'                            
+                            .''
+                            .'            </div>'
+                            .'        </div>'
+                            .'    </div>'
+                            .'</div>'
+                            .''
+                            
+                        ."</tr>";
+    
+            }
+        }        
+    
+        return $table;
+    }
+
     function optionTipoMaterial(){
 
         include('connection.php');

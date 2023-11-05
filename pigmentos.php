@@ -89,11 +89,11 @@
                                 </div>
                                 <div class="modal-body"> 
 
-                                    <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IPG">
+                                    <form method="POST" class="form-horizontal" action= "php/savePigmentos.php?validacao=IP">
                                         <div class="card-body">
 
                                             <div class="form-group row">
-                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
+                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Cor</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="iDescricao" name="nDescricao" placeholder="Nome do pigmento">
                                                 </div>
@@ -135,6 +135,15 @@
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                 <div class="col-sm-9">
                                                     <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
+                                                </div>                                                
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-3 m-t-15" style="text-align: right;">Matéria(s) prima(s) compatível(eis)</label>
+                                                <div class="col-md-9">
+                                                    <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
+                                                        <?php echo optionMaterial(1);?>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -170,7 +179,7 @@
                                 <div class="modal-body"> 
 
                                     <!-- Cria um formulário para adicionar um tipo de pigmento  -->
-                                    <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=ITP">
+                                    <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IT">
                                         <div class="card-body">
 
                                             <!-- Titulo da div -->
@@ -194,41 +203,33 @@
                     </div>
 
 
-                    <div class="card">
-                        <!-- ============================================================== -->
-                        <!-- Cria um formulário -->
-                        <!-- ============================================================== -->
-                        
-                    </div>  
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
+                    <div class="card" style="padding: 10px;"> 
 
+                        <h4 class="card-title">Tabela de máquinas</h4>
 
-                    <!-- ============================================================== -->
-                    <!-- Right sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- .right-sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- End Right sidebar -->
-                    <!-- ============================================================== -->
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Pigmento</th>
+                                        <th>Fornecedor</th>
+                                        <th>Tipo</th>
+                                        <th>Quantidade</th>
+                                        <th>Observações</th>
+                                        <th>Alterar/Desativar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo dataTablePigmento(); ?>
+                                </tbody>
+                            </table>
+                        </div>                         
+                    </div> 
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->            
-                <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
                 <footer class="footer text-center">
                     All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
                 </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
-            <!-- ============================================================== -->
         </div>
 
         <!-- Linhas de javaScript em geral -->

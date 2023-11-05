@@ -55,7 +55,6 @@
                                 <div class="modal-body">                   
 
                                     <div class="card">
-
                                         <!-- Cria um formulário -->
                                         <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IF">
                                             <div class="card-body">
@@ -73,7 +72,7 @@
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
-                                        </form>        
+                                        </form>
                                     </div>  
 
                                 </div>
@@ -151,9 +150,9 @@
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
-                                        </form>        
-                                    </div>
+                                        </form>       
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
