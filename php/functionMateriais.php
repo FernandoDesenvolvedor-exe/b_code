@@ -35,12 +35,17 @@
                 ." mat.quantidade as qtde,"
                 ." mat.observacoes as obs,"
                 ." t.descricao as tipo,"
-                ." c.descricao as classe"
+                ." c.descricao as classe,"
+                ." f.descricao as fonecedor"
                 ." FROM materia_prima as mat"
                 ." LEFT JOIN tipo_materia_prima as t"
                 ." ON mat.idTipoMateriaPrima = t.idTipoMateriaPrima"
                 ." LEFT JOIN classe_material as c"
                 ." ON mat.idClasse = c.idClasse"
+                ." RIGHT JOIN materia_fornecedor as mf"
+                ." ON mat.idMateriaPrima = mf.idMateriaPrima"
+                ." LEFT JOIN fornecedores as f"
+                ." ON f.idFornecedor = mf.idFornecedor"
                 ." WHERE mat.ativo = 1;";
     
         $table = "";
@@ -61,6 +66,7 @@
                 $table .=   
                         '<tr align-items="center";>'
                             .'<td>'.$campo['materia'].'</td>'
+                            .'<td>'.$campo['fonecedor'].'</td>'
                             .'<td>'.$campo['tipo'].'</td>'
                             .'<td>'.$campo['classe'].'</td>'
                             .'<td>'.$campo['qtde'].'g</td>'

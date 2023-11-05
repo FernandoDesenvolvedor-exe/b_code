@@ -23,25 +23,23 @@
                     
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;"> 
-                        <div>
-                            <div>                                
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddMaterial">
-                                    Nova Materia Prima
-                                </button>         
-                                
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipo">
-                                    Novo Tipo de Material
-                                </button>         
-                                
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddClasse">
-                                    Nova Classe de Material
-                                </button>       
-                                
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
-                                    Novo Fornecedor
-                                </button>
-                            </div>                            
-                        </div>                     
+                        <div>                                
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddMaterial">
+                                Nova Materia Prima
+                            </button>         
+                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipo">
+                                Novo Tipo de Material
+                            </button>         
+                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddClasse">
+                                Nova Classe de Material
+                            </button>       
+                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
+                                Novo Fornecedor
+                            </button>
+                        </div>                 
                     </div> 
 
                     <!-- MODAL NOVO FORNECEDOR -->
@@ -227,7 +225,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
+                                            <label class="col-md-3 m-t-15" style="text-align: right;">Pigmentos Compatíveis</label>
                                             <div class="col-md-9">
                                                 <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
                                                     <?php echo optionPigmento(); ?>
@@ -256,6 +254,7 @@
                                 <thead>
                                     <tr>
                                         <th>Matéria Prima</th>
+                                        <th>Fornecedor</th>
                                         <th>Tipo</th>
                                         <th>Classe</th>
                                         <th>Quantidade</th>
