@@ -180,9 +180,7 @@
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
 
-        }     
-
-        header('location:../produtos.php');
+        }
 
     } else if ($validacao == 'DPF'){ // DELETE DE UM CADASTRO DE PRODUTOS
 
