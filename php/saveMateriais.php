@@ -17,14 +17,14 @@
         $classe = stripslashes($_POST['nClasse']);       
         $tipoMaterial = stripslashes($_POST['nTipo']);
         $observacoes = stripslashes($_POST['nObservacoes']);
-        $fornecedor = stripslashes($_POST['nFornecedor']);
-
+        $fornecedor = stripslashes($_POST['nFornecedor']);        
+        
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
                 ." VALUES(".$classe.",".$tipoMaterial.",'".$descricao."',".$quantidade.", 1, '".$observacoes."');";
 
         //envia um script sql para o banco de dados executar
-        $result = mysqli_query($conn,$sql);  
+        $result = mysqli_query($conn,$sql);
         
         //Traz o id dos dados Inseridos acima na tabela 
         $idMaterial = buscaId("materia_prima","idMateriaPrima");
@@ -32,13 +32,24 @@
         $sql =" INSERT INTO materia_fornecedor(idMateriaPrima, idFornecedor) VALUES (".$idMaterial.",".$fornecedor.");";
         
         $result = mysqli_query($conn,$sql);
+
+        if (count($_POST['nPigmento']) > 0){ 
+
+            for($n = 0; $n < count($_POST['nPigmento']); $n++){
+                
+                $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
+                        ."VALUES(".$idMaterial.", ".$_POST['nPigmento'][$n].");";
+    
+                $result = mysqli_query($conn, $sql);
+            } 
+        }
         
         //fecha a conexão
         mysqli_close($conn);
 
     }else if($validacao == 'DMP') {  // DESATIVA UM CADASTRO DE MATERIA_PRIMA
 
-        $sql='UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+        $sql='UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -46,119 +57,61 @@
     }else if($validacao == 'UMP') {  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA
 
         $descMat = stripslashes($_POST['nDescricao']);
-        $qtde = stripslashes($_POST['nQuandtidade']); 
-        $obs = stripslashes($_POST['nObservacoes']);        
+        $qtde = stripslashes($_POST['nQuandtidade']);
+        $obs = stripslashes($_POST['nObservacoes']);
+
 
         if (isset($descMat) == true && $descMat != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
-
-            if (isset($_POST['nClasse']) == true && $_POST['nClasse'] != ""){  
-
-                if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){
-
-                    if (isset($qtde) == true && $qtde != ""){  
-
-                        if (isset($obs) == true && $obs != ""){ 
-                            
-                            $sql='UPDATE materia_prima'
-                                    .' SET idClasse = '.$_POST['nClasse'].','
-                                    .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                    .' descricao ="'.$descMat.'",'
-                                    .' quantidade = '.$qtde.','
-                                    .' observacoes = '.$obs.','
-                                    .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                        } else{
-                            
-                            $sql='UPDATE materia_prima'
-                                    .' SET idClasse = '.$_POST['nClasse'].','
-                                    .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                    .' descricao ="'.$descMat.'",'
-                                    .' quantidade = '.$qtde.','
-                                    .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                        }
-
-                    }else {
-
-                        $sql='UPDATE materia_prima'
-                                .' SET idClasse = '.$_POST['nClasse'].','
-                                .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                .' descricao ="'.$descMat.'",'
-                                .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                    }
-
-                } else{
-
-                    $sql='UPDATE materia_prima'
-                            .' SET idClasse = '.$_POST['nClasse'].','
-                            .' descricao ="'.$descMat.'",'
-                            .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                }
-            }else {
-
-                $sql='UPDATE materia_prima'
-                        .' descricao ="'.$descMat.'",'
-                        .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-            }       
-
-        } else{   //SE DESCRICAO FOR = A NULL OU ''
-
-            if (isset($_POST['nClasse']) == true && $_POST['nClasse'] != ""){  
-
-                if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){
-
-                    if (isset($qtde) == true && $qtde != ""){  
-
-                        if (isset($obs) == true && $obs != ""){ 
-                            
-                            $sql='UPDATE materia_prima'
-                                    .' SET idClasse = '.$_POST['nClasse'].','
-                                    .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                    .' quantidade = '.$qtde.','
-                                    .' observacoes = '.$obs.','
-                                    .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                        } else{
-                            
-                            $sql='UPDATE materia_prima'
-                                    .' SET idClasse = '.$_POST['nClasse'].','
-                                    .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                    .' quantidade = '.$qtde.','
-                                    .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                        }
-
-                    }else {
-
-                        $sql='UPDATE materia_prima'
-                                .' SET idClasse = '.$_POST['nClasse'].','
-                                .' idTipoMateriaPrima = '.$_POST['nTipo'].','
-                                .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                    }
-
-                } else{
-
-                    $sql='UPDATE materia_prima'
-                            .' SET idClasse = '.$_POST['nClasse'].','
-                            .' id WHERE idMateriaPrima = '.$_GET['idMateria'].';';
-
-                }
-            }else {
-
-                $_SESSION['msg'] = 'Nenhuma alteração foi feita';
-
-                header('location: ../materiaPrima.php');
-                die();
-
-            } 
-        }            
+            $sql='UPDATE materia_prima'
+                    .' SET descricao ="'.$descMat.'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
         
-        $result = mysqli_query($conn,$sql);
+            $result = mysqli_query($conn,$sql);
+        }
+
+        if (isset($qtde) == true && $qtde != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE materia_prima'
+                    .' SET quantidade ="'.$descMat.'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+        
+            $result = mysqli_query($conn,$sql);
+        }
+
+        if (isset($obs) == true && $obs != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE materia_prima'
+                    .' SET observacoes ="'.$obs.'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+        
+            $result = mysqli_query($conn,$sql);  
+        }
+
+        if (isset($_POST['nClasse']) == true && $_POST['nClasse'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE materia_prima'
+                    .' SET idClasse ="'.$_POST['nClasse'].'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+        
+            $result = mysqli_query($conn,$sql);  
+        }
+
+        if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE materia_prima'
+                    .' SET idTipoMateriaPrima ="'.$_POST['nTipo'].'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+
+            $result = mysqli_query($conn,$sql);  
+        }
+        
+        if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE materia_fornecedor'
+                    .' SET idFornecedor ="'.$_POST['nFornecedor'].'"'
+                    .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+        
         mysqli_close($conn);
+
+        header('location: ../materiaPrima.php');
 
     }else if($validacao == 'IPG') {    //insert pigmento
 
@@ -252,8 +205,6 @@
         header('location: ../cadastroOutros.php');
     
     }else if($validacao == 'IR'){  // Insert Relação entre um pigmento e uma ou mais matérias primas
-
-        $pigmento = stripslashes($_POST['nPigmento']);
 
         for($i = 0; $i < count($_POST['nMateriaPrima']); $i++){
             

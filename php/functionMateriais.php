@@ -3,7 +3,7 @@
 
         include('connection.php');
 
-        $select = "<option> Selecione uma opção </option>";
+        $select = "<option value=''> Selecione uma opção </option>";
         $sql = "SELECT * FROM tipo_pigmentos;";
 
         $result = mysqli_query($conn, $sql);
@@ -35,12 +35,17 @@
                 ." mat.quantidade as qtde,"
                 ." mat.observacoes as obs,"
                 ." t.descricao as tipo,"
-                ." c.descricao as classe"
+                ." c.descricao as classe,"
+                ." f.descricao as fonecedor"
                 ." FROM materia_prima as mat"
                 ." LEFT JOIN tipo_materia_prima as t"
                 ." ON mat.idTipoMateriaPrima = t.idTipoMateriaPrima"
                 ." LEFT JOIN classe_material as c"
                 ." ON mat.idClasse = c.idClasse"
+                ." RIGHT JOIN materia_fornecedor as mf"
+                ." ON mat.idMateriaPrima = mf.idMateriaPrima"
+                ." LEFT JOIN fornecedores as f"
+                ." ON f.idFornecedor = mf.idFornecedor"
                 ." WHERE mat.ativo = 1;";
     
         $table = "";
@@ -61,10 +66,11 @@
                 $table .=   
                         '<tr align-items="center";>'
                             .'<td>'.$campo['materia'].'</td>'
+                            .'<td>'.$campo['fonecedor'].'</td>'
                             .'<td>'.$campo['tipo'].'</td>'
                             .'<td>'.$campo['classe'].'</td>'
                             .'<td>'.$campo['qtde'].'g</td>'
-                            .'<td>'.$campo['obs'].'</td>'
+                            .'<td><label>'.$campo['obs'].'</label></td>'
                             .'<td>'                                                
                                 .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraMateria'.$campo['idMateria'].'">'
                                     .'Alterar'
@@ -85,7 +91,7 @@
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
-                                            .'<form method="POST" action="php/saveMateriais.php? validacao=DMP&idMaa='.$campo["idMateria"].'">'
+                                            .'<form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'">'
                                                 .'<label> Confirmar esta ação? </label>'
                                                 .'<div align-items="right">'
                                                     .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
@@ -108,7 +114,7 @@
                             .'            </div>'
                             .'            <div class="modal-body">'
                             .''                                                        
-                            .'                <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=UMP&id='.$campo['idMateria'].'">'
+                            .'                <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=UMP&idMateria='.$campo['idMateria'].'">'
                             .'                    <div class="card-body">'
                             .''                        
                             .'                        <!-- Titulo da div -->'
@@ -116,7 +122,7 @@
                             .'                        <div class="form-group row">'
                             .'                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>'
                             .'                            <div class="col-sm-9">'
-                            .'                                <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material">'
+                            .'                                <input type="text" value="'.$campo['materia'].'" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material"></input>'
                             .'                            </div>'
                             .'                        </div>'
                             .'                        <div class="form-group row">'
@@ -156,7 +162,7 @@
                             .'                        <div class="form-group row">'
                             .'                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>'
                             .'                            <div class="col-sm-9">'
-                            .'                                <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>'
+                            .'                                <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório">'.$campo['obs'].'</textarea>'
                             .'                            </div>'
                             .'                        </div>'
                             .'                    </div>'
@@ -186,7 +192,7 @@
 
         include('connection.php');
 
-        $select = "<option> Selecione uma opção </option>";
+        $select = "<option value=''> Selecione uma opção </option>";
         $sql = "SELECT * FROM tipo_materia_prima WHERE ativo = 1;";
 
         $result = mysqli_query($conn, $sql);
@@ -211,7 +217,7 @@
 
         include('connection.php');
 
-        $select = "<option> Selecione uma opção </option>";
+        $select = "<option value=''> Selecione uma opção </option>";
         $sql = "SELECT * FROM classe_material WHERE ativo = 1;";
 
         $result = mysqli_query($conn, $sql);
@@ -237,7 +243,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um opção</option>";     
+        $select = "<option value=''>Selecione um opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso = 1){
@@ -316,7 +322,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um Fornecedor</option>";     
+        $select = "<option value=''>Selecione um Fornecedor</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         $sql = "SELECT * FROM fornecedores"
@@ -353,7 +359,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option>Selecione um pigmento</option>";     
+        $select = "<option value=''>Selecione um pigmento</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         $sql = "SELECT p.idPigmento as id, p.descricao as nome, tipo.descricao as tipos" 
