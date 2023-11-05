@@ -79,3 +79,43 @@
     </div>
 </div>
 */
+
+Cria table com checkBox e salva localmente
+--------------------------------------------------------------------------------------------------------------------------------
+<form action="" method="POST">    
+    <table width="500" border="0"  bordercolor="#B9B3B3" cellspacing=0 cellpadding=2 align="center">
+        <tbody>
+            <tr align="center">
+            <?php
+
+            $getfamilia = "SELECT * FROM $tabela";
+            $getfamiliaquery = $mysqli->query($getfamilia);
+
+            while($getfamilialine = mysqli_fetch_array($getfamiliaquery)) {
+                if($getfamilialine["finalizado"] == "Em Andamento") {
+                    echo "
+                        <tr>
+                            <td width='250' align='center'>".$getfamilialine["nome"]."</td>
+                            <td width='250' align='center'><input type='checkbox' value='".$getfamilialine["id"]."' name='op[]'></td>
+                        </tr>";
+                }
+            }
+
+            echo "</table>";
+            ?>
+            <br />
+            <input type="submit" name="salvar_ok" value="SALVAR" />
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <?php
+        // Aqui imprime o resultado retornado via POST
+        if($_POST["salvar_ok"]) { // Se clicar no botão SALVAR executa o bloco abaixo
+            for($i = 0; $i < count($_POST["op"]); $i++) { // Loop enquanto houver conteúdo na array
+                echo $_POST["op"][$i]."<br />"; // $_POST["op"][0], $_POST["op"][1], $_POST["op"][2], $_POST["op"][3]........ 
+            }
+        }
+    ?>
+</form>
+-------------------------------------------------------------------------------------------------------------------------------
