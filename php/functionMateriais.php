@@ -194,6 +194,8 @@
     
         $sql = "SELECT p.idPigmento as idPigmento," 
                 ." p.descricao as pigmento,"
+                ." p.codigo as cod,"
+                ." p.lote as lote,"
                 ." p.idTipoPigmento as idTipo,"
                 ." p.quantidade as qtde,"
                 ." p.observacoes as obs,"
@@ -227,6 +229,8 @@
                         '<tr align-items="center";>'
                             .'<td>'.$campo['pigmento'].'</td>'
                             .'<td>'.$campo['fonecedor'].'</td>'
+                            .'<td>'.$campo['cod'].'</td>'
+                            .'<td>'.$campo['lote'].'</td>'
                             .'<td>'.$campo['tipo'].'</td>'
                             .'<td>'.$campo['qtde'].'g</td>'
                             .'<td>'.$campo['obs'].'</td>'

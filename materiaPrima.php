@@ -199,7 +199,7 @@
                                                 </div>                                    
                                             </div>
 
-                                            <div style="align-itens= side;"  class="form-group row">
+                                            <div class="form-group row">
                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                                 <div style="display:inline;" class="col-sm-9">
                                                     <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
@@ -211,7 +211,7 @@
                                             <div class="form-group row">
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                 <div class="col-sm-9">
-                                                    <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
+                                                    <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;">
                                                 </div>
                                             </div>
 

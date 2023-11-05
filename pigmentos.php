@@ -24,19 +24,19 @@
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;"> 
                         <div>                                
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddPigmento">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddPigmento">
                                 Novo Pigmento
                             </button>         
                             
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipo">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
                                 Novo Tipo de Pigmento
                             </button>      
                             
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
                                 Novo Fornecedor
                             </button>
 
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalDelFornecedor">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalDelFornecedor">
                                 Desativar Fornecedor
                             </button>
                         </div>                  
@@ -59,7 +59,7 @@
                                         <form method="POST" class="form-horizontal" action= "php/saveFornecedor.php? validacao=D&pg=P">
 
                                             <div class="card-body">
-                                                <div style="align-itens= side;" class="form-group row">
+                                                <div class="form-group row">
                                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">Desativar Fornecedor</label>
                                                     <div style="display:inline;" class="col-sm-9">
                                                         <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
@@ -163,7 +163,7 @@
                                                 </div>                                    
                                             </div>
 
-                                            <div style="align-itens= side;" class="form-group row">
+                                            <div class="form-group row">
                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                                 <div style="display:inline;" class="col-sm-9">
                                                     <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
@@ -175,7 +175,7 @@
                                             <div class="form-group row">
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                 <div class="col-sm-9">
-                                                    <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width= 10%;">
+                                                    <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;">
                                                 </div>                                                
                                             </div>
 
@@ -254,6 +254,8 @@
                                     <tr>
                                         <th>Pigmento</th>
                                         <th>Fornecedor</th>
+                                        <th>Codigo</th>
+                                        <th>Lote</th>
                                         <th>Tipo</th>
                                         <th>Quantidade</th>
                                         <th>Observações</th>

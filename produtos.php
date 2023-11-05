@@ -64,7 +64,7 @@
                                                 </div>                                    
                                                 <div class="modal-body">
                                                     <!-- Cria um formulário para registrar um ferramental -->
-                                                    <div class="card" style="alignt-items: left; width: 800px !important;">  
+                                                    <div class="card" style="align-items: left; width: 800px !important;">  
                                                         <h4 class="card-title">Tipo de Ferramental</h4>                      
                                                     
                                                         <form method="POST" class="form-horizontal" action= "php/saveProdutos.php?validacao=ITF">        
