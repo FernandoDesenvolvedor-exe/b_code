@@ -38,11 +38,7 @@
 
                                 <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddMaquina">
                                     Nova máquina
-                                </button>                            
-
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddRelacao">
-                                    Compatibilidade máquina/molde
-                                </button>
+                                </button>                                 
                             </div>                            
                         </div> 
                     
@@ -211,54 +207,7 @@
                                 </div>            
                             </div>
                         </div>
-                    </div>
-
-                    <!-- MODAL ADD RELAÇÃO ENTRE MAQUINA E MOLDE-->
-                    <div class="modal fade" id="modalAddRelacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog" role="document ">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true ">&times;</span>
-                                    </button>
-                                </div>                                    
-                                <div class="modal-body">
-                                    <form method="POST" class="form-horizontal" action= "php/saveProdutos.php? validacao=IRMF">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Compatibilidade maquina/molde</h4>
-                                            
-                                            <div class="form-group row">
-                                                <label class="col-md-3 m-t-15" style="text-align: right;">Máquina</label>
-                                                <div class="col-md-9">
-                                                    <select id="iRMaquina" name="nRMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                        <?php echo optionMaquina();?>                                         
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-3 m-t-15" style="text-align: right;">Ferramental</label>
-                                                <div class="col-md-9">
-                                                    <select id="iRFerramental" name="nRFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                        <?php echo optionFerramental();?>                                         
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>   
-                                        
-                                        <div class="border-top">
-
-                                            <div class="card-body">
-                                                <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
-                                            </div>     
-
-                                        </div>
-                                    </form>                                        
-                                </div>            
-                            </div>
-                        </div>
-                    </div> 
+                    </div>                     
 
                     <div class="card" style="padding: 10px;"> 
 

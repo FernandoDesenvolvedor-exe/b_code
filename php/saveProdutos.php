@@ -184,7 +184,7 @@
 
         header('location:../produtos.php');
 
-    } else if ($validacao == 'DPF'){
+    } else if ($validacao == 'DPF'){ // DELETE DE UM CADASTRO DE PRODUTOS
 
         $idProduto = $_GET['idProduto'];
 
@@ -194,6 +194,7 @@
         mysqli_close($conn);
 
     } else if ($validacao == 'ITF'){ // Insert um cadastro de um tipo de ferramental
+
         $descricao = stripslashes($_POST['nTipoMolde']);
 
         $sql = "INSERT INTO tipos_ferramental(descricao, ativo) VALUES ('".$descricao."', 1);";
@@ -212,9 +213,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        header('location: ../cadastroMaquina.php');
-
-    } else if($validacao == 'IRMF'){   // Insert um cadastro de maquina   
+    } else if($validacao == 'IRMF'){   // Insert um cadastro de ferramental_maquina   
 
         $maquina = stripslashes($_POST['nRMaquina']);
         $molde = stripslashes($_POST['nRFerramental']);
@@ -225,6 +224,26 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
     
+    } else if($validacao == 'UM'){ // UPDATE de um cadastro de maquinas
+
+        $descricao = stripslashes($_POST['nMaquina']);
+        $observacoes = stripslashes($_POST['nMObservacoes']);        
+
+        $sql = "UPDATE maquinas"
+                ." SET descricao = '".$descricao."',"
+                ." ativo = 1,"
+                ." observacoes ='".$observacoes."'"
+                ." WHERE idMaquina = ".$_GET['idMaquina'].";";
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+    } else if($validacao == 'DM'){ // DELETE DE UM CADASTRO DE MAQUINAS
+
+        $sql="UPDATE maquinas SET ativo = 0 WHERE idMaquina=".$_GET['idMaquina'].";";
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
     }
 
     header('location: ../produtos.php');
