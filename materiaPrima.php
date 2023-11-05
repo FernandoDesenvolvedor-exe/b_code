@@ -56,7 +56,7 @@
 
                                     <div class="card">
                                         <!-- Cria um formulário -->
-                                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IF">
+                                        <form method="POST" class="form-horizontal" action= "php/saveFornecedor.php? validacao=I&pg=M">
                                             <div class="card-body">
 
                                                 <!-- Titulo da div -->

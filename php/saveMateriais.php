@@ -101,7 +101,7 @@
             $result = mysqli_query($conn,$sql);  
         }
         
-        if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+        if (isset($_POST['nFornecedor']) == true && $_POST['nFornecedor'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
             $sql='UPDATE materia_fornecedor'
                     .' SET idFornecedor ="'.$_POST['nFornecedor'].'"'
                     .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
@@ -110,23 +110,6 @@
         }
         
         mysqli_close($conn);
-
-        header('location: ../materiaPrima.php');
-
-    }else if($validacao == 'IF') { //insert fornecedor
-
-        $descricao = stripslashes($_POST['nFornecedor']);
-        //Script SQL que insere na tabela fornecedores os valores indicados, id é AUTO-INCREMENT
-        $sql = "INSERT INTO fornecedores(descricao, ativo)" 
-                ." VALUES('".$descricao."', 1);";
-
-        //envia um script sql para o banco de dados executar      
-        $result = mysqli_query($conn,$sql); 
-
-        //fecha a conexão
-        mysqli_close($conn);
-
-        header('location: ../cadastroOutros.php');
 
     }else if($validacao == 'iCM'){  //insert classe materia prima        
 
@@ -141,8 +124,6 @@
         //fecha a conexão
         mysqli_close($conn);
 
-        header('location: ../cadastroOutros.php');
-
     }else if($validacao == 'ITM'){   // insert tipo materia prima
  
         $descricao = stripslashes($_POST['nTipoMateria']);
@@ -155,8 +136,6 @@
 
         //fecha a conexão
         mysqli_close($conn);
-
-        header('location: ../cadastroOutros.php');
 
     }
 

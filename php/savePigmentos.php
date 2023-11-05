@@ -68,9 +68,55 @@
         $result = mysqli_query($conn,$sql); 
         mysqli_close($conn);
 
-    } else if($validacao == 'U'){
+    } else if($validacao == 'U'){  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA
+
+        $descricao = stripslashes($_POST['nDescricao']);
+        $obs = stripslashes($_POST['nObservacoes']);
+        $codigo = stripslashes($_POST['nCodigo']);
+        $lote = stripslashes($_POST['nLote']);
 
 
+        if (isset($descricao) == true && $descricao != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE pigmentos'
+                    .' SET descricao ="'.$descricao.'"'
+                    .' WHERE idPigmento = '.$_GET['id'].';';
+        
+            $result = mysqli_query($conn,$sql);
+        }
+
+        if (isset($_POST['nQuandtidade']) == true && $_POST['nQuandtidade'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE pigmentos'
+                    .' SET quantidade ="'.$_POST['nQuandtidade'].'"'
+                    .' WHERE idPigmento = '.$_GET['id'].';';
+        
+            $result = mysqli_query($conn,$sql);
+        }
+
+        if (isset($obs) == true && $obs != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE pigmentos'
+                    .' SET observacoes ="'.$obs.'"'
+                    .' WHERE idPigmento = '.$_GET['id'].';';
+        
+            $result = mysqli_query($conn,$sql);  
+        }
+
+        if (isset($_POST['nTipo']) == true && $_POST['nTipo'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE pigmentos'
+                    .' SET idTipoPigmento ="'.$_POST['nTipo'].'"'
+                    .' WHERE idPigmento = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);  
+        }
+        
+        if (isset($_POST['nFornecedor']) == true && $_POST['nFornecedor'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE pigmento_fornecedor'
+                    .' SET idFornecedor ="'.$_POST['nFornecedor'].'"'
+                    .' WHERE idPigmento = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+        
+        mysqli_close($conn);
 
     }
 
