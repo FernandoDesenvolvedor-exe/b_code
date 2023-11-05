@@ -3,7 +3,7 @@
 
         include('connection.php');
 
-        $select = "<option> Selecione uma opção </option>";
+        $select = "<option value=''> Selecione uma opção </option>";
 
         $sql = "SELECT idProduto, descricao FROM produtos WHERE ativo = 1;";
 

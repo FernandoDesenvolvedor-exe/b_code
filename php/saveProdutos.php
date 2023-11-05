@@ -74,8 +74,8 @@
     }else if ($validacao == 'UPF') { // update de um produto 
 
         $descPdto = stripslashes($_POST['nProduto']);
-        $descFerr = stripslashes($_POST['nMolde']);    
-
+        $descFerr = stripslashes($_POST['nMolde']);
+        
         if (isset($_POST['nProduto']) == true && $_POST['nProduto'] != ""){  //update da tabela de produtos
 
             if (isset($_POST['nQtd']) == true && $_POST['nQtd'] != ""){

@@ -23,9 +23,7 @@
                 
                 <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">      
-                    
-                    
+                <div class="container-fluid">    
                     
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">                             
