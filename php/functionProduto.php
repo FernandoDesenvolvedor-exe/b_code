@@ -190,18 +190,19 @@
                     .' r.observacoes as obs,'
 
                     .' pr.descricao as produto,'
-                    .' f.descricao as molde,'         // PRODUTO/MOLDE
+                    .' pr.imagem as img,'           // PRODUTO/MOLDE
+                    .' f.descricao as molde,'         
 
                     .' mat.descricao as material,'
                     .' tm.descricao as tipoM,'       // MATERIA PRIMA
                     .' c.descricao as classe,'
 
                     .' pg.descricao as cor,'          //PIGMENTO
-                    .' tp.descricao as tipoP,'
+                    .' tp.descricao as tipoP'
 
                     .' FROM receitas as r'
                     
-                    .' LEFT JOIN produtos as pr'                    
+                    .' LEFT JOIN produtos as pr'
                     .' ON r.idProduto = pr.idProduto'
 
                     .' RIGHT JOIN ferramental as f'
@@ -213,13 +214,13 @@
                     .' RIGHT JOIN tipo_materia_prima as tm'
                     .' ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima'   
         
-                    .' LEFT JOIN classe_material as c'
+                    .' RIGHT JOIN classe_material as c'
                     .' ON c.idClasse = mat.idClasse' 
 
                     .' LEFT JOIN pigmentos as pg'
                     .' ON pg.idPigmento = r.idPigmento' 
         
-                    .' LEFT JOIN tipo_pigmentos as tp'
+                    .' RIGHT JOIN tipo_pigmentos as tp'
                     .' ON tp.idTipoPigmento = pg.idTipoPigmento' 
 
                     .' WHERE pr.ativo = 1;';
@@ -238,40 +239,97 @@
                 
                 $card .="<div class='row el-element-overlay'> "
                             ."<div class='col-lg-3 col-md-6'>"
-                                ."<form method='POST' action='cadastroPedido.php? img=".$campo['imagem']."&produto=".$campo['descricao']."'>"
-                                    ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
-                                        ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
-                                            ."<div class='el-card-avatar el-overlay-1'>"                                            
-                                                ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['imagem']."' alt='user'/>"
-                                            ."</div>"
-                                            ."<div class='el-card-content'>"
-                                                ."<h4 value='".$campo['idProduto']."' id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
-                                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['idProduto'].'">'
-                                                    .'Selecionar'
-                                                .'</button>'
-                                            ."</div>" 
+                                ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
+                                    ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
+                                        ."<div class='el-card-avatar el-overlay-1'>"                                            
+                                            ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['img']."' alt='user'/>"
                                         ."</div>"
+                                        ."<div class='el-card-content'>"
+                                            ."<h4 id='idProduto' name='nProduto' class='m-b-0'>".$campo['produto']."</h4> <span class='text-muted'></span>" 
+                                            .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['idReceita'].'">'
+                                                .'Selecionar'
+                                            .'</button>'
+                                        ."</div>" 
                                     ."</div>"
-                                ."</form>"
+                                ."</div>"
                             ."</div>"
                         ."</div>"
 
                         
-                        .'<div class="modal fade" id="modalPedido'.$campo['idProduto'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'
+                        .'<div class="modal fade" id="modalPedido'.$campo['idReceita'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'
                         .'    <div class="modal-dialog" role="document ">                                '
                         .'        <div class="modal-content">'
                         .'            <div class="modal-header">'
-                        .'                <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>'
+                        .'                <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>'
                         .'                <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                         .'                    <span aria-hidden="true ">&times;</span>'
                         .'                </button>'
                         .'            </div>'
                         .'            <div class="modal-body">'
                         .''
-                        .'                    <h4 class="card-title">Adicionar Classe de material</h4>'
+                        .'                 <form method="POST" action="php/savePedido.php? validacao=I">'
                         .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>'
                         .'                        <div class="col-sm-9">'
-                        .'                            <input  id="iClasse" name="nClasse" type="text" class="form-control" style="width: 20%; height:36px;" disabled>'
+                        .'                            <input value="'.$campo['produto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['molde'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['material'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Material</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['tipoM'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Classe</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['classe'].'" id="idClasseMaterial" name="nClasseMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['cor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input value="'.$campo['tipoP'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade de produção</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'                    <div class="form-group row">'
+                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
+                        .'                                  '.optionMaquina().''
+                        .'                            </select>'
                         .'                        </div>'
                         .'                    </div>'
                         .''
