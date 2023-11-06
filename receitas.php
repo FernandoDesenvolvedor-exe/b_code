@@ -127,22 +127,27 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
-                                        <div class="col-sm-9">
-                                            <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                            <?php echo optionMaterial(1);?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Material</label>
-                                        <div class="col-sm-9">
-                                            <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
+                                            <div class="col-sm-9">
+                                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <?php echo optionMaterial(1);?>
+                                                </select>
+                                            </div>
                                         </div>
                                         
-                                    </div>
+                                        <div class="form-group row">
+                                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Material</label>
+                                            <div class="col-sm-9">
+                                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
+                                            </div>
+                                        </div>
+                                        <label> 
+                                            <?php 
+                                                
+                                            
+                                            ?>
+                                        </label>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
