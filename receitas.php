@@ -80,19 +80,19 @@
                                                 
                                                 foreach($array as $campo){   
                                                     echo    '<tr>
-                                                            <th>
-                                                                <label class="customcheckbox">
-                                                                    <input value='.$campo['id'].' name="tableMateriais[]" type="checkbox" class="listCheckbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
-                                                            </th>
-                                                            <td>'.$campo['nome'].'</td>
-                                                            <td>'.$campo['tipos'].'</td>
-                                                            <td>'.$campo['classe'].'</td>
-                                                            <td>1200'
-                                                            //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
-                                                            .'</td>
-                                                        </tr>';                                
+                                                                <th>
+                                                                    <label class="customcheckbox">
+                                                                        <input value='.$campo['id'].' name="tableMateriais[]" type="checkbox" class="listCheckbox" />
+                                                                        <span class="checkmark"></span>
+                                                                    </label>
+                                                                </th>
+                                                                <td>'.$campo['nome'].'</td>
+                                                                <td>'.$campo['tipos'].'</td>
+                                                                <td>'.$campo['classe'].'</td>
+                                                                <td>1200'
+                                                                //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
+                                                                .'</td>
+                                                            </tr>';                                
                                                 }
                                             }
                                         ?>
