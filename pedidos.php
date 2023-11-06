@@ -19,11 +19,11 @@
                 
                 <?php include('links/side_bar_direita.php');?>                
 
-                <div class="container-fluid">   
-
+                <div class="container-fluid"> 
+                    
                     <h1 style="text-align:center;">Selecione um produto</h1>   
                         
-                    <div style="display: inline-flex;">
+                    <div>
 
                         <?php echo cardProduto();?>
 

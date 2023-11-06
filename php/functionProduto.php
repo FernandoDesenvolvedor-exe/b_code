@@ -64,17 +64,17 @@
                 $table .=   
                         "<tr align-items='center';>"
                             ."<td>".$campo['produto']."</td>"
-                            ."<td>".$campo['peso']."</td>"
+                            ."<td>".$campo['peso']."g</td>"
                             ."<td>".$campo['molde']."</td>"
                             ."<td>".$campo['tipo']."</td>"
-                            ."<td style='padding=50px; text-align=center;'>"
+                            ."<td>"                            
                                 ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idP']."'>"
                                     ."Alterar"
                                 ."</button>"
 
-                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idP']."'>"
+                                ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idP']."'>"
                                     ."Desativar"
-                                ."</button>"
+                                ."</button>"                               
                             ."</td>"
 
                             ."<div class='modal fade' id='ExcluiModal".$campo['idP']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
@@ -180,6 +180,49 @@
                     
         $sql = "SELECT idProduto, descricao, imagem FROM produtos"
                 ." WHERE ativo = 1;";
+
+        $sql = 'SELECT r.idReceita as idReceita,'
+                    .' r.idProduto as idProduto,'      //  RECEITA
+                    .' r.idMateriaPrima as idMat,'
+                    .' r.idPigmento as idCor,'
+                    .' r.quantidadeMaterial as qtdeM,'
+                    .' r.quantidadePigmento as qtdeP,'
+                    .' r.observacoes as obs,'
+
+                    .' pr.descricao as produto,'
+                    .' f.descricao as molde,'         // PRODUTO/MOLDE
+
+                    .' mat.descricao as material,'
+                    .' tm.descricao as tipoM,'       // MATERIA PRIMA
+                    .' c.descricao as classe,'
+
+                    .' pg.descricao as cor,'          //PIGMENTO
+                    .' tp.descricao as tipoP,'
+
+                    .' FROM receitas as r'
+                    
+                    .' LEFT JOIN produtos as pr'                    
+                    .' ON r.idProduto = pr.idProduto'
+
+                    .' RIGHT JOIN ferramental as f'
+                    .' ON f.idProduto = pr.idProduto'
+
+                    .' LEFT JOIN materia_prima as mat'
+                    .' ON mat.idMateriaPrima = r.idMateriaPrima'
+                    
+                    .' RIGHT JOIN tipo_materia_prima as tm'
+                    .' ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima'   
+        
+                    .' LEFT JOIN classe_material as c'
+                    .' ON c.idClasse = mat.idClasse' 
+
+                    .' LEFT JOIN pigmentos as pg'
+                    .' ON pg.idPigmento = r.idPigmento' 
+        
+                    .' LEFT JOIN tipo_pigmentos as tp'
+                    .' ON tp.idTipoPigmento = pg.idTipoPigmento' 
+
+                    .' WHERE pr.ativo = 1;';
                     
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -203,13 +246,40 @@
                                             ."</div>"
                                             ."<div class='el-card-content'>"
                                                 ."<h4 value='".$campo['idProduto']."' id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
-                                                ."<button type='submit' value='Selecionar' class='btn btn-primary'> Selecionar </button>"
+                                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['idProduto'].'">'
+                                                    .'Selecionar'
+                                                .'</button>'
                                             ."</div>" 
                                         ."</div>"
                                     ."</div>"
                                 ."</form>"
                             ."</div>"
-                        ."</div>";
+                        ."</div>"
+
+                        
+                        .'<div class="modal fade" id="modalPedido'.$campo['idProduto'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'
+                        .'    <div class="modal-dialog" role="document ">                                '
+                        .'        <div class="modal-content">'
+                        .'            <div class="modal-header">'
+                        .'                <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>'
+                        .'                <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                        .'                    <span aria-hidden="true ">&times;</span>'
+                        .'                </button>'
+                        .'            </div>'
+                        .'            <div class="modal-body">'
+                        .''
+                        .'                    <h4 class="card-title">Adicionar Classe de material</h4>'
+                        .'                    <div class="form-group row">'
+                        .'                        <div class="col-sm-9">'
+                        .'                            <input  id="iClasse" name="nClasse" type="text" class="form-control" style="width: 20%; height:36px;" disabled>'
+                        .'                        </div>'
+                        .'                    </div>'
+                        .''
+                        .'            </div>'
+                        .'        </div>'
+                        .'    </div>'
+                        .'</div>';
+
             }   
 
             

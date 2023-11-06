@@ -211,7 +211,7 @@
                                             <div class="form-group row">
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                 <div class="col-sm-9">
-                                                    <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;">
+                                                    <input style="width:auto" id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;">
                                                 </div>
                                             </div>
 

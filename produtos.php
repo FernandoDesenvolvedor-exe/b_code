@@ -30,16 +30,53 @@
                     
                         <div>
                             <div>                                
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddProduto">
+                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddProduto">
                                     Novo produto/molde
                                 </button>
 
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddMaquina">
+                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaquina">
                                     Nova máquina
-                                </button>                                 
+                                </button>   
+
+                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalDelMaquina">
+                                    Desativar Máquina
+                                </button>                              
                             </div>                            
                         </div> 
                     
+                    </div>
+
+
+                    <!-- MODAL DEL MAQUINA-->
+                    <div class="modal fade" id="modalDelMaquina" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                        <div class="modal-dialog" role="document ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true ">&times;</span>
+                                    </button>
+                                </div>                                    
+                                <div class="modal-body">  
+
+                                    <form method="POST" action="php/saveProdutos.php? validacao=DM">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
+                                            <div class="col-md-9">
+                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <?php echo optionMaquina();?>                                         
+                                                </select>
+                                            </div>
+
+                                            <button style="width: 150px;" type="submit" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipoFerramental">
+                                                Confirmar
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </div>            
+                            </div>
+                        </div>
                     </div>
 
                     <!-- MODAL NOVO PRODUTO/MOLDE -->
@@ -228,27 +265,6 @@
                             </table>
                         </div>   
                     </div>     
-
-                    <div class="card" style="padding: 10px;"> 
-
-                        <h4 class="card-title">Tabela de máquinas</h4>
-
-                        <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Nº</th>
-                                        <th>Nome da máquina</th>
-                                        <th>Alterar/Desativar cadastro</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php echo dataTableMaquina(); ?>
-                                </tbody>
-                            </table>
-                        </div>                         
-                    </div>  
-                </div>
 
                 <footer class="footer text-center">
                     All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.

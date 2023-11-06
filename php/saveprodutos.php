@@ -238,7 +238,7 @@
 
     } else if($validacao == 'DM'){ // DELETE DE UM CADASTRO DE MAQUINAS
 
-        $sql="UPDATE maquinas SET ativo = 0 WHERE idMaquina=".$_GET['idMaquina'].";";
+        $sql="UPDATE maquinas SET ativo = 0 WHERE idMaquina=".$_POST['nMaquina'].";";
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
