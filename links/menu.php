@@ -167,6 +167,7 @@
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="materiaPrima.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Matéria Prima </span></a></li>
                         <li class="sidebar-item"><a href="pigmentos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Pigmentos </span></a></li>
+                        <li class="sidebar-item"><a href="fornecedores.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Fornecedores </span></a></li>
                     </ul>                        
                 </li>                
                 <li class="sidebar-item"><a href="produtos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>                                                     

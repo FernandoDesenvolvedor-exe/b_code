@@ -34,51 +34,9 @@
                             
                             <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
                                 Nova Classe de Material
-                            </button>       
-                            
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
-                                Novo Fornecedor
-                            </button>
+                            </button> 
                         </div>                 
                     </div> 
-
-                    <!-- MODAL NOVO FORNECEDOR -->
-                    <div class="modal fade" id="modalAddFornecedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog" role="document ">                                
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true ">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">                   
-
-                                    <div class="card">
-                                        <!-- Cria um formulário -->
-                                        <form method="POST" class="form-horizontal" action= "php/saveFornecedor.php? validacao=I&pg=M">
-                                            <div class="card-body">
-
-                                                <!-- Titulo da div -->
-                                                <h4 class="card-title">Adicionar Fornecedor</h4>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-9">
-                                                        <input style="width:100%;" id="iFornecedor" name="nFornecedor" type="text" class="form-control" placeholder="Nome do fornecedor aqui" style="width: 20%; height:36px;">
-                                                    </div>
-                                                </div>  
-                                            </div>
-                                            <div class="border-top">
-                                                <div class="card-body">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>  
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->
                     <div class="modal fade" id="modalAddClasse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
