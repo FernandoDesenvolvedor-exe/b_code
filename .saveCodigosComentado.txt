@@ -119,3 +119,16 @@ Cria table com checkBox e salva localmente
     ?>
 </form>
 -------------------------------------------------------------------------------------------------------------------------------
+
+<html>
+ <body>
+ <form action="home.php" method="get">
+  Digite algo: <input type="text" name="formulario"><br>
+  <input type="submit">
+ </form>
+ 
+ <?php 
+  echo "Você digitou: ", $_GET["formulario"], "<br>";
+ ?>
+ </body>
+</html>
