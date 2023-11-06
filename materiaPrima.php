@@ -60,7 +60,7 @@
                                                 <h4 class="card-title">Adicionar Classe de material</h4>
                                                 <div class="form-group row">
                                                     <div class="col-sm-9">
-                                                        <input style="width:100%;" id="iClasse" name="nClasse" type="text" class="form-control" placeholder="Ex: Engenharia" style="width: 20%; height:36px;">
+                                                        <input style="width:100%;" id="iClasse" name="nClasse" type="text" class="form-control" placeholder="Ex: Engenharia" style="width: 20%; height:36px;" required>
                                                     </div>
                                                 </div>  
                                             </div>
@@ -99,7 +99,7 @@
                                                 <h4 class="card-title">Adicionar tipo de matéria prima</h4>
                                                 <div class="form-group row">
                                                     <div class="col-sm-9">
-                                                        <input style="width:100%;" id="iTipoMateria" name="nTipoMateria" type="text" class="form-control" placeholder="Ex: Reciclado" style="width: 20%; height:36px;">
+                                                        <input style="width:100%;" id="iTipoMateria" name="nTipoMateria" type="text" class="form-control" placeholder="Ex: Reciclado" style="width: 20%; height:36px;" required>
                                                     </div>
                                                 </div>  
                                             </div>
@@ -136,13 +136,13 @@
                                             <div class="form-group row">
                                                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do material</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material">
+                                                    <input type="text" class="form-control" id="iDescricao" name= "nDescricao" placeholder="Nome do material" required>
                                                 </div>
                                             </div> 
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Classe do material</label>
                                                 <div class="col-md-9">
-                                                    <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                         <?php echo optionClaseMaterial();?>                                         
                                                     </select>
                                                 </div>
@@ -151,7 +151,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de matéria prima</label>
                                                 <div class="col-md-9">
-                                                    <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                         <?php echo optionTipoMaterial();?>
                                                     </select>
                                                 </div>                                    
@@ -160,7 +160,7 @@
                                             <div class="form-group row">
                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                                 <div style="display:inline;" class="col-sm-9">
-                                                    <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
+                                                    <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>                                           
                                                         <?php echo optionFornecedor();?>                                                                                 
                                                     </select>
                                                 </div>
@@ -169,7 +169,7 @@
                                             <div class="form-group row">
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                 <div class="col-sm-9">
-                                                    <input style="width:auto" id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;">
+                                                    <input style="width:auto" id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;" required>
                                                 </div>
                                             </div>
 
@@ -184,7 +184,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 m-t-15" style="text-align: right;">Pigmentos Compatíveis</label>
                                             <div class="col-md-9">
-                                                <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;">
+                                                <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;" required>
                                                     <?php echo optionPigmento(); ?>
                                                 </select>
                                             </div>

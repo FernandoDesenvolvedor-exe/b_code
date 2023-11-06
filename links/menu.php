@@ -175,7 +175,7 @@
                     </ul>                        
                 </li>                
                 <li class="sidebar-item"><a href="produtos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>                                                     
-                <li class="sidebar-item"><a href="usuarios.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Cadastro de usuário </span></a></li>     
+                <li class="sidebar-item"><a href="usuarios.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Usuários </span></a></li>     
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
                 <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>

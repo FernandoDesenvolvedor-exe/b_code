@@ -53,7 +53,7 @@
                                                 <h4 class="card-title">Adicionar Fornecedor</h4>
                                                 <div class="form-group row">
                                                     <div class="col-sm-9">
-                                                        <input style="width:100%;" id="iFornecedor" name="nFornecedor" type="text" class="form-control" placeholder="Nome do fornecedor aqui" style="width: 20%; height:36px;">
+                                                        <input style="width:100%;" id="iFornecedor" name="nFornecedor" type="text" class="form-control" placeholder="Nome do fornecedor aqui" style="width: 20%; height:36px;" required>
                                                     </div>
                                                 </div>  
                                             </div>

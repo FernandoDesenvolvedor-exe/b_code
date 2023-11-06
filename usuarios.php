@@ -26,7 +26,7 @@
                 <div class="card" style="padding:10px;">
                     <div style="float:right; width:30%">
 
-                        <button style="width: 150px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddUser">
+                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddUser">
                             Novo usuário
                         </button>
 
@@ -45,9 +45,7 @@
                             </div>
                             <div class="modal-body"> 
 
-                                <!-- Cria um formulário -->
-                                <div class="auth-wrapper d-flex no-block justify-content-center align-items-start bg-white">                                    
-                                        
+                                <div class="auth-wrapper d-flex no-block justify-content-center align-items-start bg-white">   
                                     <div>
                                         <div class="text-center p-t-20 p-b-20">
                                             <p>
@@ -63,7 +61,7 @@
                                                     <!-- User nome -->
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                                         </div>
                                                         <input type="text" class="form-control form-control-lg" name="nNome" placeholder="Nome*" aria-label="Username" aria-describedby="basic-addon1" maxlength="80" required>
                                                         <input type="text" class="form-control form-control-lg" name="nSobrenome" placeholder="Sobrenome*" aria-label="Username" aria-describedby="basic-addon1" maxlength="80" required>
@@ -72,7 +70,7 @@
                                                     <!-- email -->
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                                         </div>
                                                         <input type="email" class="form-control form-control-lg" name="nEmail" placeholder="Email*" aria-label="Username" aria-describedby="basic-addon1" maxlength="50" required>
                                                     </div>
@@ -88,7 +86,7 @@
                                                     <div class="input-group mb-3">
                                                         <!-- senha -->
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                                            <span class="input-group-text bg-danger text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                                         </div>
                                                         
                                                         <!-- confirma senha -->
@@ -110,13 +108,13 @@
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                                             <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                                                <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                                    <option value="">Nivel de Acesso*</option>
-                                                                    <optgroup label="Niveis">
-                                                                        <option value=1>Administrador</option>
-                                                                        <option value=2>Comum</option>
-                                                                    </optgroup>
-                                                                </select>
+                                                            <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                                <option value="">Nivel de Acesso*</option>
+                                                                <optgroup label="Niveis">
+                                                                    <option value=1>Administrador</option>
+                                                                    <option value=2>Comum</option>
+                                                                </optgroup>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,27 +143,40 @@
                                             }   
                                             //parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY)=='error=1' -> Pega a oq tiver depois do ? na URL
                                         ?>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
-                            </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Start Page Content -->
-                <div class="card">
+                <div class="card" style="padding: 10px;"> 
 
+                    <h4 class="card-title">Tabela de Usuários</h4>
 
-                      
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th> Id de Usuário </th>
+                                    <th> Login </th>
+                                    <th> Nome e Sobrenome </th>
+                                    <th> Turma </th>
+                                    <th> Turno </th>
+                                    <th> Nivel de acesso </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php echo dataTableUser(); ?>
+                            </tbody>
+                        </table>
+                    </div>                         
+                </div> 
+
             </div>
-
             <footer class="footer text-center">
                 All Rights Reserved by Matrix-admin. Designed and Developed by<a href="https://wrappixel.com">WrapPixel</a>.
             </footer>
-
         </div>
     </div>
     <?php include('links/script.php'); ?>

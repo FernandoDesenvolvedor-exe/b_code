@@ -63,7 +63,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
                                             <div class="col-md-9">
-                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                     <?php echo optionMaquina();?>                                         
                                                 </select>
                                             </div>
@@ -90,45 +90,6 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="modal fade" id="modalAddTipoFerramental" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                                        <div class="modal-dialog" role="document ">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true ">&times;</span>
-                                                    </button>
-                                                </div>                                    
-                                                <div class="modal-body">
-                                                    <!-- Cria um formulário para registrar um ferramental -->
-                                                    <div class="card" style="align-items: left; width: 800px !important;">  
-                                                        <h4 class="card-title">Tipo de Ferramental</h4>                      
-                                                    
-                                                        <form method="POST" class="form-horizontal" action= "php/saveProdutos.php?validacao=ITF">        
-                                                            
-                                                            <div class="card-body">                                                                
-                                                                <div class="form-group row">                                                                                                                                     
-                                                                    <div class="col-sm-9">
-                                                                        <label>Descrição do tipo de ferramental</label>  
-                                                                        <br>
-                                                                        <input type="text" class="form-control" id="iTipoMolde" name= "nTipoMolde">
-                                                                    </div>
-                                                                </div> 
-                                                            </div> 
-                                                            
-                                                            <div class="border-top">
-
-                                                                <div class="card-body">
-                                                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
-                                                                </div>     
-
-                                                            </div>
-                                                        </form>
-                                                    </div>                     
-                                                </div>
-                                            </div>
-                                        </div>                                
-                                    </div> 
 
                                     <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/saveProdutos.php? validacao=IPF">
                                         <div class="card-body">
@@ -138,7 +99,7 @@
                                             <div class="form-group row">
                                                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do produto</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">
+                                                    <input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material" required>
                                                 </div>
                                             </div> 
 
@@ -152,36 +113,34 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">
+                                                    <input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Peso</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">
+                                                    <input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
                                                 <div class="col-md-9">
-                                                    <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                         <?php echo optionTipoFerramental();?>                                         
                                                     </select>
                                                 </div>
 
-                                                <button style="width: 150px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipoFerramental">
+                                                <button style="width: auto;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAddTipoFerramental">
                                                     Adicionar tipo de ferramental
                                                 </button>
-                                            </div>
-
-                                            
+                                            </div>                                            
                                             
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15"  style="text-align: right;">Maquinas Compatíveis</label>
                                                 <div class="col-md-9">
-                                                    <select id="iMaquina[]" name="nMaquina[]" multiple = 'multiple' class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <select id="iMaquina[]" name="nMaquina[]" multiple = 'multiple' class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                         <?php echo optionMaquina();?>
                                                     </select>
                                                 </div>
@@ -198,6 +157,45 @@
                             </div>
                         </div>                                
                     </div>  
+
+                    <!--MODAL ADD TIPO DE FERRAMENTAL-->
+                    <div class="modal fade" id="modalAddTipoFerramental" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                        <div class="modal-dialog" role="document ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de ferramental</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true ">&times;</span>
+                                    </button>
+                                </div>                                    
+                                <div class="modal-body">
+                                    <!-- Cria um formulário para registrar um ferramental -->
+                                    <div class="card" style="align-items: left; width: 800px !important;">                
+                                    
+                                        <form method="POST" class="form-horizontal" action= "php/saveProdutos.php? validacao=ITF">        
+                                            
+                                            <div class="card-body">                                                                
+                                                <div class="form-group row">                                                                                                                                     
+                                                    <div class="col-sm-9">
+                                                        <br>
+                                                        <input style="box-sizing:border-box;" type="text" class="form-control" id="iTipoMolde" name= "nTipoMolde" required>
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                            
+                                            <div class="border-top">
+
+                                                <div class="card-body">
+                                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                                                </div>     
+
+                                            </div>
+                                        </form>
+                                    </div>                     
+                                </div>
+                            </div>
+                        </div>                                
+                    </div> 
 
                     <!-- MODAL ADD MAQUINA-->
                     <div class="modal fade" id="modalAddMaquina" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
@@ -219,7 +217,7 @@
                                             <div class="form-group row">
                                                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome da máquina</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="iMaquina" name= "nMaquina" placeholder="Ex: máquina">
+                                                    <input type="text" class="form-control" id="iMaquina" name= "nMaquina" placeholder="Ex: máquina" required>
                                                 </div>
                                             </div> 
 
