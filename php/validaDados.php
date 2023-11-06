@@ -1,5 +1,8 @@
 <?php 
     function validarDado($tipo,$dado){
+
+        $condicao = '';
+
         switch($tipo){
             case 1:
                 $condicao = '/^[A-Za-z\s]+$/'; //Apenas letras e espaço
@@ -8,6 +11,7 @@
             case 3:
                 $condicao = '/^[A-Za-z0-9.!@#$%_-]+$/';  //Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).
         }
+        
         return preg_match($condicao,$dado);
     }
 ?>
