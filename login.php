@@ -1,8 +1,4 @@
 <?php
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }
-    
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
     include("php/function.php");
 ?>

@@ -10,12 +10,6 @@
         include('links/cabecalho.php');
         ?>
         <title>Cadastro Usuario</title>
-
-        <style>
-            div.esconder {
-                display: none;
-            }
-        </style>
     </head>
 
     <body>
@@ -101,11 +95,11 @@
                                                             <label class="col-md-3">Nível de acesso:</label>
                                                             <div class="col-md-9" display="inline">
                                                                 <div class="custom-control custom-radio">
-                                                                    <input onclick="hideDiv()" value=1 type="radio" class="custom-control-input" id="idAdm" name="radioTipo" checked required>
+                                                                    <input value=1 type="radio" class="custom-control-input" id="idAdm" name="radioTipo" required>
                                                                     <label class="custom-control-label" for="idAdm"> Administrador </label>
                                                                 </div>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input onclick="showDiv()" value=2 type="radio" class="custom-control-input" id="idComum" name="radioTipo" required>
+                                                                    <input value=2 type="radio" class="custom-control-input" id="idComum" name="radioTipo" required>
                                                                     <label class="custom-control-label" for="idComum"> Comum </label>
                                                                 </div>
                                                             </div>
@@ -186,7 +180,15 @@
             </div>
         </div> 
 
-        <script>                                 
+        <script>               
+            
+            const element1 = document.getElementById('#idAdm');
+            const element2 = document.getElementById('#idComum');
+
+            console.log(element1);
+
+            element1.addEventListener("click", hideDiv());
+            element2.addEventListener("click", showDiv());
 
             function showDiv() {
 
