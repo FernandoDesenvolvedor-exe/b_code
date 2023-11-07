@@ -1,5 +1,7 @@
 <?php 
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 ?>
 <header class="topbar" data-navbarbg="skin5">
     <nav class="navbar top-navbar navbar-expand-md navbar-dark">

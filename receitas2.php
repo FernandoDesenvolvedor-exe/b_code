@@ -13,14 +13,20 @@
 
             <?php include('links/preloader.php');?> 
 
-            <?php  include('links/menu.php');?>     
+            <?php  include('links/menu.php');?>  
 
             <div class="page-wrapper">      
                 
                 <?php include('links/side_bar_direita.php');?>                
 
                 <div class="container-fluid"> 
+
+                    <div>
+                        <a href="pedidos.php">Voltar</a>
+                    </div>
                         
+                    <br>
+
                     <div class="card" style="padding: 10px;"> 
                         <h4 class="card-title">Tabela de máquinas</h4>
                         <div class="table-responsive">

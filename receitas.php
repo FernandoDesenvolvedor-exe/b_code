@@ -1,5 +1,5 @@
 <?php
-    include('php/function.php');
+    include('php/function.php');    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
