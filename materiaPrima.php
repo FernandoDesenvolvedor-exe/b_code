@@ -22,20 +22,20 @@
                 <div class="container-fluid">             
                     
                     <!-- Start Page Content -->                    
-                    <div class="card" style="padding: 10px;"> 
-                        <div>                                
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
-                                Nova Materia Prima
-                            </button>         
-                            
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
-                                Novo Tipo de Material
-                            </button>         
-                            
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
-                                Nova Classe de Material
-                            </button> 
-                        </div>                 
+                    <div class="card" style="padding: 10px;">  
+
+                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
+                            Nova Materia Prima
+                        </button>         
+                        
+                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
+                            Novo Tipo de Material
+                        </button>         
+                        
+                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
+                            Nova Classe de Material
+                        </button>   
+                                     
                     </div> 
 
                     <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->

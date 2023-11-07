@@ -165,7 +165,6 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li> 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pedidos </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="receitas.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Receitas </span></a></li>
                         <li class="sidebar-item"><a href="pedidos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Criar Pedido </span></a></li>
                     </ul>                        
                 </li>  

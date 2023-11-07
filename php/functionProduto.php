@@ -80,10 +80,6 @@
                                     ."alterar"
                                 ."</button>"
                             ."</td>"         
-                                               
-                                /*."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idReceita']."'>"
-                                    ."Alterar"
-                                ."</button>"*/
 
                             ."<td>" 
                                 ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idReceita']."'>"
@@ -406,7 +402,7 @@
                                             ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['imagem']."' alt='user'/>"
                                         ."</div>"
                                         ."<div class='el-card-content'>"
-                                        ."  <form method='POST' action='receitas2.php? idProduto=".$campo['idProduto']."'>"
+                                        ."  <form method='POST' action='receitas.php? idProduto=".$campo['idProduto']."'>"
                                                 ."<h4 id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
                                                 .'<button style="width: auto; border-radius: 5px;" type="submit" class="btn btn-info margin-5">'
                                                     .'Selecionar'
@@ -417,109 +413,6 @@
                                 ."</div>"
                             ."</div>"
                         ."</div>";
-                
-                
-                
-                       /* ."<div style='display=inline;' class='row el-element-overlay'> "
-                            ."<div class='col-lg-3 col-md-6'>"
-                                ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
-                                    ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
-                                        ."<div class='el-card-avatar el-overlay-1'>"                                            
-                                            ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['img']."' alt='user'/>"
-                                        ."</div>"
-                                        ."<div class='el-card-content'>"
-                                            ."<h4 id='idProduto' name='nProduto' class='m-b-0'>".$campo['produto']."</h4> <span class='text-muted'></span>" 
-                                            .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['idReceita'].'">'
-                                                .'Selecionar'
-                                            .'</button>'
-                                        ."</div>" 
-                                    ."</div>"
-                                ."</div>"
-                            ."</div>"
-                        ."</div>"*/
-
-                        /*
-                        .'<div class="modal fade" id="modalPedido'.$campo['idReceita'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'
-                        .'    <div class="modal-dialog" role="document ">                                '
-                        .'        <div class="modal-content">'
-                        .'            <div class="modal-header">'
-                        .'                <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>'
-                        .'                <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
-                        .'                    <span aria-hidden="true ">&times;</span>'
-                        .'                </button>'
-                        .'            </div>'
-                        .'            <div class="modal-body">'
-                        .''
-                        .'                 <form method="POST" action="php/savePedido.php? validacao=I">'
-                        .'                    <div class="input-group mb-3">'
-                        .'                         <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>'
-                        .'                         <div class="col-sm-9">'
-                        .'                              <input value="'.$campo['produto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                         </div>'
-                        .'                    </div>'                        
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                              <input value="'.$campo['molde'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                        .'                        </div>'
-                        .'                    </div>'                        
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input value="'.$campo['material'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Material</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input value="'.$campo['tipoM'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Classe</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input value="'.$campo['classe'].'" id="idClasseMaterial" name="nClasseMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input value="'.$campo['cor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input value="'.$campo['tipoP'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade de produção</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'                    <div class="form-group row">'
-                        .'                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>'
-                        .'                        <div class="col-sm-9">'
-                        .'                            <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                        .'                                  '.optionMaquina().''
-                        .'                            </select>'
-                        .'                        </div>'
-                        .'                    </div>'
-                        .''
-                        .'            </div>'
-                        .'        </div>'
-                        .'    </div>'
-                        .'</div>';*/
 
             }   
 
