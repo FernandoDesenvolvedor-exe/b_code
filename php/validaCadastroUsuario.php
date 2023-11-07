@@ -5,7 +5,7 @@
     include('function.php');
     include("connection.php");
 
-    if ($_GET['validacao'] == ''){
+    if ($_GET['validacao'] == 'I'){
         
         $nome = stripslashes($_POST["nNome"]);
         $sobrenome = stripslashes($_POST["nSobrenome"]);
@@ -13,7 +13,7 @@
         $senha = stripslashes($_POST["nSenha"]);
         $confirmSenha = stripslashes($_POST["nConfirmSenha"]);
         $turma = stripslashes($_POST["nTurma"]);
-        $tipoUsu = stripslashes($_POST["nTipoUsu"]);
+        $tipoUsu = stripslashes($_POST["radioTipo"]);
 
         //var_dump($nome,$sobrenome,$email,$senha,$confirmSenha,$turma,$tipoUsu);
         //var_dump(filter_var($email, FILTER_VALIDATE_EMAIL));
