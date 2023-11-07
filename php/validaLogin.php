@@ -45,26 +45,10 @@
                 if($campo['ativo'] == 1){
 
                     //joga o usuario pra tela de acordo com o nivel de acesso dele
-                    $_SESSION['idUsuario']=$campo['idUsuario'];
+                    $_SESSION['idUsuario']= $campo['idUsuario'];
                     $_SESSION['tipo'] = $campo['tipo'];
 
-                    switch(intval($campo['tipo'])){
-                        case 1:
-                            //$_SESSION['msgLogin'] = 'Entrou Adm';
-                            header('location:../index.php');
-                        break;
-
-                        case 2:
-                            //$_SESSION['msgLogin'] = 'Entrou comum';
-                            header('location:../index.php');
-                        break;
-
-                        default:
-                            $_SESSION['msgLogin'] = 'Nivel de acesso do usuário inválido.';
-                            header('location:../login.php');
-                            die();
-                        break;
-                    }
+                    header('location:../index.php');
 
                 }else{
                     //usuario Inativo
