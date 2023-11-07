@@ -20,14 +20,26 @@
                 <?php include('links/side_bar_direita.php');?>                
 
                 <div class="container-fluid"> 
-                    
-                    <h1 style="text-align:center;">Selecione um produto</h1>   
                         
-                    <div style="display: inline !important;">
-
-                        <?php echo cardProduto();?>
-
-                    </div>              
+                    <div class="card" style="padding: 10px;"> 
+                        <h4 class="card-title">Tabela de máquinas</h4>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Matéria Prima</th>
+                                        <th>Pigmento</th>
+                                        <th>Selecionar</th>
+                                        <th>Alterar</th>
+                                        <th>Desativar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo dataTableReceitas($_GET['idProduto']); ?>
+                                </tbody>
+                            </table>
+                        </div>                         
+                    </div>
 
                 </div>
 
