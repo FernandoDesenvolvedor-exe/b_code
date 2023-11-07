@@ -237,7 +237,7 @@
 
             foreach($array as $campo){
                 
-                $card .="<div class='row el-element-overlay'> "
+                $card .="<div style='display=inline;' class='row el-element-overlay'> "
                             ."<div class='col-lg-3 col-md-6'>"
                                 ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
                                     ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"

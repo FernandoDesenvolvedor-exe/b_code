@@ -13,6 +13,12 @@
     include('links/cabecalho.php');
     ?>
     <title>Cadastro Usuario</title>
+
+    <style>
+        div.esconder {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -92,31 +98,53 @@
                                                         <!-- confirma senha -->
                                                         <input type="password" class="form-control form-control-lg" name="nConfirmSenha" placeholder="Confirmar senha*" aria-label="Password" aria-describedby="basic-addon1" minlength="4" maxlength="32" required>
                                                     
-                                                    </div>
-                                                    <!-- turma -->
+                                                    </div>                                                    
+                                                    <!-- Tipo Usuario -->
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend" style='width: 100%; height:100%;'>
                                                             <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                                            <select name='nTurma' class='select2 form-control custom-select' style='width: 100%; height:100%;'>
+                                                            <input id="idBtnR1" type="radio" value = 1 > Administrador </input>
+                                                            <input id="idBtnR2" type="radio" value = 2 checked> Comum </input>
+                                                            <select id="idTipoUser" name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                                <option value="">Nivel de Acesso*</option>
+                                                                <optgroup label="Niveis">
+                                                                    <option onclick = "hideTurma()" value=1>Administrador</option>
+                                                                    <option onclick = "showTurma()" value=2>Comum</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- turma -->
+                                                    <div class="input-group mb-3 esconder">
+                                                        <div class="input-group-prepend" style='width: 100%; height:100%;'>
+                                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
+                                                            <select id="idTurma" name='nTurma' class='select2 form-control custom-select' style='width: 100%; height:100%;'>
                                                                 <?php 
                                                                     echo optionTurmas();
                                                                 ?> 
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <!-- Tipo Usuario -->
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend" style='width: 100%; height:100%;'>
-                                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                                            <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                                <option value="">Nivel de Acesso*</option>
-                                                                <optgroup label="Niveis">
-                                                                    <option value=1>Administrador</option>
-                                                                    <option value=2>Comum</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+
+                                                    <script>                                                        
+                                                        function showTurma(){
+
+                                                            tipo = document.getElementById('idTipoUser');
+                                                            turma = document.getElementById('idTurma');
+
+                                                            turma.style.display = "block";                                                                                                                       
+                                                        }                
+
+                                                        function hideTurma() {
+
+                                                            tipo = document.getElementById('idTipoUser');
+                                                            turma = document.getElementById('idTurma');
+
+                                                            turma.style.display = "none";
+                                                        }                                        
+                                                    </script>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="row"> <!-- border-top border-secondary -->
