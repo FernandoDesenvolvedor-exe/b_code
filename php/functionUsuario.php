@@ -4,6 +4,9 @@
             session_start();
         }
         include("connection.php");
+
+        var_dump($tipoUsu);
+        die();
         //____________________________________________Inserir dados no Banco___________________________________________________________________
         $sqlInsert = "Insert into usuarios (login, senha, nome , sobrenome, idTurma, tipo, ativo) values"
                     ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu.", 1);";
@@ -59,11 +62,11 @@
                             ."<td>".$campo['nome']." ".$campo['sobNome']."</td>"
                             ."<td>".$campo['nTurma']."</td>"
                             ."<td>".$campo['turno']."</td>";
-                if ($campo['tipo'] == 1){
+                if ($campo['tipo'] == 2){
 
                     $table .= "<td> Usuário Comum </td>";
                     
-                } else if ($campo['tipo'] == 2){
+                } else if ($campo['tipo'] == 1){
 
                     $table .= "<td> Administrador </td>";
 

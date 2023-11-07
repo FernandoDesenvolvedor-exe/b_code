@@ -1,6 +1,7 @@
 <?php
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
     include("php/function.php");
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,7 +59,8 @@
                                         echo $_SESSION['msgLogin'];
                                         unset($_SESSION['msgLogin']);
                                         
-                                    } 
+                                    }
+
                                     if(isset($_SESSION['idUsuario']) && $_SESSION['idUsuario'] != ''){  
                                         echo $_SESSION['idUsuario'];
                                         unset($_SESSION['idUsuario']);

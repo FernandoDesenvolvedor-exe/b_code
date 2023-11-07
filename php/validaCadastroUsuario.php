@@ -86,8 +86,8 @@
 
         $result = mysqli_query($conn, $sqlEmail);
 
-        var_dump($result);
-        die();
+        //var_dump($result);
+        //die();
         
         if(mysqli_num_rows($result) > 0){
             $_SESSION['msgErro'] = $abreHTMLalert.'Email já cadastrado. Tente outro email.'.$fechaHTMLalert;

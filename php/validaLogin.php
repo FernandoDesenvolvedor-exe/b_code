@@ -7,6 +7,12 @@
 
     $login = stripslashes($_POST['nLogin']);
     $senha = stripslashes($_POST['nSenha']);
+    $_SESSION['msgLogin'] = '';
+
+    $abreHTMLalert = '<div class="input-group mb-3">'
+                        .'<div class="input-group-prepend" style="width: 100%; height:100%;">'
+                            .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>';
     
 
     //var_dump($login.''.$senha);
@@ -52,13 +58,13 @@
 
                 }else{
                     //usuario Inativo
-                    $_SESSION['msgLogin'] = 'Usuário inativo.';
+                    $_SESSION['msgLogin'] = $abreHTMLalert.'Usuário inativo'.$fechaHTMLalert;
                     header('location:../login.php');
                     die();
                 }
             }else{
                 //senha incorreta
-                $_SESSION['msgLogin'] = 'Senha incorreta.';
+                $_SESSION['msgLogin'] = $abreHTMLalert.'Senha incorreta'.$fechaHTMLalert;
                 header('location:../login.php');
                 die();
             }
@@ -66,7 +72,7 @@
         
     } else {
         //menssagem de email nao cadastrado
-        $_SESSION['msgLogin'] = 'Email não cadastrado.';
+        $_SESSION['msgLogin'] = $abreHTMLalert.'Email não cadastrado'.$fechaHTMLalert;
         header('location:../login.php');
     };
 ?>

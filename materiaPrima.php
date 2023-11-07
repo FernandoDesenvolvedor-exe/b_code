@@ -19,24 +19,25 @@
                 
                 <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">             
-                    
+                <div class="container-fluid">    
+
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">  
-
-                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
-                            Nova Materia Prima
-                        </button>         
-                        
-                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
-                            Novo Tipo de Material
-                        </button>         
-                        
-                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
-                            Nova Classe de Material
-                        </button>   
-                                     
-                    </div> 
+                                    
+                        <div>
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
+                                Nova Materia Prima
+                            </button>         
+                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
+                                Novo Tipo de Material
+                            </button>         
+                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
+                                Nova Classe de Material
+                            </button>                                           
+                        </div> 
+                    </div>
 
                     <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->
                     <div class="modal fade" id="modalAddClasse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
