@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="card" style="padding: 10px;"> 
-                        <h4 class="card-title">Tabela de máquinas</h4>
+                        <h4 class="card-title">Receitas de <?php echo $_GET['pr']?></h4>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>

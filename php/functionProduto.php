@@ -402,7 +402,7 @@
                                             ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['imagem']."' alt='user'/>"
                                         ."</div>"
                                         ."<div class='el-card-content'>"
-                                        ."  <form method='POST' action='receitas.php? idProduto=".$campo['idProduto']."'>"
+                                        ."  <form method='POST' action='receitas.php? idProduto=".$campo['idProduto']."&pr=".$campo['descricao']."'>"
                                                 ."<h4 id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
                                                 .'<button style="width: auto; border-radius: 5px;" type="submit" class="btn btn-info margin-5">'
                                                     .'Selecionar'
