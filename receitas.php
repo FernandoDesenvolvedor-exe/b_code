@@ -1,6 +1,8 @@
 <?php
     include('php/function.php');
-    
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,7 +24,7 @@
             <!-- Start Page Content -->                    
             <div class="card">
                 <!-- Cria um formulário -->                            
-                <form method="POST" class="form-horizontal" action= "php/saveReceita.php">
+                <form method="POST" class="form-horizontal" action= "" ><!-- "php/saveReceita.php" -->
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
@@ -70,6 +72,11 @@
                                                 ." WHERE mat.ativo = 1;";
                                             $result = mysqli_query($conn,$sql);
                                             mysqli_close($conn);
+                                            //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
+                                                //echo $_SESSION['opMateriais'];
+                                               // unset($_SESSION['opMateriais']);
+                                                
+                                            //}
                                             if(mysqli_num_rows($result) > 0){
                                                 //Cria e inicializa uma array 
                                                 $array = array();
@@ -77,7 +84,7 @@
                                                 while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                                                     array_push($array, $linha);
                                                 }
-                                                
+                                                $vet = [];
                                                 foreach($array as $campo){   
                                                     echo    '<tr>
                                                                 <th>
@@ -92,8 +99,16 @@
                                                                 <td>1200'
                                                                 //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
                                                                 .'</td>
-                                                            </tr>';                                
+                                                            </tr>'; 
+                                                            $vet.append($campo['id']);                
                                                 }
+                                                
+                                                    //$vet = [];
+                                                    //$vet = $_SESSION['materiais'];
+                                                    //$vet = $vet.append($campo['id']);
+                                                    $_SESSION = $vet;
+                                                    echo $_SESSION['materiais'];
+                                                
                                             }
                                         ?>
                                         </tbody>
@@ -144,7 +159,12 @@
                                         </div>
                                         <label> 
                                             <?php 
-                                                
+                                                echo $_GET['tableMateriais[]'];
+                                                //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
+                                                    //echo $_SESSION['opMateriais'];
+                                                   // unset($_SESSION['opMateriais']);
+                                                    
+                                                //}
                                             
                                             ?>
                                         </label>
@@ -234,15 +254,20 @@
 
     <?php include('links/script.php'); ?>
     <script>
-            function quantidadeMaterial(){
-                var qntM = document.getElementById('qntM');
-                //var materiais = document.getElementById('iMateriaPrima')
-                //console.log(materiais[].lenght)
-                //for(i=0;i<materiais.lenght)
-                qntM.createElement    
+        function GetCheckbox(){
+            const boxes = document.querySelectorAll('input[type="checkbox"]')
+            console.log(boxes.lenght)
+            for(i=0;i<boxes.length; i++){
+                boxes[i].addEventListener("click", function() {
+                    if (boxes[i].checked) {
+                        <?php //$_SESSION['opMateriais'] =?>
+                        boxes[i].val()
+                        console.log(boxes[i].val());
+                    }
+                });
             }
-            
-        </script>
+        }
+    </script>
 </body>
     
 </html>
