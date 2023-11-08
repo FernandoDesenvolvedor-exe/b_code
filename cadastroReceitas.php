@@ -187,14 +187,21 @@
                                                     }
                                                     echo $qntMaterial;
                                                 }
-                                                //for(i=0;i<)
-                                                //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
-                                                    //echo $_SESSION['opMateriais'];
-                                                   // unset($_SESSION['opMateriais']);
-                                                    
-                                                //}
-                                            
                                             ?>
+                                            <script >
+                                                //function mat(){
+                                                    //console.log(document.getElementById('iMateria').val());
+                                                //}
+                                                console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
+                                                document.getElementById('iMateria').addEventListener('change', function() {
+                                                    console.log(document.getElementById('iMateria').value)
+                                                });
+                                                
+                                                //for(i=0;i<=document.getEle)
+
+                                            </script>
+                                            
+                                            
                                         </label>
                                     </div>
                                     <div class="modal-footer">
@@ -282,6 +289,7 @@
 
     <?php include('links/script.php'); ?>
     <script>
+        console.log('ooooooooooooooooooooo')
         function GetCheckbox(){
             const boxes = document.querySelectorAll('input[type="checkbox"]')
             console.log(boxes.lenght)
@@ -295,6 +303,11 @@
                 });
             }
         }
+
+        document.getElementById('iMateria').addEventListener('change', function() {
+            console.log('123'+document.getElementById('iMateria').value);
+
+        });
     </script>
 </body>
     

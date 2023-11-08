@@ -148,3 +148,55 @@ unset($arr[5]); // Isto remove um elemento do array
 
 unset($arr);    // E isto apaga todo o array
 ?>
+
+
+$_SESSION['materiais'] = $vet; Salva vetor na var SESSION
+for($i=0 ; $i<count($vet); $i++){
+    echo $vet[$i];
+};
+//echo $vet;
+for($i=0; $i<count($_SESSION['materiais']); $i++){
+    echo $_SESSION['materiais'][$i];
+};
+//echo $_SESSION['materiais'];
+unset($vet);
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+create database escolas;
+
+use escolas;
+#Cria tabela
+create table aluno(
+	idAluno int primary key auto_increment,
+    nome varchar(50),
+    dataNasc date not null
+);
+#Altera tabela
+alter table aluno add column cpf varchar(15) not null;
+
+#Deleta banco 
+#drop database escolas;
+#inserir dados
+insert into aluno(nome,dataNasc,cpf) values ('José da Silva','2001-03-10',''),
+											('Pedro sa Silva','2015-01-01','');
+#pesquisa
+select * from aluno;
+#deletar dados
+delete from aluno;
+
+insert into aluno(nome,dataNasc,cpf) values ('José da Silva','2001-03-10','');
+#deleta dados e histórico, o auto_increment reinicia.
+truncate aluno;
+update aluno set cpf='' where idAluno=1;
+begin;
+update aluno set cpf='123.456.789-00' where idAluno=1;
+
+rollback;                           
+create view viewAluno as 
+select idAluno as ID, cpf as cpfAluno from aluno;
+select * from viewAluno;
+drop view viewAluno;
+
+
