@@ -429,7 +429,7 @@
                 ON mat.idClasse = class.idClasse
                 WHERE mat.ativo = 1
                 AND mat.idTipoMateriaPrima = 1
-                OR mat.idTipoMateriaPrima = 2;'
+                OR mat.idTipoMateriaPrima = 2;';
             
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
