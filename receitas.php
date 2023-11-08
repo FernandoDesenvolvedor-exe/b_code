@@ -36,7 +36,7 @@
                     <div class="card" style="padding: 10px;">
                         <div>
                             
-                            <a href="receitas.php">
+                            <a href="cadastroReceitas.php">
                                 <button style="width: auto; border-radius: 5px;" class="btn btn-info margin-5" type="button">
                                         Adicionar Receita
                                 </button>
