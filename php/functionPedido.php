@@ -7,9 +7,9 @@ function dataTablePedido(){
     $sql = 'SELECT ped.idPedido as pedidoId,
                 ped.idUsuario as userId,   
                 ped.idReceita as receitaId, 
-                ped.idMaquina as maquinaId,     
+                ped.idMaquina as maquinaId,
                 ped.dataHora_aberto as openDateTime,
-                ped.dataHora_fechado as closeDat,
+                ped.dataHora_fechado as closeDateTime,     
                 ped.status as stats,         
                 ped.observacoes as obs,       
                 ped.quantidade as qtdR,    
@@ -123,15 +123,49 @@ function dataTablePedido(){
         }
 
         foreach($array as $campo){
+
+            $dataAberto =  substr($campo['openDateTime'], 0, 10);
+            $horaAberto = substr($campo['openDateTime'], 11, 8);
             
+            $dataFechado =  substr($campo['closeDateTime'], 0, 10);
+            $horaFechado = substr($campo['closeDateTime'], 11, 8);
+
             $table .=   
                     '<tr align-items="center";>'
                         .'<td>'.$campo['pedidoId'].'</td>'
                         .'<td>'.$campo['produto'].'</td>'
                         .'<td>'.$campo['material'].'</td>'
                         .'<td>'.$campo['cor'].'</td>'
-                        .'<td><label>'.$campo['obs'].'</label></td>'
-                        .'<td>'                                              
+                        .'<td>'.$dataAberto.'</td>';
+            
+            if ($campo['stats'] == 1){
+                
+                $table .=
+                        '<td>Em Aberto</td>'
+                        .'<td>Não fechado</td>';
+
+            } else if ($campo['stats'] == 2) {
+
+                $table .=
+                        '<td>Em Produção</td>'
+                        .'<td>Não fechado</td>';
+
+            } else if ($campo['stats'] == 3) {
+
+                $table .=
+                        '<td>Concluido</td>'
+                        .'<td>'.$dataFechado.'</td>';
+
+            } else if ($campo['stats'] == 0) {
+
+                $table .=
+                        '<td>Cancelado</td>'
+                        .'<td>Não fechado</td>';
+
+            }
+
+            $table .=
+                        '<td>'                                              
                             .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">'
                                 .'Visualizar'
                             .'</button>'                                           
@@ -324,12 +358,16 @@ function dataTablePedido(){
                             .'                        <input value="'.$campo['fornecedorP'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
                             .'                    </div>'
                             .'                </div>'
-                            .''
                             .'            </div>'
+                            .'            <div>                     
+                                                <h4> Observações </h4>       
+                                                <label>'.$campo['obs'].'</label>
+                                          </div>' 
                         .'            </div>'
                         .'        </div>'
                         .'    </div>'
                         .'</div>'
+
                         
                     ."</tr>";
 

@@ -99,11 +99,11 @@
                                     <tr>
                                         <th>Id da ordem de produção</th>
                                         <th>Produto</th>
+                                        <th>Matéria Prima</th>
+                                        <th>Pigmento</th>
                                         <th>Aberto em</th>
-                                        <th>Horas</th>
+                                        <th>Status de produção</th>
                                         <th>Fechado em:</th>
-                                        <th>Horas</th>
-                                        <th>Status</th>
                                         <th>Alterar/Desativar</th>
                                     </tr>
                                 </thead>
