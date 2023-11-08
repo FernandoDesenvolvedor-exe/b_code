@@ -60,73 +60,16 @@
                                         </thead>
                                         <!-- Opções/Materiais -->
                                         <tbody class="customtable">
-                                        <?php
-                                            include('php/connection.php');
-                                            $sql = 'SELECT mat.idMateriaPrima as id,
-                                                    mat.descricao as nome,
-                                                    tipo.descricao as tipos,
-                                                    class.descricao as classe
-                                                    FROM materia_prima as mat
-                                                    LEFT JOIN tipo_materia_prima as tipo
-                                                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-                                                    LEFT JOIN classe_material as class
-                                                    ON mat.idClasse = class.idClasse
-                                                    WHERE mat.ativo = 1
-                                                    AND mat.idTipoMateriaPrima = 1
-                                                    OR mat.idTipoMateriaPrima = 2;';
-                                            $result = mysqli_query($conn,$sql);
-                                            mysqli_close($conn);
-                                            //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
-                                                //echo $_SESSION['opMateriais'];
-                                               // unset($_SESSION['opMateriais']);
-                                                
-                                            //}
-                                            if(mysqli_num_rows($result) > 0){
-                                                //Cria e inicializa uma array 
-                                                $array = array();
-                                    
-                                                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                                                    array_push($array, $linha);
-                                                }
-                                                $vet = [];
-                                                foreach($array as $campo){
-                                                       
-                                                    echo    '<tr>
-                                                                <th>
-                                                                    <label class="customcheckbox">
-                                                                        <input value='.$campo['id'].' name="tableMateriais[]" type="checkbox" class="listCheckbox" />
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </th>
-                                                                <td>'.$campo['nome'].'</td>
-                                                                <td>'.$campo['tipos'].'</td>
-                                                                <td>'.$campo['classe'].'</td>
-                                                                <td>1200'
-                                                                //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
-                                                                .'</td>
-                                                            </tr>'; 
-                                                    $vet[]= $campo['id'];//.' '.$campo['nome'];               
-                                                }
-                                                
-                                                    //$vet = [];
-                                                    //$vet = $_SESSION['materiais'];
-                                                    //$vet = $vet.append($campo['id']);
-                                                    //if(isset($_SESSION['materiais']))
-                                                    echo 'Vetor 1 : ';
-                                                    $_SESSION['materiais'] = $vet;
-                                                    for($i=0 ; $i<count($vet); $i++){
-                                                        echo $vet[$i];
-                                                    };
-                                                    echo ' Vetor 2 : ';
-                                                    //echo $vet;
-                                                    for($i=0; $i<count($_SESSION['materiais']); $i++){
-                                                        echo $_SESSION['materiais'][$i];
-                                                    };
-                                                    //echo $_SESSION['materiais'];
-                                                    unset($vet);
-                                                
+                                        <script>
+                                            function tabela(){
+                                                console.log(document.getElementById('iMateria').value);
+                                                <?php
+                                                    include('links/tabelaMateriais.php');
+                                                ?>
                                             }
-                                        ?>
+                                        </script>
+                                               
+                                        
                                         </tbody>
                                     </table>
                                     <div class="card-body">
@@ -193,11 +136,11 @@
                                             ?>
                                             <script >
                                                 
-                                                console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
-                                                console.log(document.getElementById('iMateria').value)
-                                                document.getElementById('iMateria').addEventListener('change', function() {
-                                                    console.log(document.getElementById('iMateria').value)
-                                                });
+                                                //console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
+                                                //console.log(document.getElementById('iMateria').value)
+                                                //document.getElementById('iMateria').addEventListener('change', function() {
+                                                    //console.log(document.getElementById('iMateria').value)
+                                                //});
                                                 
                                                 //for(i=0;i<=document.getEle)
 
@@ -207,8 +150,8 @@
                                         </label>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        <button onClick='tabela()' type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button onClick='tabela()' type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +182,7 @@
                                     
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
@@ -305,11 +248,14 @@
                 });
             }
         }
+        function mat(){
+            console.log(document.getElementById('iMateria').value);
 
-        document.getElementById('iMateria').addEventListener('change', function() {
-            console.log('123'+document.getElementById('iMateria').value);
+        }
+        //document.getElementById('iMateria').addEventListener('change', function() {
+        //    console.log('123'+document.getElementById('iMateria').value);
 
-        });
+        //});
     </script>
 </body>
     
