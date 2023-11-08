@@ -62,15 +62,18 @@
                                         <tbody class="customtable">
                                         <?php
                                             include('php/connection.php');
-                                            $sql = "SELECT mat.idMateriaPrima as id, mat.descricao as nome,"
-                                                ." tipo.descricao as tipos," 
-                                                ." class.descricao as classe"
-                                                ." FROM materia_prima as mat"
-                                                ." LEFT JOIN tipo_materia_prima as tipo"
-                                                ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima"
-                                                ." LEFT JOIN classe_material as class"
-                                                ." ON mat.idClasse = class.idClasse"
-                                                ." WHERE mat.ativo = 1;";
+                                            $sql = 'SELECT mat.idMateriaPrima as id,
+                                                    mat.descricao as nome,
+                                                    tipo.descricao as tipos,
+                                                    class.descricao as classe
+                                                    FROM materia_prima as mat
+                                                    LEFT JOIN tipo_materia_prima as tipo
+                                                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
+                                                    LEFT JOIN classe_material as class
+                                                    ON mat.idClasse = class.idClasse
+                                                    WHERE mat.ativo = 1
+                                                    AND mat.idTipoMateriaPrima = 1
+                                                    OR mat.idTipoMateriaPrima = 2;'
                                             $result = mysqli_query($conn,$sql);
                                             mysqli_close($conn);
                                             //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
@@ -189,10 +192,9 @@
                                                 }
                                             ?>
                                             <script >
-                                                //function mat(){
-                                                    //console.log(document.getElementById('iMateria').val());
-                                                //}
+                                                
                                                 console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
+                                                console.log(document.getElementById('iMateria').value)
                                                 document.getElementById('iMateria').addEventListener('change', function() {
                                                     console.log(document.getElementById('iMateria').value)
                                                 });
