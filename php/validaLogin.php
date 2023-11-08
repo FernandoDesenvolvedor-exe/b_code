@@ -1,7 +1,5 @@
 <?php
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }      
+    session_start();
 
     //stripslashes coloca uma barra dps de um caractere especial para evitar errro no codigo sql
 
