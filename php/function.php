@@ -8,5 +8,6 @@
     include('functionUsuario.php');
     include('validaDados.php');
     include('functionFornecedor.php');
+    include('functionPedido.php');
 ?>
 

@@ -166,6 +166,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pedidos </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="pedidos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Criar Pedido </span></a></li>
+                        <li class="sidebar-item"><a href="producao.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produção </span></a></li>
                     </ul>                        
                 </li>  
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Materiais</span></a>
