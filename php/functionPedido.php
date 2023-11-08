@@ -141,13 +141,21 @@ function dataTablePedido(){
             if ($campo['stats'] == 1){
                 
                 $table .=
-                        '<td>Em Aberto</td>'
+                        '<td>                                                                       
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
+                                Em aberto
+                            </button>
+                        </td>'
                         .'<td>Não fechado</td>';
 
             } else if ($campo['stats'] == 2) {
 
                 $table .=
-                        '<td>Em Produção</td>'
+                        '<td>                                                                       
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
+                                Em Produção
+                            </button>
+                        </td>'
                         .'<td>Não fechado</td>';
 
             } else if ($campo['stats'] == 3) {
@@ -165,17 +173,20 @@ function dataTablePedido(){
             }
 
             $table .=
-                        '<td>'                                              
-                            .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">'
-                                .'Visualizar'
-                            .'</button>'                                           
-                            .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">'
-                                .'Alterar'
-                            .'</button>'
-                            .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$campo['pedidoId'].'">'
-                                .'Desativar'
-                            .'</button>'
-                        .'</td>'
+                        '<td>
+                            <div class="divButtons">
+                                <div class="div1">                                                                         
+                                    <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">
+                                        Visualizar
+                                    </button>
+                                </div>
+                                <div class="div2">
+                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$campo['pedidoId'].'">
+                                        Desativar
+                                    </button>
+                                </div>
+                            <div>
+                        </td>'
 
                         // MODAL DESATIVA MATERIA_PRIMA
                         ."<div class='modal fade' id='modalExclui".$campo['pedidoId']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
@@ -188,7 +199,7 @@ function dataTablePedido(){
                                         .'</button>'
                                     .'</div>'                                  
                                     .'<div class="modal-body">'
-                                        .'<form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["pedidoId"].'">'
+                                        .'<form method="POST" action="php/savePedidos.php? validacao=D&id='.$campo["pedidoId"].'">'
                                             .'<label> Confirmar esta ação? </label>'
                                             .'<div align-items="right">'
                                                 .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
@@ -198,6 +209,28 @@ function dataTablePedido(){
                                 .'</div>'
                             .'</div>'
                         .'</div>' 
+
+                        // MODAL DESATIVA MATERIA_PRIMA
+                        .'<div class="modal fade" id="modalAltera'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="php/savePedidos.php? validacao=A&id='.$campo["pedidoId"].'&stats='.$campo['stats'].'">
+                                            <label> Confirmar esta ação? </label>
+                                            <div align-items="right">
+                                                <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>' 
 
                         //MODAL SELECIONA PEDIDO
                         .'<div class="modal fade" id="modalPedido'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">'

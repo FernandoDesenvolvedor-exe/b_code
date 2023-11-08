@@ -26,18 +26,12 @@
 
                         <h4 class="card-title">Monitoramento de Pedidos</h4>
                                     
-                        <div>
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
-                                Nova Materia Prima
-                            </button>         
-                            
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddTipo">
-                                Novo Tipo de Material
-                            </button>         
-                            
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddClasse">
-                                Nova Classe de Material
-                            </button>                                           
+                        <div>   
+                            <a href="pedidos.php">
+                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5">
+                                    Novo Pedido
+                                </button>         
+                            </a>                                          
                         </div> 
 
                         <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->
@@ -92,13 +86,11 @@
 
                         <div class="card" style="padding: 10px;"> 
 
-                            <h4 class="card-title">Em aberto</h4>
-
                             <div class="table-responsive">
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id da ordem de produção</th>
+                                            <th>ID</th>
                                             <th>Produto</th>
                                             <th>Matéria Prima</th>
                                             <th>Pigmento</th>

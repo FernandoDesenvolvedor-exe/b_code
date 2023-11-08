@@ -1,0 +1,31 @@
+
+.div1 {
+    display: inline-grid;
+    text-align: left;
+}
+
+.div2 {
+    display: inline-grid;
+    width: 30%;    
+}
+
+.div3 {
+    display: inline-grid;
+    text-align: left;
+}
+
+.div4 {
+    display: inline-grid;
+    width: 30%;    
+}
+
+.divButtons{
+    width:100%;
+    align-items: center;
+}
+
+.divBoxProduto{
+    float: right;
+    width: 400;
+    height: 300px;
+}
