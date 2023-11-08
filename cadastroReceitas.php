@@ -73,7 +73,7 @@
                                                     ON mat.idClasse = class.idClasse
                                                     WHERE mat.ativo = 1
                                                     AND mat.idTipoMateriaPrima = 1
-                                                    OR mat.idTipoMateriaPrima = 2;'
+                                                    OR mat.idTipoMateriaPrima = 2;';
                                             $result = mysqli_query($conn,$sql);
                                             mysqli_close($conn);
                                             //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
