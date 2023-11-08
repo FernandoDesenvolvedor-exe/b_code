@@ -132,3 +132,19 @@ Cria table com checkBox e salva localmente
  ?>
  </body>
 </html>
+-------------------------------------------------------------------------------------------------------------------------------
+Vetor php
+
+<?php
+$arr = array(5 => 1, 12 => 2);
+
+$arr[] = 56;    // Isto é o mesmo que $arr[13] = 56;
+                // nesse ponto do script
+
+$arr["x"] = 42; // Isto acrescenta um novo elemento
+                // para o array com a chave "x"
+
+unset($arr[5]); // Isto remove um elemento do array
+
+unset($arr);    // E isto apaga todo o array
+?>

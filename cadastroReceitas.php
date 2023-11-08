@@ -1,5 +1,9 @@
 <?php
-    include('php/function.php');    
+    include('php/function.php');  
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }  
+    $_SESSION['tipo'] = 1;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -82,7 +86,8 @@
                                                     array_push($array, $linha);
                                                 }
                                                 $vet = [];
-                                                foreach($array as $campo){   
+                                                foreach($array as $campo){
+                                                       
                                                     echo    '<tr>
                                                                 <th>
                                                                     <label class="customcheckbox">
@@ -97,14 +102,25 @@
                                                                 //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
                                                                 .'</td>
                                                             </tr>'; 
-                                                            $vet.append($campo['id']);                
+                                                    $vet[]= $campo['id'];//.' '.$campo['nome'];               
                                                 }
                                                 
                                                     //$vet = [];
                                                     //$vet = $_SESSION['materiais'];
                                                     //$vet = $vet.append($campo['id']);
-                                                    $_SESSION = $vet;
-                                                    echo $_SESSION['materiais'];
+                                                    //if(isset($_SESSION['materiais']))
+                                                    echo 'Vetor 1 : ';
+                                                    $_SESSION['materiais'] = $vet;
+                                                    for($i=0 ; $i<count($vet); $i++){
+                                                        echo $vet[$i];
+                                                    };
+                                                    echo ' Vetor 2 : ';
+                                                    //echo $vet;
+                                                    for($i=0; $i<count($_SESSION['materiais']); $i++){
+                                                        echo $_SESSION['materiais'][$i];
+                                                    };
+                                                    //echo $_SESSION['materiais'];
+                                                    unset($vet);
                                                 
                                             }
                                         ?>
@@ -142,7 +158,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
                                             <div class="col-sm-9">
-                                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <select id="iMateria" name="nMateria" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                 <?php echo optionMaterial(1);?>
                                                 </select>
                                             </div>
@@ -154,9 +170,24 @@
                                                 <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
                                             </div>
                                         </div>
-                                        <label> 
+                                        <label>
                                             <?php 
-                                                echo $_GET['tableMateriais[]'];
+                                                include('php/connection.php');
+                                                $sql='SELECT count(*) as qntMateriais FROM `materia_prima`;';
+                                                $result= mysqli_query($conn,$sql);
+                                                mysqli_close($conn);
+                                                if(mysqli_num_rows($result) > 0){
+                                                    $array = array();
+                                    
+                                                    while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                                        array_push($array, $linha);
+                                                    }
+                                                    foreach($array as $campo){
+                                                        $qntMaterial=$campo['qntMateriais'];
+                                                    }
+                                                    echo $qntMaterial;
+                                                }
+                                                //for(i=0;i<)
                                                 //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
                                                     //echo $_SESSION['opMateriais'];
                                                    // unset($_SESSION['opMateriais']);
