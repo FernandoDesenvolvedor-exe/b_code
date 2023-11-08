@@ -64,7 +64,6 @@
                             </table>
                         </div>                         
                     </div>
-
                 </div>
 
                 <footer class="footer text-center">
