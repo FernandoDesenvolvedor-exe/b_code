@@ -78,7 +78,8 @@
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Nome do Fornecedor</th>                                        
+                                            <th>Nome do Fornecedor</th>  
+                                            <th>Alterar/Desativar</th>                                       
                                         </tr>
                                     </thead>
                                     <tbody>

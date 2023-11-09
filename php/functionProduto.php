@@ -13,7 +13,9 @@
                     .' r.observacoes as obs,'
 
                     .' pr.descricao as produto,'
-                    .' pr.imagem as img,'           // PRODUTO/MOLDE
+                    .' pr.imagem as img,'                               // PRODUTO/MOLDE
+                    
+                    .' f.idFerramental as idMolde,'  
                     .' f.descricao as molde,'         
 
                     .' mat.descricao as material,'
@@ -175,7 +177,7 @@
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>
                                                     <div class="col-sm-9">
                                                         <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                              '.optionMaquina().'
+                                                              '.optionMaquina($campo['idMolde']).'
                                                         </select>
                                                     </div>
                                                 </div>                                    

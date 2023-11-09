@@ -64,7 +64,7 @@
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
                                                 <div class="col-md-9">
                                                     <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                        <?php echo optionMaquina();?>                                         
+                                                        <?php echo optionMaquina(0);?>                                         
                                                     </select>
                                                 </div>
 

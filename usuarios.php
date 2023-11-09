@@ -165,6 +165,7 @@
                                             <th> Turma </th>
                                             <th> Turno </th>
                                             <th> Nivel de acesso </th>
+                                            <th> Alterar/Desativar </th>
                                         </tr>
                                     </thead>
                                     <tbody>
