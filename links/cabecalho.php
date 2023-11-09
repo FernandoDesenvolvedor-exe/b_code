@@ -17,4 +17,6 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="dist/css/subStyle.css" rel="stylesheet" >     
     <link href="assets/libs/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <link href="dist/css/styleDivButton.css" rel="stylesheet" >     
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->   
+    

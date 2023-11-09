@@ -64,7 +64,7 @@
                     <a class="nav-link dropdown-toggle waves-effect waves-info" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="profile.php">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
@@ -165,7 +165,6 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li> 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pedidos </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="pedidos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Criar Pedido </span></a></li>
                         <li class="sidebar-item"><a href="producao.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produção </span></a></li>
                     </ul>                        
                 </li>  
@@ -177,9 +176,10 @@
                     </ul>                        
                 </li>                
                 <li class="sidebar-item"><a href="produtos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
+
                 <?php if ($_SESSION['tipo'] == 1){?>                                             
                     
-                    <li class="sidebar-item"><a href="usuarios.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Usuários </span></a></li>     
+                    <li class="sidebar-item"><a href="usuarios.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Usuários </span></a></li>
                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
                         <ul aria-expanded="false" class="collapse  first-level">
                             <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
@@ -187,20 +187,9 @@
                             <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
                             <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
                         </ul> 
-                    </li> 
+                    </li>    
 
-                <?php } else {?>   
-                    
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
-                        <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio2 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
-                        </ul> 
-                    </li>     
-                
-                <?php }?>
+                <?php }?>                      
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

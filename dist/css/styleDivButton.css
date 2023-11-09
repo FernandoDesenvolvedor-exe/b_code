@@ -1,0 +1,59 @@
+
+.div1 {
+    display: inline-grid;
+    text-align: left;
+}
+
+.div2 {
+    display: inline-grid;
+    width: 30%;    
+}
+
+.div3 {
+    display: inline-grid;
+    text-align: left;
+}
+
+.div4 {
+    display: inline-grid;
+    width: 30%;    
+}
+
+.divButtons{
+    width:100%;
+    align-items: center;
+}
+
+.divBoxProduto{
+    width: 400px;
+    float: right;
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px
+}
+
+.divBoxCard{
+    float: right;
+}
+
+.idImg{
+    width: 100%;
+    height: 60%;
+    align-content: start;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;
+    
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;
+}
+
+.divBoxImg{
+    width: 100%;
+    height: 60%;
+    align-content: start;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px
+}

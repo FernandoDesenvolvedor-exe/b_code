@@ -80,7 +80,7 @@ function dataTableMaquina(){
                                                     .'<label class="col-md-3 m-t-15" style="text-align: right;">Máquina</label>'
                                                     .'<div class="col-md-9">'
                                                         .'<select id="iRMaquina" name="nRMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">'
-                                                            .''. optionMaquina().''                                         
+                                                            .''. optionMaquina(0).''                                         
                                                         .'</select>'
                                                     .'</div>'
                                                 .'</div>'
@@ -186,29 +186,62 @@ function optionTipoFerramental(){
     return $select;
 }
 
-function optionMaquina(){
+function optionMaquina($caso){
 
     include('connection.php');
 
-    $select ="<option value=''> Selecione uma opção </option>";
+    if ($caso == '0'){
 
-    $sql = "SELECT * FROM maquinas WHERE ativo = 1;";
-
-    $result = mysqli_query($conn, $sql);
-    mysqli_close($conn);
-
-    if(mysqli_num_rows($result) > 0){
-        $array = array();
-
-        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            array_push($array, $linha);            
+        $select ="<option value=''> Selecione uma opção </option>";
+    
+        $sql = "SELECT * FROM maquinas WHERE ativo = 1;";
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+    
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);            
+            }
+    
+            foreach($array as $campo){
+    
+                $select .= "<option value='".$campo['idMaquina']."'>".$campo['descricao']."</option>";
+    
+            }
         }
 
-        foreach($array as $campo){
+    } else if ($caso != '0'){
 
-            $select .= "<option value='".$campo['idMaquina']."'>".$campo['descricao']."</option>";
-
+        $select ="<option value=''> Selecione uma opção </option>";
+    
+        $sql = 'SELECT maq.idMaquina as id,
+                    maq.descricao as maquina
+                    FROM ferramental_maquina as fm
+                    INNER JOIN maquinas as maq
+                    ON maq.idMaquina = fm.idMaquina
+                    WHERE ativo = 1
+                    AND idFerramental = '.$caso.';';
+    
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+    
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+    
+            foreach($array as $campo){
+    
+                $select .= "<option value='".$campo['id']."'>".$campo['maquina']."</option>";
+    
+            }
         }
+
     }
 
     return $select;
