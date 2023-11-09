@@ -190,7 +190,7 @@ function optionMaquina($caso){
 
     include('connection.php');
 
-    if ($caso == 0){
+    if ($caso == '0'){
 
         $select ="<option value=''> Selecione uma opção </option>";
     
@@ -213,16 +213,16 @@ function optionMaquina($caso){
             }
         }
 
-    } else if ($caso > 0){
+    } else if ($caso != '0'){
 
         $select ="<option value=''> Selecione uma opção </option>";
     
         $sql = 'SELECT maq.idMaquina as id,
                     maq.descricao as maquina
-                    FROM maquinas as maq
-                    INNER JOIN ferramental_maquina as fm
-                    ON maq.idMaquina = fm.idMaquina 
-                    WHERE ativo = 1 
+                    FROM ferramental_maquina as fm
+                    INNER JOIN maquinas as maq
+                    ON maq.idMaquina = fm.idMaquina
+                    WHERE ativo = 1
                     AND idFerramental = '.$caso.';';
     
         $result = mysqli_query($conn, $sql);
@@ -232,7 +232,7 @@ function optionMaquina($caso){
             $array = array();
     
             while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                array_push($array, $linha);            
+                array_push($array, $linha);
             }
     
             foreach($array as $campo){
