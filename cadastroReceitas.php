@@ -4,6 +4,7 @@
         session_start();
     }  
     $_SESSION['tipo'] = 1;
+    $_SESSION['materiais']=[];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,12 +73,6 @@
                                         <?php
                                             include('links/tabelaMateriais.php');
                                         ?> 
-                                                
-                                                
-                                            
-                                        
-                                               
-                                        
                                         </tbody>
                                     </table>
                                     <div class="card-body">
@@ -112,7 +107,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
                                             <div class="col-sm-9">
-                                                <select id="iMateria" name="nMateria" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <select onChange='prod()' id="iMateria" name="nMateria" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                 <?php echo optionMaterial(1);?>
                                                 </select>
                                             </div>
@@ -143,23 +138,18 @@
                                                 }
                                             ?>
                                             <script >
+                                                function prod(){
+                                                    a = document.getElementById('iMateria').value
+                                                }
                                                 
-                                                //console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
-                                                //console.log(document.getElementById('iMateria').value)
-                                                //document.getElementById('iMateria').addEventListener('change', function() {
-                                                    //console.log(document.getElementById('iMateria').value)
-                                                //});
-                                                
-                                                //for(i=0;i<=document.getEle)
-
                                             </script>
                                             
                                             
                                         </label>
                                     </div>
                                     <div class="modal-footer">
-                                        <button onClick='tabela(1)' type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button onClick='tabela(1)' type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
