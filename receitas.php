@@ -54,7 +54,6 @@
                                         <th>Matéria Prima</th>
                                         <th>Pigmento</th>
                                         <th>Selecionar</th>
-                                        <th>Alterar</th>
                                         <th>Desativar</th>
                                     </tr>
                                 </thead>

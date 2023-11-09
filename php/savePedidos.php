@@ -76,6 +76,7 @@
     } else if ($_GET['validacao'] == 'U'){
 
         $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
+
     }
 
     $result = mysqli_query($conn, $sql);

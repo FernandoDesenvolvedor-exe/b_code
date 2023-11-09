@@ -449,7 +449,7 @@
             
             foreach($array as $campo){
                 
-                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['classe']."</option>";                                  
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
                                                      
             }
         }     
