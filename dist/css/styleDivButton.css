@@ -25,7 +25,35 @@
 }
 
 .divBoxProduto{
+    width: 400px;
     float: right;
-    width: 400;
-    height: 300px;
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px
+}
+
+.divBoxCard{
+    float: right;
+}
+
+.idImg{
+    width: 100%;
+    height: 60%;
+    align-content: start;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;
+    
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;
+}
+
+.divBoxImg{
+    width: 100%;
+    height: 60%;
+    align-content: start;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px
 }

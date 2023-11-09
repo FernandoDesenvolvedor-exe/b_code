@@ -36,7 +36,7 @@
                     <div class="card" style="padding: 10px;">
                         <div>
                             
-                            <a href="cadastroReceitas.php">
+                            <a href="cadastroReceitas.php? idProduto=<?php echo $_GET['idProduto']?>&pr=<?php echo $_GET['pr']?>">
                                 <button style="width: auto; border-radius: 5px;" class="btn btn-info margin-5" type="button">
                                         Adicionar Receita
                                 </button>
@@ -64,6 +64,7 @@
                             </table>
                         </div>                         
                     </div>
+
                 </div>
 
                 <footer class="footer text-center">

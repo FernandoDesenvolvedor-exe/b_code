@@ -16896,12 +16896,12 @@ label {
 }
 
 .el-element-overlay .white-box {
-    padding: 0px
+    padding: 5px;
 }
 
 .el-element-overlay .el-card-item {
     position: relative;
-    padding-bottom: 20px
+    padding-bottom: 20px;
 }
 
 .el-element-overlay .el-card-item .el-card-avatar {

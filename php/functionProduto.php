@@ -223,27 +223,52 @@
         return $table;
     }
 
-    function optionProdutos(){
+    function optionProdutos($idProduto){
 
         include('connection.php');
 
-        $select = "<option value=''> Selecione uma opção </option>";
+        if ($idProduto != 0){
+    
+            $select = "";
+    
+            $sql = "SELECT idProduto, descricao FROM produtos WHERE ativo = 1 AND idProduto = ".$idProduto.";";
+    
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+    
+            if(mysqli_num_rows($result) > 0){
+                $array = array();
+    
+                while($linha = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                    array_push($array, $linha);
+                }
+    
+                foreach($array as $campo){
+                    $select .= "<option value =".$campo['idProduto']."> ".$campo['descricao']." </option>";
+                }
+            }            
+        } else if ($idProduto != 0){
 
-        $sql = "SELECT idProduto, descricao FROM produtos WHERE ativo = 1;";
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
-        if(mysqli_num_rows($result) > 0){
-            $array = array();
-
-            while($linha = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-                array_push($array, $linha);
+            $select = "<option value=''> Selecione uma opção </option>";
+    
+            $sql = "SELECT idProduto, descricao FROM produtos WHERE ativo = 1;";
+    
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+    
+            if(mysqli_num_rows($result) > 0){
+                $array = array();
+    
+                while($linha = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                    array_push($array, $linha);
+                }
+    
+                foreach($array as $campo){
+                    $select .= "<option value =".$campo['idProduto']."> ".$campo['descricao']." </option>";
+                }
             }
 
-            foreach($array as $campo){
-                $select .= "<option value =".$campo['idProduto']."> ".$campo['descricao']." </option>";
-            }
+
         }
 
         return $select;
@@ -415,14 +440,15 @@
             }
 
             foreach($array as $campo){
-                
-                $card .="<div class='divBoxProduto'> 
+                //col-lg-3 col-md-6el-card-avatar el-overlay-1
+                            
+                $card .="<div class='row divBoxProduto'>
                             <div class='row el-element-overlay'> "
-                                ."<div class='col-lg-3 col-md-6'>"
-                                    ."<div style='border-top-left-radius: 20px; border-top-right-radius: 20px' class='card'>"
-                                        ."<div style='border-bottom-left-radius: 20px; border-bottom-right-radius: 20px' class='el-card-item'>"
-                                            ."<div class='el-card-avatar el-overlay-1'>"                                            
-                                                ."<img style='width: 400px; height: 200px;' name='nImg' src='".$campo['imagem']."' alt='user'/>"
+                                ."<div class='divBoxCard'>"
+                                    ."<div class='card'>"
+                                        ."<div class='el-card-item'>"
+                                            ."<div>"                                            
+                                                ."<img class='divBoxImg' name='nImg' id='idImg' src='".$campo['imagem']."' alt='user'/>"
                                             ."</div>"
                                             ."<div class='el-card-content'>"
                                             ."  <form method='POST' action='receitas.php? idProduto=".$campo['idProduto']."&pr=".$campo['descricao']."'>"

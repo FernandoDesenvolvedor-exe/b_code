@@ -42,15 +42,9 @@
                 '.$qtde.',
                 1);';
 
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-
     } else if($_GET['validacao'] == 'D'){
 
         $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
-
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
 
     } else if($_GET['validacao'] == 'A'){
 
@@ -77,12 +71,15 @@
 
             $sql = 'UPDATE pedidos SET status = 3, dataHora_fechado="'.$current_date.'" WHERE idPedido = '.$_GET['id'].';';
 
-        }
+        }  
 
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
+    } else if ($_GET['validacao'] == 'U'){
 
+        $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
     }
+
+    $result = mysqli_query($conn, $sql);
+    mysqli_close($conn);
     
     header('location:../producao.php');
 ?>

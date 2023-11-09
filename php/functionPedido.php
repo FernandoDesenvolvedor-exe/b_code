@@ -392,10 +392,15 @@ function dataTablePedido(){
                             .'                    </div>'
                             .'                </div>'
                             .'            </div>'
-                            .'            <div>                     
-                                                <h4> Observações </h4>       
-                                                <label>'.$campo['obs'].'</label>
-                                          </div>' 
+                            .'            <div>
+                                                <form method="POST" action="php/savePedidos.php? validacao=U&id='.$campo['pedidoId'].'">                     
+                                                    <h4> Observações </h4>       
+                                                    <textarea style="width:100%;" id="iObs" name="nObs">'.$campo['obs'].'</textarea>
+                                                    <button type="submit">
+                                                        Alterar observação
+                                                    </button>
+                                                </form>
+                                           </div>' 
                         .'            </div>'
                         .'        </div>'
                         .'    </div>'

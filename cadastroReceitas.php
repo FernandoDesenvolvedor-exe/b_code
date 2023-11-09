@@ -22,6 +22,15 @@
     <div class="page-wrapper">      
         <?php include('links/side_bar_direita.php');?>
         <div class="container-fluid"> 
+            <button for="idVoltarBtn" id="idVoltarBtn" class='btn btn-primary'>
+                <a style="color: white;" href="receitas.php? idProduto=<?php echo $_GET['idProduto']?>&pr=<?php echo $_GET['pr']?>">
+                    Voltar
+                </a>
+            </button>
+            <br>
+            
+            <!-- AQUI ESTA A GET COM O ID DO PRODUTO $_GET['idProduto'] -->
+
             <!-- Start Page Content -->                    
             <div class="card">
                 <!-- Cria um formulário -->                            
@@ -32,8 +41,8 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                    <?php echo optionProdutos();?>
+                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;" disabled>
+                                    <?php echo optionProdutos($_GET['idProduto']);?>
                                 </select>
                             </div>
                         </div>
