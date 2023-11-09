@@ -60,14 +60,13 @@
                                         </thead>
                                         <!-- Opções/Materiais -->
                                         <tbody class="customtable">
-                                        <script>
-                                            function tabela(){
-                                                console.log(document.getElementById('iMateria').value);
-                                                <?php
-                                                    include('links/tabelaMateriais.php');
-                                                ?>
-                                            }
-                                        </script>
+                                        <?php
+                                            include('links/tabelaMateriais.php');
+                                        ?> 
+                                                
+                                                
+                                            
+                                        
                                                
                                         
                                         </tbody>
@@ -150,8 +149,8 @@
                                         </label>
                                     </div>
                                     <div class="modal-footer">
-                                        <button onClick='tabela()' type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button onClick='tabela()' type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                                        <button onClick='tabela(1)' type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button onClick='tabela(1)' type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
