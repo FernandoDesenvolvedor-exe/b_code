@@ -135,11 +135,41 @@
                                                         $qntMaterial=$campo['qntMateriais'];
                                                     }
                                                     echo $qntMaterial;
+                                                    echo isset($_POST['data']);
+                                                    if(isset($_POST['data'])){
+                                                        $dados = json_decode($_POST['data'], true);
+                                                        echo json_decode($_POST['data'], true);
+                                                        var_dump($dados);
+                                                    }
                                                 }
                                             ?>
                                             <script >
                                                 function prod(){
                                                     a = document.getElementById('iMateria').value
+                                                    console.log(a)
+                                                    var dados = JSON.stringify(a);
+                                                    console.log('Dados: '+dados)
+                                                    $.ajax({
+                                                        url: 'links/tabelaMateriais.php',
+                                                        type: 'POST',
+                                                        data: {data: dados},
+                                                        success: function(result){
+                                                            // Retorno se tudo ocorreu normalmente
+                                                            //$_SESSION['prod']=dados;
+                                                        },
+                                                        error: function(jqXHR, textStatus, errorThrown) {
+                                                            // Retorno caso algum erro ocorra
+                                                        }
+                                                    });
+                                                <?php
+                                                echo(isset($_POST['data']));
+                                                if(isset($_POST['data'])){
+                                                    $dados = json_decode($_POST['data'], true);
+                                                    echo json_decode($_POST['data'], true);
+                                                    var_dump($dados);
+                                                }
+                                                
+                                                ?>
                                                 }
                                                 
                                             </script>

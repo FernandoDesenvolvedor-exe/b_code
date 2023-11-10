@@ -1,4 +1,7 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE){
+    session_start();
+}  
 include('php/connection.php');
 $sql = 'SELECT mat.idMateriaPrima as id,
         mat.descricao as nome,
@@ -59,6 +62,9 @@ if(mysqli_num_rows($result) > 0){
         
         //echo $_SESSION['materiais'];
         unset($vet);
-    
+        echo $_POST['data'];
+        if(isset($_POST['data'])){
+            echo json_decode($_POST['data'], true);
+        }
 }
 ?>

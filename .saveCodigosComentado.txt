@@ -201,4 +201,34 @@ select idAluno as ID, cpf as cpfAluno from aluno;
 select * from viewAluno;
 drop view viewAluno;
 
+-------------------------------------------------------------------------------------------------------------------------------
+TROCAR DADOS ENTRE JS E PHP
+<script>
+  var usuario = {
+    'nome': 'João',
+    'profissao': 'Engenheiro',
+    'cidade': 'São Paulo'
+  }
+  
+  var dados = JSON.stringify(usuario);
+  
+  $.ajax({
+    url: 'recebe.php',
+    type: 'POST',
+    data: {data: dados},
+    success: function(result){
+      // Retorno se tudo ocorreu normalmente
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      // Retorno caso algum erro ocorra
+    }
+  });
+</script>
 
+<?php
+  $usuario = $_POST['data'];
+
+  $dados = json_decode($usuario, true);
+
+  var_dump($dados);
+?>
