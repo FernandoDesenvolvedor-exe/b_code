@@ -42,6 +42,16 @@
                 '.$qtde.',
                 1);';
 
+        $result = mysqli_query($conn, $sql);        
+
+        $arrayReceitas = receitas($_GET['id']);
+        var_dump($arrayReceitas);
+        die();
+
+        $sql='INSERT INTO historico';
+
+        mysqli_close($conn);
+
     } else if($_GET['validacao'] == 'D'){
 
         $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
