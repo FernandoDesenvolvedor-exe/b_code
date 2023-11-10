@@ -80,8 +80,10 @@
 </div>
 */
 
-Cria table com checkBox e salva localmente
 --------------------------------------------------------------------------------------------------------------------------------
+
+Cria table com checkBox e salva localmente
+
 <form action="" method="POST">    
     <table width="500" border="0"  bordercolor="#B9B3B3" cellspacing=0 cellpadding=2 align="center">
         <tbody>
@@ -133,7 +135,7 @@ Cria table com checkBox e salva localmente
  </body>
 </html>
 -------------------------------------------------------------------------------------------------------------------------------
-Vetor php
+Vetor em php
 
 <?php
 $arr = array(5 => 1, 12 => 2);
