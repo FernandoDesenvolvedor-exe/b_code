@@ -1,34 +1,59 @@
 <?php 
 
+function receitas($idReceita){
+
+    include('connection.php');
+
+    $receita='';
+
+    $sql='SELECT * FROM receitas WHERE idReceita='.$_GET['id'].'AND ativo = 1;';
+
+    $receita = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    if (mysqli_num_rows($receita) > 0){
+
+        $array = array();
+
+        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+            array_push($array,$linha);
+        }
+
+        $receitas = $array;
+    }
+
+    return $receitas;
+}
 function dataTablePedido(){
 
     include('connection.php');
 
     $sql = 'SELECT ped.idPedido as pedidoId,
-                ped.idUsuario as userId,   
-                ped.idReceita as receitaId, 
-                ped.idMaquina as maquinaId,
                 ped.dataHora_aberto as openDateTime,
                 ped.dataHora_fechado as closeDateTime,     
                 ped.status as stats,         
                 ped.observacoes as obs,       
-                ped.quantidade as qtdR,    
-
+                ped.quantidade as qtdR,   
+                
+                usu.idUsuario as userId,
                 usu.idTurma as turmaId,    
                 usu.nome as name,                        
                 usu.sobrenome as sobName,    
 
                 tur.nomeTurma as turma,  
                 tur.turno as turno, 
-
+ 
+                maq.idMaquina as maquinaId,
                 maq.descricao as maquina,
 
-                rec.idProduto as produtoId,
-                rec.idMateriaPrima as maquinaId,            
+                rec.idReceita as receitaId,
+                rec.idProduto as produtoId,            
                 rec.idPigmento as pigmentoId,
-                rec.quantidadeMaterial as qtdMat,
                 rec.quantidadePigmento as qtdPig,
+                
+                rmp.quantidadeMaterial as qtdMat,
 
+                mat.idMateriaPrima as materiaId,
                 mat.idClasse as classeId,                    
                 mat.idTipoMateriaPrima as tipoMatId,    
                 mat.descricao as material,   
@@ -58,10 +83,11 @@ function dataTablePedido(){
                 tfer.descricao as tipoMolde             
             
                 FROM pedidos as ped
+
                 LEFT JOIN usuarios as usu
                 ON ped.idUsuario = usu.idUsuario
                 
-                LEFT JOIN turma as tur
+                RIGHT JOIN turma as tur
                 ON usu.idTurma = tur.idTurma
 
                 LEFT JOIN maquinas as maq
@@ -70,26 +96,29 @@ function dataTablePedido(){
                 LEFT JOIN receitas as rec
                 ON ped.idReceita = rec.idReceita
 
+                RIGHT JOIN receita_materia_prima as rmp
+                ON rmp.idReceita = rec.idReceita
+
+                LEFT JOIN materia_prima as mat
+                ON rmp.idMateriaPrima = mat.idMateriaPrima
+
+                RIGHT JOIN materia_fornecedor as format
+                ON mat.idMateriaPrima = format.idMateriaPrima
+
+                RIGHT JOIN tipo_materia_prima as tmat
+                ON mat.idTipoMateriaPrima = tmat.idTipoMateriaPrima
+
+                RIGHT JOIN classe_material as cmat
+                ON mat.idClasse = cmat.idClasse
+
                 LEFT JOIN produtos as pro
                 ON rec.idProduto = pro.idProduto
 
-                LEFT JOIN ferramental as fer
+                RIGHT JOIN ferramental as fer
                 ON pro.idProduto = fer.idProduto
 
                 LEFT JOIN tipos_ferramental as tfer
                 ON fer.idTiposFerramental = tfer.idTiposFerramental
-
-                LEFT JOIN materia_prima as mat
-                ON rec.idMateriaPrima = mat.idMateriaPrima
-
-                LEFT JOIN tipo_materia_prima as tmat
-                ON mat.idTipoMateriaPrima = tmat.idTipoMateriaPrima
-
-                LEFT JOIN classe_material as cmat
-                ON mat.idClasse = cmat.idClasse
-
-                LEFT JOIN materia_fornecedor as format
-                ON mat.idMateriaPrima = format.idMateriaPrima
 
                 LEFT JOIN fornecedores as forM
                 ON format.idFornecedor = forM.idFornecedor
@@ -112,7 +141,6 @@ function dataTablePedido(){
     $table = "";
 
     $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
 
     if (mysqli_num_rows($result) > 0){
 
@@ -130,11 +158,24 @@ function dataTablePedido(){
             $dataFechado =  substr($campo['closeDateTime'], 0, 10);
             $horaFechado = substr($campo['closeDateTime'], 11, 8);
 
+            $sql='SELECT idMateriaPrima FROM receita_materia_prima WHERE idReceita ='.$campo['receitaId'].';';
+
+            $result=mysqli_query($conn,$sql);
+            mysqli_close($conn);        
+
+            if (mysqli_num_rows($result) > 0){
+
+                $arrayIdReceita = array();
+        
+                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+                    array_push($array,$linha);
+                }
+            }
+            
             $table .=   
                     '<tr align-items="center";>'
                         .'<td>'.$campo['pedidoId'].'</td>'
-                        .'<td>'.$campo['produto'].'</td>'
-                        .'<td>'.$campo['material'].'</td>'
+                        .'<td>'.$campo['produto'].'</td>'            
                         .'<td>'.$campo['cor'].'</td>'
                         .'<td>'.$dataAberto.'</td>';
             
@@ -308,33 +349,39 @@ function dataTablePedido(){
                             .''
                             .'           </div>'
                             .'           <div syle="display:grid;">'
-                            .''
-                            .'                <h4>Matéria Prima Usada</h4>'
-                            .'                <div class="form-group row">'
-                            .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
-                            .'                    <div class="col-sm-9">'
-                            .'                          <input value="'.$campo['material'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                            .'                    </div>'
-                            .'                </div>'                         
-                            .''
-                            .'                <div class="form-group row">'
-                            .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>'
-                            .'                    <div class="col-sm-9">'
-                            .'                          <input value="'.($campo['qtdMat'] * $campo['qtdR']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                            .'                    </div>'
-                            .'                </div>'                        
+                            .'';
+
+
+                                        <h4>Matéria Prima Usada</h4>'
+                                        <div class="form-group row">'
+                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
+                                            <div class="col-sm-9">'
+                                                  <input value="'.$campo['material'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
+                                            </div>'
+                                        </div>'                         
+                
+                                        <div class="form-group row">'
+                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>'
+                                            <div class="col-sm-9">'
+                                                  <input value="'.($campo['qtdMat'] * $campo['qtdR']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
+                                            </div>'
+                                        </div>';
+                            
+                            
+
+
                             .''
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de material</label>'
                             .'                    <div class="col-sm-9">'
-                            .'                        <input value="'.$campo['tipoMat'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                            .'                        <input value="'.$campo['tipoMat'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
                             .'                    </div>'
                             .'                </div>'
                             .''
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Classe do Material</label>'
                             .'                    <div class="col-sm-9">'
-                            .'                        <input value="'.$campo['classeMat'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                            .'                        <input value="'.$campo['classeMat'].'" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
                             .'                    </div>'
                             .'                </div>'
                             .''
@@ -400,7 +447,7 @@ function dataTablePedido(){
                                                         Alterar observação
                                                     </button>
                                                 </form>
-                                           </div>' 
+                                        </div>' 
                         .'            </div>'
                         .'        </div>'
                         .'    </div>'
@@ -408,7 +455,6 @@ function dataTablePedido(){
 
                         
                     ."</tr>";
-
         }
     }        
 

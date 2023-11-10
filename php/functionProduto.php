@@ -4,52 +4,55 @@
 
         include('connection.php');
 
-        $sql = 'SELECT r.idReceita as idReceita,'
-                    .' r.idProduto as idPr,'      //  RECEITA
-                    .' r.idMateriaPrima as idMat,'
-                    .' r.idPigmento as idCor,'
-                    .' r.quantidadeMaterial as qtdeM,'
-                    .' r.quantidadePigmento as qtdeP,'
-                    .' r.observacoes as obs,'
+        $sql = 'SELECT r.idReceita as idReceita,             
+                    r.idProduto as idPr,
+                    r.idPigmento as idCor,
+                    r.quantidadeMaterial as qtdeM,
+                    r.quantidadePigmento as qtdeP,
+                    r.observacoes as obs,
 
-                    .' pr.descricao as produto,'
-                    .' pr.imagem as img,'                               // PRODUTO/MOLDE
-                    
-                    .' f.idFerramental as idMolde,'  
-                    .' f.descricao as molde,'         
-
-                    .' mat.descricao as material,'
-                    .' tm.descricao as tipoM,'       // MATERIA PRIMA
-                    .' c.descricao as classe,'
-
-                    .' pg.descricao as cor,'          //PIGMENTO
-                    .' tp.descricao as tipoP'
-
-                    .' FROM receitas as r'
-                    
-                    .' LEFT JOIN produtos as pr'
-                    .' ON r.idProduto = pr.idProduto'
-
-                    .' RIGHT JOIN ferramental as f'
-                    .' ON f.idProduto = pr.idProduto'
-
-                    .' LEFT JOIN materia_prima as mat'
-                    .' ON mat.idMateriaPrima = r.idMateriaPrima'
-                    
-                    .' RIGHT JOIN tipo_materia_prima as tm'
-                    .' ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima'   
+                    pr.descricao as produto,
+                    pr.imagem as img,                 
         
-                    .' RIGHT JOIN classe_material as c'
-                    .' ON c.idClasse = mat.idClasse' 
+                    f.idFerramental as idMolde, 
+                    f.descricao as molde, 
 
-                    .' LEFT JOIN pigmentos as pg'
-                    .' ON pg.idPigmento = r.idPigmento' 
+                    mat.descricao as material,
+                    tm.descricao as tipoM, 
+                    c.descricao as classe,
+
+                    pg.descricao as cor,  
+                    tp.descricao as tipoP
+                    
+                    
+                    FROM receita_materia_prima as rm
+                    
+                    LEFT JOIN receitas as r
+                    ON rm.idReceita = r.idReceita
+            
+                    RIGHT JOIN produtos as pr
+                    ON r.idProduto = pr.idProduto
+
+                    RIGHT JOIN ferramental as f
+                    ON f.idProduto = pr.idProduto
+
+                    LEFT JOIN materia_prima as mat
+                    ON mat.idMateriaPrima = rm.idMateriaPrima
         
-                    .' RIGHT JOIN tipo_pigmentos as tp'
-                    .' ON tp.idTipoPigmento = pg.idTipoPigmento' 
+                    RIGHT JOIN tipo_materia_prima as tm
+                    ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima
 
-                    .' WHERE pr.ativo = 1'
-                    .' AND r.idProduto =  '.$idProduto.';';
+                    RIGHT JOIN classe_material as c
+                    ON c.idClasse = mat.idClasse
+
+                    RIGHT JOIN pigmentos as pg
+                    ON pg.idPigmento = r.idPigmento
+
+                    RIGHT JOIN tipo_pigmentos as tp
+                    ON tp.idTipoPigmento = pg.idTipoPigmento
+
+                    WHERE pr.ativo = 1
+                    AND r.idProduto =  '.$idProduto.';';
 
         $table = "";
 
