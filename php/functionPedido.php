@@ -348,29 +348,25 @@ function dataTablePedido(){
                             .'                </div>'
                             .''
                             .'           </div>'
-                            .'           <div syle="display:grid;">'
-                            .'';
+                            .'           <div syle="display:grid;">'                           
 
 
-                                        <h4>Matéria Prima Usada</h4>'
-                                        <div class="form-group row">'
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
-                                            <div class="col-sm-9">'
-                                                  <input value="'.$campo['material'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                                            </div>'
-                                        </div>'                         
-                
-                                        <div class="form-group row">'
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>'
-                                            <div class="col-sm-9">'
-                                                  <input value="'.($campo['qtdMat'] * $campo['qtdR']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                                            </div>'
-                                        </div>';
+                            .'<h4>Matéria Prima Usada</h4>
+                            <div class="form-group row">
+                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
+                                <div class="col-sm-9">
+                                        <input value="'.$campo['material'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>                   
+                                </div>
+                            </div>      
+    
+                            <div class="form-group row">
+                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>
+                                <div class="col-sm-9">
+                                        <input value="'.($campo['qtdMat'] * $campo['qtdR']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>'
+
                             
-                            
-
-
-                            .''
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de material</label>'
                             .'                    <div class="col-sm-9">'

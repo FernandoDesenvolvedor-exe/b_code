@@ -4,55 +4,56 @@
 
         include('connection.php');
 
-        $sql = 'SELECT r.idReceita as idReceita,             
-                    r.idProduto as idPr,
-                    r.idPigmento as idCor,
-                    r.quantidadeMaterial as qtdeM,
-                    r.quantidadePigmento as qtdeP,
-                    r.observacoes as obs,
+        $sql = 'SELECT r.idReceita as receitaId,
+        r.quantidadePigmento as qtdePigmento,
+        r.observacoes as receitaObs,
+                           
+        rmp.quantidadeMaterial as qtdeMateria,
 
-                    pr.descricao as produto,
-                    pr.imagem as img,                 
+        pr.descricao as produtoNome,
+        pr.imagem as produtoImg,                 
+
+        f.descricao as moldeNome, 
+        tfer.descricao as tipoMolde_nome,
+
+        mat.descricao as materialNome,
+        tm.descricao as tipom_materiaNome, 
+        c.descricao as classeMaterial,
+
+        pg.descricao as pigmentoNome,  
+        tp.descricao as tipoPigmento
         
-                    f.idFerramental as idMolde, 
-                    f.descricao as molde, 
-
-                    mat.descricao as material,
-                    tm.descricao as tipoM, 
-                    c.descricao as classe,
-
-                    pg.descricao as cor,  
-                    tp.descricao as tipoP
-                    
-                    
-                    FROM receita_materia_prima as rm
-                    
-                    LEFT JOIN receitas as r
-                    ON rm.idReceita = r.idReceita
-            
-                    RIGHT JOIN produtos as pr
-                    ON r.idProduto = pr.idProduto
-
-                    RIGHT JOIN ferramental as f
-                    ON f.idProduto = pr.idProduto
-
-                    LEFT JOIN materia_prima as mat
-                    ON mat.idMateriaPrima = rm.idMateriaPrima
+        FROM receitas as r
         
-                    RIGHT JOIN tipo_materia_prima as tm
-                    ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima
+        RIGHT JOIN receita_materia_prima as rmp
+        ON rmp.idReceita = r.idReceita
+        
+        LEFT JOIN materia_prima as mat
+        ON rmp.idMateriaPrima = mat.idMateriaPrima
 
-                    RIGHT JOIN classe_material as c
-                    ON c.idClasse = mat.idClasse
+        LEFT JOIN classe_material as c
+        ON c.idClasse = mat.idClasse
 
-                    RIGHT JOIN pigmentos as pg
-                    ON pg.idPigmento = r.idPigmento
+        LEFT JOIN tipo_materia_prima as tm
+        ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima
 
-                    RIGHT JOIN tipo_pigmentos as tp
-                    ON tp.idTipoPigmento = pg.idTipoPigmento
+        LEFT JOIN produtos as pr
+        ON r.idProduto = pr.idProduto
 
-                    WHERE pr.ativo = 1
-                    AND r.idProduto =  '.$idProduto.';';
+        RIGHT JOIN ferramental as f
+        ON f.idProduto = pr.idProduto
+
+        LEFT JOIN tipos_ferramental as tfer
+        ON f.idTiposFerramental = tfer.idTiposFerramental
+
+        LEFT JOIN pigmentos as pg
+        ON pg.idPigmento = r.idPigmento
+
+        LEFT JOIN tipo_pigmentos as tp
+        ON tp.idTipoPigmento = pg.idTipoPigmento
+
+        WHERE pr.ativo = 1
+        AND r.idProduto =  '.$idProduto.';';
 
         $table = "";
 
@@ -67,10 +68,62 @@
                 array_push($array,$linha);
             }
 
-            $a = '';
+            $n = 1;
 
             foreach($array as $campo){
+
+                if ($n == 1){
+                    
+                    $idPrimeiro = $campo['receitaId'];
+                    
+                    $receita = 'receita'.$n.'';
+
+                    $$receita = array(
+                        'receita' => array(
+                            'receitaId' => $campo['receitaId'],
+                            'qtdePigmento' => $campo['qtdePigmento'],
+                            'receitaObs' => ''.$campo['receitaObs'].'',
+                            'qtdeMateria' => $campo['qtdeMateria'], 
+                            'materialNome' => ''.$campo['materialNome'].'',
+                            'tipom_materiaNome' => ''.$campo['tipom_materiaNome'].'',
+                            'classeMaterial' => ''.$campo['classeMaterial'].'',   
+                            'produtoNome' => ''.$campo['produtoNome'].'',
+                            'produtoImg' => ''.$campo['produtoImg'].'',
+                            'moldeNome' => ''.$campo['moldeNome'].'',
+                            'tipoMolde_nome' => ''.$campo['tipoMolde_nome'].'',
+                            'pigmentoNome' => ''.$campo['pigmentoNome'].'',
+                            'tipoPigmento' => ''.$campo['tipoPigmento'].''));
+
+                } else {                    
+                    
+                    $receita = 'receita'.$n.'';
+
+                    $$receita = array(
+                        'receita' => array(
+                            'receitaId' => $campo['receitaId'],
+                            'qtdePigmento' => $campo['qtdePigmento'],
+                            'receitaObs' => ''.$campo['receitaObs'].'',
+                            'qtdeMateria' => $campo['qtdeMateria'], 
+                            'materialNome' => ''.$campo['materialNome'].'',
+                            'tipom_materiaNome' => ''.$campo['tipom_materiaNome'].'',
+                            'classeMaterial' => ''.$campo['classeMaterial'].'',   
+                            'produtoNome' => ''.$campo['produtoNome'].'',
+                            'produtoImg' => ''.$campo['produtoImg'].'',
+                            'moldeNome' => ''.$campo['moldeNome'].'',
+                            'tipoMolde_nome' => ''.$campo['tipoMolde_nome'].'',
+                            'pigmentoNome' => ''.$campo['pigmentoNome'].'',
+                            'tipoPigmento' => ''.$campo['tipoPigmento'].''));
+
+                    $idproximo = $campo['receitaId'];
+                    
+                    echo $receita1['receita']['materialNome'];
+                    die();
+                }
+
+                $n++;
+            }
                 
+                /*
                 $table .=   
                         "<tr align-items='center';>"
                             ."<td>".$campo['material']."g</td>"
@@ -132,16 +185,25 @@
                                                     <div class="col-sm-9">
                                                           <input value="'.$campo['molde'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
-                                                </div>
+                                                </div>';
+                                        
+                if ($idPrimeiro < $idproximo){
+
+                    $table .=   '<div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$campo['material'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>';
+
+                } else if ($idPrimeiro == $idproximo){
+
+                    
+
+                }                 
+                                                
                             
-                                                <div class="form-group row">
-                                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
-                                                    <div class="col-sm-9">
-                                                        <input value="'.$campo['material'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                    </div>
-                                                </div>
-                            
-                                                <div class="form-group row">
+                                                '<div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Material</label>
                                                     <div class="col-sm-9">
                                                         <input value="'.$campo['tipoM'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
@@ -216,9 +278,7 @@
                             </div>
 
 
-                        </tr>';
-
-            }
+                        </tr>';*/
         }        
 
         return $table;
@@ -414,7 +474,7 @@
                             .'</div>'
 
 
-                        ."</tr>";
+                        ."</tr>";      
 
             }
         }        
