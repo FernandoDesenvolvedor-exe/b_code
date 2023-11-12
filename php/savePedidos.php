@@ -4,7 +4,7 @@
     include("connection.php");
     include("function.php");    
 
-    if ($_GET['validacao'] == 'I'){
+    if ($_GET['validacao'] == 'I'){ // INSERT
 
         $qtde = stripslashes($_POST['nQtdeProduto']);
         $obs = stripslashes($_POST['nObservacoes']);
@@ -52,9 +52,15 @@
 
         mysqli_close($conn);
 
-    } else if($_GET['validacao'] == 'D'){
+    } else if($_GET['validacao'] == 'D'){ // DESATIVAR RECEITA
 
         $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
+
+    }else if($_GET['validacao'] == 'DR'){ // DESATIVAR RECEITA
+
+        $sql = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].';';
+        
+        header('location:../receitas.php? idProduto='.$_GET['id'].'&pr='.$_GET['pr'].'');
 
     } else if($_GET['validacao'] == 'A'){
 
