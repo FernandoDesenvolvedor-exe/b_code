@@ -11,13 +11,14 @@
         rmp.quantidadeMaterial as qtdeMateria,
 
         pr.descricao as produtoNome,
-        pr.imagem as produtoImg,                 
+        pr.imagem as produtoImg,    
 
+        f.descricao as moldeId,
         f.descricao as moldeNome, 
         tfer.descricao as tipoMolde_nome,
 
         mat.descricao as materialNome,
-        tm.descricao as tipom_materiaNome, 
+        tm.descricao as tipo_materiaNome, 
         c.descricao as classeMaterial,
 
         pg.descricao as pigmentoNome,  
@@ -56,6 +57,9 @@
         AND r.idProduto =  '.$idProduto.';';
 
         $table = "";
+        $receita = array();
+        $idAnterior = '';
+        $idProximo = '';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -68,79 +72,62 @@
                 array_push($array,$linha);
             }
 
-            $n = 1;
+            $n = 0;
 
             foreach($array as $campo){
 
-                if ($n == 1){
+                if ($n < 1){                
                     
-                    $idPrimeiro = $campo['receitaId'];
+                    $receita = array(
+                                    'receitaId' => $campo['receitaId'],
+                                    'qtdePigmento' => $campo['qtdePigmento'],
+                                    'receitaObs' => $campo['receitaObs'],
+                                    'qtdeMateria' => $campo['qtdeMateria'], 
+                                    'materialNome' => array($campo['materialNome']),
+                                    'tipo_materiaNome' => $campo['tipo_materiaNome'],
+                                    'classeMaterial' => $campo['classeMaterial'],   
+                                    'produtoNome' => $campo['produtoNome'],
+                                    'produtoImg' => $campo['produtoImg'],
+                                    'moldeNome' => $campo['moldeNome'],
+                                    'moldeId' => $campo['moldeId'],
+                                    'tipoMolde_nome' => $campo['tipoMolde_nome'],
+                                    'pigmentoNome' => $campo['pigmentoNome'],
+                                    'tipoPigmento' => $campo['tipoPigmento']);    
                     
-                    $receita = 'receita'.$n.'';
-
-                    $$receita = array(
-                        'receita' => array(
-                            'receitaId' => $campo['receitaId'],
-                            'qtdePigmento' => $campo['qtdePigmento'],
-                            'receitaObs' => ''.$campo['receitaObs'].'',
-                            'qtdeMateria' => $campo['qtdeMateria'], 
-                            'materialNome' => ''.$campo['materialNome'].'',
-                            'tipom_materiaNome' => ''.$campo['tipom_materiaNome'].'',
-                            'classeMaterial' => ''.$campo['classeMaterial'].'',   
-                            'produtoNome' => ''.$campo['produtoNome'].'',
-                            'produtoImg' => ''.$campo['produtoImg'].'',
-                            'moldeNome' => ''.$campo['moldeNome'].'',
-                            'tipoMolde_nome' => ''.$campo['tipoMolde_nome'].'',
-                            'pigmentoNome' => ''.$campo['pigmentoNome'].'',
-                            'tipoPigmento' => ''.$campo['tipoPigmento'].''));
-
-                } else {                    
-                    
-                    $receita = 'receita'.$n.'';
-
-                    $$receita = array(
-                        'receita' => array(
-                            'receitaId' => $campo['receitaId'],
-                            'qtdePigmento' => $campo['qtdePigmento'],
-                            'receitaObs' => ''.$campo['receitaObs'].'',
-                            'qtdeMateria' => $campo['qtdeMateria'], 
-                            'materialNome' => ''.$campo['materialNome'].'',
-                            'tipom_materiaNome' => ''.$campo['tipom_materiaNome'].'',
-                            'classeMaterial' => ''.$campo['classeMaterial'].'',   
-                            'produtoNome' => ''.$campo['produtoNome'].'',
-                            'produtoImg' => ''.$campo['produtoImg'].'',
-                            'moldeNome' => ''.$campo['moldeNome'].'',
-                            'tipoMolde_nome' => ''.$campo['tipoMolde_nome'].'',
-                            'pigmentoNome' => ''.$campo['pigmentoNome'].'',
-                            'tipoPigmento' => ''.$campo['tipoPigmento'].''));
-
-                    $idproximo = $campo['receitaId'];
-                    
-                    echo $receita1['receita']['materialNome'];
-                    die();
-                }
-
-                $n++;
-            }
+                    $idAnterior = $campo['receitaId'];
                 
-                /*
-                $table .=   
-                        "<tr align-items='center';>"
-                            ."<td>".$campo['material']."g</td>"
-                            ."<td>".$campo['cor']."</td>"
+                } else if ($n >= 1){                              
+                    
+                    if ($idAnterior == $campo['receitaId']){
+
+                        array_push($receita['materialNome'], $campo['materialNome']);
+
+                    } else if($idAnterior < $campo['receitaId']){       
+
+                        $table .=   
+                                "<tr align-items='center';>";
+
+                        for($cont=1;$cont <= count($receita['materialNome']);$cont++){
+                                            
+                            $table .= '<td>'.$receita['materialNome'][$cont].'</td>';
+
+                        }
+                            
+                        $table .=                            
+                            "<td>".$receita['pigmentoNome']."</td>"
                             ."<td>"                                
-                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#modalPedido".$campo['idReceita']."'>"
+                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#modalPedido".$receita['materialNome']."'>"
                                     ."Selecionar"
                                 ."</button>"
                             ."</td>"        
 
                             ."<td>" 
-                                ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idReceita']."'>"
+                                ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$receita['receitaId']."'>"
                                     ."Desativar"
                                 ."</button>"                               
                             ."</td>"
 
-                            ."<div class='modal fade' id='ExcluiModal".$campo['idReceita']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                            ."<div class='modal fade' id='ExcluiModal".$receita['receitaId']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
@@ -150,7 +137,7 @@
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
-                                            .'<form method="POST" action="php/saveProdutos.php? validacao=DPF&idProduto='.$campo["idReceita"].'">'
+                                            .'<form method="POST" action="php/saveProdutos.php? validacao=DPF&idProduto='.$receita["receitaId"].'">'
                                                 .'<label> Confirmar esta ação? </label>'
                                                 .'<div align-items="right">'
                                                     .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
@@ -161,7 +148,7 @@
                                 .'</div>'
                             .'</div>'
                         
-                            .'<div class="modal fade" id="modalPedido'.$campo['idReceita'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            .'<div class="modal fade" id="modalPedido'.$receita['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">                                
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -172,62 +159,59 @@
                                         </div>
                                         <div class="modal-body">
                             
-                                             <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['idReceita'].'">
+                                             <form method="POST" action="php/savePedidos.php? validacao=I&id='.$receita['receitaId'].'">
                                                 <div class="input-group mb-3">
                                                      <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                                                      <div class="col-sm-9">
-                                                          <input value="'.$campo['produto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                          <input value="'.$receita['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                      </div>
                                                 </div>               
                             
                                                 <div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
                                                     <div class="col-sm-9">
-                                                          <input value="'.$campo['molde'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                          <input value="'.$receita['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
-                                                </div>';
-                                        
-                if ($idPrimeiro < $idproximo){
+                                                </div>';    
 
-                    $table .=   '<div class="form-group row">
-                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
-                                    <div class="col-sm-9">
-                                        <input value="'.$campo['material'].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                    </div>
-                                </div>';
-
-                } else if ($idPrimeiro == $idproximo){
-
-                    
-
-                }                 
+                        for($cont=1;$cont <= count($receita['materialNome']);$cont++){
                                                 
-                            
+                            $table .= 
+                                        '<div class="form-group row">
+                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
+                                            <div class="col-sm-9">
+                                                <input value="'.$receita['materialNome'][$cont].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                            </div>
+                                        </div>';
+
+                        }
+                                                
+                        $table .= 
                                                 '<div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Material</label>
                                                     <div class="col-sm-9">
-                                                        <input value="'.$campo['tipoM'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.$receita['tipo_materiaNome'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
                                                 </div>
                             
                                                 <div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Classe</label>
                                                     <div class="col-sm-9">
-                                                        <input value="'.$campo['classe'].'" id="idClasseMaterial" name="nClasseMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.$receita['classeMaterial'].'" id="idClasseMaterial" name="nClasseMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
                                                 </div>
                             
                                                 <div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                                                     <div class="col-sm-9">
-                                                        <input value="'.$campo['cor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.$receita['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
                                                 </div>
                             
                                                 <div class="form-group row">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                     <div class="col-sm-9">
-                                                        <input value="'.$campo['tipoP'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.$receita['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                     </div>
                                                 </div>
                             
@@ -242,7 +226,7 @@
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>
                                                     <div class="col-sm-9">
                                                         <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                              '.optionMaquina($campo['idMolde']).'
+                                                              '.optionMaquina($receita['moldeId']).'
                                                         </select>
                                                     </div>
                                                 </div>                                    
@@ -278,7 +262,195 @@
                             </div>
 
 
-                        </tr>';*/
+                        </tr>';
+
+                        $receita = array(
+                                        'receitaId' => $campo['receitaId'],
+                                        'qtdePigmento' => $campo['qtdePigmento'],
+                                        'receitaObs' => $campo['receitaObs'],
+                                        'qtdeMateria' => $campo['qtdeMateria'], 
+                                        'materialNome' => array($campo['materialNome']),
+                                        'tipo_materiaNome' => $campo['tipo_materiaNome'],
+                                        'classeMaterial' => $campo['classeMaterial'],   
+                                        'produtoNome' => $campo['produtoNome'],
+                                        'produtoImg' => $campo['produtoImg'],
+                                        'moldeNome' => $campo['moldeNome'],
+                                        'moldeId' => $campo['moldeId'],
+                                        'tipoMolde_nome' => $campo['tipoMolde_nome'],
+                                        'pigmentoNome' => $campo['pigmentoNome'],
+                                        'tipoPigmento' => $campo['tipoPigmento']); 
+
+                        $idAnterior = $campo['receitaId'];                        
+
+                    } 
+                }                                      
+                    
+                if ($n == count($array)){
+
+                    $table .=   
+                            "<tr align-items='center';>";
+
+                    for($cont=1;$cont <= count($receita['materialNome']);$cont++){
+                                        
+                        $table .= '<td>'.$receita['materialNome'][$cont].'</td>';
+
+                    }
+                        
+                    $table .=                            
+                        "<td>".$receita['pigmentoNome']."</td>"
+                        ."<td>"                                
+                            ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#modalPedido".$receita['materialNome']."'>"
+                                ."Selecionar"
+                            ."</button>"
+                        ."</td>"        
+
+                        ."<td>" 
+                            ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$receita['receitaId']."'>"
+                                ."Desativar"
+                            ."</button>"                               
+                        ."</td>"
+
+                        ."<div class='modal fade' id='ExcluiModal".$receita['receitaId']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                            ."<div class='modal-dialog' role='document '>"
+                                ."<div class='modal-content'>"
+                                    .'<div class="modal-header">'
+                                        .'<h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>'
+                                        .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                                            .'<span aria-hidden="true ">&times;</span>'
+                                        .'</button>'
+                                    .'</div>'                                  
+                                    .'<div class="modal-body">'
+                                        .'<form method="POST" action="php/saveProdutos.php? validacao=DPF&idProduto='.$receita["receitaId"].'">'
+                                            .'<label> Confirmar esta ação? </label>'
+                                            .'<div align-items="right">'
+                                                .'<button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
+                                            .'</div>'
+                                        .'</form>'
+                                    .'</div>'
+                                .'</div>'
+                            .'</div>'
+                        .'</div>'
+                    
+                        .'<div class="modal fade" id="modalPedido'.$receita['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div class="modal-dialog" role="document ">                                
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                        
+                                            <form method="POST" action="php/savePedidos.php? validacao=I&id='.$receita['receitaId'].'">
+                                            <div class="input-group mb-3">
+                                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
+                                                    <div class="col-sm-9">
+                                                        <input value="'.$receita['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    </div>
+                                            </div>               
+                        
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
+                                                <div class="col-sm-9">
+                                                        <input value="'.$receita['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>';    
+
+                        for($cont=1;$cont <= count($receita['materialNome']);$cont++){
+                                                
+                            $table .= 
+                                    '<div class="form-group row">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$receita['materialNome'][$cont].'" id="idMaterial" name="nMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>';
+
+                        }
+                                                
+                        $table .= 
+                                '<div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Material</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$receita['tipo_materiaNome'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Classe</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$receita['classeMaterial'].'" id="idClasseMaterial" name="nClasseMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$receita['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$receita['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade de produção</label>
+                                    <div class="col-sm-9">
+                                        <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>
+                                    <div class="col-sm-9">
+                                        <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                '.optionMaquina($receita['moldeId']).'
+                                        </select>
+                                    </div>
+                                </div>                                    
+            
+                                <div class="form-group row" style="align-content:justify">                            
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Status da ordem de produção</label>
+                                    <div class="col-sm-9">
+                                        <select id="idStatus" name="nStatus" class="select2 form-control custom-select" style="width: 40%; height:36px;">
+                                                <option value=1>aberto</option>
+                                                <option value=2>Inicializado</option>
+                                        </select>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Observações</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id="iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea> 
+                                    </div>
+                                </div>
+            
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">
+                                                Realizar Pedido
+                                            </button>
+                                        </div>
+                                    </div>
+                            </form>';
+
+                    $table .='</div></div></div></div>';
+
+                    $table .='</tr>';                     
+
+                }
+
+                $n++;
+
+            }                            
+            var_dump($n);
+            die();
         }        
 
         return $table;
