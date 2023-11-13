@@ -29,31 +29,32 @@ function dataTablePedido(){
     include('connection.php');
 
     $sql = 'SELECT ped.idPedido as pedidoId,
+                ped.idUsuario as userId, 
+                ped.idMaquina as maquinaId,
+                ped.idReceita as receitaId,
                 ped.dataHora_aberto as openDateTime,
                 ped.dataHora_fechado as closeDateTime,     
                 ped.status as stats,         
                 ped.observacoes as obs,       
-                ped.quantidade as qtdR,   
+                ped.quantidade as qtdeProduto,   
                 
-                usu.idUsuario as userId,
                 usu.idTurma as turmaId,    
                 usu.nome as name,                        
                 usu.sobrenome as sobName,    
 
                 tur.nomeTurma as turma,  
                 tur.turno as turno, 
- 
-                maq.idMaquina as maquinaId,
+                
                 maq.descricao as maquina,
-
-                rec.idReceita as receitaId,
+                
                 rec.idProduto as produtoId,            
                 rec.idPigmento as pigmentoId,
-                rec.quantidadePigmento as qtdPig,
+                rec.quantidadePigmento as qtdePigmento,
                 
-                rmp.quantidadeMaterial as qtdMat,
+                
+                rmp.idMateriaPrima as materiaId,
+                rmp.quantidadeMaterial as qtdeMateria,
 
-                mat.idMateriaPrima as materiaId,
                 mat.idClasse as classeId,                    
                 mat.idTipoMateriaPrima as tipoMatId,    
                 mat.descricao as material,   
@@ -81,7 +82,7 @@ function dataTablePedido(){
                 fer.idTiposFerramental as tipoMoldeId,
 
                 tfer.descricao as tipoMolde             
-            
+
                 FROM pedidos as ped
 
                 LEFT JOIN usuarios as usu
@@ -160,8 +161,8 @@ function dataTablePedido(){
 
             $sql='SELECT idMateriaPrima FROM receita_materia_prima WHERE idReceita ='.$campo['receitaId'].';';
 
-            $result=mysqli_query($conn,$sql);
-            mysqli_close($conn);        
+            $result = mysqli_query($conn,$sql);            
+            //mysqli_close($conn);        
 
             if (mysqli_num_rows($result) > 0){
 
@@ -320,7 +321,7 @@ function dataTablePedido(){
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">quantidade de produtos</label>'
                             .'                    <div class="col-sm-9">'
-                            .'                        <input value="'.$campo['qtdR'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
+                            .'                        <input value="'.$campo['qtdeProduto'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'
                             .'                    </div>'
                             .'                </div>'
                             .''
@@ -348,29 +349,25 @@ function dataTablePedido(){
                             .'                </div>'
                             .''
                             .'           </div>'
-                            .'           <div syle="display:grid;">'
-                            .'';
+                            .'           <div syle="display:grid;">'                           
 
 
-                                        <h4>Matéria Prima Usada</h4>'
-                                        <div class="form-group row">'
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>'
-                                            <div class="col-sm-9">'
-                                                  <input value="'.$campo['material'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                                            </div>'
-                                        </div>'                         
-                
-                                        <div class="form-group row">'
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>'
-                                            <div class="col-sm-9">'
-                                                  <input value="'.($campo['qtdMat'] * $campo['qtdR']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
-                                            </div>'
-                                        </div>';
+                            .'<h4>Matéria Prima Usada</h4>
+                            <div class="form-group row">
+                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Matéria Prima</label>
+                                <div class="col-sm-9">
+                                        <input value="'.$campo['material'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>                   
+                                </div>
+                            </div>      
+    
+                            <div class="form-group row">
+                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>
+                                <div class="col-sm-9">
+                                        <input value="'.($campo['qtdeMateria'] * $campo['qtdeProduto']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>'
+
                             
-                            
-
-
-                            .''
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de material</label>'
                             .'                    <div class="col-sm-9">'
@@ -421,7 +418,7 @@ function dataTablePedido(){
                             .'                <div class="form-group row">'
                             .'                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade Usada</label>'
                             .'                    <div class="col-sm-9">'
-                            .'                          <input value="'.($campo['qtdPig'] * $campo['qtdR']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
+                            .'                          <input value="'.($campo['qtdePigmento'] * $campo['qtdeProduto']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>'                        
                             .'                    </div>'
                             .'                </div>'
                             .''

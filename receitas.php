@@ -51,6 +51,7 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Matéria Prima</th>
                                         <th>Pigmento</th>
                                         <th>Selecionar</th>
