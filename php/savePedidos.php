@@ -54,42 +54,65 @@
 
         $idPedido = buscaId("pedidos","idPedido");
 
-        for ($n = 0; $n < count($_POST['nMaterial']); $n++){
-        
-            $sql = 'INSERT INTO historico
-                        VALUES(idPedido,
-                            idUsuario,
-                            materiaPrima,
-                            tipoMateria_prima,
-                            classeMateria_prima,
-                            pigmento,
-                            tipoPigmento,
-                            produto,
-                            maquina,
-                            quantidadeProduto,
-                            quantidadeMateria_prima,
-                            quantidadePigmento,
-                            dataHora_aberto,
-                            statusPedido,
-                            obsPedido,
-                            obsReceita)
-                        VALUES(
-                            '.$idPedido.',
-                            '.$_SESSION['idUsuario'].',
-                            '.$_POST['nMaterial'][$n].',
-                            '.$_POST['idTipoMaterial'][$n].',
-                            '.$_POST['idClasseMaterial'][$n].',
-                            '.$_POST['nCor'].',
-                            '.$_POST['nTipoCor'].',
-                            '.$_POST['nProduto'].',
-                            '.$_POST['nMaquina'].',
-                            '.$qtde.',
-                            '.$_POST['nQtdeMaterial'][$n].',
-                            '.$_POST['nQtdPigmento'][$n].',
-                            '.$current_date.',
-                            '.$_POST['nStatus'].',
-                            "'.$obs.'",
-                            );';            
+        var_dump($_POST['nMaterial']);
+        die();
+
+        if(count($_POST['nMaterial']) > 0){
+            for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
+                $sql = 'INSERT INTO historico
+                            VALUES(idPedido,
+                                idUsuario,
+                                materiaPrima,
+                                tipoMateria_prima,
+                                classeMateria_prima,
+                                pigmento,
+                                tipoPigmento,
+                                produto,';
+                
+                if ($_POST['nStatus'] == 2){
+                    $sql .='idMaquina,';
+                }
+    
+                $sql .=
+                               'quantidadeProduto,
+                                quantidadeMateria_prima,
+                                quantidadePigmento,';
+                
+                if ($_POST['nStatus'] == 2){
+                    $sql .='dataHora_aberto,';
+                }
+                    
+                $sql .=
+                               'statusPedido,
+                                obsPedido)
+                            VALUES(
+                                '.$idPedido.',
+                                '.$_SESSION['idUsuario'].',
+                                '.$_POST['nMaterial'][$n].',
+                                '.$_POST['idTipoMaterial'][$n].',
+                                '.$_POST['idClasseMaterial'][$n].',
+                                '.$_POST['nCor'].',
+                                '.$_POST['nTipoCor'].',
+                                '.$_POST['nProduto'].',';
+                
+                if ($_POST['nStatus'] == 2){
+                    $sql .=''.$_POST['nMaquina'].',';
+                }
+    
+                $sql .=
+                               ''.$qtde.',
+                                '.$_POST['nQtdeMaterial'][$n].',
+                                '.$_POST['nQtdPigmento'][$n].',';
+                
+                if ($_POST['nStatus'] == 2){
+                    $sql .=''.$current_date.',';
+                }
+    
+                $sql .=
+                                ''.$_POST['nStatus'].',
+                                "'.$obs.'"
+                                );';                
+            }
 
         }
 
