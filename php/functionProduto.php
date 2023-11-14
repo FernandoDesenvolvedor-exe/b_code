@@ -506,7 +506,7 @@
     
             $select = "";
     
-            $sql = "SELECT idProduto, descricao FROM produtos WHERE ativo = 1 AND idProduto = ".$idProduto.";";
+            $sql = "SELECT idProduto, descricao, peso FROM produtos WHERE ativo = 1 AND idProduto = ".$idProduto.";";
     
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
@@ -519,7 +519,7 @@
                 }
     
                 foreach($array as $campo){
-                    $select .= "<option value =".$campo['idProduto']."> ".$campo['descricao']." </option>";
+                    $select .= "<option value =".$campo['idProduto']."> ".$campo['descricao']." - ".$campo['peso']."g </option>";
                 }
             }            
         } else if ($idProduto != 0){

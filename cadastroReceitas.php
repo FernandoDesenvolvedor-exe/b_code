@@ -11,7 +11,7 @@
     <?php  
     include('links/cabecalho.php');
     ?>
-    <title>Cadastro Usuario</title>
+    <title>Cadastro Receita</title>
 </head>
 
 <body>
@@ -34,14 +34,14 @@
             <!-- Start Page Content -->                    
             <div class="card">
                 <!-- Cria um formulário -->                            
-                <form method="POST" class="form-horizontal" action= "php/saveReceita.php" ><!-- "php/saveReceita.php" -->
+                <form method="POST" class="form-horizontal" action= "php/saveReceita.php " ><!-- idProduto=<?php //echo $_GET['idProduto']?> "php/saveReceita.php" -->
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <select id="iTipoFerramental" name="nTipoFerramental" class="select2 form-control custom-select" style="width: 100%; height:36px;" disabled>
+                                <select id="iProduto" name="nProduto" class="select2 form-control custom-select" style="width: 100%; height:36px;" disabled>
                                     <?php echo optionProdutos($_GET['idProduto']);?>
                                 </select>
                             </div>
@@ -74,152 +74,11 @@
                                         ?> 
                                         </tbody>
                                     </table>
-                                    <!--
-                                    <div class="card-body">
-                                        !-- Botão Adicionar --
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal_Adcionar">
-                                            Adcionar
-                                        </button>
-                                        !-- Botão Alterar --
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal_Alterar">
-                                            Alterar
-                                        </button>
-                                        !-- Botão Excluir --
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Modal2">
-                                            Excluir
-                                        </button>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                                 
                         </div>
-                        <!-- -----------Modal_Adicionar-------------------------------------------------------------------------------------------------------------- -->
-                        <!-- 
-                        <div class="modal fade" id="Modal_Adcionar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Adicionar Material</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
-                                            <div class="col-sm-9">
-                                                <select onChange='prod()' id="iMateria" name="nMateria" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                <?php //echo optionMaterial(1);?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Material</label>
-                                            <div class="col-sm-9">
-                                                <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
-                                            </div>
-                                        </div>
-                                        <label>
-
-                                            <?php 
-                                                /*
-                                                include('php/connection.php');
-                                                $sql='SELECT count(*) as qntMateriais FROM `materia_prima`;';
-                                                $result= mysqli_query($conn,$sql);
-                                                mysqli_close($conn);
-                                                if(mysqli_num_rows($result) > 0){
-                                                    $array = array();
-                                    
-                                                    while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                                                        array_push($array, $linha);
-                                                    }
-                                                    foreach($array as $campo){
-                                                        $qntMaterial=$campo['qntMateriais'];
-                                                    }
-                                                    echo $qntMaterial;
-                                                    echo $_POST['data'];
-                                                    if(isset($_POST['data'])){
-                                                        $dados = json_decode($_POST['data'], true);
-                                                        echo json_decode($_POST['data'], true);
-                                                        var_dump($dados);
-                                                    }
-                                                }*/
-                                            ?>
-                                            <script >
-                                                function prod(){
-                                                    a = document.getElementById('iMateria').value
-                                                    console.log(a)
-                                                    var dados = JSON.stringify(a);
-                                                    console.log('Dados: '+dados)
-                                                    $.ajax({
-                                                        url: 'cadastroReceitas.php',
-                                                        type: 'POST',
-                                                        data: {data: dados},
-                                                        success: function(result){
-                                                            // Retorno se tudo ocorreu normalmente
-                                                            //$_SESSION['prod']=dados;
-                                                        },
-                                                        error: function(jqXHR, textStatus, errorThrown) {
-                                                            // Retorno caso algum erro ocorra
-                                                        }
-                                                    });
-                                                <?php/*
-                                                echo(isset($_POST['data']));
-                                                if(isset($_POST['data'])){
-                                                    $dados = json_decode($_POST['data'], true);
-                                                    echo json_decode($_POST['data'], true);
-                                                    var_dump($dados);
-                                                }*/
-                                                
-                                                ?>
-                                                }
-                                            </script>
-                                            
-                                            
-                                        </label>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        !-- -----------Modal_Alterar------------------------------------------------------------------------------------------------------ --
-                        <h4 class="card-title">Alterar</h4>
-                        <div class="modal fade" id="Modal_Alterar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Alterar Material</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"></label>
-                                        <h4 class="card-title">Materia Prima -  </h4>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Material</label>
-                                        <div class="col-sm-9">
-                                            <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        !-- -----------Modal-Excluir------------------------------------------------------------------------------------------------------ --
-                        
-                        !-- ------------------------------------------------------------------------------------------------------------------------------ -->
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
                             <div class="col-md-9">
