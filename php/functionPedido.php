@@ -6,7 +6,7 @@ function receitas($idReceita){
 
     $receita='';
 
-    $sql='SELECT * FROM receitas WHERE idReceita='.$_GET['id'].'AND ativo = 1;';
+    $sql='SELECT * FROM receita_materia_prima WHERE idReceita='.$idReceita.';';
 
     $receita = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -15,7 +15,7 @@ function receitas($idReceita){
 
         $array = array();
 
-        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+        while($linha = mysqli_fetch_array($receita, MYSQLI_ASSOC )){
             array_push($array,$linha);
         }
 

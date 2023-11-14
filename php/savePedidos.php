@@ -25,52 +25,73 @@
 
         $current_date = "$data $horario";
 
-        if ($_POST['nStatus'] == 1){
-            
-            $sql = 'INSERT INTO pedidos(idUsuario,
-                        idReceita,
-                        idMaquina,
-                        status,
-                        observacoes,
-                        quantidade,
-                        ativo)
-                        VALUES('.$_SESSION['idUsuario'].',
-                        '.$_GET['id'].',
-                        '.$_POST['nMaquina'].',
-                        "'.$current_date.'",
-                        '.$_POST['nStatus'].',
-                        "'.$obs.'",
-                        '.$qtde.',
-                        1);';
-
-        } else {
-
-            $sql = 'INSERT INTO pedidos(idUsuario,
-                        idReceita,
-                        idMaquina,
-                        dataHora_aberto,
-                        status,
-                        observacoes,
-                        quantidade,
-                        ativo)
-                        VALUES('.$_SESSION['idUsuario'].',
-                        '.$_GET['id'].',
-                        '.$_POST['nMaquina'].',
-                        "'.$current_date.'",
-                        '.$_POST['nStatus'].',
-                        "'.$obs.'",
-                        '.$qtde.',
-                        1);';
+        $sql = 'INSERT INTO pedidos(idUsuario,
+                    idReceita,';
+        
+        if ($_POST['nStatus'] == 2){
+            $sql .='idMaquina,
+                    dataHora_aberto,';
         }
         
+        $sql .=    'status,
+                    observacoes,
+                    quantidade,
+                    ativo)
+                    VALUES('.$_SESSION['idUsuario'].',
+                    '.$_GET['id'].',';
+        
+        if ($_POST['nStatus'] == 2){
+            $sql .= ''.$_POST['nMaquina'].',
+                    "'.$current_date.'",';
+        }
 
-        $result = mysqli_query($conn, $sql);        
+        $sql .=     ''.$_POST['nStatus'].',
+                    "'.$obs.'",
+                    '.$qtde.',
+                    1);';
 
-        $arrayReceitas = receitas($_GET['id']);
-        var_dump($arrayReceitas);
-        die();
+        $result = mysqli_query($conn, $sql);     
 
-        $sql='INSERT INTO historico';
+        $idPedido = buscaId("pedidos","idPedido");
+
+        for ($n = 0; $n < count($_POST['nMaterial']); $n++){
+        
+            $sql = 'INSERT INTO historico
+                        VALUES(idPedido,
+                            idUsuario,
+                            materiaPrima,
+                            tipoMateria_prima,
+                            classeMateria_prima,
+                            pigmento,
+                            tipoPigmento,
+                            produto,
+                            maquina,
+                            quantidadeProduto,
+                            quantidadeMateria_prima,
+                            quantidadePigmento,
+                            dataHora_aberto,
+                            statusPedido,
+                            obsPedido,
+                            obsReceita)
+                        VALUES(
+                            '.$idPedido.',
+                            '.$_SESSION['idUsuario'].',
+                            '.$_POST['nMaterial'][$n].',
+                            '.$_POST['idTipoMaterial'][$n].',
+                            '.$_POST['idClasseMaterial'][$n].',
+                            '.$_POST['nCor'].',
+                            '.$_POST['nTipoCor'].',
+                            '.$_POST['nProduto'].',
+                            '.$_POST['nMaquina'].',
+                            '.$qtde.',
+                            '.$_POST['nQtdeMaterial'][$n].',
+                            '.$_POST['nQtdPigmento'][$n].',
+                            '.$current_date.',
+                            '.$_POST['nStatus'].',
+                            "'.$obs.'",
+                            );';            
+
+        }
 
         mysqli_close($conn);
 
