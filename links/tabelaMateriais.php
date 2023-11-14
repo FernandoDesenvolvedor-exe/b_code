@@ -29,10 +29,7 @@ if(mysqli_num_rows($result) > 0){
     while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         array_push($array, $linha);
     }
-    $vet = [];
     foreach($array as $campo){
-        for($i=0; $i<count($_SESSION['materiais']); $i++){
-            if($_SESSION['materiais'][$i]==$campo['id']){
                 echo    '<tr>
                     <th>
                         <label class="customcheckbox">
@@ -43,28 +40,11 @@ if(mysqli_num_rows($result) > 0){
                     <td>'.$campo['nome'].'</td>
                     <td>'.$campo['tipos'].'</td>
                     <td>'.$campo['classe'].'</td>
-                    <td>1200'
-                    //<input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:50%;" min="0">
-                    .'</td>
+                    <td>
+                    <input step="50" id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min="0">
+                    </td>
                 </tr>'; 
-                $vet[]= $campo['id'];//.' '.$campo['nome']; 
-            }
-            
-        }  
-                      
+                       
     }
-        $_SESSION['materiais'] = $vet;
-        echo ' Vetor 2 : ';
-        //echo $vet;
-        for($i=0; $i<count($_SESSION['materiais']); $i++){
-            echo $_SESSION['materiais'][$i];
-        };
-        
-        //echo $_SESSION['materiais'];
-        unset($vet);
-        echo $_POST['data'];
-        if(isset($_POST['data'])){
-            echo json_decode($_POST['data'], true);
-        }
 }
 ?>

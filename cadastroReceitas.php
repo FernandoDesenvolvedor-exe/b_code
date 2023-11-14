@@ -4,7 +4,6 @@
         session_start();
     }  
     $_SESSION['tipo'] = 1;
-    $_SESSION['materiais']=[];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,7 +34,7 @@
             <!-- Start Page Content -->                    
             <div class="card">
                 <!-- Cria um formulário -->                            
-                <form method="POST" class="form-horizontal" action= "" ><!-- "php/saveReceita.php" -->
+                <form method="POST" class="form-horizontal" action= "php/saveReceita.php" ><!-- "php/saveReceita.php" -->
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
@@ -75,25 +74,27 @@
                                         ?> 
                                         </tbody>
                                     </table>
+                                    <!--
                                     <div class="card-body">
-                                        <!-- Botão Adicionar -->
+                                        !-- Botão Adicionar --
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal_Adcionar">
                                             Adcionar
                                         </button>
-                                        <!-- Botão Alterar -->
+                                        !-- Botão Alterar --
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal_Alterar">
                                             Alterar
                                         </button>
-                                        <!-- Botão Excluir -->
+                                        !-- Botão Excluir --
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Modal2">
                                             Excluir
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                                 
                         </div>
                         <!-- -----------Modal_Adicionar-------------------------------------------------------------------------------------------------------------- -->
+                        <!-- 
                         <div class="modal fade" id="Modal_Adcionar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -108,7 +109,7 @@
                                             <label class="col-md-3 m-t-15" style="text-align: right;">Materias Primas</label>
                                             <div class="col-sm-9">
                                                 <select onChange='prod()' id="iMateria" name="nMateria" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                <?php echo optionMaterial(1);?>
+                                                <?php //echo optionMaterial(1);?>
                                                 </select>
                                             </div>
                                         </div>
@@ -120,7 +121,9 @@
                                             </div>
                                         </div>
                                         <label>
+
                                             <?php 
+                                                /*
                                                 include('php/connection.php');
                                                 $sql='SELECT count(*) as qntMateriais FROM `materia_prima`;';
                                                 $result= mysqli_query($conn,$sql);
@@ -135,13 +138,13 @@
                                                         $qntMaterial=$campo['qntMateriais'];
                                                     }
                                                     echo $qntMaterial;
-                                                    echo isset($_POST['data']);
+                                                    echo $_POST['data'];
                                                     if(isset($_POST['data'])){
                                                         $dados = json_decode($_POST['data'], true);
                                                         echo json_decode($_POST['data'], true);
                                                         var_dump($dados);
                                                     }
-                                                }
+                                                }*/
                                             ?>
                                             <script >
                                                 function prod(){
@@ -150,7 +153,7 @@
                                                     var dados = JSON.stringify(a);
                                                     console.log('Dados: '+dados)
                                                     $.ajax({
-                                                        url: 'links/tabelaMateriais.php',
+                                                        url: 'cadastroReceitas.php',
                                                         type: 'POST',
                                                         data: {data: dados},
                                                         success: function(result){
@@ -161,30 +164,29 @@
                                                             // Retorno caso algum erro ocorra
                                                         }
                                                     });
-                                                <?php
+                                                <?php/*
                                                 echo(isset($_POST['data']));
                                                 if(isset($_POST['data'])){
                                                     $dados = json_decode($_POST['data'], true);
                                                     echo json_decode($_POST['data'], true);
                                                     var_dump($dados);
-                                                }
+                                                }*/
                                                 
                                                 ?>
                                                 }
-                                                
                                             </script>
                                             
                                             
                                         </label>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- -----------Modal_Alterar------------------------------------------------------------------------------------------------------ -->
+                        !-- -----------Modal_Alterar------------------------------------------------------------------------------------------------------ --
                         <h4 class="card-title">Alterar</h4>
                         <div class="modal fade" id="Modal_Alterar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -197,7 +199,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label"></label>
-                                        <h4 class="card-title">Materia Prima - <?php  ?> </h4>
+                                        <h4 class="card-title">Materia Prima -  </h4>
                                     </div>
 
                                     <div class="form-group row">
@@ -215,15 +217,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- -----------Modal-Excluir------------------------------------------------------------------------------------------------------ -->
-                        <?php
+                        !-- -----------Modal-Excluir------------------------------------------------------------------------------------------------------ --
                         
-                        ?>
-                        <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+                        !-- ------------------------------------------------------------------------------------------------------------------------------ -->
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
                             <div class="col-md-9">
-                                <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                     <?php echo optionPigmento(); ?>
                                 </select>
                             </div>                                    
@@ -233,7 +233,7 @@
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Pigmento</label>
                             <div class="col-sm-9" id='qntM'>
                                 
-                                <!-- <input step="50" id="iQuandtidade" name="nQuandtidade" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:10%;" min="0"> -->
+                               <input step="5" id="iQuantPigmento" name="nQuantPigmento" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:25%;" min="0">
                                 
                             </div>
                         </div>
@@ -247,7 +247,7 @@
                     </div> 
                     <div class="border-top">
                         <div class="card-body">
-                            <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                            <button type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">Salvar</button>
                         </div>                      
                     </div>
                 </form>
@@ -261,30 +261,7 @@
 </div>
 
     <?php include('links/script.php'); ?>
-    <script>
-        console.log('ooooooooooooooooooooo')
-        function GetCheckbox(){
-            const boxes = document.querySelectorAll('input[type="checkbox"]')
-            console.log(boxes.lenght)
-            for(i=0;i<boxes.length; i++){
-                boxes[i].addEventListener("click", function() {
-                    if (boxes[i].checked) {
-                        <?php //$_SESSION['opMateriais'] =?>
-                        boxes[i].val()
-                        console.log(boxes[i].val());
-                    }
-                });
-            }
-        }
-        function mat(){
-            console.log(document.getElementById('iMateria').value);
-
-        }
-        //document.getElementById('iMateria').addEventListener('change', function() {
-        //    console.log('123'+document.getElementById('iMateria').value);
-
-        //});
-    </script>
+    
 </body>
     
 </html>
