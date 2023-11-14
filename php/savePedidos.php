@@ -26,25 +26,21 @@
         $current_date = "$data $horario";
 
         $sql = 'INSERT INTO pedidos(idUsuario,
-                    idReceita,';
-        
+                    idReceita,';        
         if ($_POST['nStatus'] == 2){
             $sql .='idMaquina,
                     dataHora_aberto,';
-        }
-        
+        }        
         $sql .=    'status,
                     observacoes,
                     quantidade,
                     ativo)
                     VALUES('.$_SESSION['idUsuario'].',
-                    '.$_GET['id'].',';
-        
+                    '.$_GET['id'].',';        
         if ($_POST['nStatus'] == 2){
             $sql .= ''.$_POST['nMaquina'].',
                     "'.$current_date.'",';
         }
-
         $sql .=     ''.$_POST['nStatus'].',
                     "'.$obs.'",
                     '.$qtde.',
@@ -52,16 +48,16 @@
 
         $result = mysqli_query($conn, $sql);     
 
-        $idPedido = buscaId("pedidos","idPedido");
-
-        var_dump($_POST['nMaterial']);
-        die();
+        $idPedido = buscaId("pedidos","idPedido");         
 
         if(count($_POST['nMaterial']) > 0){
             for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
                 $sql = 'INSERT INTO historico
-                            VALUES(idPedido,
-                                idUsuario,
+                                (idPedido,
+                                nomeUsuario,
+                                tipoUsuario,
+                                turma,
+                                turno,
                                 materiaPrima,
                                 tipoMateria_prima,
                                 classeMateria_prima,
@@ -70,7 +66,7 @@
                                 produto,';
                 
                 if ($_POST['nStatus'] == 2){
-                    $sql .='idMaquina,';
+                    $sql .='maquina,';
                 }
     
                 $sql .=
@@ -84,47 +80,58 @@
                     
                 $sql .=
                                'statusPedido,
-                                obsPedido)
+                                obsPedido,
+                                ativo)
                             VALUES(
                                 '.$idPedido.',
-                                '.$_SESSION['idUsuario'].',
-                                '.$_POST['nMaterial'][$n].',
-                                '.$_POST['idTipoMaterial'][$n].',
-                                '.$_POST['idClasseMaterial'][$n].',
-                                '.$_POST['nCor'].',
-                                '.$_POST['nTipoCor'].',
-                                '.$_POST['nProduto'].',';
+                                "'.$_SESSION['nome'].'"
+                                "'.$_SESSION['tipo'].'"
+                                "'.$_SESSION['turma'].'"
+                                "'.$_SESSION['turno'].'"
+                                "'.$_POST['nMaterial'][$n].'",
+                                "'.$_POST['nTipoMaterial'][$n].'",
+                                "'.$_POST['nClasseMaterial'][$n].'",
+                                "'.$_POST['nCor'].'",
+                                "'.$_POST['nTipoCor'].'",
+                                "'.$_POST['nProduto'].'",';
                 
                 if ($_POST['nStatus'] == 2){
-                    $sql .=''.$_POST['nMaquina'].',';
+                    $sql .='"'.$_POST['nMaquina'].'",';
                 }
     
                 $sql .=
                                ''.$qtde.',
-                                '.$_POST['nQtdeMaterial'][$n].',
-                                '.$_POST['nQtdPigmento'][$n].',';
+                                "'.$_POST['nQtdeMaterial'][$n].'",
+                                '.$_POST['nQtdPigmento'].',';
                 
                 if ($_POST['nStatus'] == 2){
-                    $sql .=''.$current_date.',';
+                    $sql .='"'.$current_date.'",';
                 }
     
                 $sql .=
                                 ''.$_POST['nStatus'].',
-                                "'.$obs.'"
-                                );';                
+                                "'.$obs.'",
+                                1);'; 
+
+                $result = mysqli_query($conn, $sql);  
             }
 
         }
-
         mysqli_close($conn);
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR RECEITA
 
         $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
 
-    }else if($_GET['validacao'] == 'DR'){ // DESATIVAR RECEITA
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+    } else if($_GET['validacao'] == 'DR'){ // DESATIVAR RECEITA
 
         $sql = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].';';
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
         
         header('location:../receitas.php? idProduto='.$_GET['id'].'&pr='.$_GET['pr'].'');
 
@@ -149,20 +156,24 @@
 
             $sql = 'UPDATE pedidos SET status = 2 WHERE idPedido = '.$_GET['id'].';';
 
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+
         } else if ($_GET['stats'] == 2){
 
             $sql = 'UPDATE pedidos SET status = 3, dataHora_fechado="'.$current_date.'" WHERE idPedido = '.$_GET['id'].';';
 
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
         }  
 
     } else if ($_GET['validacao'] == 'U'){
 
         $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
 
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
     }
-
-    $result = mysqli_query($conn, $sql);
-    mysqli_close($conn);
     
     header('location:../producao.php');
 ?>

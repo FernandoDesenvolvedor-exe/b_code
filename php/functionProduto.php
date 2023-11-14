@@ -93,7 +93,7 @@
                         array_push($arrayMat['nome'], $campo['materialNome']);
                         array_push($arrayMat['tipo'], $campo['tipo_materiaNome']);  
                         array_push($arrayMat['classe'], $campo['classeMaterial']);
-                        array_push($arrayMat['quantidade'], $campo['qtdeMateria']);   
+                        array_push($arrayMat['quantidade'], $campo['qtdeMateria']);
                     }
 
                     if($n == count($arrayQtdMat)){
@@ -172,14 +172,14 @@
                                                             <div class="input-group mb-3">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>               
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>'; 
 
@@ -191,20 +191,20 @@
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'" disabled>
+                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'" disabled>
+                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'" disabled>
+                                                    <input type="text" id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
                                             <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g" disabled>
+                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g">
                                             </div> 
                                         </div>'; 
 
@@ -214,20 +214,20 @@
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'" disabled>
+                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'" disabled>
+                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" disabled>
+                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'">
                                                 </div>
                                             </div>
                                         </div>                                        
                                         <div class="form-group row">
                                             <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
                                             <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g" disabled>
+                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g">
                                             </div> 
                                         </div>';
                             } else {                                        
@@ -237,20 +237,20 @@
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'" disabled>
+                                                    <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'" disabled>
+                                                    <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'g" disabled>
+                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'g">
                                                 </div>
                                             </div>
                                         </div>                                        
                                         <div class="form-group row">
                                             <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
                                             <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g" disabled>
+                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g">
                                             </div> 
                                         </div>';
                             }
@@ -260,21 +260,21 @@
                                                             '<div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
@@ -391,14 +391,14 @@
                                                             <div class="input-group mb-3">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>               
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>  
 
@@ -406,13 +406,13 @@
                                                                 <label>Matéria Prima</label>
                                                                 <div class="row mb-3">
                                                                     <div class="col-lg-4">
-                                                                        <input type="text" id="idMaterial[]" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'" disabled>
+                                                                        <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'" >
                                                                     </div>
                                                                     <div class="col-lg-4">
-                                                                        <input type="text" id="idTipoMaterial[]" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'" disabled>
+                                                                        <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'" >
                                                                     </div>
                                                                     <div class="col-lg-4">
-                                                                        <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" disabled>
+                                                                        <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" >
                                                                     </div>
                                                                 </div>
                                                             </div>   
@@ -420,21 +420,28 @@
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
                                                                 <div class="col-lg-3">
-                                                                    <input type="text" id="idQtdeMaterial[]" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g" disabled>
+                                                                    <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g" >
                                                                 </div> 
                                                             </div>
                                                             
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                                 <div class="col-sm-9">
-                                                                    <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                                    <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                </div>
+                                                            </div>
+                                        
+                                                            <div class="form-group row">
+                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                                <div class="col-sm-9">
+                                                                    <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         

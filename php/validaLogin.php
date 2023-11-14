@@ -20,9 +20,19 @@
 
     $_SESSION['msgLogin'] = '';
     
-    $sql = "SELECT *"
-            ." FROM usuarios" 
-            ." WHERE login = '".$login."';";
+    $sql = 'SELECT user.idUsuario, 
+                user.login as login,
+                user.senha as senha,
+                user.nome as name,
+                user.sobrenome as surname,
+                user.tipo as tipo,
+                user.ativo as ativo
+                turma.turno as turno,
+                turma.nomeTurma as turma
+                FROM usuarios as user
+                LEFT JOIN turma 
+                ON user.idTurma = turma.idTurma      
+                WHERE user.login = "'.$login.'";';
 
     //var_dump($sql);
 
@@ -39,8 +49,6 @@
         }
 
         foreach($array as $campo){      
-            //var_dump($campo['senha'].'/'.md5($_POST['nSenha']));
-            //die(); //teste para caso senha esteja errada
 
             //validar Senha
             if($campo['senha'] == md5($_POST['nSenha'])){
@@ -50,7 +58,10 @@
 
                     //joga o usuario pra tela de acordo com o nivel de acesso dele
                     $_SESSION['idUsuario']= $campo['idUsuario'];
+                    $_SESSION['nome']= ''.$campo['name'].' '.$campo['surname'];
                     $_SESSION['tipo'] = $campo['tipo'];
+                    $_SESSION['turma'] = $campo['turma'];
+                    $_SESSION['turno'] = $campo['turno'];
 
                     header('location:../index.php');
 
