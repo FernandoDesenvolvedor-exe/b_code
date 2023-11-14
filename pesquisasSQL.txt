@@ -1,0 +1,38 @@
+quantidade usuarios
+quantidade ativo
+select COUNT(*) as usuariosAtivos from usuarios where ativo=1;
+---
+Pedidos realizados
+SELECT COUNT(*) as quantPedidos from pedidos;
+duração
+abertos
+fechados
+----
+receitas
+-quant 
+-usadas
+-------- 
+material
+-quant 
+-usados
+---------
+classe
+-quant material
+-usados
+-------
+pigmento
+-quant 
+-usados
+[tipos]
+-------
+molde
+-quant
+-usados
+[tipos]
+-----------
+maquina 
+-produziu
+-usuario
+-duração
+------------
+fornecedores
