@@ -17,6 +17,7 @@
                     tfer.descricao as tipoMolde_nome,
 
                     mat.descricao as materialNome,
+                    mat.quantidade as materiaMax
                     tm.descricao as tipo_materiaNome, 
                     c.descricao as classeMaterial,
 
@@ -146,7 +147,7 @@
                                     <div class="modal-dialog" role="document ">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Desativar Receita</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true ">&times;</span>
                                                 </button>
@@ -167,7 +168,7 @@
                                     <div class="modal-dialog" role="document ">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Criar pedido</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true ">&times;</span>
                                                 </button>

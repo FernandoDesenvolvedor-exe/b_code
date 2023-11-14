@@ -25,22 +25,44 @@
 
         $current_date = "$data $horario";
 
-        $sql = 'INSERT INTO pedidos(idUsuario,
-                idReceita,
-                idMaquina,
-                dataHora_aberto,
-                status,
-                observacoes,
-                quantidade,
-                ativo)
-                VALUES('.$_SESSION['idUsuario'].',
-                '.$_GET['id'].',
-                '.$_POST['nMaquina'].',
-                "'.$current_date.'",
-                '.$_POST['nStatus'].',
-                "'.$obs.'",
-                '.$qtde.',
-                1);';
+        if ($_POST['nStatus'] == 1){
+            
+            $sql = 'INSERT INTO pedidos(idUsuario,
+                        idReceita,
+                        idMaquina,
+                        status,
+                        observacoes,
+                        quantidade,
+                        ativo)
+                        VALUES('.$_SESSION['idUsuario'].',
+                        '.$_GET['id'].',
+                        '.$_POST['nMaquina'].',
+                        "'.$current_date.'",
+                        '.$_POST['nStatus'].',
+                        "'.$obs.'",
+                        '.$qtde.',
+                        1);';
+
+        } else {
+
+            $sql = 'INSERT INTO pedidos(idUsuario,
+                        idReceita,
+                        idMaquina,
+                        dataHora_aberto,
+                        status,
+                        observacoes,
+                        quantidade,
+                        ativo)
+                        VALUES('.$_SESSION['idUsuario'].',
+                        '.$_GET['id'].',
+                        '.$_POST['nMaquina'].',
+                        "'.$current_date.'",
+                        '.$_POST['nStatus'].',
+                        "'.$obs.'",
+                        '.$qtde.',
+                        1);';
+        }
+        
 
         $result = mysqli_query($conn, $sql);        
 
