@@ -1,5 +1,4 @@
 <?php 
-
     function dataTableReceitas($idProduto){
 
         include('connection.php');
@@ -133,7 +132,7 @@
                                 '</td>
                                 <td>'.$campo['pigmentoNome'].'</td>
                                 <td>                                
-                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido"'.$campo['receitaId'].'">
+                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
                                         Selecionar
                                     </button>
                                 </td>       
@@ -207,10 +206,13 @@
                                                     <input type="text" id="idTipoMaterial[]" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'" disabled>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value"'.$arrayMat['classe'][$cont].'" disabled>
+                                                    <input type="text" id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'" disabled>
                                                 </div>
                                             </div>
-                                        </div>';
+                                        </div>';                                        
+
+                                //var_dump($arrayMat['classe'][$cont]);
+                                //die();
 
                             } else if ($cont == (count($arrayQtdMat) - 1)){                                        
                                 
@@ -225,7 +227,7 @@
                                                     <input type="text" id="idTipoMaterial[]" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'" disabled>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value"'.$arrayMat['classe'][$cont].'" disabled>
+                                                    <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'" disabled>
                                                 </div>
                                             </div>
                                         </div>';
@@ -243,7 +245,7 @@
                                                     <input type="text" id="idTipoMaterial[]" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'" disabled>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value"'.$arrayMat['classe'][$cont].'" disabled>
+                                                    <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'" disabled>
                                                 </div>
                                             </div>
                                         </div>';
@@ -326,10 +328,10 @@
                     $table .=
                             '<tr align-items="center";>
                                 <td>'.$campo['receitaId'].'</td>
-                                <td>'.$arrayMat['materialNome'].'('.$arrayMat['tipo_materiaNome'].'</td>
+                                <td>'.$campo['materialNome'].'('.$campo['tipo_materiaNome'].')</td>
                                 <td>'.$campo['pigmentoNome'].'</td>
                                 <td>                                
-                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido"'.$campo['receitaId'].'">
+                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
                                         Selecionar
                                     </button>
                                 </td>       
@@ -399,7 +401,7 @@
                                                                         <input type="text" id="idTipoMaterial[]" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'" disabled>
                                                                     </div>
                                                                     <div class="col-lg-4">
-                                                                        <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value"'.$campo['classeMaterial'].'" disabled>
+                                                                        <input type="text"  id="idClasseMaterial[]" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" disabled>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -474,11 +476,10 @@
 
                 }                
             }  
+            mysqli_close($conn);
         }  
         return $table;
     }
-
-
     function optionProdutos($idProduto){
 
         include('connection.php');
@@ -529,7 +530,6 @@
 
         return $select;
     }
-
     function dataTableProduto(){
 
         include('connection.php');
@@ -676,7 +676,6 @@
 
         return $table;
     }
-
     function cardProduto(){       
 
         include('connection.php');
