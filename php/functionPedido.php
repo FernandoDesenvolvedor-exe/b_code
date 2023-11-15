@@ -1,12 +1,12 @@
 <?php 
 
-function receitas($idReceita){
+function receitas($id){
 
     include('connection.php');
 
     $receita='';
 
-    $sql='SELECT * FROM receita_materia_prima WHERE idReceita='.$idReceita.';';
+    $sql='SELECT * FROM receita_materia_prima WHERE idReceita='.$id.';';
 
     $receita = mysqli_query($conn,$sql);
     mysqli_close($conn);
@@ -23,6 +23,35 @@ function receitas($idReceita){
     }
 
     return $receitas;
+}
+
+function pedidos($id){
+
+    include('connection.php');
+    $receita='';
+
+    $sql = 'SELECT * FROM `pedidos` 
+                LEFT JOIN receitas 
+                ON pedidos.idReceita = receitas.idReceita
+                LEFT JOIN receita_materia_prima
+                ON receita_materia_prima.idReceita = receitas.idReceita
+                WHERE idPedido = 43;';
+
+    $result = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    if (mysqli_num_rows($result) > 0){
+
+        $array = array();
+
+        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+            array_push($array,$linha);
+        }
+
+        $result = $array;
+    }
+
+    return $result;
 }
 function dataTablePedido(){
 
@@ -88,7 +117,7 @@ function dataTablePedido(){
                 LEFT JOIN usuarios as usu
                 ON ped.idUsuario = usu.idUsuario
 
-                RIGHT JOIN turma as tur
+                LEFT JOIN turma as tur
                 ON usu.idTurma = tur.idTurma
 
                 LEFT JOIN maquinas as maq
@@ -161,7 +190,10 @@ function dataTablePedido(){
             $dataFechado =  substr($campo['closeDateTime'], 0, 10);
             $horaFechado = substr($campo['closeDateTime'], 11, 8);
 
-            $materia = receitas($campo['receitaId']);
+            $materia = pedidos($campo['pedidoId']);
+
+            var_dump($campo['pedidoId']);
+            die();
             
             if(count($materia) > 1){       
 
@@ -186,7 +218,7 @@ function dataTablePedido(){
                     $table .=   
                             '<tr align-items="center";>
                                 <td>'.$campo['pedidoId'].'</td>
-                                <td>'.$campo['produto'].'</td>';         
+                                <td>'.$campo['produto'].'</td>';
                     for ($cont = 0;$cont < count($materia);$cont++){                            
                         if ($cont == 0){ 
                             $table .='<td>'.$arrayMat['materialNome'][$cont].''; 
@@ -552,7 +584,8 @@ function dataTablePedido(){
                 $table .=   
                         '<tr align-items="center";>
                             <td>'.$campo['pedidoId'].'</td>
-                            <td>'.$campo['produto'].'</td>         
+                            <td>'.$campo['produto'].'</td> 
+                            <td>'.$campo['material'].'</td>         
                             <td>'.$campo['cor'].'</td>
                             <td>'.$dataAberto.'</td>';
         

@@ -48,75 +48,74 @@
 
         $result = mysqli_query($conn, $sql);     
 
-        $idPedido = buscaId("pedidos","idPedido");         
-
-        if(count($_POST['nMaterial']) > 0){
-            for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
-                $sql = 'INSERT INTO historico
-                                (idPedido,
-                                nomeUsuario,
-                                tipoUsuario,
-                                turma,
-                                turno,
-                                materiaPrima,
-                                tipoMateria_prima,
-                                classeMateria_prima,
-                                pigmento,
-                                tipoPigmento,
-                                produto,';
-                
-                if ($_POST['nStatus'] == 2){
-                    $sql .='maquina,';
-                }
-    
-                $sql .=
-                               'quantidadeProduto,
-                                quantidadeMateria_prima,
-                                quantidadePigmento,';
-                
-                if ($_POST['nStatus'] == 2){
-                    $sql .='dataHora_aberto,';
-                }
-                    
-                $sql .=
-                               'statusPedido,
-                                obsPedido,
-                                ativo)
-                            VALUES(
-                                '.$idPedido.',
-                                "'.$_SESSION['nome'].'"
-                                "'.$_SESSION['tipo'].'"
-                                "'.$_SESSION['turma'].'"
-                                "'.$_SESSION['turno'].'"
-                                "'.$_POST['nMaterial'][$n].'",
-                                "'.$_POST['nTipoMaterial'][$n].'",
-                                "'.$_POST['nClasseMaterial'][$n].'",
-                                "'.$_POST['nCor'].'",
-                                "'.$_POST['nTipoCor'].'",
-                                "'.$_POST['nProduto'].'",';
-                
-                if ($_POST['nStatus'] == 2){
-                    $sql .='"'.$_POST['nMaquina'].'",';
-                }
-    
-                $sql .=
-                               ''.$qtde.',
-                                "'.$_POST['nQtdeMaterial'][$n].'",
-                                '.$_POST['nQtdPigmento'].',';
-                
-                if ($_POST['nStatus'] == 2){
-                    $sql .='"'.$current_date.'",';
-                }
-    
-                $sql .=
-                                ''.$_POST['nStatus'].',
-                                "'.$obs.'",
-                                1);'; 
-
-                $result = mysqli_query($conn, $sql);  
+        $idPedido = buscaId("pedidos","idPedido");  
+            
+        for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
+            $sql = 'INSERT INTO historico
+                            (idPedido,
+                            nomeUsuario,
+                            tipoUsuario,
+                            turma,
+                            turno,
+                            materiaPrima,
+                            tipoMateria_prima,
+                            classeMateria_prima,
+                            pigmento,
+                            tipoPigmento,
+                            produto,';
+            
+            if ($_POST['nStatus'] == 2){
+                $sql .='maquina,';
             }
 
+            $sql .=
+                            'quantidadeProduto,
+                            quantidadeMateria_prima,
+                            quantidadePigmento,';
+            
+            if ($_POST['nStatus'] == 2){
+                $sql .='dataHora_aberto,';
+            }
+                
+            $sql .=
+                            'statusPedido,
+                            obsPedido,
+                            ativo)
+                        VALUES(
+                            '.$idPedido.',
+                            "'.$_SESSION['nome'].'",
+                            "'.$_SESSION['tipo'].'",
+                            "'.$_SESSION['turma'].'",
+                            "'.$_SESSION['turno'].'",
+                            "'.$_POST['nMaterial'][$n].'",
+                            "'.$_POST['nTipoMaterial'][$n].'",
+                            "'.$_POST['nClasseMaterial'][$n].'",
+                            "'.$_POST['nCor'].'",
+                            "'.$_POST['nTipoCor'].'",
+                            "'.$_POST['nProduto'].'",';
+            
+            if ($_POST['nStatus'] == 2){
+                $sql .='"'.$_POST['nMaquina'].'",';
+            }
+
+            $sql .=
+                            ''.$qtde.',
+                            "'.$_POST['nQtdeMaterial'][$n].'",
+                            '.$_POST['nQtdPigmento'].',';
+            
+            if ($_POST['nStatus'] == 2){
+                $sql .='"'.$current_date.'",';
+            }
+
+            $sql .=
+                            ''.$_POST['nStatus'].',
+                            "'.$obs.'",
+                            1);'; 
+                            
+            $result = mysqli_query($conn, $sql);              
+
         }
+
         mysqli_close($conn);
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR RECEITA
