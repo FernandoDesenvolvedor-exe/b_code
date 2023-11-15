@@ -54,8 +54,7 @@
                                         <th>ID</th>
                                         <th>Matéria Prima</th>
                                         <th>Pigmento</th>
-                                        <th>Selecionar</th>
-                                        <th>Desativar</th>
+                                        <th>Selecionar/Desativar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
