@@ -34,7 +34,7 @@
             <!-- Start Page Content -->                    
             <div class="card">
                 <!-- Cria um formulário -->                            
-                <form method="POST" class="form-horizontal" action= "php/saveReceita.php " ><!-- idProduto=<?php //echo $_GET['idProduto']?> "php/saveReceita.php" -->
+                <form method="POST" class="form-horizontal" action= "php/saveReceita.php">     <!-- idProduto=<?php //echo $_GET['idProduto']?> "php/saveReceita.php" -->
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
@@ -96,6 +96,15 @@
                                 
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Peso Total</label>
+                            <div class="col-sm-9">
+                                <label id='ipesototal' name='npesoTotal' hidden>Mostrar quantidade total selecionada. Improvável :(</label>
+                            </div>
+                        </div>
+                        <script>
+                            // Mostrar quantidade total selecionada
+                        </script>
 
                         <div class="form-group row">
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>

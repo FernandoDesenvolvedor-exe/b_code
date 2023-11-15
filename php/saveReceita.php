@@ -3,11 +3,12 @@
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
-    $idProduto=$_POST['nProduto'];
+    
     $material=$_POST['tableMateriais'];
     $pigmento=$_POST['nPigmento'];
     $pesoPigmento = $_POST['nQuantPigmento'];
     $quant=[];
+    $pesoMaterial=0;
     //CRIA UM VETOR DE QUANTIDADE COM A MESMA POSIÇÃO QUE O VETOR MATERIAL
     for($i=0;$i<count($material);$i++){
         $quant[]=$_POST['nQuantidade'.$material[$i]];
@@ -18,6 +19,9 @@
     for($i=0;$i<count($material);$i++){
         echo $material[$i].' quant:'.$quant[$i].' |';
     }
+    echo $pigmento.' Quant:'.$pesoPigmento.'<br>';
+    echo 'PesoTotal:'.$pesoTotal.'<br>';
+    /*
     echo '<br>';
     $matriz=[];
     for($a= 0;$a<10;$a++){
@@ -31,7 +35,7 @@
             }
         }
         echo ']<br>';
-    }
+    }*/
 
     die();
 
