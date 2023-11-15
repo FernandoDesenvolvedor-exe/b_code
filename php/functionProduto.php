@@ -122,15 +122,19 @@
                         $table .=
                                 '</td>
                                 <td>'.$campo['pigmentoNome'].'</td>
-                                <td>                                
-                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
-                                        Selecionar
-                                    </button>
-                                </td>       
-                                <td> 
-                                    <button type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#ExcluiModal'.$campo['receitaId'].'">
-                                        Desativar
-                                    </button>                               
+                                <td>
+                                    <div class="divButtons">
+                                        <div class="div1">                                   
+                                            <button type="button" style="width: auto; border-radius:5px" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
+                                                Selecionar
+                                            </button>
+                                        </div>
+                                        <div class="div2">
+                                            <button type="button" style="width: auto; border-radius:5px" class="btn btn-danger margin-5" data-toggle="modal" data-target="#ExcluiModal'.$campo['receitaId'].'">
+                                                Desativar
+                                            </button>      
+                                        </div>   
+                                    </div>                      
                                 </td>
 
                                 <div class="modal fade" id="ExcluiModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
@@ -342,14 +346,18 @@
                                 <td>'.$campo['materialNome'].'('.$campo['tipo_materiaNome'].')</td>
                                 <td>'.$campo['pigmentoNome'].'</td>
                                 <td>                                
-                                    <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
-                                        Selecionar
-                                    </button>
-                                </td>       
-                                <td> 
-                                    <button type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#ExcluiModal'.$campo['receitaId'].'">
-                                        Desativar
-                                    </button>                               
+                                    <div class="divButtons">
+                                        <div class="div1">                                   
+                                            <button type="button" style="width: auto; border-radius:5px" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
+                                                Selecionar
+                                            </button>
+                                        </div>
+                                        <div class="div2">
+                                            <button type="button" style="width: auto; border-radius:5px" class="btn btn-danger margin-5" data-toggle="modal" data-target="#ExcluiModal'.$campo['receitaId'].'">
+                                                Desativar
+                                            </button>      
+                                        </div>   
+                                    </div>                                
                                 </td>
 
                                 <div class="modal fade" id="ExcluiModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
