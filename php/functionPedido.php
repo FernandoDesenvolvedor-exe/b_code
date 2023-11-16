@@ -33,8 +33,9 @@ function dataTablePedido(){
                 ped.idUsuario as userId, 
                 ped.idReceita as receitaId,
                 ped.idMaquina as maquinaId,
-                ped.dataHora_aberto as openDateTime,
-                ped.dataHora_fechado as closeDateTime,     
+                ped.dataHora_aberto as abertoData_hora,
+                ped.dataHora_producao as producaoData_hora,
+                ped.dataHora_fechado as fechadoData_hora,     
                 ped.status as stats,
                 ped.observacoes as obs,
                 ped.refugo as refugos,
@@ -157,11 +158,22 @@ function dataTablePedido(){
 
         foreach($array as $campo){
 
-            $dataAberto =  substr($campo['openDateTime'], 0, 10);
-            $horaAberto = substr($campo['openDateTime'], 11, 8);
+            $dataAberto =''.substr($campo['abertoData_hora'], 8, 2).'/';
+            $dataAberto .=''.substr($campo['abertoData_hora'], 5, 2).'/';
+            $dataAberto .=''.substr($campo['abertoData_hora'], 0, 4).'';
+            $horaAberto = substr($campo['abertoData_hora'], 11, 8);
+
+            $dataProducao =''.substr($campo['producaoData_hora'], 8, 2).'/';
+            $dataProducao .=''.substr($campo['producaoData_hora'], 5, 2).'/';
+            $dataProducao .=''.substr($campo['producaoData_hora'], 0, 4).'';
+            $horaProducao = substr($campo['producaoData_hora'], 11, 8);
             
-            $dataFechado =  substr($campo['closeDateTime'], 0, 10);
-            $horaFechado = substr($campo['closeDateTime'], 11, 8);
+            $dataFechado =''.substr($campo['fechadoData_hora'], 8, 2).'/';
+            $dataFechado .=''.substr($campo['fechadoData_hora'], 5, 2).'/';
+            $dataFechado .=''.substr($campo['fechadoData_hora'], 0, 4).'';
+            $horaFechado = substr($campo['fechadoData_hora'], 11, 8);
+
+            
 
             $materia = receitas($campo['receitaId']);
 
@@ -203,7 +215,7 @@ function dataTablePedido(){
                     }
                     $table .=     
                                '<td>'.$campo['cor'].'</td>
-                                <td>'.$dataAberto.'</td>';
+                                <td>'.$dataAberto.' às '.$horaAberto.'</td>';
             
                     if ($campo['stats'] == 1){
                         
@@ -212,8 +224,7 @@ function dataTablePedido(){
                                     <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
                                         Em aberto
                                     </button>
-                                </td>
-                                <td>Não fechado</td>';
+                                </td>';  
 
                     } else if ($campo['stats'] == 2) {
 
@@ -222,20 +233,17 @@ function dataTablePedido(){
                                     <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
                                         Em Produção
                                     </button>
-                                </td>
-                                <td>Não fechado</td>';
+                                </td>';
 
                     } else if ($campo['stats'] == 3) {
 
                         $table .=
-                                '<td>Concluido</td>
-                                <td>'.$dataFechado.'</td>';
+                                '<td>Concluido</td>';
 
                     } else if ($campo['stats'] == 0) {
 
                         $table .=
-                                '<td>Cancelado</td>
-                                <td>Não fechado</td>';
+                                '<td>Cancelado</td>';
 
                     }
 
@@ -323,9 +331,94 @@ function dataTablePedido(){
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div>
-                                    
+                                                    <h4>Status da ordem de produção</h4>';
+
+                    if ($campo['stats'] == 1){
+
+                        $table .=
+                                    '<div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="Produção não iniciada" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="Produção não iniciada" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>';
+
+                    } else if ($campo['stats'] == 2){
+
+                        $table .=
+                                    '<div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataAberto.' às '.$horaAberto.'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="Produção não concluida" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>';
+
+                    } else if ($campo['stats'] == 3){
+
+                        $datatime1 = new DateTime(''.substr($campo['producaoData_hora'], 0, 10).' '.substr($campo['abertoData_hora'], 11, 8).' America/Sao_Paulo');
+                        $datatime2 = new DateTime(''.substr($campo['fechadoData_hora'], 0, 10).' '.substr($campo['fechadoData_hora'], 11, 8).' America/Sao_Paulo');
+
+                        $data1  = $datatime1->format('Y-m-d H:i:s');
+                        $data2  = $datatime2->format('Y-m-d H:i:s');
+
+                        $diff = $datatime1->diff($datatime2);
+
+                        $table .=
+                                    '<div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Duração</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$diff->format("%a dias e %H:%I:%S").' horas" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>  
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                        <div class="col-sm-9">
+                                            <input value="'.$dataFechado.' às '.$horaFechado.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>';
+
+                    }
+
+                    $table .=
+                                                '</div>
+                                                <div>                                    
                                                     <h4>Produto</h4>
                                                     <div class="input-group mb-3">
                                                         <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
@@ -566,8 +659,7 @@ function dataTablePedido(){
                                 <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
                                     Em aberto
                                 </button>
-                            </td>
-                            <td>Não fechado</td>';
+                            </td>';
 
                 } else if ($campo['stats'] == 2) {
 
@@ -576,20 +668,17 @@ function dataTablePedido(){
                                 <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
                                     Em Produção
                                 </button>
-                            </td>
-                            <td>Não fechado</td>';
+                            </td>';
 
                 } else if ($campo['stats'] == 3) {
 
                     $table .=
-                            '<td>Concluido</td>
-                            <td>'.$dataFechado.'</td>';
+                            '<td>Concluido</td>';
 
                 } else if ($campo['stats'] == 0) {
 
                     $table .=
-                            '<td>Cancelado</td>
-                            <td>Não fechado</td>';
+                            '<td>Cancelado</td>';
 
                 }
 
@@ -655,7 +744,7 @@ function dataTablePedido(){
                                 <div class="modal-dialog" role="document ">                                
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Ordem de produção</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true ">&times;</span>
                                             </button>
@@ -677,9 +766,95 @@ function dataTablePedido(){
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div>
-                                
+                                                <h4>Status da ordem de produção</h4>';
+
+                if ($campo['stats'] == 1){
+
+                    $table .=
+                                '<div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataAberto.' às '.$horaAberto.'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="Pedido não foi inicializado" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="Pedido não foi inicializado" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>';
+
+                } else if ($campo['stats'] == 2){
+
+                    $table .=
+                                '<div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="Pedido em andamento" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>';
+
+                } else if ($campo['stats'] == 3){
+
+                    $datatime1 = new DateTime(''.substr($campo['producaoData_hora'], 0, 10).' '.substr($campo['abertoData_hora'], 11, 8).' America/Sao_Paulo');
+                    $datatime2 = new DateTime(''.substr($campo['fechadoData_hora'], 0, 10).' '.substr($campo['fechadoData_hora'], 11, 8).' America/Sao_Paulo');
+
+                    $data1  = $datatime1->format('Y-m-d H:i:s');
+                    $data2  = $datatime2->format('Y-m-d H:i:s');
+
+                    $diff = $datatime1->diff($datatime2);
+
+                    $table .=
+                                '<div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Duração</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$diff->format("%a dias e %H:%I:%S").' horas" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Aberto em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                    <div class="col-sm-9">
+                                        <input value="'.$dataFechado.' às '.$horaFechado.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                    </div>
+                                </div>';
+
+                }
+
+                $table .=
+                                            '</div>
+
+                                            <div>                                
                                                 <h4>Produto</h4>
                                                 <div class="input-group mb-3">
                                                     <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>

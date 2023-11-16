@@ -25,22 +25,41 @@
 
         $current_date = "$data $horario";
 
+
         $sql = 'INSERT INTO pedidos(idUsuario,
                     idReceita,';        
-        if ($_POST['nStatus'] == 2){
+
+        if ($_POST['nStatus'] == 1){
+
+            $sql .='dataHora_aberto,';
+
+        } else if ($_POST['nStatus'] == 2){
+
             $sql .='idMaquina,
-                    dataHora_aberto,';
-        }        
+                    dataHora_aberto,
+                    dataHora_producao';
+
+        }       
+
         $sql .=    'status,
                     observacoes,
                     quantidade,
                     ativo)
                     VALUES('.$_SESSION['idUsuario'].',
                     '.$_GET['id'].',';        
-        if ($_POST['nStatus'] == 2){
+
+        if ($_POST['nStatus'] == 1){
+
+            $sql .= '"'.$current_date.'",';
+
+        } else if ($_POST['nStatus'] == 2){
+
             $sql .= ''.$_POST['nMaquina'].',
+                    "'.$current_date.'",
                     "'.$current_date.'",';
+
         }
+
         $sql .=     ''.$_POST['nStatus'].',
                     "'.$obs.'",
                     '.$qtde.',
@@ -74,7 +93,8 @@
                             quantidadePigmento,';
             
             if ($_POST['nStatus'] == 2){
-                $sql .='dataHora_aberto,';
+                $sql .='dataHora_aberto,
+                        dataHora_producao,';
             }
                 
             $sql .=
@@ -104,7 +124,8 @@
                             '.$_POST['nQtdPigmento'].',';
             
             if ($_POST['nStatus'] == 2){
-                $sql .='"'.$current_date.'",';
+                $sql .='"'.$current_date.'",
+                        "'.$current_date.'",';
             }
 
             $sql .=
@@ -153,7 +174,7 @@
 
         if ($_GET['stats'] == 1){
 
-            $sql = 'UPDATE pedidos SET status = 2 WHERE idPedido = '.$_GET['id'].';';
+            $sql = 'UPDATE pedidos SET status = 2, dataHora_producao="'.$current_date.'" WHERE idPedido = '.$_GET['id'].';';
 
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);

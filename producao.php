@@ -96,7 +96,6 @@
                                             <th>Pigmento</th>
                                             <th>Aberto em</th>
                                             <th>Status de produção</th>
-                                            <th>Fechado em:</th>
                                             <th>Alterar/Desativar</th>
                                         </tr>
                                     </thead>
