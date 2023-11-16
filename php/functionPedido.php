@@ -25,34 +25,6 @@ function receitas($id){
     return $receitas;
 }
 
-function pedidos($id){
-
-    include('connection.php');
-    $receita='';
-
-    $sql = 'SELECT * FROM `pedidos` 
-                LEFT JOIN receitas 
-                ON pedidos.idReceita = receitas.idReceita
-                LEFT JOIN receita_materia_prima
-                ON receita_materia_prima.idReceita = receitas.idReceita
-                WHERE idPedido = 43;';
-
-    $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
-
-    if (mysqli_num_rows($result) > 0){
-
-        $array = array();
-
-        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
-            array_push($array,$linha);
-        }
-
-        $result = $array;
-    }
-
-    return $result;
-}
 function dataTablePedido(){
 
     include('connection.php');
@@ -165,7 +137,8 @@ function dataTablePedido(){
                 LEFT JOIN fornecedores as forP
                 ON forP.idFornecedor = forpig.idFornecedor          
 
-                WHERE ped.ativo = 1;';
+                WHERE ped.ativo = 1
+                ORDER BY ped.idPedido ASC;';
             
 
     $table = "";
@@ -190,11 +163,8 @@ function dataTablePedido(){
             $dataFechado =  substr($campo['closeDateTime'], 0, 10);
             $horaFechado = substr($campo['closeDateTime'], 11, 8);
 
-            $materia = pedidos($campo['pedidoId']);
+            $materia = receitas($campo['receitaId']);
 
-            var_dump($campo['pedidoId']);
-            die();
-            
             if(count($materia) > 1){       
 
                 $n++;
