@@ -5,6 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 include('php/connection.php');
 $sql = 'SELECT mat.idMateriaPrima as id,
         mat.descricao as nome,
+        mat.ativo as ativo,
         tipo.descricao as tipos,
         class.descricao as classe
         FROM materia_prima as mat
@@ -13,8 +14,8 @@ $sql = 'SELECT mat.idMateriaPrima as id,
         LEFT JOIN classe_material as class
         ON mat.idClasse = class.idClasse
         WHERE mat.ativo = 1
-        AND mat.idTipoMateriaPrima = 1
-        OR mat.idTipoMateriaPrima = 2;';
+        AND (mat.idTipoMateriaPrima = 1
+        OR mat.idTipoMateriaPrima = 2);';
 $result = mysqli_query($conn,$sql);
 mysqli_close($conn);
 //if(isset($_SESSION['opMateriais']) && $_SESSION['opMateriais'] == ''){  
@@ -39,9 +40,9 @@ if(mysqli_num_rows($result) > 0){
                     </th>
                     <td>'.$campo['nome'].'</td>
                     <td>'.$campo['tipos'].'</td>
-                    <td>'.$campo['classe'].'</td>
+                    <td>'.$campo['ativo'].'</td>
                     <td>
-                    <input step="50" id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min="0">
+                    <input step="50" id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
                     </td>
                 </tr>'; 
                        

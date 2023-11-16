@@ -23,7 +23,7 @@
         <?php include('links/side_bar_direita.php');?>
         <div class="container-fluid"> 
             <button for="idVoltarBtn" id="idVoltarBtn" class='btn btn-primary'>
-                <a style="color: white;" href="receitas.php? idProduto=<?php echo $_GET['idProduto']?>&pr=<?php echo $_GET['pr']?>">
+                <a style="color: white;" href="receitas.php">
                     Voltar
                 </a>
             </button>
@@ -38,11 +38,12 @@
                     <div class="card-body">
                         <!-- Titulo da div -->
                         <h4 class="card-title">Receita</h4>
+                        <?php if(isset($_SESSION['error'])){ echo $_SESSION['error'];$_SESSION['error']='';}?>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <select id="iProduto" name="nProduto" class="select2 form-control custom-select" style="width: 100%; height:36px;" disabled>
-                                    <?php echo optionProdutos($_GET['idProduto']);?>
+                                <select id="iProduto" name="nProduto" class="select2 form-control custom-select" style="width: 100%; height:36px;" >
+                                    <?php echo optionProdutos($_SESSION['idProduto']);?>
                                 </select>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
                             <div class="col-md-9">
-                                <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                     <?php echo optionPigmento(); ?>
                                 </select>
                             </div>                                    
@@ -92,7 +93,7 @@
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Pigmento</label>
                             <div class="col-sm-9" id='qntM'>
                                 
-                               <input step="5" id="iQuantPigmento" name="nQuantPigmento" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:25%;" min="0">
+                               <input step="5" id="iQuantPigmento" name="nQuantPigmento" type="Number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade" style="width:25%;" min="0" required>
                                 
                             </div>
                         </div>
