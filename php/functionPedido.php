@@ -344,7 +344,7 @@ function dataTablePedido(){
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Concluido em:</label>
+                                        <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produção inicializada em:</label>
                                         <div class="col-sm-9">
                                             <input value="Produção não iniciada" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                         </div>

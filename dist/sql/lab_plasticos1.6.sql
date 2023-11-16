@@ -1,11 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 16/11/2023 às 19:42
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+DROP DATABASE lab_plasticos;
+CREATE DATABASE lab_plasticos;
+USE lab_plasticos;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
