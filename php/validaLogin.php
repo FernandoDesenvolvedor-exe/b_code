@@ -12,10 +12,6 @@
                             .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
     $fechaHTMLalert = '</div></div></div>';
     
-
-    //var_dump($login.''.$senha);
-    //die();
-
     include('connection.php');
 
     $_SESSION['msgLogin'] = '';
@@ -32,8 +28,6 @@
                 LEFT JOIN turma 
                 ON user.idTurma = turma.idTurma      
                 WHERE user.login = "'.$login.'";';
-
-    //var_dump($sql);
 
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);     
@@ -56,7 +50,9 @@
                 if($campo['active'] == 1){
 
                     //joga o usuario pra tela de acordo com o nivel de acesso dele
+                    $_SESSION['user'] = 1;
                     $_SESSION['idUsuario']= $campo['idUsuario'];
+                    $_SESSION['login']=$login;
                     $_SESSION['nome']= ''.$campo['name'].' '.$campo['surname'];
                     $_SESSION['tipo'] = $campo['nivel'];
                     $_SESSION['turma'] = $campo['class'];
@@ -66,12 +62,14 @@
 
                 }else{
                     //usuario Inativo
+                    $_SESSION['user'] = 0;
                     $_SESSION['msgLogin'] = $abreHTMLalert.'Usuário inativo'.$fechaHTMLalert;
                     header('location:../login.php');
                     die();
                 }
             }else{
                 //senha incorreta
+                $_SESSION['user'] = 0;
                 $_SESSION['msgLogin'] = $abreHTMLalert.'Senha incorreta'.$fechaHTMLalert;
                 header('location:../login.php');
                 die();
@@ -80,6 +78,7 @@
         
     } else {
         //menssagem de email nao cadastrado
+        $_SESSION['user'] = 0;
         $_SESSION['msgLogin'] = $abreHTMLalert.'Email não cadastrado'.$fechaHTMLalert;
         header('location:../login.php');
     };

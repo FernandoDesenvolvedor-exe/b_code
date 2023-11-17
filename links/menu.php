@@ -1,8 +1,7 @@
 <?php 
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }
+    include('loginSession.php');
 ?>
+
 <header class="topbar" data-navbarbg="skin5">
     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
         <div class="navbar-header" data-logobg="skin5">
@@ -138,13 +137,15 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                        <a class="dropdown-item" href="perfil"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
+                        <?php if($_SESSION['tipo'] == 1){?>
+                            <a class="dropdown-item" href="usuarios"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
+                        <?php }?>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>Inbox</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
                         <div class="dropdown-divider"></div>
                         <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                     </div>
@@ -162,30 +163,28 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li> 
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Inicio</span></a></li> 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pedidos </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="producao.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produção </span></a></li>
+                        <li class="sidebar-item"><a href="producao" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produção </span></a></li>
                     </ul>                        
                 </li>  
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Materiais</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="materiaPrima.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Matéria Prima </span></a></li>
-                        <li class="sidebar-item"><a href="pigmentos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Pigmentos </span></a></li>
-                        <li class="sidebar-item"><a href="fornecedores.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Fornecedores </span></a></li>
+                        <li class="sidebar-item"><a href="materiaPrima" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Matéria Prima </span></a></li>
+                        <li class="sidebar-item"><a href="pigmentos" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Pigmentos </span></a></li>
+                        <li class="sidebar-item"><a href="fornecedores" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Fornecedores </span></a></li>
                     </ul>                        
                 </li>                
-                <li class="sidebar-item"><a href="produtos.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
+                <li class="sidebar-item"><a href="produtos" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
 
-                <?php if ($_SESSION['tipo'] == 1){?>                                             
-                    
-                    <li class="sidebar-item"><a href="usuarios.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Usuários </span></a></li>
+                <?php if ($_SESSION['tipo'] == 1){?>  
                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
                         <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio2 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
-                            <li class="sidebar-item"><a href="index.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
+                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
+                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio2 </span></a></li>
+                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
+                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
                         </ul> 
                     </li>    
 
