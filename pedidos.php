@@ -1,5 +1,14 @@
 <?php
     include('php/function.php');
+    include('links/loginSession.php');
+
+    if (isset($_SESSION['user']) == 0){
+
+        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
+        
+        header('location: login');
+
+    }
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">

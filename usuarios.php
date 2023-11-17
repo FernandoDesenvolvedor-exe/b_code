@@ -1,28 +1,25 @@
-<?php 
-    include('links/loginSession.php'); 
+<?php
+    include('php/function.php');
+    include('links/loginSession.php');
 
     if (isset($_SESSION['user']) == 0 || $_SESSION['tipo'] == 2){
 
-        alert(1,'Acesso negado','Detectado tentativa de acesso ilegal!');
+        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
+        
         header('location: login');
-
-    } else if (isset($_SESSION['tipo']) == false){
 
     }
 ?>
 
-
 <!DOCTYPE html>
-
-<?php include('php/function.php'); ?>
 
 <html lang="pt-br">
 
     <head>
         <?php  
-        include('links/cabecalho.php');
+            include('links/cabecalho.php');
         ?>
-        <title>Cadastro Usuario</title>
+        <title>Usuários</title>
     </head>
 
     <body>
@@ -46,7 +43,7 @@
                         </div>  
                     
 
-                        <!-- MODAL NOVO PIGMENTO -->
+                        <!-- MODAL NOVO USUÁRIO -->
                         <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                             <div class="modal-dialog" role="document ">                                
                                 <div class="modal-content">

@@ -49,7 +49,6 @@
                 //valida se conta esta ativa
                 if($campo['active'] == 1){
 
-                    //joga o usuario pra tela de acordo com o nivel de acesso dele
                     $_SESSION['user'] = 1;
                     $_SESSION['idUsuario']= $campo['idUsuario'];
                     $_SESSION['login']=$login;

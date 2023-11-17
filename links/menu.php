@@ -141,11 +141,8 @@
                         <?php if($_SESSION['tipo'] == 1){?>
                             <a class="dropdown-item" href="usuarios"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
                         <?php }?>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>Inbox</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Account Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
+                        <a class="dropdown-item" href="php/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
                         <div class="dropdown-divider"></div>
                         <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                     </div>

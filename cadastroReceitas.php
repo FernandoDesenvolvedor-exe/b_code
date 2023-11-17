@@ -1,9 +1,14 @@
 <?php
     include('php/function.php');  
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }  
-    $_SESSION['tipo'] = 1;
+    include('links/loginSession.php');
+
+    if (isset($_SESSION['user']) == 0){
+
+        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
+        
+        header('location: login');
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,3 +1,14 @@
+<?php
+    include('php/function.php');
+    include('links/loginSession.php');    
+
+    if (isset($_SESSION['user']) == 0){
+        
+        header('location: login');
+
+    }
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
