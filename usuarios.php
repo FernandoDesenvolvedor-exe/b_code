@@ -1,10 +1,23 @@
-<?php
-    include('php/function.php');
+<?php 
+    include('links/loginSession.php'); 
+
+    if (isset($_SESSION['user']) == 0 || $_SESSION['tipo'] == 2){
+
+        alert(1,'Acesso negado','Detectado tentativa de acesso ilegal!');
+        header('location: login');
+
+    } else if (isset($_SESSION['tipo']) == false){
+
+    }
 ?>
+
 
 <!DOCTYPE html>
 
+<?php include('php/function.php'); ?>
+
 <html lang="pt-br">
+
     <head>
         <?php  
         include('links/cabecalho.php');
@@ -207,5 +220,6 @@
         </script>  
         <?php include('links/script.php'); ?>
     </body>
-    
+
 </html>
+
