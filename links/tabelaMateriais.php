@@ -42,7 +42,7 @@ if(mysqli_num_rows($result) > 0){
                     <td>'.$campo['tipos'].'</td>
                     <td>'.$campo['ativo'].'</td>
                     <td>
-                    <input step="50" id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
+                    <input id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
                     </td>
                 </tr>'; 
                        

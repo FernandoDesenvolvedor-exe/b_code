@@ -1,5 +1,8 @@
 <?php
     include('php/function.php');
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }  
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
@@ -35,12 +38,7 @@
 
                     <div class="card" style="padding: 10px;">
                         <div>
-                            <?php 
-                                $_SESSION['idProduto'] = $_GET['idProduto'];
-                                $_SESSION['nomeProduto'] = $_GET['pr'];
-                                //idProduto=<?php echo $_GET['idProduto']?&pr=?php echo $_GET['pr']?
-                            ?>
-                            <a href="cadastroReceitas.php? ">
+                            <a href="cadastroReceitas.php?idProduto=<?php echo $_GET['idProduto']?>&pr=<?php echo $_GET['pr']?> ">
                                 <button style="width: auto; border-radius: 5px;" class="btn btn-info margin-5" type="button">
                                         Adicionar Receita
                                 </button>
@@ -50,7 +48,7 @@
                     </div>
 
                     <div class="card" style="padding: 10px;"> 
-                        <h4 class="card-title">Receitas de <?php echo $_SESSION["nomeProduto"]?></h4>
+                        <h4 class="card-title">Receitas de <?php echo $_GET['pr']?></h4>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
@@ -62,7 +60,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php echo dataTableReceitas($_SESSION['idProduto']); ?>
+                                    <?php echo dataTableReceitas($_GET['idProduto']); ?>
                                 </tbody>
                             </table>
                         </div>                         
