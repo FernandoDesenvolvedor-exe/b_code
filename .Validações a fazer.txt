@@ -1,5 +1,5 @@
 1 - Validar se dá erro no banco e retornar esse erro ao usuario.
-2 -
+2 - 
 3 -
 4 -
 5 -
