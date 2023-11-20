@@ -7,6 +7,7 @@
                     r.quantidadePigmento as qtdePigmento,
                     r.observacoes as receitaObs,
                                     
+                    rmp.idMateriaPrima as materiaId
                     rmp.quantidadeMaterial as qtdeMateria,
 
                     pr.descricao as produtoNome,
@@ -170,7 +171,7 @@
                                             <div class="modal-body">
                                             
                                                 <diiv class="card">
-                                                    <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['receitaId'].'">
+                                                    <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['receitaId'].'&idMateria='.$campo['materiaId'].'">
             
                                                         <div class="card-body">
                                                             <div class="input-group mb-3">

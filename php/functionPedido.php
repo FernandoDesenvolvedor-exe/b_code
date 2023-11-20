@@ -296,10 +296,9 @@ function dataTablePedido(){
                                                     <span aria-hidden="true ">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                
+                                            <div class="modal-body">                                                
 
-                                                <form method="POST" action="php/savePedidos.php? validacao=A&id='.$campo["pedidoId"].'&stats='.$campo['stats'].'">
+                                                <form method="POST" action="php/savePedidos.php? validacao=A&id='.$campo["pedidoId"].'&idMateria='.$campo['materiaId'].'&stats='.$campo['stats'].'">
                                                     <div>                                
                                                         <h4>Finalizando produção</h4>
                                                         <div class="input-group mb-3">

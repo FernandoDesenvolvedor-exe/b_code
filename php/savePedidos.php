@@ -137,18 +137,32 @@
                             
             $result = mysqli_query($conn, $sql);
             
-            $sql =  'INSERT INTO historico_materia_prima(
-                        idMateria,
-                        idUsuario,
-                        nomeUsuario,
-                        sobrenomeUsuario,
-                        turma,
-                        turno,
-                        tipo,
-                        nomeMateria,
-                        quantidadeAlterada,
-                        dataAlteracao)';
+            if($_POST['nStatus'] == 2){
 
+                $sql =  'INSERT INTO historico_materia_prima(
+                            idMateria,
+                            nomeUsuario,
+                            turma,
+                            turno,
+                            tipoUsuario,
+                            nomeMateria,
+                            quantidadeAlterada,
+                            dataAlteracao,
+                            ativo)
+                        VALUES(
+                            '.$_GET['idMateria'].',
+                            "'.$_SESSION['nome'].'",
+                            "'.$_SESSION['turma'].'",
+                            "'.$_SESSION['turno'].'",
+                            "'.$_SESSION['tipo'].'",
+                            "'.$_POST['nMaterial'][$n].'",
+                            '.(-($qtde * $_POST['nQtdeMaterial'][$n])).',
+                            '.$current_date.',
+                            1);';
+                                
+                $result = mysqli_query($conn, $sql);
+
+            }
         }
 
         mysqli_close($conn);
