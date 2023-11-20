@@ -57,9 +57,7 @@
     }else if($validacao == 'UMP') {  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA
 
         $descMat = stripslashes($_POST['nDescricao']);
-        $qtde = stripslashes($_POST['nQuandtidade']);
         $obs = stripslashes($_POST['nObservacoes']);
-
 
         if (isset($descMat) == true && $descMat != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
             $sql='UPDATE materia_prima'
@@ -69,9 +67,10 @@
             $result = mysqli_query($conn,$sql);
         }
 
-        if (isset($qtde) == true && $qtde != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+        if (isset($_POST['nQuandtidade']) == true && $_POST['nQuandtidade'] != 0){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+
             $sql='UPDATE materia_prima'
-                    .' SET quantidade ="'.$descMat.'"'
+                    .' SET quantidade ="'.($_GET['qtd'] + $_POST['nQuandtidade']).'"'
                     .' WHERE idMateriaPrima = '.$_GET['idMateria'].';';
         
             $result = mysqli_query($conn,$sql);

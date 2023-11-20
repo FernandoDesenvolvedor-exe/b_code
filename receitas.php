@@ -1,6 +1,5 @@
 <?php
     include('php/function.php');
-<<<<<<< HEAD
     include('links/loginSession.php');
 
     if (isset($_SESSION['user']) == 0){
@@ -8,7 +7,6 @@
         header('location: login');
 
     }
->>>>>>> 1583c11f9b178945cd4e4a24353bc43d443eb40f
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
