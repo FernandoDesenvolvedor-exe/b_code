@@ -1,6 +1,6 @@
 <?php 
     include('function.php');
-    include('connection.php');
+    
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
@@ -15,11 +15,12 @@
     }
     $produto=$_GET["idProduto"];
     //id de cada material
-    $material=$_POST['tableMateriais'];
-    $pigmento=$_POST['nPigmento'];
+    $material = $_POST['tableMateriais'];
+    $pigmento = $_POST['nPigmento'];
     $pesoPigmento = $_POST['nQuantPigmento'];
-    $quant=[];
-    $pesoMaterial=0;
+    $quant = [];
+    $observacoes = $_POST['nObservacoes'];
+    $pesoMaterial = 0;
     echo $_GET['pr'].' '.$_GET['idProduto'].'<br>';
     //CRIA UM VETOR DE QUANTIDADE COM A MESMA POSIÇÃO QUE O VETOR MATERIAL
     for($i=0;$i<count($material);$i++){
@@ -35,6 +36,7 @@
     $pesoTotal=$pesoMaterial+intval($pesoPigmento);
     
     $sql='select peso from produtos where idProduto='.$_GET["idProduto"];
+    include('connection.php');
     $result= mysqli_query($conn, $sql);
     mysqli_close($conn);
 
@@ -55,8 +57,34 @@
             }
         }
     }
-    $sqlInsert = "Insert into receitas (login, senha, nome , sobrenome, idTurma, tipo, ativo) values"
-                ."('".$email."', md5('".$senha."'), '".$nome."' , '".$sobrenome."', ".$turma.", ".$tipoUsu.", 1);";
+    //INSERT na tabela receita
+    $sqlInsert = "Insert into receitas (idProduto,IdPigmento,quantidadePigmento,observacoes,ativo) values ($produto,$pigmento,$pesoPigmento,$observacoes,1)";
+    mysqli_query($conn,$sqlInsert);
+    //Pega ID da receita criada
+    $sql='SELECT MAX(idReceita) as idReceita from receitas;';
+    include('connection.php');
+    $result= mysqli_query($conn, $sql);
+    mysqli_close($conn);
+
+    if (mysqli_num_rows($result) > 0){
+
+        $array = array();
+
+        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+            array_push($array,$linha);
+        }
+        foreach($array as $campo){
+            $idReceita=$campo['idReceita'];
+        }
+    }
+    //INSERT idReceita, materiaPrima e a quantidade de materia
+    for($i=0;$i<count($material);$i++){
+        
+        $quant[]=$_POST['nQuantidade'.$material[$i]];
+        $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial)";
+    }
+    
+               
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
 
