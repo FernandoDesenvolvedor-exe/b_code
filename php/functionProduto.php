@@ -7,7 +7,7 @@
                     r.quantidadePigmento as qtdePigmento,
                     r.observacoes as receitaObs,
                                     
-                    rmp.idMateriaPrima as materiaId
+                    rmp.idMateriaPrima as materiaId,
                     rmp.quantidadeMaterial as qtdeMateria,
 
                     pr.descricao as produtoNome,

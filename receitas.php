@@ -1,8 +1,11 @@
 <?php
     include('php/function.php');
+
     include('links/loginSession.php');
 
     if (isset($_SESSION['user']) == 0){
+
+        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
         
         header('location: login');
 
@@ -18,7 +21,7 @@
 
         <div id="main-wrapper">  
 
-            <?php include('links/preloader.php');?> 
+            <?php //include('links/preloader.php');?> 
 
             <?php  include('links/menu.php');?>  
 
