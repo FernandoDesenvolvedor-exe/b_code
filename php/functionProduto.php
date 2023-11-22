@@ -2,65 +2,10 @@
     function dataTableReceitas($idProduto){
 
         include('connection.php');
-
-<<<<<<< Updated upstream
-        $sql = 'SELECT r.idReceita as receitaId,
-                    r.quantidadePigmento as qtdePigmento,
-                    r.observacoes as receitaObs,
-                                    
-                    rmp.idMateriaPrima as materiaId,
-                    rmp.quantidadeMaterial as qtdeMateria,
-
-                    pr.descricao as produtoNome,
-                    pr.imagem as produtoImg,    
-
-                    f.idFerramental as moldeId,
-                    f.descricao as moldeNome, 
-                    tfer.descricao as tipoMolde_nome,
-
-                    mat.descricao as materialNome,
-                    tm.descricao as tipo_materiaNome, 
-                    c.descricao as classeMaterial,
-
-                    pg.descricao as pigmentoNome,  
-                    tp.descricao as tipoPigmento
-                    
-                    FROM receita_materia_prima as rmp
-                    
-                    LEFT JOIN receitas as r 
-                    ON rmp.idReceita = r.idReceita
-                    
-                    LEFT JOIN materia_prima as mat
-                    ON rmp.idMateriaPrima = mat.idMateriaPrima
-
-                    LEFT JOIN classe_material as c
-                    ON c.idClasse = mat.idClasse
-
-                    LEFT JOIN tipo_materia_prima as tm
-                    ON tm.idTipoMateriaPrima = mat.idTipoMateriaPrima
-
-                    LEFT JOIN produtos as pr
-                    ON r.idProduto = pr.idProduto
-
-                    RIGHT JOIN ferramental as f
-                    ON f.idProduto = pr.idProduto
-
-                    LEFT JOIN tipos_ferramental as tfer
-                    ON f.idTiposFerramental = tfer.idTiposFerramental
-
-                    LEFT JOIN pigmentos as pg
-                    ON pg.idPigmento = r.idPigmento
-
-                    LEFT JOIN tipo_pigmentos as tp
-                    ON tp.idTipoPigmento = pg.idTipoPigmento
-
-                    WHERE r.ativo = 1
-                    AND r.idProduto =  '.$idProduto.';';
-=======
         $sql = 'SELECT * FROM view_receitas
                     WHERE ativoReceita = 1
                     AND produtoId = '.$idProduto.';';
->>>>>>> Stashed changes
+
 
         $table = "";
         $receita = array();
@@ -303,8 +248,28 @@
                                                                 <div class="col-sm-7">
                                                                     <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                                 </div>
-                                                            </div>
-                                        
+                                                            </div>            
+                                                            
+                                                            
+                                                            
+                                                            <label style="text-align=center;" class="col-md-8">Status da ordem de produção</label>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-9">
+                                                                    <fieldset>
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input value=1 type="radio" class="custom-control-input" id="idAberto" name="nMaquina" >
+                                                                            <label class="custom-control-label" for="idAdm"> Administrador </label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input value=2 type="radio" class="custom-control-input" id="idInicializado" name="nMaquina" >
+                                                                            <label class="custom-control-label" for="idComum"> Comum </label>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>    
+
+
+
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
                                                                 <div class="col-sm-7">
@@ -312,17 +277,7 @@
                                                                         '.optionMaquina($campo['moldeId']).'
                                                                     </select>
                                                                 </div>
-                                                            </div>                                    
-                                        
-                                                            <div class="form-group row" style="align-content:justify">                            
-                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Status da ordem de produção</label>
-                                                                <div class="col-sm-7">
-                                                                    <select id="idStatus" name="nStatus" class="select2 form-control custom-select" style="width: 40%; height:36px;">
-                                                                        <option value=1>aberto</option>
-                                                                        <option value=2>Inicializado</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                                            </div>      
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Observações</label>
@@ -478,26 +433,26 @@
                                                                 <div class="col-sm-7">
                                                                     <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                                 </div>
-                                                            </div>
-                                        
-                                                            <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
-                                                                <div class="col-sm-7">
-                                                                    <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                                        '.optionMaquina($campo['moldeId']).'
-                                                                    </select>
-                                                                </div>
-                                                            </div>                                    
+                                                            </div>                                
                                         
                                                             <div class="form-group row" style="align-content:justify">                            
-                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Status da ordem de produção</label>
-                                                                <div class="col-sm-7">
+                                                                <label for="nClasse" class="col-sm-6 text-right control-label col-form-label">Status da ordem de produção</label>
+                                                                <div class="col-sm-6">
                                                                     <select id="idStatus" name="nStatus" class="select2 form-control custom-select" style="width: 40%; height:36px;">
                                                                         <option value=1>aberto</option>
                                                                         <option value=2>Inicializado</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                        
+                                                            <div id="divMaquina" class="form-group row">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
+                                                                <div class="col-sm-7">
+                                                                    <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                                        '.optionMaquina($campo['moldeId']).'
+                                                                    </select>
+                                                                </div>
+                                                            </div>    
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Observações</label>

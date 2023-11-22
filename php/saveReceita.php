@@ -90,7 +90,7 @@
     for($i=0;$i<count($material);$i++){
         
         $quant[]=$_POST['nQuantidade'.$material[$i]];
-        $sqlInsert+= "()"
+        $sqlInsert+= "()";
     }
     
                

@@ -84,6 +84,30 @@
         <script src="assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
         <script src="assets/libs/magnific-popup/meg.init.js"></script>
 
+        
+
+        <script>
+
+            var select = document.getElementById('#idStatus');
+
+            //document.getElementById('#idStatus').addEventListener("click", function(){         });
+
+            if(select.value == 1){
+
+                var div = document.getElementById('#divMaquina');
+
+                div.style.display = none;
+
+            } else {
+
+                var div = document.getElementById('#divMaquina');
+
+                div.style.display = block;
+
+            }
+
+        </script>
+
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
     </body>
