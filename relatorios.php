@@ -33,26 +33,6 @@
                     <div class="card p-3">
                         <h4 class="card-title">Menu de Relatórios</h4>
 
-                        <div class="form-group row">
-                            <label class="col-md-3">Relatório de:</label>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" onclick="createTable(M);" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required="">
-                                <label class="custom-control-label" for="customControlValidation1">Maquinas</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required="">
-                                <label class="custom-control-label" for="customControlValidation2">Pedidos</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required="">
-                                <label class="custom-control-label" for="customControlValidation3">Estoque</label>
-                            </div>
-                        </div>
-
-                        <button id="iTableMauquinas" type=button class="btn btn-info margin-5" style="width: 150px;">
-                            Consulta
-                        </button>
-
                         <div class="card-body d-none">
                             <label>Datepicker</label>
                             <div class="input-group">
@@ -61,7 +41,11 @@
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
+
+                        <button id="iTableMauquinas" type=button class="btn btn-info margin-5" style="width: 150px;">
+                            Consulta
+                        </button>                        
                     </div>
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">  
