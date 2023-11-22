@@ -9,5 +9,6 @@
     include('validaDados.php');
     include('functionFornecedor.php');
     include('functionPedido.php');
+    include('functionReceitas.php');
 ?>
 
