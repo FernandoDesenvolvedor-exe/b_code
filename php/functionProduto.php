@@ -488,6 +488,7 @@
         }  
         return $table;
     }
+
     function optionProdutos($idProduto){
 
         include('connection.php');
@@ -538,6 +539,7 @@
 
         return $select;
     }
+
     function dataTableProduto(){
 
         include('connection.php');
@@ -628,8 +630,8 @@
                                                     .'<h4 class="card-title">Produto e molde</h4>'
 
                                                     .'<div class="form-group row">'
-                                                        .'<label for="fname" class="col-sm-5 text-right control-label col-form-label">Nome do produto</label>'
-                                                        .'<div class="col-sm-7">'
+                                                        .'<label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do produto</label>'
+                                                        .'<div class="col-sm-9">'
                                                             .'<input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div> '
@@ -643,14 +645,14 @@
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>'
-                                                        .'<div class="col-sm-7">'
+                                                        .'<div class="col-sm-9">'
                                                             .'<input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div>'
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Peso</label>'
-                                                        .'<div class="col-sm-7">'
+                                                        .'<div class="col-sm-9">'
                                                             .'<input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
                                                         .'</div>'
                                                     .'</div>'
