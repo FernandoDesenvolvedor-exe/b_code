@@ -34,24 +34,22 @@
                         <h4 class="card-title">Menu de Relatórios</h4>
 
                         <div class="form-group row">
-                            <label class="col-md-3">Radio Buttons</label>
-                            <div class="col-md-9">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required="">
-                                    <label class="custom-control-label" for="customControlValidation1">First One</label>
-                                </div>
-                                    <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required="">
-                                    <label class="custom-control-label" for="customControlValidation2">Second One</label>
-                                </div>
-                                    <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required="">
-                                    <label class="custom-control-label" for="customControlValidation3">Third One</label>
-                                </div>
+                            <label class="col-md-3">Relatório de:</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" onclick="createTable(M);" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required="">
+                                <label class="custom-control-label" for="customControlValidation1">Maquinas</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required="">
+                                <label class="custom-control-label" for="customControlValidation2">Pedidos</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required="">
+                                <label class="custom-control-label" for="customControlValidation3">Estoque</label>
                             </div>
                         </div>
 
-                        <button id="iTableMauquinas" type=button class="btn-primary" style="width = 36px">
+                        <button id="iTableMauquinas" type=button class="btn btn-info margin-5" style="width: 150px;">
                             Consulta
                         </button>
 
@@ -87,21 +85,8 @@
 
                         <div class="card" style="padding: 10px;" aria-hidden=""> 
                             <div class="table-responsive">
-                                <table id="zero_config" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Produto</th>
-                                            <th>Matéria Prima</th>
-                                            <th>Pigmento</th>
-                                            <th>Aberto em</th>
-                                            <th>Status de produção</th>
-                                            <th>Alterar/Desativar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php echo dataTablePedido(); ?>
-                                    </tbody>
+                                <table id="iDataTableMaquina" class="table table-striped table-bordered">
+                                    
                                 </table>
                             </div>                         
                         </div>    
@@ -121,9 +106,22 @@
 
         <script>
 
-            function createTable(){
+            function createTable(num){
 
-                var table =document.getElementById('iTableMauquinas');
+                if(num == 1){
+                    
+                    <?php include('php/listaMaquinas'); ?>
+
+                } else if(num == 2){
+
+                    <?php include('php/listaMaquinas'); ?>
+
+                } else if(num == 3){
+                    
+                    <?php include('php/listaMaquinas'); ?>
+
+                }
+               
             }
         </script>
     </body>
