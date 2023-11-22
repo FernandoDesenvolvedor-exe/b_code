@@ -1,4 +1,5 @@
 <?php
+//LUIS FEZ VIEWS, ATUALIZAR ESSA FUNÇÃO
     function dataTableReceitas($idProduto){
 
         include('connection.php');
@@ -55,7 +56,10 @@
 
                     WHERE r.ativo = 1
                     AND r.idProduto =  '.$idProduto.';';
-
+        
+        $sql = 'SELECT * FROM view_receitas
+        WHERE ativoReceita = 1
+        AND produtoId = '.$idProduto.';';
         $table = "";
         $receita = array();
         $idAnterior = '';
