@@ -43,56 +43,6 @@
                             </a>                                          
                         </div> 
 
-                        <!-- MODAL NOVA CLASSE DE MATÈRIA PRIMA -->
-                        <div class="modal fade" id="modalAddClasse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">                                
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true ">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- MODAL NOVO TIPO DE MATÈRIA PRIMA -->
-                        <div class="modal fade" id="modalAddTipo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">                                
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de um tipo de material</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true ">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- NOVA MATÈRIA PRIMA -->
-                        <div class="modal fade" id="modalAddMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">                                
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true ">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">       
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="card" style="padding: 10px;"> 
 
                             <div class="table-responsive">

@@ -30,15 +30,62 @@
 
                 <div class="container-fluid">    
 
+                    <div class="card p-3">
+                        <h4 class="card-title">Menu de Relatórios</h4>
+
+                        <div class="form-group row">
+                            <label class="col-md-3">Radio Buttons</label>
+                            <div class="col-md-9">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required="">
+                                    <label class="custom-control-label" for="customControlValidation1">First One</label>
+                                </div>
+                                    <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required="">
+                                    <label class="custom-control-label" for="customControlValidation2">Second One</label>
+                                </div>
+                                    <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required="">
+                                    <label class="custom-control-label" for="customControlValidation3">Third One</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="iTableMauquinas" type=button class="btn-primary" style="width = 36px">
+                            Consulta
+                        </button>
+
+                        <div class="card-body d-none">
+                            <label>Datepicker</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">  
-
-                        <h4 class="card-title">Monitoramento de Pedidos</h4>
-                                    
+                                                            
                         
 
-                        <div class="card" style="padding: 10px;"> 
+                        <div id="iDataTableMaquina" class="card" style="padding: 10px;" aria-hidden=""> 
+                            <div class="table-responsive">
+                                <table id="zero_config" class="table table-striped table-bordered">
+                                    <thead> <!--PRODUÇÃO POR HR - UTILIZADO EM QUAIS PEDIDOS - QUANDO - POR QUEM -->
+                                        <tr>
+                                            <th>Máquinas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php echo dataTablePedido(); ?>
+                                    </tbody>
+                                </table>
+                            </div>                         
+                        </div>
 
+                        <div class="card" style="padding: 10px;" aria-hidden=""> 
                             <div class="table-responsive">
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
@@ -57,7 +104,9 @@
                                     </tbody>
                                 </table>
                             </div>                         
-                        </div>  
+                        </div>    
+
+                        
                     </div>
                 </div>
                 
@@ -69,5 +118,13 @@
 
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
+
+        <script>
+
+            function createTable(){
+
+                var table =document.getElementById('iTableMauquinas');
+            }
+        </script>
     </body>
 </html>
