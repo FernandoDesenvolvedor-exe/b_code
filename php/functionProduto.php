@@ -3,6 +3,7 @@
 
         include('connection.php');
 
+<<<<<<< Updated upstream
         $sql = 'SELECT r.idReceita as receitaId,
                     r.quantidadePigmento as qtdePigmento,
                     r.observacoes as receitaObs,
@@ -55,6 +56,11 @@
 
                     WHERE r.ativo = 1
                     AND r.idProduto =  '.$idProduto.';';
+=======
+        $sql = 'SELECT * FROM view_receitas
+                    WHERE ativoReceita = 1
+                    AND produtoId = '.$idProduto.';';
+>>>>>>> Stashed changes
 
         $table = "";
         $receita = array();
@@ -175,15 +181,15 @@
             
                                                         <div class="card-body">
                                                             <div class="input-group mb-3">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produto</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>               
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Ferramental</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>'; 
@@ -192,25 +198,28 @@
                             if ($cont == 0){                                        
                                 
                                 $table .=
-                                        '<div class="card-body">
+                                        '<div class="form-group row">
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-6">
                                                     <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <input type="text" id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
-                                            <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g">
-                                            </div> 
+                                            <div class="row mb-3">
+                                                <label for="nClasse" class="col-sm-6 text-right control-label col-form-label">Quantiade usada por produto</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'">
+                                                </div> 
+                                                <label text-align:left class="col-sm-4 text-right control-label col-form-label">gramas</label> 
+                                            </div>
                                         </div>'; 
 
                             } else if ($cont == (count($arrayQtdMat) - 1)){              
@@ -218,81 +227,87 @@
                                         '<div class="card-body">
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-6">
                                                     <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'">
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                         <div class="form-group row">
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
-                                            <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g">
-                                            </div> 
+                                            <div class="row mb-3">
+                                                <label for="nClasse" class="col-sm-6 text-right control-label col-form-label">Quantiade usada por produto</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'">
+                                                </div> 
+                                                <label text-align:left class="col-sm-4 text-right control-label col-form-label">gramas</label> 
+                                            </div>
                                         </div>';
                             } else {                                        
                                 
                                 $table .=
-                                        '<div class="card-body">
+                                        '<div class="form-group row">
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-6">
                                                     <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$arrayMat['tipo'][$cont].'">
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'g">
+                                                <div class="col-lg-3">
+                                                    <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'">
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div> 
                                         <div class="form-group row">
-                                            <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
-                                            <div class="col-lg-3">
-                                                <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'g">
-                                            </div> 
+                                            <div class="row mb-3">
+                                                <label for="nClasse" class="col-sm-6 text-right control-label col-form-label">Quantiade usada por produto</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$arrayMat['quantidade'][$cont].'">
+                                                </div> 
+                                                <label text-align:left class="col-sm-4 text-right control-label col-form-label">gramas</label> 
+                                            </div>
                                         </div>';
                             }
                         }
                                         
                         $table .=                                    
                                                             '<div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade de produção</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Quantidade de produção</label>
+                                                                <div class="col-sm-7">
                                                                     <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
+                                                                <div class="col-sm-7">
                                                                     <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                         '.optionMaquina($campo['moldeId']).'
                                                                     </select>
@@ -300,8 +315,8 @@
                                                             </div>                                    
                                         
                                                             <div class="form-group row" style="align-content:justify">                            
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Status da ordem de produção</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Status da ordem de produção</label>
+                                                                <div class="col-sm-7">
                                                                     <select id="idStatus" name="nStatus" class="select2 form-control custom-select" style="width: 40%; height:36px;">
                                                                         <option value=1>aberto</option>
                                                                         <option value=2>Inicializado</option>
@@ -310,8 +325,8 @@
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Observações</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Observações</label>
+                                                                <div class="col-sm-7">
                                                                     <textarea class="form-control" id="iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea> 
                                                                 </div>
                                                             </div>
@@ -398,72 +413,76 @@
             
                                                         <div class="card-body">
                                                             <div class="input-group mb-3">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Produto</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produto</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>               
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Ferramental</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Ferramental</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>  
 
-                                                            <div class="card-body">
+                                                            <div class="form-group row">
                                                                 <label>Matéria Prima</label>
                                                                 <div class="row mb-3">
-                                                                    <div class="col-lg-4">
+                                                                    <div class="col-lg-6">
                                                                         <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materialNome'].'" >
                                                                     </div>
-                                                                    <div class="col-lg-4">
+                                                                    <div class="col-lg-3">
                                                                         <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo_materiaNome'].'" >
                                                                     </div>
-                                                                    <div class="col-lg-4">
+                                                                    <div class="col-lg-3">
                                                                         <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" >
                                                                     </div>
                                                                 </div>
                                                             </div>   
 
+                                                            
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantiade usada por produto</label>
-                                                                <div class="col-lg-3">
-                                                                    <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'g" >
-                                                                </div> 
+                                                                <div class="row mb-3">
+                                                                    <label for="nClasse" class="col-sm-6 text-right control-label col-form-label">Quantiade usada por produto</label>
+                                                                    <div class="col-sm-2">
+                                                                        <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.$campo['qtdeMateria'].'">
+                                                                    </div> 
+                                                                    <label text-align:left class="col-sm-4 text-right control-label col-form-label">gramas</label> 
+                                                                </div>
                                                             </div>
                                                             
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Tipo de Pigmento</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                                <div class="col-sm-7">
                                                                     <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Quantidade de produção</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Quantidade de produção</label>
+                                                                <div class="col-sm-7">
                                                                     <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                                 </div>
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Maquina</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
+                                                                <div class="col-sm-7">
                                                                     <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                         '.optionMaquina($campo['moldeId']).'
                                                                     </select>
@@ -471,8 +490,8 @@
                                                             </div>                                    
                                         
                                                             <div class="form-group row" style="align-content:justify">                            
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Status da ordem de produção</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Status da ordem de produção</label>
+                                                                <div class="col-sm-7">
                                                                     <select id="idStatus" name="nStatus" class="select2 form-control custom-select" style="width: 40%; height:36px;">
                                                                         <option value=1>aberto</option>
                                                                         <option value=2>Inicializado</option>
@@ -481,8 +500,8 @@
                                                             </div>
                                         
                                                             <div class="form-group row">
-                                                                <label for="nClasse" class="col-sm-3 text-right control-label col-form-label">Observações</label>
-                                                                <div class="col-sm-9">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Observações</label>
+                                                                <div class="col-sm-7">
                                                                     <textarea class="form-control" id="iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea> 
                                                                 </div>
                                                             </div>
@@ -654,8 +673,8 @@
                                                     .'<h4 class="card-title">Produto e molde</h4>'
 
                                                     .'<div class="form-group row">'
-                                                        .'<label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome do produto</label>'
-                                                        .'<div class="col-sm-9">'
+                                                        .'<label for="fname" class="col-sm-5 text-right control-label col-form-label">Nome do produto</label>'
+                                                        .'<div class="col-sm-7">'
                                                             .'<input type="text" class="form-control" id="iProduto" name= "nProduto" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div> '
@@ -669,14 +688,14 @@
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Descrição do ferramental</label>'
-                                                        .'<div class="col-sm-9">'
+                                                        .'<div class="col-sm-7">'
                                                             .'<input type="text" class="form-control" id="iMolde" name= "nMolde" placeholder="Nome do material">'
                                                         .'</div>'
                                                     .'</div>'
 
                                                     .'<div class="form-group row">'
                                                         .'<label class="col-md-3 m-t-15" style="text-align: right;">Peso</label>'
-                                                        .'<div class="col-sm-9">'
+                                                        .'<div class="col-sm-7">'
                                                             .'<input type="number" class="form-control" id="iQtd" name= "nQtd" placeholder="Peso do material em gramas + peso do canal">'
                                                         .'</div>'
                                                     .'</div>'

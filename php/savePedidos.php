@@ -72,7 +72,7 @@
         $idPedido = buscaId("pedidos","idPedido");  
             
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
-            $sql = 'INSERT INTO historico
+            $sql = 'INSERT INTO historico_pedidos
                             (idPedido,
                             nomeUsuario,
                             tipoUsuario,
@@ -139,7 +139,7 @@
             
             if($_POST['nStatus'] == 2){
 
-                $sql =  'INSERT INTO historico_materia_prima(
+                $sql2 =  'INSERT INTO historico_materia_prima(
                             idMateria,
                             nomeUsuario,
                             turma,
@@ -156,11 +156,13 @@
                             "'.$_SESSION['turno'].'",
                             "'.$_SESSION['tipo'].'",
                             "'.$_POST['nMaterial'][$n].'",
-                            '.(-($qtde * $_POST['nQtdeMaterial'][$n])).',
+                            '.-($qtde * $_POST['nQtdeMaterial'][$n]).',
                             '.$current_date.',
                             1);';
                                 
-                $result = mysqli_query($conn, $sql);
+                var_dump($sql);
+                die();
+                $result = mysqli_query($conn, $sql2);
 
             }
         }
@@ -185,7 +187,7 @@
 
     } else if($_GET['validacao'] == 'A'){
 
-        date_default_timezone_set('America/Sao_Paulo'); // CDT
+        date_default_timezone_set('America/Sao_Paulo');
 
         $info = getdate();
         $dia = $info['mday'];
@@ -202,10 +204,17 @@
 
         if ($_GET['stats'] == 1){
 
-            $sql = 'UPDATE pedidos SET status = 2, dataHora_producao="'.$current_date.'" WHERE idPedido = '.$_GET['id'].';';
+            $sql = 'UPDATE pedidos SET 
+                        status = 2, 
+                        dataHora_producao="'.$current_date.'",
+                        idMaquina=  
+                        WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
 
-            $sql = 'UPDATE historico SET statusPedido = 2, dataHora_producao="'.$current_date.'" WHERE idPedido = '.$_GET['id'].';';
+            $sql = 'UPDATE historico_pedidos 
+                        SET statusPedido = 2,
+                        dataHora_producao="'.$current_date.'" 
+                        WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
             
             mysqli_close($conn);
@@ -221,11 +230,11 @@
 
             $result = mysqli_query($conn, $sql);            
 
-            $sql = 'UPDATE pedidos 
+            $sql = 'UPDATE historico_pedidos 
                         SET statusPedido = 3, 
                         dataHora_fechado="'.$current_date.'",
                         refugo ='.$_POST['nRefugo'].',
-                        producaoRealizada ='.($_POST['nReal'] - $_POST['nRefugo']).' 
+                        producaoRealizada ='.$_POST['nReal'].' 
                         WHERE idPedido = '.$_GET['id'].';';
 
             $result = mysqli_query($conn, $sql);
@@ -241,5 +250,5 @@
         mysqli_close($conn);
     }
     
-    header('location:../producao.php');
+    header('location:../producao');
 ?>
