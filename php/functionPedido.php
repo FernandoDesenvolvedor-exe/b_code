@@ -29,120 +29,9 @@ function dataTablePedido(){
 
     include('connection.php');
 
-    $sql = 'SELECT 
-                ped.idPedido as pedidoId,
-                ped.idUsuario as userId, 
-                ped.idReceita as receitaId,
-                ped.idMaquina as maquinaId,
-                ped.dataHora_aberto as abertoData_hora,
-                ped.dataHora_producao as producaoData_hora,
-                ped.dataHora_fechado as fechadoData_hora,     
-                ped.status as stats,
-                ped.observacoes as obs,
-                ped.refugo as qtdRefugo,
-                ped.producaoPrevista as qtdPrevista,
-                ped.producaoRealizada as qtdRealizada,
-
-                usu.idTurma as turmaId,    
-                usu.nome as name,                        
-                usu.sobrenome as sobName, 
-                usu.tipo as nivel,   
-
-                tur.nomeTurma as turma,  
-                tur.turno as turno, 
-
-                maq.descricao as maquina,
-
-                rec.idProduto as produtoId,            
-                rec.idPigmento as pigmentoId,
-                rec.quantidadePigmento as qtdePigmento,
-
-                rmp.idMateriaPrima as materiaId,
-                rmp.quantidadeMaterial as qtdeMateria,
-
-                mat.idClasse as classeId,                    
-                mat.idTipoMateriaPrima as tipoMatId,    
-                mat.descricao as material,   
-
-                tmat.descricao as tipoMat,
-                cmat.descricao as classeMat, 
-
-                forM.descricao as fornecedorM,     
-
-                forP.descricao as fornecedorP,
-
-                pig.descricao as cor,          
-                pig.idTipoPigmento as tipoCorId,
-                pig.descricao as cor,                      
-                pig.codigo as codCor,      
-                pig.lote as loteCor,     
-
-                tpig.descricao as tipoCor,  
-
-                pro.descricao as produto,
-                pro.peso as pesoPro,                    
-                pro.imagem as img,
-
-                fer.descricao as molde,                      
-                fer.idTiposFerramental as tipoMoldeId,
-
-                tfer.descricao as tipoMolde             
-
-                FROM pedidos as ped
-
-                LEFT JOIN usuarios as usu
-                ON ped.idUsuario = usu.idUsuario
-
-                LEFT JOIN turma as tur
-                ON usu.idTurma = tur.idTurma
-
-                LEFT JOIN maquinas as maq
-                ON ped.idMaquina = maq.idMaquina
-
-                LEFT JOIN receitas as rec
-                ON ped.idReceita = rec.idReceita
-
-                RIGHT JOIN receita_materia_prima as rmp
-                ON rmp.idReceita = rec.idReceita
-
-                LEFT JOIN materia_prima as mat
-                ON rmp.idMateriaPrima = mat.idMateriaPrima
-
-                RIGHT JOIN materia_fornecedor as format
-                ON mat.idMateriaPrima = format.idMateriaPrima
-
-                RIGHT JOIN tipo_materia_prima as tmat
-                ON mat.idTipoMateriaPrima = tmat.idTipoMateriaPrima
-
-                RIGHT JOIN classe_material as cmat
-                ON mat.idClasse = cmat.idClasse
-
-                LEFT JOIN produtos as pro
-                ON rec.idProduto = pro.idProduto
-
-                RIGHT JOIN ferramental as fer
-                ON pro.idProduto = fer.idProduto
-
-                LEFT JOIN tipos_ferramental as tfer
-                ON fer.idTiposFerramental = tfer.idTiposFerramental
-
-                LEFT JOIN fornecedores as forM
-                ON format.idFornecedor = forM.idFornecedor
-
-                LEFT JOIN pigmentos as pig
-                ON rec.idPigmento = pig.idPigmento
-
-                LEFT JOIN tipo_pigmentos as tpig
-                ON pig.idTipoPigmento = tpig.idTipoPigmento
-
-                LEFT JOIN pigmento_fornecedor as forpig
-                ON pig.idPigmento = forpig.idPigmento
-
-                LEFT JOIN fornecedores as forP
-                ON forP.idFornecedor = forpig.idFornecedor          
-
-                WHERE ped.ativo = 1
-                ORDER BY ped.idPedido ASC;';
+    $sql = 'SELECT * FROM view_pedidos
+                WHERE ativoPedido = 1
+                ORDER BY pedidoId ASC;';
             
 
     $table = "";
@@ -223,11 +112,11 @@ function dataTablePedido(){
                     if ($campo['stats'] == 1){
                         
                         $table .=
-                                '<td>                                                                       
-                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
+                                '<td>                            
+                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalInicio'.$campo['pedidoId'].'">
                                         Em aberto
-                                    </button>
-                                </td>';  
+                                    </button>                                
+                                </td>'; 
 
                     } else if ($campo['stats'] == 2) {
 
@@ -287,11 +176,45 @@ function dataTablePedido(){
                                     </div>
                                 </div>
 
+                                <div class="modal fade" id="modalInicio'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Iniciar produção?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true ">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+    
+                                                <form method="POST" action="php/savePedidos? validacao=A&id='.$campo["pedidoId"].'&stats='.$campo['stats'].'">
+                                                    <div>                                     
+                                                        <div class="input-group mb-3">
+                                                            <label for="nClasse" class="col-sm-8 text-right control-label col-form-label">Máquina as ser produzida:</label>
+                                                            <div class="col-sm-4">                                                            
+                                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                                    '.optionMaquina($campo['moldeId']).'
+                                                                </select>
+                                                            </div>
+                                                        </div>                                                    
+                                                    </div>
+    
+                                                    <label> Confirmar esta ação? </label>
+                                                    <div align-items="right">
+                                                        <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
+                                                    </div>
+                                                </form>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="modal fade" id="modalAltera'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document ">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Encerrar produção</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true ">&times;</span>
                                                 </button>
@@ -718,11 +641,11 @@ function dataTablePedido(){
                 if ($campo['stats'] == 1){
                     
                     $table .=
-                            '<td>                                                                       
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAltera'.$campo['pedidoId'].'">
+                            '<td>                            
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalInicio'.$campo['pedidoId'].'">
                                     Em aberto
-                                </button>
-                            </td>';
+                                </button>                                
+                            </td>'; 
 
                 } else if ($campo['stats'] == 2) {
 
@@ -782,11 +705,45 @@ function dataTablePedido(){
                                 </div>
                             </div>
 
+                            <div class="modal fade" id="modalInicio'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Iniciar produção?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true ">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form method="POST" action="php/savePedidos? validacao=A&id='.$campo["pedidoId"].'&stats='.$campo['stats'].'">
+                                                <div>                                     
+                                                    <div class="input-group mb-3">
+                                                        <label for="nClasse" class="col-sm-8 text-right control-label col-form-label">Máquina as ser produzida:</label>
+                                                        <div class="col-sm-4">                                                            
+                                                            <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                                '.optionMaquina($campo['moldeId']).'
+                                                            </select>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+
+                                                <label> Confirmar esta ação? </label>
+                                                <div align-items="right">
+                                                    <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="modal fade" id="modalAltera'.$campo['pedidoId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Encerrar produção</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true ">&times;</span>
                                             </button>
