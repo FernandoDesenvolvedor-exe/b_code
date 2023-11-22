@@ -33,15 +33,29 @@
                     <div class="card p-3">
                         <h4 class="card-title">Menu de Relatórios</h4>
 
-                        <div class="card-body d-none">
-                            <label>Datepicker</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                        <div class="card-body">
+                            <label>Histórico de produção</label>
+                            <div class="input-group mb-3">                                
+                                <label>De: </label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <label>Até: </label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>   
+                        
+                        <div class="card-body">
+                            
+                        </div>                       
 
                         <button id="iTableMauquinas" type=button class="btn btn-info margin-5" style="width: 150px;">
                             Consulta
@@ -49,8 +63,6 @@
                     </div>
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">  
-                                                            
-                        
 
                         <div id="iDataTableMaquina" class="card" style="padding: 10px;" aria-hidden=""> 
                             <div class="table-responsive">
