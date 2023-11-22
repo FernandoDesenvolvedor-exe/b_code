@@ -13,14 +13,14 @@
         $_SESSION['error'] = $abreHTMLalert.'Escolha um material!'.$fechaHTMLalert;
         header('location: ../cadastroReceitas.php?idProduto='.$_GET["idProduto"].'&pr='.$_GET['pr']);
     }
-    $produto=$_GET["idProduto"];
+    $produto = $_GET["idProduto"];
     //id de cada material
     $material = $_POST['tableMateriais'];
     $pigmento = $_POST['nPigmento'];
-    $pesoPigmento = $_POST['nQuantPigmento'];
+    $porcentPigmento = intval($_POST['nQuantPigmento']);
     $quant = [];
     $observacoes = $_POST['nObservacoes'];
-    $pesoMaterial = 0;
+    $pesoMaterial = 0;//inicializa var
     echo $_GET['pr'].' '.$_GET['idProduto'].'<br>';
     //CRIA UM VETOR DE QUANTIDADE COM A MESMA POSIÇÃO QUE O VETOR MATERIAL
     for($i=0;$i<count($material);$i++){
@@ -29,12 +29,20 @@
             $_SESSION['error'] = $abreHTMLalert.'Escolha uma quantidade para cada material selecionado!'.$fechaHTMLalert;
             header('location: ../cadastroReceitas.php?idProduto='.$_GET["idProduto"].'&pr='.$_GET['pr']);
         }
-        $quant[]=$_POST['nQuantidade'.$material[$i]];
+        $quant[]=intval($_POST['nQuantidade'.$material[$i]]);
         $pesoMaterial+=intval($_POST['nQuantidade'.$material[$i]]);
     }
+    //PROBLEMA ENCONTRADO!!!
+    //QUANDO SELECIONO MAIS DE UM MATERIAL, COMO FAÇO A REDUÇÂO EM CADA UM?
+    //PROVAVELMENTE SÓ É USADO UM MATERIAL!! MUDANDO BOA PARTE DO CADASTRO
+    //VERIFICAR COM O PROFESSOR, A REDUÇÂO DO PIGMENTO É FEITO EM QUEM?
+    //UM PRODUTO PODE SER FEITO COM MAIS DE UM MATERIAL VIRGEM?
+    //CASO N POSSA, PODE VIRGEM E RECICLADO?
 
-    $pesoTotal=$pesoMaterial+intval($pesoPigmento);
-    
+    $pesoTotal=$pesoMaterial; //Peso total da receita
+    $pesoMaterial = $pesoMaterial-($pesoMaterial*($porcentPigmento/100)); //Retira a porcentagem de pigmento
+    $
+    //Verifica se o peso da receita é igual ao peso do produto
     $sql='select peso from produtos where idProduto='.$_GET["idProduto"];
     include('connection.php');
     $result= mysqli_query($conn, $sql);
@@ -78,10 +86,11 @@
         }
     }
     //INSERT idReceita, materiaPrima e a quantidade de materia
+    $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial) values";
     for($i=0;$i<count($material);$i++){
         
         $quant[]=$_POST['nQuantidade'.$material[$i]];
-        $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial)";
+        $sqlInsert+= "()"
     }
     
                
