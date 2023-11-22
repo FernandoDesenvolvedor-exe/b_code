@@ -30,65 +30,78 @@
 
                 <div class="container-fluid">    
 
-                    <div class="card p-3">
+                    <div class="card p-3 align-items-left">
                         <h4 class="card-title">Menu de Relatórios</h4>
 
-                        <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-3">Radio Buttons</label>
+                            <div class="col-md-9">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="historicoAberto" name="radio-stacked" value="1" required="">
+                                    <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="historicoAndamento" name="radio-stacked" value="2" required="">
+                                    <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="historicoConcluido" name="radio-stacked" value="3" required="">
+                                    <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="historicoDesativado" name="radio-stacked" value="4" required="">
+                                    <label class="custom-control-label" for="customControlValidation3">Deletados</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body" hidden>
                             <label>Histórico de produção</label>
                             <div class="input-group mb-3">                                
-                                <label>De: </label>
+                                <label>Concluidos em:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
+                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                                 <label>Até: </label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy">
+                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>   
-                        
-                        <div class="card-body">
-                            
-                        </div>                       
+                        </div>                      
 
                         <button id="iTableMauquinas" type=button class="btn btn-info margin-5" style="width: 150px;">
                             Consulta
                         </button>                        
-                    </div>
-                    <!-- Start Page Content -->                    
-                    <div class="card" style="padding: 10px;">  
-
-                        <div id="iDataTableMaquina" class="card" style="padding: 10px;" aria-hidden=""> 
-                            <div class="table-responsive">
-                                <table id="zero_config" class="table table-striped table-bordered">
-                                    <thead> <!--PRODUÇÃO POR HR - UTILIZADO EM QUAIS PEDIDOS - QUANDO - POR QUEM -->
-                                        <tr>
-                                            <th>Máquinas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php echo dataTablePedido(); ?>
-                                    </tbody>
-                                </table>
-                            </div>                         
-                        </div>
-
-                        <div class="card" style="padding: 10px;" aria-hidden=""> 
-                            <div class="table-responsive">
-                                <table id="iDataTableMaquina" class="table table-striped table-bordered">
-                                    
-                                </table>
-                            </div>                         
-                        </div>    
-
+                    </div>   
                         
-                    </div>
+                    <div class="card-body d-none">
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Pigmento</th>
+                                        <th>Fornecedor</th>
+                                        <th>Codigo</th>
+                                        <th>Lote</th>
+                                        <th>Tipo</th>
+                                        <th>Quantidade</th>
+                                        <th>Observações</th>
+                                        <th>Alterar/Desativar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo dataTablePigmento(); ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+                    
                 </div>
                 
                 <footer class="footer text-center">
