@@ -47,7 +47,7 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
                             <div class="col-sm-9">
-                                <select id="iProduto" name="nProduto" class="select2 form-control custom-select" style="width: 100%; height:36px;" >
+                                <select id="iProduto" name="nProduto" class="select2 form-control custom-select" style="width: 80%; height:36px;" >
                                     <?php echo optionProdutos($_GET['idProduto']);?>
                                 </select>
                             </div>
@@ -56,54 +56,41 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Materiais</label>
                             <div class="col-sm-9">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead-light">
-                                            <!-- Main Table -->
-                                            <tr>
-                                                <th>
-                                                    <label class="customcheckbox m-b-20">
-                                                        <input type="checkbox" id="mainCheckbox" />
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <th scope="col">Material</th>
-                                                <th scope="col">Tipo</th>
-                                                <th scope="col">Classe</th>
-                                                <th scope="col">Quantidade</th>
-                                            </tr>
-                                        </thead>
-                                        <!-- Opções/Materiais -->
-                                        <tbody class="customtable">
+                                    <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 80%; height:36px;">
                                         <?php
-                                            include('links/tabelaMateriais.php');
+                                            echo optionMaterial(2);
                                         ?> 
-                                        </tbody>
-                                    </table>
-                                    
+                                    </select>
                                 </div>
                             </div>
-                                
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 m-t-15" style="text-align: right;">Pigmento</label>
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantidade Reciclado</label>
+                            <div class="col-sm-9" id='qntM'>
+                               <input id="iQuantReciclado" name="nQuantReciclado" type="number" class="form-control" placeholder="quantidade reciclado" style="width:30%;" min="0"  >
+                                
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                             <div class="col-md-9">
-                                <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 80%; height:36px;">
                                     <?php echo optionPigmento(); ?>
                                 </select>
                             </div>                                    
                         </div>
 
                         <div class="form-group row">
-                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade Pigmento</label>
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantidade Pigmento</label>
                             <div class="col-sm-9" id='qntM'>
-                                
-                               <input id="iQuantPigmento" name="nQuantPigmento" type="number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em %" style="width:30%;" min="0" max='100' maxLength>
-                                
+                                <div class='row'>
+                                    <input id="iQuantPigmento" name="nQuantPigmento" type="number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="0" style="width:10%;" unit="%" min="0" max='6'>
+                                    <label for="nQuantPigmento" class="control-label col-form-label">%</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Peso Total</label>
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Peso Total</label>
                             <div class="col-sm-9">
                                 <label id='ipesototal' name='npesoTotal' hidden>Mostrar quantidade total selecionada. Improvável :(</label>
                             </div>
@@ -113,7 +100,7 @@
                         </script>
 
                         <div class="form-group row">
-                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                             </div>

@@ -31,10 +31,16 @@ if(mysqli_num_rows($result) > 0){
         array_push($array, $linha);
     }
     foreach($array as $campo){
-                echo    '<tr>
+                echo
+                
+                
+                
+                
+                /*
+                '<tr>
                     <th>
                         <label class="customcheckbox">
-                            <input value='.$campo['id'].' name="tableMateriais[]" type="checkbox" class="listCheckbox" />
+                            <input onclick="setTable('.$campo['id'].')" value='.$campo['id'].' id="iMaterial'.$campo['id'].'" name="tableMateriais[]" type="checkbox" class="listCheckbox" />
                             <span class="checkmark"></span>
                         </label>
                     </th>
@@ -42,9 +48,9 @@ if(mysqli_num_rows($result) > 0){
                     <td>'.$campo['tipos'].'</td>
                     <td>'.$campo['ativo'].'</td>
                     <td>
-                    <input id="iQuantidade" name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
+                    <input name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
                     </td>
-                </tr>'; 
+                </tr>'; */
                        
     }
 }
