@@ -50,6 +50,13 @@
         <script src="assets/libs/magnific-popup/meg.init.js"></script>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/script.php');?>
+        <?php include('links/script.php');?> 
+
+        <script>
+            /****************************************
+            *       Basic Table                   *
+            ****************************************/
+            $('#zero_config').DataTable();
+        </script> 
     </body>
 </html>

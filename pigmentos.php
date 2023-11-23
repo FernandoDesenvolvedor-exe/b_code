@@ -100,13 +100,15 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
-                                                    <div class="col-sm-9">
-                                                        <input id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;" required>
-                                                    </div>                                                
+                                                    <div class="col-sm-3">
+                                                        <label for="iQuandtidade" class="col-sm-3 control-label col-form-label">Quantidade</label>
+                                                        <div class="col-sm-9">
+                                                            <input id="iQuandtidade" name="nQuandtidade" type="number" min="" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;" required>
+                                                        </div> 
+                                                    </div>                                               
                                                 </div>
 
-                                                <div class="form-group row">
+                                                <div class="form-group row">                                                    
                                                     <label class="col-md-3 m-t-15" style="text-align: right;">Matéria(s) prima(s) compatível(eis)</label>
                                                     <div class="col-md-9">
                                                         <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;" required>
@@ -202,6 +204,58 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/script.php');?>
+        <?php include('links/script.php');?> 
+
+        <script>
+            /****************************************
+            *       Basic Table                   *
+            ****************************************/
+            $('#zero_config').DataTable();
+        </script> 
+        
+        <script>
+            
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+
+            /*colorpicker*/
+            $('.demo').each(function() {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+
+                    change: function(value, opacity) {
+                        if (!value) return;
+                        if (opacity) value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+
+        </script>
     </body>
 </html>

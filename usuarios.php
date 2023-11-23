@@ -192,6 +192,13 @@
             </div>
         </div> 
 
+        <script>
+            /****************************************
+            *       Basic Table                   *
+            ****************************************/
+            $('#zero_config').DataTable();
+        </script>   
+
         <script>               
             
             const element1 = document.getElementById('#idAdm');
