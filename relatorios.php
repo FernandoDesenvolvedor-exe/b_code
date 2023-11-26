@@ -31,42 +31,104 @@
                 <div class="container-fluid">
 
                     <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog" role="document ">                                
+                        <div class="modal-dialog modal-xl" role="document ">                                
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Filtros avançados</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true ">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body pre-scrollable">
                     
-                                    <div class="card-body text-left">
-                                        <div>
-                                            <h4 class="card-title">Autor da ordem de produção</h4>
-                                        </div>
-                                        <div class="form-group row align-items-left">
-                                            <label class="col-md-5 m-t-10">Usuários:</label>
-                                            <div class="col-md-7">
-                                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                    <option>Select</option>                                            
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>                                    
+                                    <div class="card">
+                                        
+                                        <div class="card-body text-right">
+                                            <div class="form-group row">
+                                                <label class="m-t-10">Usuário:</label>
+                                                <div class="col-md-2">
+                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
 
-                                    <div class="card-body text-left">
-                                        <div>
-                                            <h4 class="card-title">Maquina utilizada</h4>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 m-t-15">Single Select</label>
-                                            <div class="col-md-9">
-                                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                                    <option>Select</option>                                            
-                                                </select>
+                                                <label class="m-t-10">Máquina:</label>
+                                                <div class="col-md-2">
+                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
+
+                                                <label class="m-t-10">Material:</label>
+                                                <div class="col-md-2">
+                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
+
+                                                <label class="m-t-10">Produto:</label>
+                                                <div class="col-md-2">
+                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
                                             </div>
+                                        </div>  
+                                        
+                                        <div class="card-body d-flex flex-row align-items-left">
+                                            
+                                            <div class="card-body">
+                                                <div>                                    
+                                                    <h4 class="card-title">Organizar ordens de produção por:</h4>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-left m-3">
+                                                    <div class="m-1">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-2" id="customControlValidation1" name="radio-stacked" required>
+                                                            <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
+                                                        </div>
+                                                            <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-4" id="customControlValidation2" name="radio-stacked" required>
+                                                            <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-1">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation3" name="radio-stacked" required>
+                                                            <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation4" name="radio-stacked" required>
+                                                            <label class="custom-control-label" for="customControlValidation4">Desativados</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+
+                                                <div>                                    
+                                                    <h4 class="card-title">Periodo:</h4>
+                                                </div>                                   
+                                                <div class="input-group">
+                                                    <label>De:</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <label>Até: </label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>                                                                     
                                         </div>
+                                        
                                     </div>
 
                                 </div>
@@ -75,79 +137,81 @@
                     </div>
 
                     <div class="card">   
+
                         <div class="p-3">
                             <h3 class="card-title">Menu de Relatórios</h3>
                         </div>    
 
-                        <div class="d-flex flex-row align-items-left">  
-                            <div class="card-body">
-                                <div>                                    
-                                    <h4 class="card-title">Organizar ordens de produção por:</h4>
-                                </div>
-                                <div class="d-flex flex-row align-items-left m-3">
-                                    <div class="m-1">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-2" id="customControlValidation1" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
-                                        </div>
-                                            <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-4" id="customControlValidation2" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
-                                        </div>
+                        <div class="d-flex flex-row">
+
+                        </div>
+                        <div class="card-body">
+                            <div>                                    
+                                <h4 class="card-title">Organizar ordens de produção por:</h4>
+                            </div>
+                            <div class="d-flex flex-row align-items-left m-3">
+                                <div class="m-1">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input col-md-2" id="customControlValidation1" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
                                     </div>
-                                    <div class="m-1">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation3" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation4" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="customControlValidation4">Desativados</label>
-                                        </div>
+                                        <input type="radio" class="custom-control-input col-md-4" id="customControlValidation2" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
                                     </div>
                                 </div>
-                            </div>    
-
-                            <div id="idDivData" class="card-body">  
-                                <div>                                    
-                                    <h4 class="card-title">Periodo:</h4>
-                                </div>                                   
-                                <div class="input-group">
-                                    <label>De:</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
+                                <div class="m-1">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input col-md-3" id="customControlValidation3" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
                                     </div>
-                                    <label>Até: </label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input col-md-3" id="customControlValidation4" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="customControlValidation4">Desativados</label>
                                     </div>
-                                </div>                          
-                            </div> 
-
-                            <div class="card-body text-left">
-                                <div class="form-group row align-items-center">                                    
-                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
-                                        Avançado
-                                    </button> 
                                 </div>
                             </div>
-                            
+                        </div>    
+
+                        <div class="card-body">  
+                            <div>                                    
+                                <h4 class="card-title">Periodo:</h4>
+                            </div>                                   
+                            <div class="input-group">
+                                <label>De:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <label>Até: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>                          
+                        </div> 
+                        
+                        <div class="card-body">
+                            <div class="form-group row m-3">                                    
+                                <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
+                                    Avançado
+                                </button> 
+                            </div>
+
+                            <div class="form-group row m-3">
+                                <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                    Consulta
+                                </button> 
+                            </div> 
                         </div>
 
-                        <div class="form-group row m-3">
-                            <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px;">
-                                Consulta
-                            </button> 
-                        </div>
-                    </div>  
-                        
-                    <div class="card-body" hidden>
+                    </div> 
+
+                    <div class="card p-3">        
                         <div class="table-responsive">
                             <table id="iDataTableAberto" class="table table-striped table-bordered">
                                 <thead>
@@ -166,7 +230,8 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> 
+                    </div>
+                    
                     
                 </div>
                 
