@@ -28,62 +28,124 @@
                 
                 <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">    
+                <div class="container-fluid">
 
-                    <div class="card p-3 align-items-left">
-                        <h4 class="card-title">Menu de Relatórios</h4>
+                    <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                        <div class="modal-dialog" role="document ">                                
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de uma classe de material</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true ">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pre-scrollable">
+                    
+                                    <div class="card-body text-left">
+                                        <div>
+                                            <h4 class="card-title">Autor da ordem de produção</h4>
+                                        </div>
+                                        <div class="form-group row align-items-left">
+                                            <label class="col-md-5 m-t-10">Usuários:</label>
+                                            <div class="col-md-7">
+                                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <option>Select</option>                                            
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                                    
 
-                        <div class="form-group row">
-                            <label class="col-md-3">Ordens de produção</label>
-                            <div class="col-md-9">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="historicoAberto" name="radio-stacked" value=1 required="">
-                                    <label class="custom-control-label" for="historicoAberto">Em aberto</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="historicoAndamento" name="radio-stacked" value=2 required="">
-                                    <label class="custom-control-label" for="historicoAndamento">Em andamento</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="historicoConcluido" name="radio-stacked" value=3 required="">
-                                    <label class="custom-control-label" for="historicoConcluido">Concluidos</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="historicoDesativado" name="radio-stacked" value=4 required="">
-                                    <label class="custom-control-label" for="historicoDesativado">Deletados</label>
+                                    <div class="card-body text-left">
+                                        <div>
+                                            <h4 class="card-title">Maquina utilizada</h4>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 m-t-15">Single Select</label>
+                                            <div class="col-md-9">
+                                                <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                    <option>Select</option>                                            
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
+                    </div>
 
-                        <div class="card-body">
-                            <button onclick="showDiv(this);" id="btnData" type="button" class="btn btn-info margin-5">
-                                Filtrar com Datas
-                            </button>
+                    <div class="card">   
+                        <div class="p-3">
+                            <h3 class="card-title">Menu de Relatórios</h3>
+                        </div>    
+
+                        <div class="d-flex flex-row align-items-left">  
+                            <div class="card-body">
+                                <div>                                    
+                                    <h4 class="card-title">Organizar ordens de produção por:</h4>
+                                </div>
+                                <div class="d-flex flex-row align-items-left m-3">
+                                    <div class="m-1">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input col-md-2" id="customControlValidation1" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
+                                        </div>
+                                            <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input col-md-4" id="customControlValidation2" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
+                                        </div>
+                                    </div>
+                                    <div class="m-1">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation3" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation4" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="customControlValidation4">Desativados</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+
+                            <div id="idDivData" class="card-body">  
+                                <div>                                    
+                                    <h4 class="card-title">Periodo:</h4>
+                                </div>                                   
+                                <div class="input-group">
+                                    <label>De:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <label>Até: </label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>                          
+                            </div> 
+
+                            <div class="card-body text-left">
+                                <div class="form-group row align-items-center">                                    
+                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
+                                        Avançado
+                                    </button> 
+                                </div>
+                            </div>
+                            
                         </div>
 
-                        <div id="idDivData" class="card-body" hidden>
-                            <div class="input-group mb-3">
-                                <label>Concluidos em:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <label>Até: </label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                      
-
-                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px;">
-                            Consulta
-                        </button>                        
-                    </div>   
+                        <div class="form-group row m-3">
+                            <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px;">
+                                Consulta
+                            </button> 
+                        </div>
+                    </div>  
                         
                     <div class="card-body" hidden>
                         <div class="table-responsive">
@@ -100,7 +162,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php echo dataTableHistorico(); ?>
+                                    <?php //echo dataTableHistorico(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -120,15 +182,73 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 
         <script>
-            /****************************************
-            *       Basic Table                   *
-            ****************************************/
-            $('#zero_config').DataTable();
+            $('#iDataTableAberto').DataTable();
         </script> 
 
         <script>
+            
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+
+            /*colorpicker*/
+            $('.demo').each(function() {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+
+                    change: function(value, opacity) {
+                        if (!value) return;
+                        if (opacity) value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+
+        </script>
+
+        <script>
             $( document ).ready(function() {
-                alert( "document loaded" );
+
+                const checkData = document.getElementById('#idCheckData');
+
+                checkData.addEventListener('click', showDiv());
+
+                function showDiv(){
+                    if(document.getElementById('#idCheckData').checked){
+                        
+                        $ ('#idDivData').show();
+
+                    } else {
+
+                        $ ('#idDivData').hide();
+
+                    }
+                }               
+
             });
         </script>
 

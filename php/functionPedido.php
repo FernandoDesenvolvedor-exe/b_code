@@ -259,7 +259,7 @@ function dataTablePedido(){
                                                     <span aria-hidden="true ">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body pre-scrollable">
                                                 <div>
                                                     <h4>Autor da ordem de produção</h4>
                                                     <div class="input-group mb-3">
@@ -788,7 +788,7 @@ function dataTablePedido(){
                                                 <span aria-hidden="true ">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body pre-scrollable">
                                             <div>
                                                 <h4>Autor da ordem de produção</h4>
                                                 <div class="input-group mb-3">

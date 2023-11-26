@@ -31,7 +31,7 @@ if(mysqli_num_rows($result) > 0){
         array_push($array, $linha);
     }
     foreach($array as $campo){
-                echo
+                echo ;
                 
                 
                 
