@@ -10,5 +10,6 @@
     include('functionFornecedor.php');
     include('functionPedido.php');
     include('functionReceitas.php');
+    include('functionHistorico.php');
 ?>
 

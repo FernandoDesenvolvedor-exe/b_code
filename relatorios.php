@@ -162,7 +162,7 @@
                                     <h4 class="card-title">Organizar ordens de produção por:</h4>
                                 </div>
                                 <div class="d-flex flex-row align-items-left m-3">
-                                    <div class="m-1">
+                                    <div class="m-1 mr-2">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-stacked" required>
                                             <label class="custom-control-label" for="idAberto">Em aberto</label>
@@ -172,7 +172,7 @@
                                             <label class="custom-control-label" for="idAndamento">Em andamento</label>
                                         </div>
                                     </div>
-                                    <div class="m-1">
+                                    <div class="m-1 ml-4">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input col-md-3" id="idConcluidos" name="radio-stacked" required>
                                             <label class="custom-control-label" for="idConcluidos">Concluidos</label>
@@ -226,20 +226,20 @@
 
                     <div class="card p-3">        
                         <div class="table-responsive">
-                            <table id="iDataTableAberto" class="table table-striped table-bordered">
+                            <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>ID do Pedido</th>
-                                        <th>Produção prevista</th>
+                                        <th>Autor</th>
+                                        <th>Produto</th>
+                                        <th>Máquina</th>
+                                        <th>Status do pedido</th>
                                         <th>Matéria(s) Prima(s)</th>
-                                        <th>Data criado</th>
-                                        <th>Quantidade</th>
-                                        <th>Observações</th>
-                                        <th>Alterar/Desativar</th>
+                                        <th>Alterar/Desativar/restaurar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php //echo dataTableHistorico(); ?>
+                                    <?php echo dataTableHistorico(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -363,314 +363,9 @@
                         "columnDefs": [
                             { "responsivePriority": 1, "targets": -1 }
                         ],
-                    "ajax": 'Controller/processingListaMeusMotoristas.php'
+                    "ajax": 'php/functionListaHistorico.php'
                 });
-
-                //
-                $('#divEmpTerceira').hide();
-                $('#iEmpTerceira').removeAttr('required');
-
-                $('#iTipoMotorista').change(function(){
-
-                    if($('#iTipoMotorista').val() == "T"){
-                        $('#divEmpTerceira').show();
-                        $('#iEmpTerceira').attr("required", "req");
-                    }else{
-                        $('#divEmpTerceira').hide();
-                        $('#iEmpTerceira').removeAttr('required');
-                    }
-
-                });
-
-                //Bloco da Empresa Terceira na solicitação
-                document.getElementById("msgExistente").style.cssText = 
-                "background-color: #FFE4B5; position: fixed; top: 320px; margin-left: 5px; padding: 4px;";
-                $('#EmpTerceiraSolicitacao').hide();
-                $('#iEmpTerceiraSolicitacao').removeAttr('required');
-
-                $('#iTipoSolicitacao').change(function(){
-
-                    if($('#iTipoSolicitacao').val() == "T"){
-                        document.getElementById("msgExistente").style.cssText = 
-                        "background-color: #FFE4B5; position: fixed; top: 400px; margin-left: 5px; padding: 4px;";
-                        $('#EmpTerceiraSolicitacao').show();
-                        $('#iEmpTerceiraSolicitacao').attr("required", "req");
-                    }else{
-                        
-                        document.getElementById("msgExistente").style.cssText = 
-                        "background-color: #FFE4B5; position: fixed; top: 320px; margin-left: 5px; padding: 4px;";
-                        $('#EmpTerceiraSolicitacao').hide();
-                        $('#iEmpTerceiraSolicitacao').removeAttr('required');
-                    }
-
-                });
-
-                //
-                $('#iTipoMotoristaAlter').change(function(){
-
-                    alert($('#iTipoMotoristaAlter').val());
-
-                    if($('#iTipoMotoristaAlter').val() == "T"){
-                        $('#divEmpTerceiraAlter').show();
-                        $('#iEmpTerceiraAlter').attr("required", "req");
-                    }else{
-                        $('#divEmpTerceiraAlter').hide();
-                        $('#iEmpTerceiraAlter').removeAttr('required');
-                    }
-
-                });
-                
-
-                //
-                $('#iTabela').hide();
-                $('.campos').hide();
-                $('#caixa').hide();
-                $('#msgExistente').hide();
-                $('#msgPossuiLink').hide();
-                $('#msgCPF').hide();
-                $('#TipoSolicitacao').hide();
-                $('#iEmpTerceiraSolicitacao').hide();
-                $('#footer').hide();
-                $('#footerLink').hide();
-                $('#iPesquisaCPF').on('click',function(){
-
-                    var cpf = $('#CPFConsulta').val();
-                    
-                    if(cpf != ""){
-
-                        $.getJSON('Controller/carregaCPFMotorista.php?cpf='+cpf,
-                        function (dados){
-
-                            $.each(dados, function(i, obj){                        
-                                    
-                                //alert(obj.QtdCad);
-                                                    
-                                if(parseInt(obj.QtdCad) > 0){
-
-                                    //Valida links
-                                    //Se o motorista já possui link
-                                    if(parseInt(obj.QtdLink) > 0){
-                                        $('#iTabela').hide();
-                                        $('.campos').hide();
-                                        $('#caixa').hide();
-                                        $('#msgExistente').hide();
-                                        $('#msgPossuiLink').show();
-                                        $('#msgCPF').hide();
-                                        $('#TipoSolicitacao').hide();
-                                        $('#cargoSolicitacao').attr('hidden');
-                                        $('#iEmpTerceiraSolicitacao').hide();
-                                        $('#footerLink').hide();
-                                        $('#footer').hide();
-                                    //Se o motorista já existe
-                                    }else{
-                                        $('#iTabela').hide();
-                                        $('.campos').hide();
-                                        $('#caixa').show();
-                                        $('#msgExistente').show();
-                                        $('#msgPossuiLink').hide();
-                                        $('#msgCPF').hide();
-                                        $('#TipoSolicitacao').show();
-                                        $('#cargoSolicitacao').removeAttr('hidden');
-                                        $('#iEmpTerceiraSolicitacao').show();
-                                        $('#footerLink').show();
-                                        $('#footer').hide();
-                                    }
-                                    
-                                }else{
-                                    if (!calculoCPF(cpf)) {
-                                        $('#iTabela').hide();
-                                        $('.campos').hide();
-                                        $('#caixa').hide();
-                                        $('#msgExistente').hide();
-                                        $('#msgPossuiLink').hide();
-                                        $('#TipoSolicitacao').hide();
-                                        $('#cargoSolicitacao').attr('hidden');
-                                        $('#msgCPF').show();
-                                        $('#iEmpTerceiraSolicitacao').hide();
-                                        $('#footerLink').hide();
-                                        $('#footer').hide();
-                                    }else{
-                                        $('#iTabela').show();
-                                        $('.campos').show();
-                                        $('#caixa').show();
-                                        $('#msgExistente').hide();
-                                        $('#msgPossuiLink').hide();
-                                        $('#TipoSolicitacao').hide();
-                                        $('#cargoSolicitacao').attr('hidden');
-                                        $('#msgCPF').hide();
-                                        $('#iEmpTerceiraSolicitacao').hide();
-                                        $('#footerLink').hide();
-                                        $('#footer').show();
-                                    }
-                                }
-                                
-                            })        
-
-                        })
-                    }
-
-                });
-
-                var uf = $('#iUF').val();
-                if(uf){
-                    $.ajax({
-                        type:'POST',
-                        url:"Controller/carregaCidadeUF.php",
-                        data:'uf='+uf,
-                        success: function(html) {
-                            $('#iCidade').html(html);
-                        }
-                    });
-                }
-
-                $('#iUF').on('change', function(){
-                    var uf = $(this).val();
-                    if(uf){
-                        $.ajax({
-                            type:'POST',
-                            url:"Controller/carregaCidadeUF.php",
-                            data:'uf='+uf,
-                            success: function(html) {
-                                $('#iCidade').html(html);
-                            }
-                        });
-                    }
-                });
-
             });
-
-            function enviaLink(){
-                var cpf = $('#CPFConsulta').val();
-                $('#formLink').attr('action','Controller/salvaSolicitacaoLink.php?cpf='+cpf);
-                $('#formLink').submit();
-                document.getElementById('TipoSolicitacao').submit();
-                document.getElementById('iCargo').submit();
-                document.getElementById('iEmpTerceiraSolicitacao').submit();
-            }
-
-            //Limpa o valor no campo quando clica no botão porque pode vir input gravado do navegador
-            function limpaCamposEmail(){
-                $('#iEmailVal').val('');
-            }
-
-            function calculoCPF(){
-                let cpf = document.getElementById("CPFConsulta").value;
-                var soma;
-                var resto;
-                soma = 0;
-
-                cpf = cpf.replace("-", "");
-
-                cpf = cpf.replace(/\./g, "");
-
-                if (cpf == "00000000000") return false;
-
-                if (cpf.length !== 11 || !Array.from(cpf).filter(e => e !== cpf[0]).length) {
-                return false;
-                }
-
-                for (i=1; i<=9; i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
-                resto = (soma * 10) % 11;
-
-                    if ((resto == 10) || (resto == 11))  resto = 0;
-                    if (resto != parseInt(cpf.substring(9, 10)) ) return false;
-
-                soma = 0;
-                    for (i = 1; i <= 10; i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i);
-                    resto = (soma * 10) % 11;
-
-                    if ((resto == 10) || (resto == 11))  resto = 0;
-                    if (resto != parseInt(cpf.substring(10, 11) ) ) return false;
-                    return true;
-            }
-
-            function limpaCampos(id){
-                $('.' + id).val(0);
-            }
-
-            function mudaAction(pagina){
-                document.forms[0].target='';
-                document.forms[0].action=pagina;
-                document.forms[0].submit();
-            }
-
-            function insereAction(pagina){
-                document.forms[0].target='_blank';
-                document.forms[0].action=pagina;
-                document.forms[0].submit();
-            }
-
-            function limpaCamposConsulta(){
-                $('#Nome').val('');
-                $('#CPF').val('');
-                $('#iTipoSituacao').val('');
-                $('#iTipoLink').val('');
-                $('#iUF').val('');
-                $('#iCidade').val('');
-                $('#iVencimentoCNH').val('');
-                $('#iVencimentoTox').val('');
-                $('#iDisponibilidade').val('');
-                $('#iTransportadora').val('');
-            }
-
-            function validaEmailMotoristas(email){
-                if(email != ""){
-                    $.getJSON('Controller/validaEmailExistente.php?email='+email,
-                    function (dados){
-                        $.each(dados, function(i, obj){           
-                            if(parseInt(obj.Qtd) > 0){
-                                $('#msgPossuiEmail').removeAttr('hidden');
-                                $('.campos').hide();
-                                $('#footer').hide();
-                            }else{
-                                $('#msgPossuiEmail').attr('hidden', true);
-                                $('.campos').show();
-                                $('#footer').show();
-                            }
-                        })        
-                    })
-                }
-            }
-
-            function abreModal(idMotorista){
-                $.getJSON('Controller/consultaCaixa.php?idMotorista='+idMotorista,
-                function (dados){
-                    $.each(dados, function(i, obj){           
-                        if(parseInt(obj.Qtd) > 0){
-                            $('#msgCaixa').removeAttr('hidden');
-                            $('#modalFooter' + idMotorista).attr('hidden', true);
-                        }else{
-                            $('#msgCaixa').attr('hidden', true);
-                            $('#modalFooter' + idMotorista).removeAttr('hidden');
-                        }
-                    })        
-                })
-            }
-
-            /*$("#CPFConsulta").blur(function(){
-                cpf = $('#CPFConsulta').val();
-
-                if(cpf != ""){
-                    $.getJSON('Controller/validaCPFExistente.php?cpf='+cpf,
-                    function (dados){
-                        $.each(dados, function(i, obj){           
-                            if(parseInt(obj.Qtd) > 0){
-                                //alert('CPF existente');
-                                $('#iTabela').hide();
-                                $('.campos').hide();
-                                $('#caixa').hide();
-                                $('#msgExistente').hide();
-                                $('#msgPossuiLink').show();
-                                $('#msgCPF').hide();
-                                $('#TipoSolicitacao').hide();
-                                $('#iEmpTerceiraSolicitacao').hide();
-                                $('#footerLink').hide();
-                                $('#footer').hide();
-                            }
-                        })        
-                    })
-                }
-            });*/
         </script>
     </body>
 </html>
