@@ -2,12 +2,11 @@
 
     function dataTableHistorico(){
 
-        include('function.php');
         include('connection.php');
 
         $sql = 'SELECT * FROM historico_pedidos
                     WHERE ativo = 1
-                    ORDER BY idPedido ASC;';
+                    ORDER BY idPedido DESC;';
                 
 
         $table = "";
@@ -28,10 +27,8 @@
 
             foreach($array as $campo){                
 
-                if($n == 1){
-                    $idAtual = $campo['idPedidio'];
-                }
-
+                $idAtual = $campo['idPedido'];                
+                
                 if ($idAtual != $idAnterior){
 
                     $dataAberto =''.substr($campo['dataHora_aberto'], 8, 2).'/';
@@ -51,10 +48,10 @@
 
                     $table .=
                         '<tr align-items="center";>
-                            <td>'.$campo['pedidoId'].'</td>
+                            <td>'.$campo['idPedido'].'</td>
                             <td>'.$campo['nomeUsuario'].'</td>
                             <td>'.$campo['produto'].'</td>
-                            <td>'.$campo['maquina'].'</td>';
+                            <td>'.maquinaNome($campo['maquina']).'</td>';
                     
                     if ($campo['statusPedido'] == 1){     
 
@@ -79,27 +76,28 @@
                     }
 
                     $table .=
-                        ''.materiais($campo['pedidoId']).'
+                        ''.materiais($campo['idPedido']).'
                         <td>
                             <div class="divButtons">
-                                <div class="div1">                                                                         
-                                    <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">
-                                        Visualizar
-                                    </button>
+                                <div class="div1">    
+                                    <a></a>                                                                     
+                                    <button style="border:0; background-color:transparent" type="button;" class="mdi-eye-info" data-toggle="modal" data-target="#modalPedido'.$campo['idPedido'].'"></button>
                                 </div>
                                 <div class="div2">
-                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$campo['pedidoId'].'">
-                                        Desativar
-                                    </button>
+                                    <button style="border:0; background-color:transparent" type="button" class="mdi-file-restore-success" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'"></button>
+                                </div>
+                                <div class="div2">
+                                    <button style="border:0; background-color:transparent" type="button" class="mdi-delete-danger" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'"></button>
                                 </div>
                             <div>
-                        </td>';
+                        </td>
+                        '.modalHistorico($campo['pedidoId']).'';
 
                     $n++;
 
                     $idAnterior = $idAtual;
-                    $idAtual = $campo['idPedido'];
-                } 
+                
+                }
             }
         }        
 

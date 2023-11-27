@@ -11,5 +11,6 @@
     include('functionPedido.php');
     include('functionReceitas.php');
     include('functionHistorico.php');
+    include('functionModalHistorico.php');
 ?>
 

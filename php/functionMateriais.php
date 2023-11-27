@@ -3,15 +3,8 @@
 
         include('connection.php');
 
-        $sql ='SELECT mat.descricao 
-            FROM pedidos ped
-            LEFT JOIN receitas rec
-            ON  ped.idReceita = rec.idReceita
-            INNER JOIN receita_materia_prima rmat
-            ON rec.idReceita = rmat.idReceita
-            LEFT JOIN materia_prima mat
-            ON rmat.idMateriaPrima = mat.idMateriaPrima
-            
+        $sql ='SELECT materiaPrima as material
+            FROM historico_pedidos             
             WHERE idPedido = '.$id.';';
 
         $result = mysqli_query($conn,$sql);
@@ -32,12 +25,13 @@
 
                 if($n == count($array)){
 
-                    $coluna .= ''.$campo['mat.descricao'].'</td>'; 
+                    $coluna .= ''.$campo['material'].'</td>'; 
                 
                 } else {
                     
-                    $coluna .= ''.$campo['mat.descricao'].' - '; 
+                    $coluna .= ''.$campo['material'].' - '; 
 
+                    $n++;
                 }
             }
         }
