@@ -26,87 +26,80 @@
             $idAnterior = 0;
             $idAtual = 0;
 
-            foreach($array as $campo){
-                
-                if(multipleMateriais($campo['idPedido']) ==){
-                    if ($n == 1){
-                        $dataAberto =''.substr($campo['dataHora_aberto'], 8, 2).'/';
-                        $dataAberto .=''.substr($campo['dataHora_aberto'], 5, 2).'/';
-                        $dataAberto .=''.substr($campo['dataHora_aberto'], 0, 4).'';
-                        $horaAberto = substr($campo['dataHora_aberto'], 11, 8);
+            foreach($array as $campo){                
 
-                        $dataProducao =''.substr($campo['dataHora_producao'], 8, 2).'/';
-                        $dataProducao .=''.substr($campo['dataHora_producao'], 5, 2).'/';
-                        $dataProducao .=''.substr($campo['dataHora_producao'], 0, 4).'';
-                        $horaProducao = substr($campo['dataHora_producao'], 11, 8);
-                        
-                        $dataFechado =''.substr($campo['dataHora_fechado'], 8, 2).'/';
-                        $dataFechado .=''.substr($campo['dataHora_fechado'], 5, 2).'/';
-                        $dataFechado .=''.substr($campo['dataHora_fechado'], 0, 4).'';
-                        $horaFechado = substr($campo['dataHora_fechado'], 11, 8);
+                if($n == 1){
+                    $idAtual = $campo['idPedidio'];
+                }
 
-                        $table .=                
-                            '<tr align-items="center";>
-                                <td>'.$campo['pedidoId'].'</td>
-                                <td>'.$campo['nomeUsuario'].'</td>
-                                <td>'.$campo['produto'].'</td>
-                                <td>'.$campo['maquina'].'</td>';
-                        
-                        if ($campo['statusPedido'] == 1){     
+                if ($idAtual != $idAnterior){
 
-                            $table .='<td>
-                                        Em aberto                              
-                                    </td>'; 
+                    $dataAberto =''.substr($campo['dataHora_aberto'], 8, 2).'/';
+                    $dataAberto .=''.substr($campo['dataHora_aberto'], 5, 2).'/';
+                    $dataAberto .=''.substr($campo['dataHora_aberto'], 0, 4).'';
+                    $horaAberto = substr($campo['dataHora_aberto'], 11, 8);
 
-                        } else if ($campo['statusPedido'] == 2) {
+                    $dataProducao =''.substr($campo['dataHora_producao'], 8, 2).'/';
+                    $dataProducao .=''.substr($campo['dataHora_producao'], 5, 2).'/';
+                    $dataProducao .=''.substr($campo['dataHora_producao'], 0, 4).'';
+                    $horaProducao = substr($campo['dataHora_producao'], 11, 8);
+                    
+                    $dataFechado =''.substr($campo['dataHora_fechado'], 8, 2).'/';
+                    $dataFechado .=''.substr($campo['dataHora_fechado'], 5, 2).'/';
+                    $dataFechado .=''.substr($campo['dataHora_fechado'], 0, 4).'';
+                    $horaFechado = substr($campo['dataHora_fechado'], 11, 8);
 
-                            $table .='<td>       
-                                        Em Produção
-                                    </td>';
+                    $table .=
+                        '<tr align-items="center";>
+                            <td>'.$campo['pedidoId'].'</td>
+                            <td>'.$campo['nomeUsuario'].'</td>
+                            <td>'.$campo['produto'].'</td>
+                            <td>'.$campo['maquina'].'</td>';
+                    
+                    if ($campo['statusPedido'] == 1){     
 
-                        } else if ($campo['statusPedido'] == 3) {
+                        $table .='<td>
+                                    Em aberto                              
+                                </td>'; 
 
-                            $table .='<td>Concluido</td>';
+                    } else if ($campo['statusPedido'] == 2) {
 
-                        } else if ($campo['statusPedido'] == 0) {
+                        $table .='<td>       
+                                    Em Produção
+                                </td>';
 
-                            $table .='<td>Cancelado</td>';
+                    } else if ($campo['statusPedido'] == 3) {
 
-                        }
+                        $table .='<td>Concluido</td>';
 
-                        $table .=
-                            ''.materiais($campo['pedidoId']).'
-                            <td>
-                                <div class="divButtons">
-                                    <div class="div1">                                                                         
-                                        <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">
-                                            Visualizar
-                                        </button>
-                                    </div>
-                                    <div class="div2">
-                                        <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$campo['pedidoId'].'">
-                                            Desativar
-                                        </button>
-                                    </div>
-                                <div>
-                            </td>';
+                    } else if ($campo['statusPedido'] == 0) {
 
-                        $n++;
-                    } 
-
-
-                    } if (multipleMateriais($campo['idPedido']) == $n){
-
-                        $n = 1;
+                        $table .='<td>Cancelado</td>';
 
                     }
 
-                } else {
+                    $table .=
+                        ''.materiais($campo['pedidoId']).'
+                        <td>
+                            <div class="divButtons">
+                                <div class="div1">                                                                         
+                                    <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['pedidoId'].'">
+                                        Visualizar
+                                    </button>
+                                </div>
+                                <div class="div2">
+                                    <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$campo['pedidoId'].'">
+                                        Desativar
+                                    </button>
+                                </div>
+                            <div>
+                        </td>';
 
+                    $n++;
 
-                }
-
-                $n++;
+                    $idAnterior = $idAtual;
+                    $idAtual = $campo['idPedido'];
+                } 
             }
         }        
 

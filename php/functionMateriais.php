@@ -1,34 +1,4 @@
-<?php        
-    function multipleMateriais($id){        
-
-        include('connection.php');
-
-        $sql ='SELECT mat.descricao 
-                FROM pedidos ped
-                LEFT JOIN receitas rec
-                ON  ped.idReceita = rec.idReceita
-                INNER JOIN receita_materia_prima rmat
-                ON rec.idReceita = rmat.idReceita
-                LEFT JOIN materia_prima mat
-                ON rmat.idMateriaPrima = mat.idMateriaPrima
-                
-                WHERE idPedido = '.$id.';';
-
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
-
-        $coluna = '<td>';
-
-        if(mysqli_num_rows($result) > 0){
-            $array = array();
-
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                array_push($array, $linha);
-            }
-        }
-
-        return count($array);
-    }
+<?php     
     function materiais($id){
 
         include('connection.php');
