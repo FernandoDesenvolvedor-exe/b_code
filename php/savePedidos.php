@@ -169,9 +169,16 @@
 
         mysqli_close($conn);
 
-    } else if($_GET['validacao'] == 'D'){ // DESATIVAR RECEITA
-
+    } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
+        
+        include("connection.php");
         $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        
+        include("connection.php");
+        $sql = 'UPDATE historico_pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
 
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
@@ -248,7 +255,7 @@
 
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
-    }
+    } 
     
     header('location:../producao');
 ?>
