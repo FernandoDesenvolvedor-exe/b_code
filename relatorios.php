@@ -31,7 +31,7 @@
                 <div class="container-fluid">
 
                     <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog modal-xl" role="document ">                                
+                        <div class="modal-dialog modal-lg" role="document ">                                
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Filtros avançados</h5>
@@ -43,32 +43,49 @@
                     
                                     <div class="card">
                                         
-                                        <div class="card-body text-right">
+                                        <div class="card-body">
                                             <div class="form-group row">
-                                                <label class="m-t-10">Usuário:</label>
-                                                <div class="col-md-2 mr-4">
-                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <div class="col-md-5 text-align-left">
+                                                    <label class="m-t-10">Usuário</label>
+                                                    <select id="idUsuario" name="nUsuario" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                         <option>Select</option>                                            
                                                     </select>
                                                 </div>
 
-                                                <label class="m-t-10">Máquina:</label>
-                                                <div class="col-md-2 mr-4">
-                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <div class="col-md-3 text-align-left">
+                                                    <label class="m-t-10">Máquina:</label>
+                                                    <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                         <option>Select</option>                                            
                                                     </select>
                                                 </div>
 
-                                                <label class="m-t-10">Material:</label>
-                                                <div class="col-md-2 mr-4">
-                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+
+                                                <div class="col-md-4">
+                                                    <label class="m-t-10">Produto:</label>  
+                                                    <select id="idProduto" name="nProduto" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                         <option>Select</option>                                            
                                                     </select>
                                                 </div>
 
-                                                <label class="m-t-10">Produto:</label>
-                                                <div class="col-md-2 mr-4">
-                                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                <br>
+                                                
+                                                <div class="col-md-4">
+                                                    <label class="m-t-10">Material:</label>
+                                                    <select id="idMaterial" name="nMaterial" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <label class="m-t-10">Classe do material:</label>
+                                                    <select id="idClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                        <option>Select</option>                                            
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <label class="m-t-10">Tipo de Material:</label>
+                                                    <select id="idTipoMaterial" name="nTipoMaterial" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                         <option>Select</option>                                            
                                                     </select>
                                                 </div>
@@ -77,50 +94,47 @@
                                         
                                         <div class="card-body d-flex flex-row align-items-left">
                                             
-                                            <div class="card-body">
-                                                <div>                                    
-                                                    <h4 class="card-title">Organizar ordens de produção por:</h4>
-                                                </div>
+                                            <div class="card-body col-sm-6">                       
+                                                <h4 class="card-title">Organizar ordens de produção por:</h4>
                                                 <div class="d-flex flex-row align-items-left m-3">
                                                     <div class="m-1 mr-4">
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-2" id="customControlValidation1" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="customControlValidation1">Em aberto</label>
+                                                            <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idDataAberto">Em aberto</label>
                                                         </div>
                                                             <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-4" id="customControlValidation2" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="customControlValidation2">Em andamento</label>
+                                                            <input type="radio" class="custom-control-input col-md-4" id="idAndamento" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
                                                         </div>
                                                     </div>
                                                     <div class="m-1">
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation3" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="customControlValidation3">Concluidos</label>
+                                                            <input type="radio" class="custom-control-input col-md-3" id="idConcluido" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idConcluido">Concluidos</label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="customControlValidation4" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="customControlValidation4">Desativados</label>
+                                                            <input type="radio" class="custom-control-input col-md-3" id="idDesativado" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idDesativado">Desativados</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="card-body">
-
+                                            <div class="card-body col-sm-6">
                                                 <div>                                    
                                                     <h4 class="card-title">Periodo:</h4>
                                                 </div>                                   
                                                 <div class="input-group">
-                                                    <label>De:</label>
-                                                    <div class="col-sm-4">
-                                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                    <label class="col-sm-3">De:</label>
+                                                    <div class="col-sm-9">
+                                                        <input id="idDataInicio" name="nDataInicio" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
                                                     </div>
-                                                    <label>Até: </label>
-                                                    <div class="col-sm-4">
-                                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                    <label class="col-sm-3">Até:</label>
+                                                    <div class="col-sm-9">
+                                                        <input id="idDataFim" name="nDataFim" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
@@ -316,83 +330,347 @@
             });
         </script>
 
-        <script>               
-             /*       
-            // Create a break line element
-            var br = document.createElement("br"); 
+        <script>  
+            $(document).ready(function() {
+                //
+                $('#datatable').DataTable({
+                    language: {
+                        "sEmptyTable":   "Nenhum registro encontrado",
+                        "sLoadingRecords": "Carregando...",
+                        "sProcessing":   "Processando...",
+                        "sLengthMenu":   "Mostrar _MENU_  linhas por página",
+                        "sZeroRecords":  "Não foram encontrados resultados",
+                        "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                        "sInfoFiltered": "(filtrado de _MAX_ registros no total)",
+                        "sInfoPostFix":  "",
+                        "sSearch":       "Procurar:",
+                        "sUrl":          "",
+                        "oPaginate": {
+                            "sFirst":    "Primeiro",
+                            "sPrevious": "Anterior",
+                            "sNext":     "Seguinte",
+                            "sLast":     "Último"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Ordenar colunas de forma crescente",
+                            "sSortDescending": ": Ordenar colunas de forma decrescente"
+                        }
+                    },
+                    "processing": true,
+                    "serverSide": true,
+                    "responsive": true,
+                        "columnDefs": [
+                            { "responsivePriority": 1, "targets": -1 }
+                        ],
+                    "ajax": 'Controller/processingListaMeusMotoristas.php'
+                });
 
-            function GFG_Fun() {             
+                //
+                $('#divEmpTerceira').hide();
+                $('#iEmpTerceira').removeAttr('required');
 
-                // Create a form synamically
-                var form = document.createElement("form");                
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "listaHistoricoAberto.php");
+                $('#iTipoMotorista').change(function(){
 
-                var dataInicio = document.getElementById('');
-            
-                // Create an input element for Full Name
-                var FN = document.createElement("input");
-                FN.setAttribute("type", "text");
-                FN.setAttribute("name", "FullName");
-                FN.setAttribute("placeholder", "Full Name");
-            
-                // Create an input element for date of birth
-                var DOB = document.createElement("input");
-                DOB.setAttribute("type", "text");
-                DOB.setAttribute("name", "dob");
-                DOB.setAttribute("placeholder", "DOB");
-            
-                // Create an input element for emailID
-                var EID = document.createElement("input");
-                EID.setAttribute("type", "text");
-                EID.setAttribute("name", "emailID");
-                EID.setAttribute("placeholder", "E-Mail ID");
-            
-                // Create an input element for password
-                var PWD = document.createElement("input");
-                PWD.setAttribute("type", "password");
-                PWD.setAttribute("name", "password");
-                PWD.setAttribute("placeholder", "Password");
-            
-                // Create an input element for retype-password
-                var RPWD = document.createElement("input");
-                RPWD.setAttribute("type", "password");
-                RPWD.setAttribute("name", "reTypePassword");
-                RPWD.setAttribute("placeholder", "ReEnter Password");
-    
-                // create a submit button
-                var s = document.createElement("input");
-                s.setAttribute("type", "submit");
-                s.setAttribute("value", "Submit");
-                
-                // Append the full name input to the form
-                form.appendChild(FN); 
-                
-                // Inserting a line break
-                form.appendChild(br.cloneNode()); 
-                
-                // Append the DOB to the form
-                form.appendChild(DOB); 
-                form.appendChild(br.cloneNode()); 
-                
-                // Append the emailID to the form
-                form.appendChild(EID); 
-                form.appendChild(br.cloneNode()); 
-                
-                // Append the Password to the form
-                form.appendChild(PWD); 
-                form.appendChild(br.cloneNode()); 
-                
-                // Append the ReEnterPassword to the form
-                form.appendChild(RPWD); 
-                form.appendChild(br.cloneNode()); 
-                
-                // Append the submit button to the form
-                form.appendChild(s); 
+                    if($('#iTipoMotorista').val() == "T"){
+                        $('#divEmpTerceira').show();
+                        $('#iEmpTerceira').attr("required", "req");
+                    }else{
+                        $('#divEmpTerceira').hide();
+                        $('#iEmpTerceira').removeAttr('required');
+                    }
 
-                document.getElementsByTagName("body")[0]
-                .appendChild(form);
-            }*/
+                });
+
+                //Bloco da Empresa Terceira na solicitação
+                document.getElementById("msgExistente").style.cssText = 
+                "background-color: #FFE4B5; position: fixed; top: 320px; margin-left: 5px; padding: 4px;";
+                $('#EmpTerceiraSolicitacao').hide();
+                $('#iEmpTerceiraSolicitacao').removeAttr('required');
+
+                $('#iTipoSolicitacao').change(function(){
+
+                    if($('#iTipoSolicitacao').val() == "T"){
+                        document.getElementById("msgExistente").style.cssText = 
+                        "background-color: #FFE4B5; position: fixed; top: 400px; margin-left: 5px; padding: 4px;";
+                        $('#EmpTerceiraSolicitacao').show();
+                        $('#iEmpTerceiraSolicitacao').attr("required", "req");
+                    }else{
+                        
+                        document.getElementById("msgExistente").style.cssText = 
+                        "background-color: #FFE4B5; position: fixed; top: 320px; margin-left: 5px; padding: 4px;";
+                        $('#EmpTerceiraSolicitacao').hide();
+                        $('#iEmpTerceiraSolicitacao').removeAttr('required');
+                    }
+
+                });
+
+                //
+                $('#iTipoMotoristaAlter').change(function(){
+
+                    alert($('#iTipoMotoristaAlter').val());
+
+                    if($('#iTipoMotoristaAlter').val() == "T"){
+                        $('#divEmpTerceiraAlter').show();
+                        $('#iEmpTerceiraAlter').attr("required", "req");
+                    }else{
+                        $('#divEmpTerceiraAlter').hide();
+                        $('#iEmpTerceiraAlter').removeAttr('required');
+                    }
+
+                });
+                
+
+                //
+                $('#iTabela').hide();
+                $('.campos').hide();
+                $('#caixa').hide();
+                $('#msgExistente').hide();
+                $('#msgPossuiLink').hide();
+                $('#msgCPF').hide();
+                $('#TipoSolicitacao').hide();
+                $('#iEmpTerceiraSolicitacao').hide();
+                $('#footer').hide();
+                $('#footerLink').hide();
+                $('#iPesquisaCPF').on('click',function(){
+
+                    var cpf = $('#CPFConsulta').val();
+                    
+                    if(cpf != ""){
+
+                        $.getJSON('Controller/carregaCPFMotorista.php?cpf='+cpf,
+                        function (dados){
+
+                            $.each(dados, function(i, obj){                        
+                                    
+                                //alert(obj.QtdCad);
+                                                    
+                                if(parseInt(obj.QtdCad) > 0){
+
+                                    //Valida links
+                                    //Se o motorista já possui link
+                                    if(parseInt(obj.QtdLink) > 0){
+                                        $('#iTabela').hide();
+                                        $('.campos').hide();
+                                        $('#caixa').hide();
+                                        $('#msgExistente').hide();
+                                        $('#msgPossuiLink').show();
+                                        $('#msgCPF').hide();
+                                        $('#TipoSolicitacao').hide();
+                                        $('#cargoSolicitacao').attr('hidden');
+                                        $('#iEmpTerceiraSolicitacao').hide();
+                                        $('#footerLink').hide();
+                                        $('#footer').hide();
+                                    //Se o motorista já existe
+                                    }else{
+                                        $('#iTabela').hide();
+                                        $('.campos').hide();
+                                        $('#caixa').show();
+                                        $('#msgExistente').show();
+                                        $('#msgPossuiLink').hide();
+                                        $('#msgCPF').hide();
+                                        $('#TipoSolicitacao').show();
+                                        $('#cargoSolicitacao').removeAttr('hidden');
+                                        $('#iEmpTerceiraSolicitacao').show();
+                                        $('#footerLink').show();
+                                        $('#footer').hide();
+                                    }
+                                    
+                                }else{
+                                    if (!calculoCPF(cpf)) {
+                                        $('#iTabela').hide();
+                                        $('.campos').hide();
+                                        $('#caixa').hide();
+                                        $('#msgExistente').hide();
+                                        $('#msgPossuiLink').hide();
+                                        $('#TipoSolicitacao').hide();
+                                        $('#cargoSolicitacao').attr('hidden');
+                                        $('#msgCPF').show();
+                                        $('#iEmpTerceiraSolicitacao').hide();
+                                        $('#footerLink').hide();
+                                        $('#footer').hide();
+                                    }else{
+                                        $('#iTabela').show();
+                                        $('.campos').show();
+                                        $('#caixa').show();
+                                        $('#msgExistente').hide();
+                                        $('#msgPossuiLink').hide();
+                                        $('#TipoSolicitacao').hide();
+                                        $('#cargoSolicitacao').attr('hidden');
+                                        $('#msgCPF').hide();
+                                        $('#iEmpTerceiraSolicitacao').hide();
+                                        $('#footerLink').hide();
+                                        $('#footer').show();
+                                    }
+                                }
+                                
+                            })        
+
+                        })
+                    }
+
+                });
+
+                var uf = $('#iUF').val();
+                if(uf){
+                    $.ajax({
+                        type:'POST',
+                        url:"Controller/carregaCidadeUF.php",
+                        data:'uf='+uf,
+                        success: function(html) {
+                            $('#iCidade').html(html);
+                        }
+                    });
+                }
+
+                $('#iUF').on('change', function(){
+                    var uf = $(this).val();
+                    if(uf){
+                        $.ajax({
+                            type:'POST',
+                            url:"Controller/carregaCidadeUF.php",
+                            data:'uf='+uf,
+                            success: function(html) {
+                                $('#iCidade').html(html);
+                            }
+                        });
+                    }
+                });
+
+            });
+
+            function enviaLink(){
+                var cpf = $('#CPFConsulta').val();
+                $('#formLink').attr('action','Controller/salvaSolicitacaoLink.php?cpf='+cpf);
+                $('#formLink').submit();
+                document.getElementById('TipoSolicitacao').submit();
+                document.getElementById('iCargo').submit();
+                document.getElementById('iEmpTerceiraSolicitacao').submit();
+            }
+
+            //Limpa o valor no campo quando clica no botão porque pode vir input gravado do navegador
+            function limpaCamposEmail(){
+                $('#iEmailVal').val('');
+            }
+
+            function calculoCPF(){
+                let cpf = document.getElementById("CPFConsulta").value;
+                var soma;
+                var resto;
+                soma = 0;
+
+                cpf = cpf.replace("-", "");
+
+                cpf = cpf.replace(/\./g, "");
+
+                if (cpf == "00000000000") return false;
+
+                if (cpf.length !== 11 || !Array.from(cpf).filter(e => e !== cpf[0]).length) {
+                return false;
+                }
+
+                for (i=1; i<=9; i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
+                resto = (soma * 10) % 11;
+
+                    if ((resto == 10) || (resto == 11))  resto = 0;
+                    if (resto != parseInt(cpf.substring(9, 10)) ) return false;
+
+                soma = 0;
+                    for (i = 1; i <= 10; i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i);
+                    resto = (soma * 10) % 11;
+
+                    if ((resto == 10) || (resto == 11))  resto = 0;
+                    if (resto != parseInt(cpf.substring(10, 11) ) ) return false;
+                    return true;
+            }
+
+            function limpaCampos(id){
+                $('.' + id).val(0);
+            }
+
+            function mudaAction(pagina){
+                document.forms[0].target='';
+                document.forms[0].action=pagina;
+                document.forms[0].submit();
+            }
+
+            function insereAction(pagina){
+                document.forms[0].target='_blank';
+                document.forms[0].action=pagina;
+                document.forms[0].submit();
+            }
+
+            function limpaCamposConsulta(){
+                $('#Nome').val('');
+                $('#CPF').val('');
+                $('#iTipoSituacao').val('');
+                $('#iTipoLink').val('');
+                $('#iUF').val('');
+                $('#iCidade').val('');
+                $('#iVencimentoCNH').val('');
+                $('#iVencimentoTox').val('');
+                $('#iDisponibilidade').val('');
+                $('#iTransportadora').val('');
+            }
+
+            function validaEmailMotoristas(email){
+                if(email != ""){
+                    $.getJSON('Controller/validaEmailExistente.php?email='+email,
+                    function (dados){
+                        $.each(dados, function(i, obj){           
+                            if(parseInt(obj.Qtd) > 0){
+                                $('#msgPossuiEmail').removeAttr('hidden');
+                                $('.campos').hide();
+                                $('#footer').hide();
+                            }else{
+                                $('#msgPossuiEmail').attr('hidden', true);
+                                $('.campos').show();
+                                $('#footer').show();
+                            }
+                        })        
+                    })
+                }
+            }
+
+            function abreModal(idMotorista){
+                $.getJSON('Controller/consultaCaixa.php?idMotorista='+idMotorista,
+                function (dados){
+                    $.each(dados, function(i, obj){           
+                        if(parseInt(obj.Qtd) > 0){
+                            $('#msgCaixa').removeAttr('hidden');
+                            $('#modalFooter' + idMotorista).attr('hidden', true);
+                        }else{
+                            $('#msgCaixa').attr('hidden', true);
+                            $('#modalFooter' + idMotorista).removeAttr('hidden');
+                        }
+                    })        
+                })
+            }
+
+            /*$("#CPFConsulta").blur(function(){
+                cpf = $('#CPFConsulta').val();
+
+                if(cpf != ""){
+                    $.getJSON('Controller/validaCPFExistente.php?cpf='+cpf,
+                    function (dados){
+                        $.each(dados, function(i, obj){           
+                            if(parseInt(obj.Qtd) > 0){
+                                //alert('CPF existente');
+                                $('#iTabela').hide();
+                                $('.campos').hide();
+                                $('#caixa').hide();
+                                $('#msgExistente').hide();
+                                $('#msgPossuiLink').show();
+                                $('#msgCPF').hide();
+                                $('#TipoSolicitacao').hide();
+                                $('#iEmpTerceiraSolicitacao').hide();
+                                $('#footerLink').hide();
+                                $('#footer').hide();
+                            }
+                        })        
+                    })
+                }
+            });*/
         </script>
     </body>
 </html>
