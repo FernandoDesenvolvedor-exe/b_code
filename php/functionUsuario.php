@@ -25,18 +25,18 @@
 
         include('connection.php');
 
-        $sql = 'SELECT u.idUsuario as idUser,'
-                .' u.login as login,'
-                .' u.nome as nome,'
-                .' u.sobrenome as sobNome,'
-                .' u.idTurma as idTurma,'
-                .' u.tipo as tipo,'
-                .' t.turno as turno,'
-                .' t.nomeTurma as nTurma'
-                .' FROM usuarios as u'
-                .' LEFT JOIN turma as t'
-                .' ON u.idTurma = t.idTurma'
-                .' WHERE u.ativo = 1';
+        $sql = 'SELECT u.idUsuario as idUser,
+                u.login as login,
+                u.nome as nome,
+                u.sobrenome as sobNome,
+                u.idTurma as idTurma,
+                u.tipo as tipo,
+                t.turno as turno,
+                t.nomeTurma as nTurma,
+                u.ativo as ativo
+                FROM usuarios as u
+                LEFT JOIN turma as t
+                ON u.idTurma = t.idTurma';
 
         $table = '';
 
@@ -73,20 +73,29 @@
                 }
                 $table .=
                             "<td>"                            
-                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idUser']."'>"
+                                ."<button style='width:50%' type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idUser']."'>"
                                     ."Alterar"
-                                ."</button>"
-
-                                ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idUser']."'>"
+                                ."</button>";
+                if($campo['ativo']==1){
+                    $table .=
+                                "<button style='width:50%' type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idUser']."'>"
                                     ."Desativar"
                                 ."</button>"                               
-                            ."</td>"
-
-                            ."<div class='modal fade' id='ExcluiModal".$campo['idUser']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                            ."</td>";
+                }else{
+                    $table .=
+                                "<button style='width:50%' type='button' class='btn btn-success margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idUser']."'>"
+                                    ."Ativar"
+                                ."</button>"                               
+                            ."</td>"; 
+                }
+                
+                $table .=
+                            "<div class='modal fade' id='ExcluiModal".$campo['idUser']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
-                                            .'<h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Ativar/Desativar Usuário</h5>'
                                             .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                                                 .'<span aria-hidden="true ">&times;</span>'
                                             .'</button>'
@@ -108,7 +117,7 @@
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
-                                            .'<h5 class="modal-title" id="exampleModalLabel">Alterar produto e/ou molde</h5>'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Alterar Usuário</h5>'
                                             .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                                                 .'<span aria-hidden="true ">&times;</span>'
                                             .'</button>'

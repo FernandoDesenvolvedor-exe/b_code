@@ -34,6 +34,12 @@
                     <div class="card" style="padding: 10px;">  
 
                         <h4 class="card-title">Estoque de Matérias Primas</h4>
+                        <?php
+                            if(isset($_SESSION['error'])){
+                                echo $_SESSION['error'];
+                                unset($_SESSION['error']);
+                            }
+                        ?>
                                     
                         <div>
                             <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddMaterial">
@@ -180,7 +186,7 @@
                                                 <div class="form-group row">
                                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
                                                     <div class="col-sm-9">
-                                                        <input style="width:auto" id="iQuandtidade" name="nQuandtidade" type="text" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;" required>
+                                                        <input style="width:auto" id="iQuandtidade" name="nQuandtidade" type="number" class="form-control" id="iQuantidade" name="nQuantidade" placeholder="Quantidade em gramas" style="width: 10%;" required>
                                                     </div>
                                                 </div>
 
@@ -190,17 +196,16 @@
                                                         <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-md-3 m-t-15" style="text-align: right;">Pigmentos Compatíveis</label>
-                                                <div class="col-md-9">
-                                                    <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;" required>
-                                                        <?php echo optionPigmento(); ?>
-                                                    </select>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 m-t-15" style="text-align: left;">Pigmentos Compatíveis</label>
+                                                    <div class="col-md-9">
+                                                        <select id="iPigmento" name="nPigmento[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;" required>
+                                                            <?php echo optionPigmento(); ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            
                                             <div class="border-top">
                                                 <div class="card-body">
                                                     <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>

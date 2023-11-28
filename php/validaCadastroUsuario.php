@@ -104,14 +104,21 @@
         die();
 
     } else if ($_GET['validacao'] == 'D'){
-
+        
         $sql = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].'';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 
     } else if ($_GET['validacao'] == 'U'){
-
+        /*
+        if(usuario==adm){
+            n pode ter turma
+        }
+        if(usuario==comum){
+            tem q ter turma
+        }
+        */
         $sql = 'UPDATE usuarios'
         .' SET idTurma = '.$_POST['nTurma'].','
         .' tipo = '.$_POST['nTipoUsu'].','
