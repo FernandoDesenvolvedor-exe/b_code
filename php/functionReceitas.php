@@ -39,11 +39,13 @@
                     $n++;
 
                     if ($n == 1){
+                        $arrayMat['id'] = array($campo['materiaId']);
                         $arrayMat['nome'] = array($campo['materialNome']);
                         $arrayMat['tipo'] = array($campo['tipo_materiaNome']);  
                         $arrayMat['classe'] = array($campo['classeMaterial']);
                         $arrayMat['quantidade'] = array($campo['qtdeMateria']); 
                     } else {  
+                        array_push($arrayMat['id'], $campo['materiaId']);
                         array_push($arrayMat['nome'], $campo['materialNome']);
                         array_push($arrayMat['tipo'], $campo['tipo_materiaNome']);  
                         array_push($arrayMat['classe'], $campo['classeMaterial']);
@@ -148,7 +150,7 @@
                                         '<div class="form-group row">
                                             <label>Matéria Prima '.($cont + 1).'</label>
                                             <div class="row mb-3">
-                                                <div class="col-lg-6">
+                                                <div class="col-sm-6">
                                                     <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$arrayMat['nome'][$cont].'">
                                                 </div>
                                                 <div class="col-lg-3">
@@ -156,6 +158,9 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="text" id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <input type="text" id="idMateriaFornecedor" name="nMateriaFornecedor[]" class="form-control" value="'.materiaFornecedor($arrayMat['id'][$cont]).'">
                                                 </div>
                                             </div>
                                         </div>
@@ -183,6 +188,9 @@
                                                 <div class="col-lg-3">
                                                     <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'">
                                                 </div>
+                                                <div class="col-lg-3">
+                                                    <input type="text" id="idMateriaFornecedor" name="nMateriaFornecedor[]" class="form-control" value="'.materiaFornecedor($campo['materiaId']).'">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -208,6 +216,9 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$arrayMat['classe'][$cont].'">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <input type="text" id="idMateriaFornecedor" name="nMateriaFornecedor[]" class="form-control" value="'.materiaFornecedor($arrayMat['id'][$cont]).'">
                                                 </div>
                                             </div>
                                         </div> 
@@ -394,6 +405,9 @@
                                                                     </div>
                                                                     <div class="col-lg-3">
                                                                         <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMaterial'].'" >
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <input type="text" id="idMateriaFornecedor" name="nMateriaFornecedor[]" class="form-control" value="'.materiaFornecedor($campo['materiaId']).'">
                                                                     </div>
                                                                 </div>
                                                             </div>   

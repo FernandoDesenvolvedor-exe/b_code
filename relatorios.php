@@ -235,7 +235,7 @@
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
                                         <th>Matéria(s) Prima(s)</th>
-                                        <th>Alterar/Desativar/restaurar</th>
+                                        <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
                                 <tbody>

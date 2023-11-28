@@ -86,7 +86,7 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button style="border:0; background-color:transparent" type="button" class="fas  fa-mdi-file-restore-success" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'">
+                                    <button style="border:0; background-color:transparent" type="button" class="fas  fa-mdi-file-restore-success" data-toggle="modal" data-target="#modalRestaura'.$campo['idPedido'].'">
                                         <span class="fas fa-undo text-success mt-2" title="Restaurar pedido"> 
                                         </span>
                                     </button>
@@ -99,7 +99,315 @@
                                 </div>
                             <div>
                         </td>
-                        '.modalHistorico($campo['idPedido']).'';
+                        '.
+                        modalExcluiPedido($campo['idPedido'])
+                        modalRestauraPedido($campo['idPedido'])
+                        .'
+                        <div class="modal fade" id="modalPedido'.$campo['idPedido'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div class="modal-dialog lg" role="document ">                                
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ordem de produção</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pre-scrollable">
+                                        <div class="card">
+                                            <h4>Autor da ordem de produção</h4>
+                                            <div class="input-group mb-3">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Autor</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['name'].' '.$campo['sobName'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>';
+                                    
+                    if($campo['tipoUsuario'] == 1){
+
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Nivel de acesso:</label>
+                                <div class="col-sm-8">
+                                    <input value="Administrador" id="idAdmin" name="nAdmin" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    } else { 
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">turma</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$campo['turma'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+                    }
+
+                    $table .=
+                                            
+                                        '</div>
+                                        <div>
+                                            <h4>Status da ordem de produção</h4>';
+
+                    if ($campo['statusPedido'] == 1){
+
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataAberto.' às '.$horaAberto.'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
+                                <div class="col-sm-8">
+                                    <input value="Pedido não foi inicializado" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
+                                <div class="col-sm-8">
+                                    <input value="Pedido não foi inicializado" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    } else if ($campo['statusPedido'] == 2){
+
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
+                                <div class="col-sm-8">
+                                    <input value="Pedido em andamento" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    } else if ($campo['statusPedido'] == 3){
+
+                        $datatime1 = new DateTime(''.substr($campo['producaoData_hora'], 0, 10).' '.substr($campo['abertoData_hora'], 11, 8).' America/Sao_Paulo');
+                        $datatime2 = new DateTime(''.substr($campo['fechadoData_hora'], 0, 10).' '.substr($campo['fechadoData_hora'], 11, 8).' America/Sao_Paulo');
+
+                        $data1  = $datatime1->format('Y-m-d H:i:s');
+                        $data2  = $datatime2->format('Y-m-d H:i:s');
+
+                        $diff = $datatime1->diff($datatime2);
+
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Duração</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$diff->format("%a dias e %H:%I:%S").' horas" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataAberto.' às '.$horaAberto.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataProducao.' às '.$horaProducao.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$dataFechado.' às '.$horaFechado.'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    }
+
+                    $table .=
+                                        '   <div class="input-group mb-3">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produto</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['produto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>';
+
+                    if ($campo['statusPedido'] == 1 || $campo['statusPedido'] == 2){
+
+                        $table .=
+                            '<div class="form-group row">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção prevista</label>
+                                <div class="col-sm-8">
+                                    <input value='.$campo['producaoPrevista'].' id="idQtdPrev" name="nQtdPrev" type="number" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    }  else if ($campo['statusPedido'] == 3){
+
+                        $table .=
+                            '<div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção Prevista:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$campo['producaoPrevista'].'" id="idQtdPrev" name="nQtdPrev" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">                                        
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção Real:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$campo['producaoRealizada'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">                                    
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Refugos:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.$campo['refugo'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção Total:</label>
+                                <div class="col-sm-8">
+                                    <input value="'.($campo['producaoRealizada'] - $campo['refugo']).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                </div>
+                            </div>';
+
+                    }                                
+                                            
+
+                    $table .=
+                                            '<div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Ferramental</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['ferramental'].'" id="idFerramental" name="nFerramental" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de Ferramental</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['tipoFerramental'].'" id="idTipoFerramental" name="nTipoFerramental" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div>
+                                                <div class="form-group row">
+                                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Máquina</label>
+                                                    <div class="col-sm-8">
+                                                        <input value="'.$campo['maquina'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>                            
+                                        </div>
+
+                                        <div syle="card-body">
+                                            <h4>Matéria Prima Usada</h4>
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Matéria Prima</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['materiaPrima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>                   
+                                                </div>
+                                            </div>      
+
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantidade Usada</label>
+                                                <div class="col-sm-8">
+                                                        <input value="'.($campo['quantidadeMateriaPrima'] * $campo['qtdPrevista']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+
+                            
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de material</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['tipoMateriaPrima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Classe do Material</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['classeMateriaPrima'].'" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['fornecedorMateriaPrima'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>                            
+                                        </div>
+
+                                        <div>                            
+                                            <h4>Pigmento Usado</h4>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Pigmento</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['cor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Código</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['codCor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>fornecedorMateriaPrima
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Lote</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['loteCor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>                      
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantidade Usada</label>
+                                                <div class="col-sm-8">
+                                                        <input value="'.($campo['qtdePigmento'] * $campo['qtdPrevista']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                            
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['tipoCor'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['fornecedorPigmento'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>
+                                            </div>                                                
+                                        </div>
+
+                                        <div>
+                                            <form method="POST" action="php/savePedidos.php? validacao=U&id='.$campo['pedidoId'].'">                     
+                                                <h4> Observações </h4>       
+                                                <textarea style="width:100%;" id="iObs" name="nObs">'.$campo['obs'].'</textarea>
+                                                <button type="submit">
+                                                    Alterar observação
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </tr>';
 
                     $n++;
 

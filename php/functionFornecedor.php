@@ -98,6 +98,24 @@ function dataTableFornecedor(){
     }        
 
     return $table;
-    }
 
+}
+
+function materiaFornecedor($idMateria){
+
+    include('connection.php');
+
+    $sql = 'SELECT f.descricao 
+                FROM materia_prima mat
+                INNER JOIN materia_fornecedor mfor
+                ON mfor.idMateriaPrima = mat.idMateriaPrima
+                LEFT JOIN fornecedores f 
+                ON mfor.idFornecedor = f.idFornecedor
+                WHERE mat.idMateriaPrima = '.$idMateria.';';
+
+    $result=mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    return $result
+}
 ?>
