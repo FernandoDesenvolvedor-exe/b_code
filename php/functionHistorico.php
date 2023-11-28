@@ -78,20 +78,28 @@
                     $table .=
                         ''.materiais($campo['idPedido']).'
                         <td>
-                            <div class="divButtons">
-                                <div class="div1">    
-                                    <a></a>                                                                     
-                                    <button style="border:0; background-color:transparent" type="button;" class="mdi-eye-info" data-toggle="modal" data-target="#modalPedido'.$campo['idPedido'].'"></button>
+                            <div class="row">
+                                <div class="col-sm-4">                                                                
+                                    <button style="border:0; background-color:transparent"  type="button" data-toggle="modal" data-target="#modalPedido'.$campo['idPedido'].'">                                            
+                                        <span class="fas fa-eye text-info mt-2" title="Visualizar pedido"> 
+                                        </span>
+                                    </button>
                                 </div>
-                                <div class="div2">
-                                    <button style="border:0; background-color:transparent" type="button" class="mdi-file-restore-success" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'"></button>
+                                <div class="col-sm-4">
+                                    <button style="border:0; background-color:transparent" type="button" class="fas  fa-mdi-file-restore-success" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'">
+                                        <span class="fas fa-undo text-success mt-2" title="Restaurar pedido"> 
+                                        </span>
+                                    </button>
                                 </div>
-                                <div class="div2">
-                                    <button style="border:0; background-color:transparent" type="button" class="mdi-delete-danger" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'"></button>
+                                <div class="col-sm-4">
+                                    <button style="border:0; background-color:transparent" type="button" class="fa mdi-delete-danger" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'">
+                                        <span class="mdi mdi-delete-forever fa-2x text-danger" title="Excluir pedido"> 
+                                        </span>
+                                    </button>
                                 </div>
                             <div>
                         </td>
-                        '.modalHistorico($campo['pedidoId']).'';
+                        '.modalHistorico($campo['idPedido']).'';
 
                     $n++;
 

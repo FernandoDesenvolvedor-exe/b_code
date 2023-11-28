@@ -1,7 +1,6 @@
 <?php
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
     include("php/function.php");
-    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

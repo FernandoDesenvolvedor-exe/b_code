@@ -1,7 +1,3 @@
-<?php 
-    include('loginSession.php');
-?>
-
 <header class="topbar" data-navbarbg="skin5">
     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
         <div class="navbar-header" data-logobg="skin5">
@@ -176,15 +172,7 @@
                 <li class="sidebar-item"><a href="produtos" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
 
                 <?php if ($_SESSION['tipo'] == 1){?>  
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
-                        <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="relatorios" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Relatorio1 </span></a></li>
-                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio2 </span></a></li>
-                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio3 </span></a></li>
-                            <li class="sidebar-item"><a href="index" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Relatorio4 </span></a></li>
-                        </ul> 
-                    </li>    
-
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="relatorios" aria-expanded="false"><i class="mdi mdi-home-outline"></i><span class="hide-menu">Reltórios</span></a></li>                      
                 <?php }?>                      
             </ul>
         </nav>

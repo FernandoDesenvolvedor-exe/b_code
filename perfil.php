@@ -1,11 +1,8 @@
 <?php
+    session_start();    
     include('php/function.php');
-    include('links/loginSession.php');    
 
     if (isset($_SESSION['user']) == 0){
-
-        var_dump($_SESSION['user']);
-        die();
         
         header('location: login');
 
