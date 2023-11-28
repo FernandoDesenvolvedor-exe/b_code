@@ -1,4 +1,6 @@
 <?php
+/*
+
 if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();
 }  
@@ -31,7 +33,7 @@ if(mysqli_num_rows($result) > 0){
         array_push($array, $linha);
     }
     foreach($array as $campo){
-                echo ;
+                //echo ;
                 
                 
                 
@@ -51,7 +53,9 @@ if(mysqli_num_rows($result) > 0){
                     <input name="nQuantidade'.$campo['id'].'" type="Number" class="form-control" placeholder="Quantidade" style="width:50%;" min=0>
                     </td>
                 </tr>'; */
-                       
-    }
-}
+                      
+    //}
+
+//} 
+
 ?>

@@ -273,4 +273,32 @@ function optionFerramental(){
     return $select;
 }
 
+function maquinaNome($id){
+
+    if($id == ''){
+        $id=0;
+    }
+
+    include('connection.php');
+
+    $sql ='SELECT descricao FROM maquinas WHERE idMaquina = '.$id.';';
+
+    $result = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+
+    $maquina = '';
+
+    if(mysqli_num_rows($result) > 0){
+        $array = array();
+
+        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            array_push($array,$linha);
+        }
+        foreach($array as $campo){
+            $maquina = $campo['descricao'];
+        }
+    }
+
+    return $maquina;
+}
 ?>

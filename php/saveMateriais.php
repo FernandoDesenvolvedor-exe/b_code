@@ -18,7 +18,17 @@
         $tipoMaterial = stripslashes($_POST['nTipo']);
         $observacoes = stripslashes($_POST['nObservacoes']);
         $fornecedor = stripslashes($_POST['nFornecedor']);        
-        
+        if(!validarDado(0,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Errorrrrr'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
+        if(!validarDado(0,$observacoes)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Errorrrrr'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
+
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
                 ." VALUES(".$classe.",".$tipoMaterial.",'".$descricao."',".$quantidade.", 1, '".$observacoes."');";

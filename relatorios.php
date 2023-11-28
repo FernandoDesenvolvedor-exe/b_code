@@ -1,10 +1,10 @@
 <?php
+    session_start();
     include('php/function.php');
-    include('links/loginSession.php');
 
     if (isset($_SESSION['user']) == 0){
 
-        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
+        //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
         
         header('location: login');
 
@@ -18,13 +18,13 @@
     
     <body>
 
-        <div id="main-wrapper">  
+        <div id="main-wrapper">
 
-            <?php include('links/preloader.php');?> 
+            <?php include('links/preloader.php');?>
 
-            <?php  include('links/menu.php');?>     
+            <?php  include('links/menu.php');?>
 
-            <div class="page-wrapper">      
+            <div class="page-wrapper">
                 
                 <?php include('links/side_bar_direita.php');?>
 
@@ -226,7 +226,7 @@
 
                     <div class="card p-3">        
                         <div class="table-responsive">
-                            <table id="datatable" class="table table-striped table-bordered">
+                            <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>ID do Pedido</th>
@@ -235,7 +235,7 @@
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
                                         <th>Matéria(s) Prima(s)</th>
-                                        <th>Alterar/Desativar/restaurar</th>
+                                        <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -260,7 +260,7 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 
         <script>
-            $('#iDataTableAberto').DataTable();
+            $('#zero_config').DataTable();
         </script> 
 
         <script>
@@ -325,46 +325,8 @@
                         $ ('#idDivData').hide();
 
                     }
-                }               
+                }              
 
-            });
-        </script>
-
-        <script>  
-            $(document).ready(function() {
-                //
-                $('#datatable').DataTable({
-                    language: {
-                        "sEmptyTable":   "Nenhum registro encontrado",
-                        "sLoadingRecords": "Carregando...",
-                        "sProcessing":   "Processando...",
-                        "sLengthMenu":   "Mostrar _MENU_  linhas por página",
-                        "sZeroRecords":  "Não foram encontrados resultados",
-                        "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                        "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
-                        "sInfoFiltered": "(filtrado de _MAX_ registros no total)",
-                        "sInfoPostFix":  "",
-                        "sSearch":       "Procurar:",
-                        "sUrl":          "",
-                        "oPaginate": {
-                            "sFirst":    "Primeiro",
-                            "sPrevious": "Anterior",
-                            "sNext":     "Seguinte",
-                            "sLast":     "Último"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Ordenar colunas de forma crescente",
-                            "sSortDescending": ": Ordenar colunas de forma decrescente"
-                        }
-                    },
-                    "processing": true,
-                    "serverSide": true,
-                    "responsive": true,
-                        "columnDefs": [
-                            { "responsivePriority": 1, "targets": -1 }
-                        ],
-                    "ajax": 'php/functionListaHistorico.php'
-                });
             });
         </script>
     </body>
