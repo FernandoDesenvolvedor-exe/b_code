@@ -4,9 +4,7 @@
 
         include('connection.php');
 
-        $sql = 'SELECT * FROM historico_pedidos
-                    WHERE ativo = 1
-                    ORDER BY idPedido DESC;';
+        $sql = 'SELECT * FROM historico_pedidos ORDER BY idPedido DESC;';
                 
 
         $table = "";
@@ -48,7 +46,7 @@
 
                     $table .=
                         '<tr align-items="center";>
-                            <td>'.$campo['idPedido'].'</td>
+                            <td>'.$campo['idHistorico'].'</td>
                             <td>'.$campo['nomeUsuario'].'</td>
                             <td>'.$campo['produto'].'</td>
                             <td>'.maquinaNome($campo['maquina']).'</td>';
@@ -77,21 +75,27 @@
 
                     $table .=
                         ''.materiais($campo['idPedido']).'
-                        <td>
+                        <td class="align-right">
                             <div class="row">
                                 <div class="col-sm-4">                                                                
                                     <button style="border:0; background-color:transparent"  type="button" data-toggle="modal" data-target="#modalPedido'.$campo['idPedido'].'">                                            
                                         <span class="fas fa-eye text-info mt-2" title="Visualizar pedido"> 
                                         </span>
                                     </button>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button style="border:0; background-color:transparent" type="button" class="fas  fa-mdi-file-restore-success" data-toggle="modal" data-target="#modalRestaura'.$campo['idPedido'].'">
-                                        <span class="fas fa-undo text-success mt-2" title="Restaurar pedido"> 
-                                        </span>
-                                    </button>
-                                </div>
-                                <div class="col-sm-4">
+                                </div>';
+                    
+                    if($campo['ativo'] == 0){
+                        $table .=                                    
+                            '<div class="col-sm-4">
+                                <button style="border:0; background-color:transparent" type="button" class="fas  fa-mdi-file-restore-success" data-toggle="modal" data-target="#modalRestaura'.$campo['idPedido'].'">
+                                    <span class="fas fa-undo text-success mt-2" title="Restaurar pedido"> 
+                                    </span>
+                                </button>
+                            </div>';
+                    }
+                    
+                    $table .=
+                                '<div class="col-sm-4">
                                     <button style="border:0; background-color:transparent" type="button" class="fa mdi-delete-danger" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'">
                                         <span class="mdi mdi-delete-forever fa-2x text-danger" title="Excluir pedido"> 
                                         </span>
@@ -99,11 +103,15 @@
                                 </div>
                             <div>
                         </td>                        
-                        '.modalExcluiPedido($campo['idPedido']).'
-                        '.modalRestauraPedido($campo['idPedido']).'    
+                        '.modalExcluiPedido($campo['idPedido']).'';
+
+                    if($campo['ativo'] == 0){
+                        $table .= ''.modalRestauraPedido($campo['idPedido']).'';
+                    }
                         
-                        
-                        <div class="modal fade" id="modalPedido'.$campo['idPedido'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+
+                    $table .=
+                        '<div class="modal fade" id="modalPedido'.$campo['idPedido'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                             <div class="modal-dialog modal-lg" role="document ">                                
                                 <div class="modal-content">
                                     <div class="modal-header">
