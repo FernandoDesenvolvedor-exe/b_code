@@ -436,6 +436,13 @@
                                                                     <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                                 </div>
                                                             </div>
+
+                                                            <div class="form-group row">
+                                                                <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Pigmento</label>
+                                                                <div class="col-sm-7">
+                                                                    <input value="'.pigmentoFornecedor($campo['pigmentoId']).'" id="idPigFornecedor" name="nPigFornecedor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                </div>
+                                                            </div>
                                         
                                                             <div class="form-group row">
                                                                 <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>

@@ -116,6 +116,24 @@ function materiaFornecedor($idMateria){
     $result=mysqli_query($conn,$sql);
     mysqli_close($conn);
 
-    return $result
+    return $result;
+}
+
+function pigmentoFornecedor($idPigmento){
+
+    include('connection.php');
+
+    $sql = 'SELECT f.descricao 
+                FROM pigmentos pig
+                INNER JOIN pigmento_fornecedor pfor
+                ON pig.idPigmento = pfor.idPigmento
+                LEFT JOIN fornecedores f 
+                ON pfor.idFornecedor = f.idFornecedor
+                WHERE mat.idPigmento = '.$idPigmento.';';
+
+    $result=mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    return $result;
 }
 ?>
