@@ -98,11 +98,11 @@
                                     </button>
                                 </div>
                             <div>
-                        </td>
-                        '.
-                        modalExcluiPedido($campo['idPedido'])
-                        modalRestauraPedido($campo['idPedido'])
-                        .'
+                        </td>                        
+                        '.modalExcluiPedido($campo['idPedido']).'
+                        '.modalRestauraPedido($campo['idPedido']).'    
+                        
+                        
                         <div class="modal fade" id="modalPedido'.$campo['idPedido'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                             <div class="modal-dialog lg" role="document ">                                
                                 <div class="modal-content">
@@ -118,7 +118,7 @@
                                             <div class="input-group mb-3">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Autor</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['name'].' '.$campo['sobName'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['nomeUsuario'].'" id="iduser" name="nuser" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>';
                                     
@@ -194,8 +194,8 @@
 
                     } else if ($campo['statusPedido'] == 3){
 
-                        $datatime1 = new DateTime(''.substr($campo['producaoData_hora'], 0, 10).' '.substr($campo['abertoData_hora'], 11, 8).' America/Sao_Paulo');
-                        $datatime2 = new DateTime(''.substr($campo['fechadoData_hora'], 0, 10).' '.substr($campo['fechadoData_hora'], 11, 8).' America/Sao_Paulo');
+                        $datatime1 = new DateTime(''.substr($campo['dataHora_producao'], 0, 10).' '.substr($campo['dataHora_producao'], 11, 8).' America/Sao_Paulo');
+                        $datatime2 = new DateTime(''.substr($campo['dataHora_fechado'], 0, 10).' '.substr($campo['dataHora_fechado'], 11, 8).' America/Sao_Paulo');
 
                         $data1  = $datatime1->format('Y-m-d H:i:s');
                         $data2  = $datatime2->format('Y-m-d H:i:s');
@@ -319,7 +319,7 @@
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantidade Usada</label>
                                                 <div class="col-sm-8">
-                                                        <input value="'.($campo['quantidadeMateriaPrima'] * $campo['qtdPrevista']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.($campo['quantidadeMateria_prima'] * $campo['producaoPrevista']).'g" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
 
@@ -327,21 +327,21 @@
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de material</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['tipoMateriaPrima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['tipoMateria_prima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
                                 
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Classe do Material</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['classeMateriaPrima'].'" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['classeMateria_prima'].'" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
                                 
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['fornecedorMateriaPrima'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['fornecedorMateria_prima'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>                            
                                         </div>
@@ -352,35 +352,35 @@
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Pigmento</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['cor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['pigmento'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                <div class="col-sm-8">
+                                                    <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>                                                
                                             </div>
                                 
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Código</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['codCor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>fornecedorMateriaPrima
+                                                    <input value="'.$campo['codigo'].'" id="idCodCor" name="nCodCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                </div>                                                
+                                            </div>
                                 
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Lote</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['loteCor'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['lote'].'" id="idLoteCor" name="nLoteCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>                      
                                 
                                             <div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantidade Usada</label>
                                                 <div class="col-sm-8">
-                                                        <input value="'.($campo['qtdePigmento'] * $campo['qtdPrevista']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>
-                            
-                                            <div class="form-group row">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de Pigmento</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['tipoCor'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        <input value="'.($campo['quantidadePigmento'] * $campo['producaoPrevista']).'g" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
                                 
@@ -393,9 +393,9 @@
                                         </div>
 
                                         <div>
-                                            <form method="POST" action="php/savePedidos.php? validacao=U&id='.$campo['pedidoId'].'">                     
+                                            <form method="POST" action="php/savePedidos.php? validacao=U&id='.$campo['idPedido'].'">                     
                                                 <h4> Observações </h4>       
-                                                <textarea style="width:100%;" id="iObs" name="nObs">'.$campo['obs'].'</textarea>
+                                                <textarea style="width:100%;" id="iObs" name="nObs">'.$campo['obsPedido'].'</textarea>
                                                 <button type="submit">
                                                     Alterar observação
                                                 </button>

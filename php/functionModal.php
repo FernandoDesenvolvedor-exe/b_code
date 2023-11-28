@@ -1,8 +1,7 @@
 <?php 
     function modalExcluiPedido($campo){
-        $modal = '';
         
-        $modal .= '<div class="modal fade" id="modalExclui'.$campo.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+        $modal = '<div class="modal fade" id="modalExclui'.$campo.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
             <div class="modal-dialog" role="document ">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -31,7 +30,7 @@
     
     function modalRestauraPedido($campo){        
 
-        $modal .= 
+        $modal = 
             '<div class="modal fade" id="modalRestaura'.$campo.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                 <div class="modal-dialog" role="document ">
                     <div class="modal-content">
