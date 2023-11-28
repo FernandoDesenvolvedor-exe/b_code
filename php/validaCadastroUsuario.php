@@ -1,4 +1,10 @@
 <?php
+/*
+VALIDAÇÕES
+-CADASTRO - ok
+-ATIVA/DESATIVA - ok
+-ALTERAR
+*/
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
@@ -104,10 +110,27 @@
         die();
 
     } else if ($_GET['validacao'] == 'D'){
-        
-        $sql = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].'';
+        include('connection.php');
+        $sql= 'SELECT ativo FROM usuarios WHERE idUsuario='.$_GET['id'].';';
+        //echo $sql;Die();
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+                array_push($array,$linha);
+            }
+            foreach($array as $campo){
+                if($campo['ativo']==1){
+                    $sqlUpdate = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].';';
+                    //echo 'Desativado';Die();
 
-        $result = mysqli_query($conn,$sql);
+                }else{
+                    $sqlUpdate = 'UPDATE usuarios SET ativo = 1 WHERE idUsuario = '.$_GET['id'].';';
+                    //echo 'Desativado';Die();
+                }
+            }
+        }
+        $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
 
     } else if ($_GET['validacao'] == 'U'){
