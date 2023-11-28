@@ -18,13 +18,13 @@
     
     <body>
 
-        <div id="main-wrapper">  
+        <div id="main-wrapper">
 
-            <?php include('links/preloader.php');?> 
+            <?php include('links/preloader.php');?>
 
-            <?php  include('links/menu.php');?>     
+            <?php  include('links/menu.php');?>
 
-            <div class="page-wrapper">      
+            <div class="page-wrapper">
                 
                 <?php include('links/side_bar_direita.php');?>
 
