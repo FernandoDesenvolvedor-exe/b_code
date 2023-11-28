@@ -23,11 +23,6 @@
     $observacoes = $_POST['nObservacoes'];
     $pesoMaterial = 0;//inicializa var
     for($i=0;$i<count($material);$i++){
-        //Verifica se um material n tem quantidade
-        if(intval($_POST['nQuantidade'.$material[$i]])==0){
-            $_SESSION['error'] = $abreHTMLalert.'Escolha uma quantidade para cada material selecionado!'.$fechaHTMLalert;
-            header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
-        }
         //CRIA UM VETOR DE QUANTIDADE COM A MESMA POSIÇÃO QUE O VETOR MATERIAL
         $quant[]=intval($_POST['nQuantidade'.$material[$i]]);
         $pesoTotal+=intval($_POST['nQuantidade'.$material[$i]]);
@@ -42,10 +37,10 @@
             array_push($array,$linha);
         }
         foreach($array as $campo){
-            if($campo['peso']<$pesoTotal){
+            if($campo['peso']+($campo['peso']*0.05)<$pesoTotal){
                 $_SESSION['error'] = $abreHTMLalert.'Peso total ultrapassa do peso do produto!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
-            }else if($campo['peso']>$pesoTotal){
+            }else if($campo['peso']-($campo['peso']*0.05)>$pesoTotal){
                 $_SESSION['error'] = $abreHTMLalert.'Peso total insuficiente para fabricar o produto!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
             }
@@ -79,7 +74,9 @@
     //INSERT NA TABELA           
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
-    $_SESSION['error'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔👍'.$fechaHTMLalert;
+    $_SESSION['cadastrar']=true;
+    $_
+    //$_SESSION['error'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔👍'.$fechaHTMLalert;
     header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
     die();
     //unico material virgem 

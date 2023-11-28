@@ -1,15 +1,6 @@
-DROP DATABASE lab_plasticos;
+DROP DATABASE IF EXISTS lab_plasticos;
 CREATE DATABASE lab_plasticos;
 USE lab_plasticos;
-
-
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/* CIRADO VIEW view_receitas e view_pedidos */;
 
 --
 -- Banco de dados: lab_plasticos
@@ -934,7 +925,3 @@ ALTER TABLE receita_materia_prima
   ADD CONSTRAINT receita_materia_prima_ibfk_1 FOREIGN KEY (idMateriaPrima) REFERENCES materia_prima (idMateriaPrima),
   ADD CONSTRAINT receita_materia_prima_ibfk_2 FOREIGN KEY (idReceita) REFERENCES receitas (idReceita);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
