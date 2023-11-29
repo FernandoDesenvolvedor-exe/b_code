@@ -278,13 +278,13 @@
                     type: 'POST'
                 },
                 columns: [
-                    { data: 'idPedido' },
-                    { data: 'nomeUsuario' },
-                    { data: 'produto' },
-                    { data: 'maquina' },
-                    { data: 'statusPedido' },
-                    { data: 'materiaPrima' },
-                    { data: 'pigmento' }
+                    { data: 1 },
+                    { data: 2 },
+                    { data: 3 },
+                    { data: 4 },
+                    { data: 5 },
+                    { data: 6 },
+                    { data: 7 }
                 ],
                 processing: true,
                 serverSide: true
