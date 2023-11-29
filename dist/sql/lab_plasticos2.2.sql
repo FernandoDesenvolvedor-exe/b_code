@@ -1,21 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 29-Nov-2023 às 19:28
--- Versão do servidor: 10.4.18-MariaDB
--- versão do PHP: 7.3.27
+DROP DATABASE lab_plasticos;
+CREATE DATABASE lab_plasticos;
+USE lab_plasticos;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Banco de dados: `lab_plasticos`
@@ -336,33 +325,32 @@ CREATE TABLE `pedidos` (
   `observacoes` text DEFAULT NULL COMMENT 'Registro não obrigatório de observações do usuário',
   `refugo` int(11) DEFAULT NULL COMMENT 'Quantidade de refugo ',
   `producaoPrevista` int(11) DEFAULT NULL COMMENT 'Registra a quantidade de produtos selecionadas no pedido',
-  `producaoRealizada` int(11) DEFAULT NULL COMMENT 'Registra a quantidade de produtos que realmente foi feita pela máquina',
-  `ativo` tinyint(1) NOT NULL COMMENT 'Registra se o item está ativo '
+  `producaoRealizada` int(11) DEFAULT NULL COMMENT 'Registra a quantidade de produtos que realmente foi feita pela máquina'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que registra no banco de dados  um pedido';
 
 --
 -- Extraindo dados da tabela `pedidos`
 --
 
-INSERT INTO `pedidos` (`idPedido`, `idUsuario`, `idReceita`, `idMaquina`, `dataHora_aberto`, `dataHora_producao`, `dataHora_fechado`, `status`, `observacoes`, `refugo`, `producaoPrevista`, `producaoRealizada`, `ativo`) VALUES
-(1, 4, 2, 1, '2023-11-07 17:19:29', '2023-11-16 16:30:55', '2023-11-08 19:38:07', 3, 'Perda de produção: 20 produtos.', NULL, 60, 0, 1),
-(2, 5, 1, 1, '2023-11-07 17:24:39', NULL, '0000-00-00 00:00:00', 3, '', NULL, 60, 0, 0),
-(3, 5, 1, 1, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', 1, '', NULL, 150, 0, 0),
-(4, 5, 1, 3, '2023-11-07 19:01:59', NULL, '0000-00-00 00:00:00', 2, '', NULL, 50, 0, 0),
-(5, 5, 2, 3, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', 1, '', NULL, 150, 0, 0),
-(6, 5, 1, 1, '2023-11-08 19:41:50', NULL, '2023-11-08 20:53:42', 3, '', NULL, 80, 0, 1),
-(42, 5, 2, 3, '2023-11-15 13:17:28', NULL, '2023-11-19 16:25:30', 3, 'teste', NULL, 50, 0, 1),
-(43, 7, 2, 1, '2023-11-15 13:18:33', NULL, '2023-11-15 13:19:49', 3, 'teste', NULL, 100, 0, 1),
-(44, 7, 3, NULL, '2023-11-16 15:59:42', NULL, '2023-11-16 16:03:09', 3, '', NULL, 50, 0, 1),
-(45, 7, 2, NULL, '2023-11-16 16:24:00', '2023-11-16 16:31:36', '2023-11-16 16:55:11', 3, '', NULL, 50, 0, 1),
-(50, 5, 2, 3, '2023-11-19 17:01:30', '2023-11-19 17:01:30', '2023-11-19 20:53:30', 3, '', 10, 100, 60, 1),
-(51, 5, 1, NULL, '2023-11-21 17:51:17', '2023-11-21 18:08:41', '2023-11-21 18:15:32', 3, '', 8, 50, 41, 1),
-(52, 5, 3, NULL, '2023-11-21 18:16:01', '2023-11-21 18:27:37', '2023-11-21 19:00:47', 3, '', 5, 50, 45, 1),
-(53, 5, 2, 3, '2023-11-21 19:03:29', '2023-11-21 19:03:29', '2023-11-21 20:32:00', 3, '', 20, 200, 1180, 1),
-(54, 5, 2, 3, '2023-11-21 19:09:24', '2023-11-21 19:09:24', NULL, 2, '', NULL, 200, NULL, 1),
-(55, 5, 2, 1, '2023-11-21 19:09:57', '2023-11-21 19:09:57', NULL, 2, '', NULL, 200, NULL, 1),
-(56, 5, 2, 1, '2023-11-21 19:10:33', '2023-11-21 19:10:33', NULL, 2, '', NULL, 200, NULL, 1),
-(57, 5, 2, 1, '2023-11-21 19:11:41', '2023-11-21 19:11:41', NULL, 2, '', NULL, 200, NULL, 1);
+INSERT INTO `pedidos` (`idPedido`, `idUsuario`, `idReceita`, `idMaquina`, `dataHora_aberto`, `dataHora_producao`, `dataHora_fechado`, `status`, `observacoes`, `refugo`, `producaoPrevista`, `producaoRealizada`) VALUES
+(1, 4, 2, 1, '2023-11-07 17:19:29', '2023-11-16 16:30:55', '2023-11-08 19:38:07', 3, 'Perda de produção: 20 produtos.', NULL, 60, 0),
+(2, 5, 1, 1, '2023-11-07 17:24:39', NULL, '0000-00-00 00:00:00', 3, '', NULL, 60, 0),
+(3, 5, 1, 1, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', 1, '', NULL, 150, 0),
+(4, 5, 1, 3, '2023-11-07 19:01:59', NULL, '0000-00-00 00:00:00', 2, '', NULL, 50, 0),
+(5, 5, 2, 3, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', 1, '', NULL, 150, 0),
+(6, 5, 1, 1, '2023-11-08 19:41:50', NULL, '2023-11-08 20:53:42', 3, '', NULL, 80, 0),
+(42, 5, 2, 3, '2023-11-15 13:17:28', NULL, '2023-11-19 16:25:30', 3, 'teste', NULL, 50, 0),
+(43, 7, 2, 1, '2023-11-15 13:18:33', NULL, '2023-11-15 13:19:49', 3, 'teste', NULL, 100, 0),
+(44, 7, 3, NULL, '2023-11-16 15:59:42', NULL, '2023-11-16 16:03:09', 3, '', NULL, 50, 0),
+(45, 7, 2, NULL, '2023-11-16 16:24:00', '2023-11-16 16:31:36', '2023-11-16 16:55:11', 3, '', NULL, 50, 0),
+(50, 5, 2, 3, '2023-11-19 17:01:30', '2023-11-19 17:01:30', '2023-11-19 20:53:30', 3, '', 10, 100, 60),
+(51, 5, 1, NULL, '2023-11-21 17:51:17', '2023-11-21 18:08:41', '2023-11-21 18:15:32', 3, '', 8, 50, 41),
+(52, 5, 3, NULL, '2023-11-21 18:16:01', '2023-11-21 18:27:37', '2023-11-21 19:00:47', 3, '', 5, 50, 45),
+(53, 5, 2, 3, '2023-11-21 19:03:29', '2023-11-21 19:03:29', '2023-11-21 20:32:00', 3, '', 20, 200, 1180),
+(54, 5, 2, 3, '2023-11-21 19:09:24', '2023-11-21 19:09:24', NULL, 2, '', NULL, 200, NULL),
+(55, 5, 2, 1, '2023-11-21 19:09:57', '2023-11-21 19:09:57', NULL, 2, '', NULL, 200, NULL),
+(56, 5, 2, 1, '2023-11-21 19:10:33', '2023-11-21 19:10:33', NULL, 2, '', NULL, 200, NULL),
+(57, 5, 2, 1, '2023-11-21 19:11:41', '2023-11-21 19:11:41', NULL, 2, '', NULL, 200, NULL);
 
 -- --------------------------------------------------------
 
@@ -626,7 +614,6 @@ CREATE TABLE `view_pedidos` (
 ,`qtdRefugo` int(11)
 ,`qtdPrevista` int(11)
 ,`qtdRealizada` int(11)
-,`ativoPedido` tinyint(1)
 ,`turmaId` int(11)
 ,`name` varchar(80)
 ,`sobName` varchar(80)
@@ -694,7 +681,7 @@ CREATE TABLE `view_receitas` (
 --
 DROP TABLE IF EXISTS `view_pedidos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_pedidos`  AS SELECT `ped`.`idPedido` AS `pedidoId`, `ped`.`idUsuario` AS `userId`, `ped`.`idReceita` AS `receitaId`, `ped`.`idMaquina` AS `maquinaId`, `ped`.`dataHora_aberto` AS `abertoData_hora`, `ped`.`dataHora_producao` AS `producaoData_hora`, `ped`.`dataHora_fechado` AS `fechadoData_hora`, `ped`.`status` AS `stats`, `ped`.`observacoes` AS `obs`, `ped`.`refugo` AS `qtdRefugo`, `ped`.`producaoPrevista` AS `qtdPrevista`, `ped`.`producaoRealizada` AS `qtdRealizada`, `ped`.`ativo` AS `ativoPedido`, `usu`.`idTurma` AS `turmaId`, `usu`.`nome` AS `name`, `usu`.`sobrenome` AS `sobName`, `usu`.`tipo` AS `nivel`, `tur`.`nomeTurma` AS `turma`, `tur`.`turno` AS `turno`, `maq`.`descricao` AS `maquina`, `rec`.`idProduto` AS `produtoId`, `rec`.`idPigmento` AS `pigmentoId`, `rec`.`quantidadePigmento` AS `qtdePigmento`, `rmp`.`idMateriaPrima` AS `materiaId`, `rmp`.`quantidadeMaterial` AS `qtdeMateria`, `mat`.`idClasse` AS `classeId`, `mat`.`idTipoMateriaPrima` AS `tipoMatId`, `mat`.`descricao` AS `material`, `tmat`.`descricao` AS `tipoMat`, `cmat`.`descricao` AS `classeMat`, `form`.`descricao` AS `fornecedorM`, `forp`.`descricao` AS `fornecedorP`, `pig`.`idTipoPigmento` AS `tipoCorId`, `pig`.`descricao` AS `cor`, `pig`.`codigo` AS `codCor`, `pig`.`lote` AS `loteCor`, `tpig`.`descricao` AS `tipoCor`, `pro`.`descricao` AS `produto`, `pro`.`peso` AS `pesoPro`, `pro`.`imagem` AS `img`, `fer`.`idFerramental` AS `moldeId`, `fer`.`descricao` AS `molde`, `fer`.`idTiposFerramental` AS `tipoMoldeId`, `tfer`.`descricao` AS `tipoMolde` FROM (((((((`ferramental` `fer` left join ((`classe_material` `cmat` left join (`tipo_materia_prima` `tmat` left join (`materia_fornecedor` `format` left join ((`receita_materia_prima` `rmp` left join ((((`pedidos` `ped` left join `usuarios` `usu` on(`ped`.`idUsuario` = `usu`.`idUsuario`)) left join `turma` `tur` on(`usu`.`idTurma` = `tur`.`idTurma`)) left join `maquinas` `maq` on(`ped`.`idMaquina` = `maq`.`idMaquina`)) left join `receitas` `rec` on(`ped`.`idReceita` = `rec`.`idReceita`)) on(`rmp`.`idReceita` = `rec`.`idReceita`)) left join `materia_prima` `mat` on(`rmp`.`idMateriaPrima` = `mat`.`idMateriaPrima`)) on(`mat`.`idMateriaPrima` = `format`.`idMateriaPrima`)) on(`mat`.`idTipoMateriaPrima` = `tmat`.`idTipoMateriaPrima`)) on(`mat`.`idClasse` = `cmat`.`idClasse`)) left join `produtos` `pro` on(`rec`.`idProduto` = `pro`.`idProduto`)) on(`pro`.`idProduto` = `fer`.`idProduto`)) left join `tipos_ferramental` `tfer` on(`fer`.`idTiposFerramental` = `tfer`.`idTiposFerramental`)) left join `fornecedores` `form` on(`format`.`idFornecedor` = `form`.`idFornecedor`)) left join `pigmentos` `pig` on(`rec`.`idPigmento` = `pig`.`idPigmento`)) left join `tipo_pigmentos` `tpig` on(`pig`.`idTipoPigmento` = `tpig`.`idTipoPigmento`)) left join `pigmento_fornecedor` `forpig` on(`pig`.`idPigmento` = `forpig`.`idPigmento`)) left join `fornecedores` `forp` on(`forp`.`idFornecedor` = `forpig`.`idFornecedor`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_pedidos`  AS SELECT `ped`.`idPedido` AS `pedidoId`, `ped`.`idUsuario` AS `userId`, `ped`.`idReceita` AS `receitaId`, `ped`.`idMaquina` AS `maquinaId`, `ped`.`dataHora_aberto` AS `abertoData_hora`, `ped`.`dataHora_producao` AS `producaoData_hora`, `ped`.`dataHora_fechado` AS `fechadoData_hora`, `ped`.`status` AS `stats`, `ped`.`observacoes` AS `obs`, `ped`.`refugo` AS `qtdRefugo`, `ped`.`producaoPrevista` AS `qtdPrevista`, `ped`.`producaoRealizada` AS `qtdRealizada`, `usu`.`idTurma` AS `turmaId`, `usu`.`nome` AS `name`, `usu`.`sobrenome` AS `sobName`, `usu`.`tipo` AS `nivel`, `tur`.`nomeTurma` AS `turma`, `tur`.`turno` AS `turno`, `maq`.`descricao` AS `maquina`, `rec`.`idProduto` AS `produtoId`, `rec`.`idPigmento` AS `pigmentoId`, `rec`.`quantidadePigmento` AS `qtdePigmento`, `rmp`.`idMateriaPrima` AS `materiaId`, `rmp`.`quantidadeMaterial` AS `qtdeMateria`, `mat`.`idClasse` AS `classeId`, `mat`.`idTipoMateriaPrima` AS `tipoMatId`, `mat`.`descricao` AS `material`, `tmat`.`descricao` AS `tipoMat`, `cmat`.`descricao` AS `classeMat`, `form`.`descricao` AS `fornecedorM`, `forp`.`descricao` AS `fornecedorP`, `pig`.`idTipoPigmento` AS `tipoCorId`, `pig`.`descricao` AS `cor`, `pig`.`codigo` AS `codCor`, `pig`.`lote` AS `loteCor`, `tpig`.`descricao` AS `tipoCor`, `pro`.`descricao` AS `produto`, `pro`.`peso` AS `pesoPro`, `pro`.`imagem` AS `img`, `fer`.`idFerramental` AS `moldeId`, `fer`.`descricao` AS `molde`, `fer`.`idTiposFerramental` AS `tipoMoldeId`, `tfer`.`descricao` AS `tipoMolde` FROM (((((((`ferramental` `fer` left join ((`classe_material` `cmat` left join (`tipo_materia_prima` `tmat` left join (`materia_fornecedor` `format` left join ((`receita_materia_prima` `rmp` left join ((((`pedidos` `ped` left join `usuarios` `usu` on(`ped`.`idUsuario` = `usu`.`idUsuario`)) left join `turma` `tur` on(`usu`.`idTurma` = `tur`.`idTurma`)) left join `maquinas` `maq` on(`ped`.`idMaquina` = `maq`.`idMaquina`)) left join `receitas` `rec` on(`ped`.`idReceita` = `rec`.`idReceita`)) on(`rmp`.`idReceita` = `rec`.`idReceita`)) left join `materia_prima` `mat` on(`rmp`.`idMateriaPrima` = `mat`.`idMateriaPrima`)) on(`mat`.`idMateriaPrima` = `format`.`idMateriaPrima`)) on(`mat`.`idTipoMateriaPrima` = `tmat`.`idTipoMateriaPrima`)) on(`mat`.`idClasse` = `cmat`.`idClasse`)) left join `produtos` `pro` on(`rec`.`idProduto` = `pro`.`idProduto`)) on(`pro`.`idProduto` = `fer`.`idProduto`)) left join `tipos_ferramental` `tfer` on(`fer`.`idTiposFerramental` = `tfer`.`idTiposFerramental`)) left join `fornecedores` `form` on(`format`.`idFornecedor` = `form`.`idFornecedor`)) left join `pigmentos` `pig` on(`rec`.`idPigmento` = `pig`.`idPigmento`)) left join `tipo_pigmentos` `tpig` on(`pig`.`idTipoPigmento` = `tpig`.`idTipoPigmento`)) left join `pigmento_fornecedor` `forpig` on(`pig`.`idPigmento` = `forpig`.`idPigmento`)) left join `fornecedores` `forp` on(`forp`.`idFornecedor` = `forpig`.`idFornecedor`)) ;
 
 -- --------------------------------------------------------
 
@@ -1028,7 +1015,3 @@ ALTER TABLE `receita_materia_prima`
   ADD CONSTRAINT `receita_materia_prima_ibfk_1` FOREIGN KEY (`idMateriaPrima`) REFERENCES `materia_prima` (`idMateriaPrima`),
   ADD CONSTRAINT `receita_materia_prima_ibfk_2` FOREIGN KEY (`idReceita`) REFERENCES `receitas` (`idReceita`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

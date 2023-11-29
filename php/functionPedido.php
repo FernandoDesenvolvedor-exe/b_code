@@ -44,7 +44,7 @@ function dataTablePedido(){
     include('connection.php');
 
     $sql = 'SELECT * FROM view_pedidos
-                WHERE ativoPedido = 1
+                WHERE stats <> 0
                 ORDER BY pedidoId ASC;';
             
 

@@ -14,15 +14,9 @@
                 array( 'db' => 'pigmento',      'dt' => 'pigmento'));
     
 
-    $sql_details = array(
-        'host' => 'localhost',
-        'user' => 'root',
-        'pass' => '',
-        'db'   => 'lab_plasticos'
-    );
-
+    include('ajaxConnection.php');
     include('ssp.class.php');
     echo json_encode(
-        SSP::simple( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns )
+        SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns )
     );
 
