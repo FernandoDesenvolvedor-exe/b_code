@@ -265,10 +265,6 @@
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
 
-        <script>
-            //$('#zero_config').DataTable();
-        </script> 
-
         <script src="dist\js\labPlasticos.js"></script>
         <script src="dist\js\labDataTable.min.js"></script>
         <script>         
@@ -278,13 +274,13 @@
                     type: 'POST'
                 },
                 columns: [
+                    { data: 0 },
                     { data: 1 },
                     { data: 2 },
                     { data: 3 },
                     { data: 4 },
                     { data: 5 },
-                    { data: 6 },
-                    { data: 7 }
+                    { data: 6 }
                 ],
                 processing: true,
                 serverSide: true
