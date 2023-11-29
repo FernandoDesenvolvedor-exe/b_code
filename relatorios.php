@@ -148,95 +148,91 @@
                             </div>
                         </div>
                     </div>
+                            
+                    <h3 class="card-title">Menu de Relatórios</h3>
 
                     <div class="card">   
 
-                        <div class="p-3">
-                            <h3 class="card-title">Menu de Relatórios</h3>
-                        </div>    
+                        <form method="POST" action="" id="radioDataForm">
+                            <div class="d-flex justify-content-center flex-row m-4">
+                                
+                                <div class="form-group row col-md-4">     
+                                    <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+                                    <div class="ml-1 col-sm-5">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="1" class="custom-control-input" id="idAberto" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="idAberto">Em aberto</label>
+                                        </div>
 
-                        <div class="d-flex flex-row align-items-center">
-                            <form method="POST" action="" id="radioDataForm">
-                                <div class="card-body">                                
-                                    <div>                                    
-                                        <h4 class="card-title">Organizar ordens de produção por:</h4>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="2" class="custom-control-input" id="idAndamento" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
+                                        </div>
+                                        
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="3" class="custom-control-input" id="idAtivo" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="idAtivo">Ativos</label>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-left m-3">
-                                        <div class="m-1 mr-2">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" value="1" class="custom-control-input" id="idAberto" name="radio-stacked" required>
-                                                <label class="custom-control-label" for="idAberto">Em aberto</label>
-                                            </div>
-
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" value="2" class="custom-control-input" id="idAndamento" name="radio-stacked" required>
-                                                <label class="custom-control-label" for="idAndamento">Em andamento</label>
-                                            </div>
-                                            
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" value="3" class="custom-control-input" id="idAtivo" name="radio-stacked" required>
-                                                <label class="custom-control-label" for="idAtivo">Ativos</label>
-                                            </div>
+                                    <div class="col-sm-5">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="4" class="custom-control-input" id="idConcluidos" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="idConcluidos">Concluidos</label>
                                         </div>
-                                        <div class="m-1 ml-4">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" value="4" class="custom-control-input" id="idConcluidos" name="radio-stacked" required>
-                                                <label class="custom-control-label" for="idConcluidos">Concluidos</label>
-                                            </div>
 
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" value="5" class="custom-control-input" id="idDesativados" name="radio-stacked" required>
-                                                <label class="custom-control-label" for="idDesativados">Desativados</label>
-                                            </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="5" class="custom-control-input" id="idDesativados" name="radio-stacked" required>
+                                            <label class="custom-control-label" for="idDesativados">Desativados</label>
                                         </div>
-                                    </div>  
+                                    </div> 
                                 </div>   
 
-                                <div class="card-body">  
+                                <div class="form-group row col-md-6">  
                                     <div>                                    
                                         <h4 class="card-title">Periodo:</h4>
                                     </div>                                   
-                                    <div class="input-group">
+                                    <div class="input-group d-flex row">
                                         <label>De:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
                                         <label>Até: </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
                                     </div>                          
-                                </div>                     
+                                </div>     
 
-                                <div class="form-group row m-3">
-                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                        Consulta
-                                    </button> 
-                                </div>                                                        
-                            </form>
+                                <div class="form-group flex-column col-md-2">
+                                    <?php if($_SESSION['filtro'] == 1){?>
+                                        <div class="col-sm-12 m-3">
+                                            <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
+                                                <span class="fas fa-eraser"></span> 
+                                            </button> 
+                                        </div> 
+                                    <?php }?>
 
-                            <div class="card-body">
-                                <?php if($_SESSION['filtro'] == 1){?>
-                                    <div class="form-group row m-3">
-                                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                            Limpar filtros
+                                    <div class="col-sm-12 m-3">                                    
+                                        <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
+                                            Filtros avançados
+                                        </button> 
+                                    </div>
+
+                                    <div class="col-sm-12 m-3">
+                                        <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                            Consulta
                                         </button> 
                                     </div> 
-                                <?php } ?>
+                                </div> 
 
-                                <div class="form-group row m-3">                                    
-                                    <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
-                                        Avançado
-                                    </button> 
-                                </div>
-                            </div> 
-                        </div>
+                            </div>                                                      
+                        </form>
                         
                     </div> 
 

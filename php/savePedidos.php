@@ -128,7 +128,7 @@
                             "'.$_POST['nTipoFerramental'].'",';
             
             if ($_POST['nStatus'] == 2){
-                $sql .='"'.$_POST['nMaquina'].'",';
+                $sql .='"'.maquinaNome($_POST['nMaquina']).'",';
             }
 
             $sql .=
@@ -148,7 +148,7 @@
                             
             $result = mysqli_query($conn, $sql);
             
-            if($_POST['nStatus'] == 2){
+            /*if($_POST['nStatus'] == 2){
 
                 $sql2 =  'INSERT INTO historico_materia_prima(
                             idMateria,
@@ -175,7 +175,7 @@
                 die();
                 $result = mysqli_query($conn, $sql2);
 
-            }
+            }*/
         }
 
         mysqli_close($conn);
