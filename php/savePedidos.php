@@ -142,7 +142,7 @@
             }
 
             $sql .=
-                            ''.$_POST['nStatus'].',
+                            ''.nomeStatus($_POST['nStatus']).',
                             "'.$obs.'",
                             1);'; 
                             

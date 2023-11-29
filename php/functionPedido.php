@@ -1,6 +1,6 @@
 <?php 
 
-function nomeStatusPedido($stats){
+function nomeStatus($stats){
     $status = '';
     
     if($stats = 0){
