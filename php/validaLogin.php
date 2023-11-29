@@ -58,7 +58,8 @@
                     $_SESSION['turma'] = $campo['class'];
                     $_SESSION['turno'] = $campo['turn'];
                     $_SESSION['filtro'] = 0;
-
+                    $_SESSION['filtroHistorico'] = '1 = 1';
+                    
                     header('location:../producao');
 
                 }else{

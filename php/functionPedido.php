@@ -1,5 +1,18 @@
 <?php 
 
+function nomeStatus($stats){
+    $status = '';
+    
+    if($stats = 0){
+        $status = 'Em Aberto';        
+    } else if($stats = 1){
+        $status = 'Em Aberto';        
+    } else if($stats = 2){
+        $status = 'Em Andamento';        
+    } else if($stats = 3){
+        $status = 'Concluido';        
+    }
+}
 
 function receitas($id){
 
@@ -31,7 +44,7 @@ function dataTablePedido(){
     include('connection.php');
 
     $sql = 'SELECT * FROM view_pedidos
-                WHERE ativoPedido = 1
+                WHERE stats <> 0
                 ORDER BY pedidoId ASC;';
             
 

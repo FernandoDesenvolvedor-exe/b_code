@@ -142,7 +142,7 @@
             }
 
             $sql .=
-                            ''.$_POST['nStatus'].',
+                            ''.nomeStatus($_POST['nStatus']).',
                             "'.$obs.'",
                             1);'; 
                             
@@ -183,13 +183,13 @@
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
         
         include("connection.php");
-        $sql = 'UPDATE pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
+        $sql = 'UPDATE pedidos SET status = 0 WHERE idPedido = '.$_GET['id'].';';
 
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
         
         include("connection.php");
-        $sql = 'UPDATE historico_pedidos SET ativo = 0 WHERE idPedido = '.$_GET['id'].';';
+        $sql = 'UPDATE historico_pedidos SET statusPedido = 0 WHERE idPedido = '.$_GET['id'].';';
 
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
