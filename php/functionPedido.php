@@ -1,5 +1,18 @@
 <?php 
 
+function nomeStatusPedido($stats){
+    $status = '';
+    
+    if($stats = 0){
+        $status = 'Em Aberto';        
+    } else if($stats = 1){
+        $status = 'Em Aberto';        
+    } else if($stats = 2){
+        $status = 'Em Andamento';        
+    } else if($stats = 3){
+        $status = 'Concluido';        
+    }
+}
 
 function receitas($id){
 
