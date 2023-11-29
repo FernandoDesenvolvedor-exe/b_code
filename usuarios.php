@@ -94,14 +94,10 @@
                                                             </div>
                                                             <!-- confirma senha -->
                                                             <div class="input-group mb-3">
-                                                                <!-- senha -->
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text bg-danger text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                                                 </div>
-                                                                
-                                                                <!-- confirma senha -->
                                                                 <input type="password" class="form-control form-control-lg" name="nConfirmSenha" placeholder="Confirmar senha*" aria-label="Password" aria-describedby="basic-addon1" minlength="4" maxlength="32" required>
-                                                            
                                                             </div>
 
                                                             <div class="form-group row">

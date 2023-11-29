@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    } 
     include('php/function.php');
 
     if (isset($_SESSION['user']) == 0){
@@ -35,9 +37,9 @@
 
                         <h4 class="card-title">Estoque de Matérias Primas</h4>
                         <?php
-                            if(isset($_SESSION['error'])){
-                                echo $_SESSION['error'];
-                                unset($_SESSION['error']);
+                            if(isset($_SESSION['msgErro'])){
+                                echo $_SESSION['msgErro'];
+                                unset($_SESSION['msgErro']);
                             }
                         ?>
                                     
@@ -230,7 +232,7 @@
                                             <th>Classe</th>
                                             <th>Quantidade</th>
                                             <th>Observações</th>
-                                            <th>Alterar/Desativar</th>
+                                            <th>Alterar - Ativar/Desativar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
