@@ -28,7 +28,7 @@
         $pesoTotal+=intval($_POST['nQuantidade'.$material[$i]]);
     }
     $pesoPigmento = $pesoTotal*($porcentPigmento/100);
-    //Verifica se o peso da receita é igual ao peso do produto
+    //Verifica se o peso da receita esta dentro do limite de variação de 5% do peso do produto
     $sql='select peso from produtos where idProduto='.$produto;
     $result= mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0){
@@ -75,7 +75,6 @@
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
     $_SESSION['cadastrar']=true;
-    $_
     //$_SESSION['error'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔👍'.$fechaHTMLalert;
     header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
     die();

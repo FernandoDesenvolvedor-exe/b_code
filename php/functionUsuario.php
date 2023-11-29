@@ -144,7 +144,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/validaCadastroUsuario.php?validacao=UPF&id='.$campo['idUser'].'">
+                                            <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/validaCadastroUsuario.php?validacao=U&id='.$campo['idUser'].'">
                                                 <div class="card-body">
                                                     <!-- User nome -->
                                                     <div class="input-group mb-3">
@@ -153,6 +153,14 @@
                                                         </div>
                                                         <input type="text" class="form-control form-control-lg" name="nNome" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1" maxlength="80">
                                                         <input type="text" class="form-control form-control-lg" name="nSobrenome" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" maxlength="80">
+                                                    </div>
+
+                                                    <!-- email -->
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                                        </div>
+                                                        <input type="email" class="form-control form-control-lg" name="nEmail" placeholder="Email*" aria-label="Username" aria-describedby="basic-addon1" maxlength="50">
                                                     </div>
 
                                                     <!-- senha -->

@@ -11,6 +11,7 @@ Validações
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     } 
+    
 
     $_SESSION['msgLogin'] = '';
 
@@ -80,9 +81,9 @@ Validações
                 array_push($array,$linha);
             }
             foreach($array as $campo){
+                //echo $sql.'<br>'.$campo['ativo'].'<br>'.$_GET["idMateria"];die();
                 if($campo['ativo']==1){
                     $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
-
                 }else{
                     $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
                 }

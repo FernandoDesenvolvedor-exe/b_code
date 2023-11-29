@@ -64,7 +64,9 @@
     }
 
     function dataTableMateria(){
-
+        if(session_status() !== PHP_SESSION_ACTIVE){
+            session_start();
+        }
         include('connection.php');
     
         $sql = "SELECT mat.idMateriaPrima as idMateria,
@@ -85,7 +87,11 @@
                 RIGHT JOIN materia_fornecedor as mf
                 ON mat.idMateriaPrima = mf.idMateriaPrima
                 LEFT JOIN fornecedores as f
-                ON f.idFornecedor = mf.idFornecedor;";
+                ON f.idFornecedor = mf.idFornecedor";
+                if($_SESSION['tipo']==2){
+                    $sql.=' WHERE mat.ativo=1';//SE FOR USUARIO COMUM VER APENAS ATIVOS
+                }
+                $sql.=";";
     
         $table = "";
     
@@ -110,25 +116,38 @@
                             <td>'.$campo['classe'].'</td>
                             <td>'.$campo['qtde'].'g </td>
                             <td><label>'.$campo['obs'].'</label></td>';
-
+                //ALTERAR
                 $table .=
                             "<td>                           
                                 <button style='width:50%' type='button' class='btn btn-info margin-1' data-toggle='modal' data-target='#modalAlteraMateria".$campo['idMateria']."'>
                                     Alterar
                                 </button>";
-                if($campo['ativo']==1){
+                if($_SESSION['tipo']==1){
+                    if($campo['ativo']==1){
+                        //DESATIVAR
+                        $table .=
+                                    "<button style='width:50%' type='button' class='btn btn-danger margin-1' data-toggle='modal' data-target='#modalDesativaMateria".$campo['idMateria']."'>
+                                        Desativar
+                                    </button>
+                                </td>";
+                    }else{
+                        //ATIVAR
+                        $table .=
+                                    "<button style='width:50%' type='button' class='btn btn-success margin-1' data-toggle='modal' data-target='#modalAtivaMateria".$campo['idMateria']."'>
+                                        Ativar
+                                    </button>
+                                </td>"; 
+                    }
+                }else{
+                    //DESATIVAR
                     $table .=
                                 "<button style='width:50%' type='button' class='btn btn-danger margin-1' data-toggle='modal' data-target='#modalDesativaMateria".$campo['idMateria']."'>
                                     Desativar
                                 </button>
                             </td>";
-                }else{
-                    $table .=
-                                "<button style='width:50%' type='button' class='btn btn-success margin-1' data-toggle='modal' data-target='#modalAtivaMateria".$campo['idMateria']."'>
-                                    Ativar
-                                </button>
-                            </td>"; 
+
                 }
+                //MODAL ATIVAR/DESATIVAR/ALTERAR
                 $table .=   
                             '<div class="modal fade" id="modalDesativaMateria'.$campo['idMateria'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">

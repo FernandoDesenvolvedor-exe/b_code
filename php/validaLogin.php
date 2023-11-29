@@ -1,6 +1,7 @@
 <?php
-    session_start();
-
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    } 
     //stripslashes coloca uma barra dps de um caractere especial para evitar errro no codigo sql
 
     $login = stripslashes($_POST['nLogin']);
