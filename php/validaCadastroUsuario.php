@@ -3,7 +3,7 @@
 VALIDAÇÕES
 -CADASTRO - ok
 -ATIVA/DESATIVA - ok
--ALTERAR
+-ALTERAR - 
 */
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
@@ -141,7 +141,64 @@ VALIDAÇÕES
         if(usuario==comum){
             tem q ter turma
         }
+        nome 
+        sobrenome
+        senha 
+        turma
+        tipo
         */
+        $nome = stripslashes($_POST["nNome"]);
+        $sobrenome = stripslashes($_POST["nSobrenome"]);
+        $senha = stripslashes($_POST["nSenha"]);
+        $confirmSenha = stripslashes($_POST["nConfirmSenha"]);
+        $turma = stripslashes($_POST["nTurma"]);
+        $tipoUsu = stripslashes($_POST["nTipoUsu"]);
+        
+        if(!validarDado(1,$nome)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Nome inválido! Somente letras maiúsculas, minúsculas, e espaços são permitidos.'.$fechaHTMLalert;
+            header('location: ../usuarios.php');
+            die(); 
+        }
+        if(!validarDado(1,$sobNome)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Nome inválido! Somente letras maiúsculas, minúsculas, e espaços são permitidos.'.$fechaHTMLalert;
+            header('location: ../usuarios.php');
+            die(); 
+        }
+        if(!validarDado(3,$senha)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Nome inválido! Somente letras maiúsculas, minúsculas, e espaços são permitidos.'.$fechaHTMLalert;
+            header('location: ../usuarios.php');
+            die(); 
+        }
+        if (isset($_POST['dado']) == true && $_POST['dado'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE tabela
+                    SET campo ="'.$_POST['dasdo'].'"
+                    WHERE id = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+        if (isset($_POST['dado']) == true && $_POST['dado'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE tabela
+                    SET campo ="'.$_POST['dasdo'].'"
+                    WHERE id = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+        if (isset($_POST['dado']) == true && $_POST['dado'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE tabela
+                    SET campo ="'.$_POST['dasdo'].'"
+                    WHERE id = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+        if (isset($_POST['dado']) == true && $_POST['dado'] != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
+            $sql='UPDATE tabela
+                    SET campo ="'.$_POST['dasdo'].'"
+                    WHERE id = '.$_GET['id'].';';
+
+            $result = mysqli_query($conn,$sql);        
+        }
+
+        
         $sql = 'UPDATE usuarios'
         .' SET idTurma = '.$_POST['nTurma'].','
         .' tipo = '.$_POST['nTipoUsu'].','

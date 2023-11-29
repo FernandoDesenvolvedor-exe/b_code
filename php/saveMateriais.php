@@ -1,4 +1,13 @@
-<?php   
+<?php  
+/*
+Validações
+-Cadastro - ok
+-Ativa/Desativa - ok
+-Alterar - ok
+-Insert classe - ok
+-Insert tipo - ok
+*/
+
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     } 
@@ -8,7 +17,11 @@
     include('connection.php');
     include('function.php'); 
 
-    $validacao = $_GET["validacao"];   
+    $validacao = $_GET["validacao"];
+    $abreHTMLalert = '<div class="input-group mb-3">'
+                        .'<div class="input-group-prepend" style="width: 100%; height:100%;">'
+                            .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>'; 
 
     if($validacao == 'IMP'){    //insert materia prima
 
@@ -17,14 +30,14 @@
         $classe = stripslashes($_POST['nClasse']);       
         $tipoMaterial = stripslashes($_POST['nTipo']);
         $observacoes = stripslashes($_POST['nObservacoes']);
-        $fornecedor = stripslashes($_POST['nFornecedor']);        
-        if(!validarDado(0,$descricao)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'Errorrrrr'.$fechaHTMLalert;
+        $fornecedor = stripslashes($_POST['nFornecedor']);      
+        if(!validarDado(4,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'1Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
-        if(!validarDado(0,$observacoes)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'Errorrrrr'.$fechaHTMLalert;
+        if(!validarDado(4,$observacoes)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'2Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
@@ -57,17 +70,42 @@
         //fecha a conexão
         mysqli_close($conn);
 
-    }else if($validacao == 'DMP') {  // DESATIVA UM CADASTRO DE MATERIA_PRIMA
+    }else if($validacao == 'DMP') {  // Ativa/DESATIVA UM CADASTRO DE MATERIA_PRIMA
+        include('connection.php');
+        $sql= 'SELECT ativo FROM materia_prima WHERE idMateriaPrima = '.$_GET["idMateria"].';';
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
+                array_push($array,$linha);
+            }
+            foreach($array as $campo){
+                if($campo['ativo']==1){
+                    $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
 
-        $sql='UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
-
-        $result = mysqli_query($conn,$sql);
+                }else{
+                    $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
+                }
+            }
+        }
+        $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
 
     }else if($validacao == 'UMP') {  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA
 
         $descMat = stripslashes($_POST['nDescricao']);
         $obs = stripslashes($_POST['nObservacoes']);
+        //TESTE: echo $descMat.''.validarDado(4,$descMat).' '.$obs.''.validarDado(4,$obs);die();
+        if(!validarDado(4,$descMat)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'3Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
+        if(!validarDado(4,$obs)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'4Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
 
         if (isset($descMat) == true && $descMat != ""){  //SE DESCRICAO FOR DIFERENTE DE NULL OU ''
             $sql='UPDATE materia_prima'
@@ -123,6 +161,12 @@
     }else if($validacao == 'iCM'){  //insert classe materia prima        
 
         $descricao = stripslashes($_POST['nClasse']);
+        if(!validarDado(4,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
+
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO classe_material(descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
@@ -136,6 +180,11 @@
     }else if($validacao == 'ITM'){   // insert tipo materia prima
  
         $descricao = stripslashes($_POST['nTipoMateria']);
+        if(!validarDado(4,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../materiaPrima.php');
+            die();
+        }
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO tipo_materia_prima(descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";

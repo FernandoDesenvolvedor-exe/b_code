@@ -146,7 +146,32 @@
                                         <div class="modal-body">
                                             <form method="POST" class="form-horizontal"  enctype="multipart/form-data" action= "php/validaCadastroUsuario.php?validacao=UPF&id='.$campo['idUser'].'">
                                                 <div class="card-body">
-                                                
+                                                    <!-- User nome -->
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend style="width: 100%; height:100%;">
+                                                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control form-control-lg" name="nNome" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1" maxlength="80">
+                                                        <input type="text" class="form-control form-control-lg" name="nSobrenome" placeholder="Sobrenome" aria-label="Username" aria-describedby="basic-addon1" maxlength="80">
+                                                    </div>
+
+                                                    <!-- senha -->
+                                                    <div class="input-group mb-3">
+                                                        <!-- senha -->
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                                        </div>
+                                                        <input type="password" class="form-control form-control-lg" name="nSenha" placeholder="Senha" aria-label="Password" aria-describedby="basic-addon1" minlength="4" maxlength="32">
+                                                    </div>
+
+                                                    <!-- confirma senha -->
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text bg-danger text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                                        </div>
+                                                        <input type="password" class="form-control form-control-lg" name="nConfirmSenha" placeholder="Confirmar senha" aria-label="Password" aria-describedby="basic-addon1" minlength="4" maxlength="32">
+                                                    </div>
+
                                                     <!-- turma -->
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend" style="width: 100%; height:100%;">
@@ -157,19 +182,19 @@
                                                         </div>
                                                     </div>
                                                 
-                                                      <!-- Tipo Usuario -->
-                                                      <div class="input-group mb-3">
-                                                          <div class="input-group-prepend" style="width: 100%; height:100%;">
-                                                              <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
-                                                              <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                                    <option value="">Nivel de Acesso*</option>
-                                                                    <optgroup label="Niveis">
-                                                                        <option value=1>Administrador</option>
-                                                                        <option value=2>Comum</option>
-                                                                    </optgroup>
-                                                              </select>
-                                                          </div>
-                                                      </div>
+                                                    <!-- Tipo Usuario -->
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend" style="width: 100%; height:100%;">
+                                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-address-card"></i></span>
+                                                            <select name="nTipoUsu" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                                <option value="">Nivel de Acesso</option>
+                                                                <optgroup label="Niveis">
+                                                                    <option value=1>Administrador</option>
+                                                                    <option value=2>Comum</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="border-top">
                                                     <div class="card-body">

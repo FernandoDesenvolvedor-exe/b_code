@@ -67,25 +67,25 @@
 
         include('connection.php');
     
-        $sql = "SELECT mat.idMateriaPrima as idMateria," 
-                ." mat.descricao as materia,"
-                ." mat.idTipoMateriaPrima as idTipo,"
-                ." mat.idClasse as classe,"
-                ." mat.quantidade as qtde,"
-                ." mat.observacoes as obs,"
-                ." t.descricao as tipo,"
-                ." c.descricao as classe,"
-                ." f.descricao as fonecedor"
-                ." FROM materia_prima as mat"
-                ." LEFT JOIN tipo_materia_prima as t"
-                ." ON mat.idTipoMateriaPrima = t.idTipoMateriaPrima"
-                ." LEFT JOIN classe_material as c"
-                ." ON mat.idClasse = c.idClasse"
-                ." RIGHT JOIN materia_fornecedor as mf"
-                ." ON mat.idMateriaPrima = mf.idMateriaPrima"
-                ." LEFT JOIN fornecedores as f"
-                ." ON f.idFornecedor = mf.idFornecedor"
-                ." WHERE mat.ativo = 1;";
+        $sql = "SELECT mat.idMateriaPrima as idMateria,
+                mat.descricao as materia,
+                mat.idTipoMateriaPrima as idTipo,
+                mat.idClasse as classe,
+                mat.quantidade as qtde,
+                mat.observacoes as obs,
+                t.descricao as tipo,
+                c.descricao as classe,
+                f.descricao as fonecedor,
+                mat.ativo as ativo
+                FROM materia_prima as mat
+                LEFT JOIN tipo_materia_prima as t
+                ON mat.idTipoMateriaPrima = t.idTipoMateriaPrima
+                LEFT JOIN classe_material as c
+                ON mat.idClasse = c.idClasse
+                RIGHT JOIN materia_fornecedor as mf
+                ON mat.idMateriaPrima = mf.idMateriaPrima
+                LEFT JOIN fornecedores as f
+                ON f.idFornecedor = mf.idFornecedor;";
     
         $table = "";
     
@@ -109,19 +109,28 @@
                             <td>'.$campo['tipo'].'</td>
                             <td>'.$campo['classe'].'</td>
                             <td>'.$campo['qtde'].'g </td>
-                            <td><label>'.$campo['obs'].'</label></td>
-                            <td>            
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraMateria'.$campo['idMateria'].'">
+                            <td><label>'.$campo['obs'].'</label></td>';
+
+                $table .=
+                            "<td>                           
+                                <button style='width:50%' type='button' class='btn btn-info margin-1' data-toggle='modal' data-target='#modalAlteraMateria".$campo['idMateria']."'>
                                     Alterar
-                                </button>
-                                <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExcluiMateria'.$campo['idMateria'].'">
+                                </button>";
+                if($campo['ativo']==1){
+                    $table .=
+                                "<button style='width:50%' type='button' class='btn btn-danger margin-1' data-toggle='modal' data-target='#modalDesativaMateria".$campo['idMateria']."'>
                                     Desativar
                                 </button>
-                            </td>    
-
-
-                            
-                            <div class="modal fade" id="modalExcluiMateria'.$campo['idMateria'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            </td>";
+                }else{
+                    $table .=
+                                "<button style='width:50%' type='button' class='btn btn-success margin-1' data-toggle='modal' data-target='#modalAtivaMateria".$campo['idMateria']."'>
+                                    Ativar
+                                </button>
+                            </td>"; 
+                }
+                $table .=   
+                            '<div class="modal fade" id="modalDesativaMateria'.$campo['idMateria'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -141,7 +150,28 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
+                            <div class="modal fade" id="modalAtivaMateria'.$campo['idMateria'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                                <div class="modal-dialog" role="document ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Ativar Produto/molde</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                               <span aria-hidden="true ">&times;</span>
+                                            </button>
+                                        </div>                            
+                                        <div class="modal-body">
+                                            <form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'">
+                                                <label> Confirmar esta ação? </label>
+                                                <div align-items="right">
+                                                    <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="modal fade" id="modalAlteraMateria'.$campo['idMateria'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                <div class="modal-dialog" role="document ">
                                    <div class="modal-content">
