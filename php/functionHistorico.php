@@ -1,14 +1,21 @@
 <?php
-
+    function sqlSelect($filtrar){
+        
+        if($filtrar == 0){
+            $sql = 'SELECT * FROM historico_pedidos ORDER BY idPedido DESC;';
+        } else {
+            
+        }
+        return $sql;
+    }
     function dataTableHistorico(){
-
-        include('connection.php');
-
-        $sql = 'SELECT * FROM historico_pedidos ORDER BY idPedido DESC;';
-                
-
         $table = "";
 
+        include('connection.php'); 
+
+        $sql = 'SELECT * FROM historico_pedidos'.$_SESSION['filtroHistorico'].'';
+
+        $sql = sqlSelect($_SESSION['filtro']);
         $result = mysqli_query($conn,$sql);
 
         if (mysqli_num_rows($result) > 0){
@@ -46,7 +53,7 @@
 
                     $table .=
                         '<tr align-items="center";>
-                            <td>'.$campo['idHistorico'].'</td>
+                            <td>'.$campo['idPedido'].'</td>
                             <td>'.$campo['nomeUsuario'].'</td>
                             <td>'.$campo['produto'].'</td>
                             <td>'.maquinaNome($campo['maquina']).'</td>';
@@ -426,6 +433,6 @@
         }        
 
         return $table;
-    }
+    }    
 
 ?>

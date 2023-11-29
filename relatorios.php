@@ -14,6 +14,7 @@
 <html dir="ltr" lang="pt-br">
     <head>
         <?php include('links/cabecalho.php');?>   
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     </head> 
     
     <body>
@@ -41,8 +42,7 @@
                                 </div>
                                 <div class="modal-body pre-scrollable">
                     
-                                    <div class="card">
-                                        
+                                    <div class="card">                                        
                                         <div class="card-body">
                                             <div class="form-group row">
                                                 <div class="col-md-5 text-align-left">
@@ -58,7 +58,6 @@
                                                         <option>Select</option>                                            
                                                     </select>
                                                 </div>
-
 
                                                 <div class="col-md-4">
                                                     <label class="m-t-10">Produto:</label>  
@@ -157,76 +156,93 @@
                         </div>    
 
                         <div class="d-flex flex-row align-items-center">
-                            <div class="card-body">
-                                <div>                                    
-                                    <h4 class="card-title">Organizar ordens de produção por:</h4>
-                                </div>
-                                <div class="d-flex flex-row align-items-left m-3">
-                                    <div class="m-1 mr-2">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idAberto">Em aberto</label>
-                                        </div>
+                            <form method="POST" action="" id="radioDataForm">
+                                <div class="card-body">                                
+                                    <div>                                    
+                                        <h4 class="card-title">Organizar ordens de produção por:</h4>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-left m-3">
+                                        <div class="m-1 mr-2">
                                             <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-4" id="idAndamento" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
-                                        </div>
-                                    </div>
-                                    <div class="m-1 ml-4">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-3" id="idConcluidos" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idConcluidos">Concluidos</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input col-md-3" id="idDesativados" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idDesativados">Desativados</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
+                                                <input type="radio" value="1" class="custom-control-input" id="idAberto" name="radio-stacked" required>
+                                                <label class="custom-control-label" for="idAberto">Em aberto</label>
+                                            </div>
 
-                            <div class="card-body">  
-                                <div>                                    
-                                    <h4 class="card-title">Periodo:</h4>
-                                </div>                                   
-                                <div class="input-group">
-                                    <label>De:</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" value="2" class="custom-control-input" id="idAndamento" name="radio-stacked" required>
+                                                <label class="custom-control-label" for="idAndamento">Em andamento</label>
+                                            </div>
+                                            
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" value="3" class="custom-control-input" id="idAtivo" name="radio-stacked" required>
+                                                <label class="custom-control-label" for="idAtivo">Ativos</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <label>Até: </label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        <div class="m-1 ml-4">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" value="4" class="custom-control-input" id="idConcluidos" name="radio-stacked" required>
+                                                <label class="custom-control-label" for="idConcluidos">Concluidos</label>
+                                            </div>
+
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" value="5" class="custom-control-input" id="idDesativados" name="radio-stacked" required>
+                                                <label class="custom-control-label" for="idDesativados">Desativados</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>                          
-                            </div> 
-                            
+                                    </div>  
+                                </div>   
+
+                                <div class="card-body">  
+                                    <div>                                    
+                                        <h4 class="card-title">Periodo:</h4>
+                                    </div>                                   
+                                    <div class="input-group">
+                                        <label>De:</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                        <label>Até: </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>                          
+                                </div>                     
+
+                                <div class="form-group row m-3">
+                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                        Consulta
+                                    </button> 
+                                </div>                                                        
+                            </form>
+
                             <div class="card-body">
+                                <?php if($_SESSION['filtro'] == 1){?>
+                                    <div class="form-group row m-3">
+                                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                            Limpar filtros
+                                        </button> 
+                                    </div> 
+                                <?php } ?>
+
                                 <div class="form-group row m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Avançado
                                     </button> 
                                 </div>
-
-                                <div class="form-group row m-3">
-                                    <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                        Consulta
-                                    </button> 
-                                </div> 
-                            </div>
+                            </div> 
                         </div>
                         
                     </div> 
 
-                    <div class="card p-3">        
+                    <div id="divDataTable" class="card p-3">        
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
+                            <table id="datatable" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>ID do Pedido</th>
@@ -238,13 +254,9 @@
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php echo dataTableHistorico(); ?>
-                                </tbody>
                             </table>
                         </div>
-                    </div>
-                    
+                    </div>                  
                     
                 </div>
                 
@@ -257,14 +269,33 @@
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
 
-        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
-
         <script>
-            $('#zero_config').DataTable();
+            //$('#zero_config').DataTable();
         </script> 
 
+        <script src="dist\js\labPlasticos.js"></script>
+        <script src="dist\js\labDataTable.min.js"></script>
+        <script>         
+            new DataTable('#datatable', {
+                ajax: {
+                    url: 'php/processingHistoricoDataTable.php',
+                    type: 'POST'
+                },
+                columns: [
+                    { data: 'idPedido' },
+                    { data: 'nomeUsuario' },
+                    { data: 'produto' },
+                    { data: 'maquina' },
+                    { data: 'statusPedido' },
+                    { data: 'materiaPrima' },
+                    { data: 'pigmento' }
+                ],
+                processing: true,
+                serverSide: true
+            })
+        </script>
+
         <script>
-            
             //***********************************//
             // For select 2
             //***********************************//
@@ -306,28 +337,6 @@
                 theme: 'snow'
             });
 
-        </script>
-
-        <script>
-            $( document ).ready(function() {
-
-                const checkData = document.getElementById('#idCheckData');
-
-                checkData.addEventListener('click', showDiv());
-
-                function showDiv(){
-                    if(document.getElementById('#idCheckData').checked){
-                        
-                        $ ('#idDivData').show();
-
-                    } else {
-
-                        $ ('#idDivData').hide();
-
-                    }
-                }              
-
-            });
         </script>
     </body>
 </html>

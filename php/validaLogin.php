@@ -56,6 +56,7 @@
                     $_SESSION['tipo'] = $campo['nivel'];
                     $_SESSION['turma'] = $campo['class'];
                     $_SESSION['turno'] = $campo['turn'];
+                    $_SESSION['filtro'] = 0;
 
                     header('location:../index.php');
 

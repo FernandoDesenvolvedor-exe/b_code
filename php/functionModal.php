@@ -5,15 +5,16 @@
             <div class="modal-dialog" role="document ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Desativar Registro</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Excluir Registro</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true ">&times;</span>
                         </button>
                     </div>                       
                     <div class="modal-body">
-                        <form method="POST" action="php/savePedidos.php? validacao=D&id='.$campo.'">
-                            <label> Confirmar esta ação? </label>
-                            <div align-items="right">
+                        <form method="POST" action="php/saveHistorico.php?validacao=D&id='.$campo.'">
+                            <h6> Confirmar esta ação?</h6>
+                            <div align-items="right">   
+                                <label>Uma vez deletado desta tabela, não haverá como recuperar o regsitro!</label>                             
                                 <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> 
                                     Confirmar 
                                 </button>
