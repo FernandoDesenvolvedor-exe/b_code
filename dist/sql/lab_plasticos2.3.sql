@@ -180,7 +180,7 @@ CREATE TABLE historico_pedidos (
 -- Extraindo dados da tabela historico_pedidos
 --
 
-INSERT INTO historico_pedidos (idHistorico, nomeUsuario, tipoUsuario, turma, turno, idPedido, materiaPrima, tipoMateria_prima, classeMateria_prima, fornecedorMateria_Prima, pigmento, tipoPigmento, codigo, lote, fornecedorPigmento, produto, ferramental, tipoFerramental, maquina, producaoPrevista, refugo, producaoRealizada, quantidadeMateria_prima, quantidadePigmento, dataHora_aberto, dataHora_producao, dataHora_fechado, dataHora_alterado, statusPedido, obsPedido, ativo) VALUES
+INSERT INTO historico_pedidos (idHistorico, nomeUsuario, tipoUsuario, turma, turno, idPedido, materiaPrima, tipoMateria_prima, classeMateria_prima, fornecedorMateria_Prima, pigmento, tipoPigmento, codigo, lote, fornecedorPigmento, produto, ferramental, tipoFerramental, maquina, producaoPrevista, refugo, producaoRealizada, quantidadeMateria_prima, quantidadePigmento, dataHora_aberto, dataHora_producao, dataHora_fechado, dataHora_alterado, statusPedido, obsPedido) VALUES
 (1, '5', 0, '', '', 31, 'Poliéster', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '', 50, NULL, NULL, 15, 5, NULL, NULL, NULL, NULL, '1', ''),
 (2, '5', 0, '', '', 34, 'Etil-benzeno', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '3', 50, NULL, NULL, 15, 5, '2023-11-14 19:37:51', NULL, NULL, NULL, '2', ''),
 (3, '5', 0, '', '', 34, 'Poliéster', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '3', 50, NULL, NULL, 15, 5, '2023-11-14 19:37:51', NULL, NULL, NULL, '2', ''),
@@ -194,7 +194,7 @@ INSERT INTO historico_pedidos (idHistorico, nomeUsuario, tipoUsuario, turma, tur
 (11, 'Joao cacilds', 2, 'Mecânica', 'V', 43, 'Etil-benzeno', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '1', 100, NULL, NULL, 15, 5, '2023-11-15 13:18:33', NULL, NULL, NULL, '2', 'teste'),
 (12, 'Joao cacilds', 2, 'Mecânica', 'V', 43, 'Poliéster', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '1', 100, NULL, NULL, 15, 5, '2023-11-15 13:18:33', NULL, NULL, NULL, '2', 'teste'),
 (13, 'Joao cacilds', 2, 'Mecânica', 'V', 44, 'Polistileno', 'Virgem', 'Comodities', '', 'Roxo', 'MB', '', 0, '', 'garrafinha', '', '', '', 50, NULL, NULL, 45, 5, NULL, NULL, NULL, NULL, '1', ''),
-(14, 'Joao cacilds', 2, 'Mecânica', 'V', 45, 'Etil-benzeno', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '', 50, NULL, NULL, 15, 5, NULL, NULL, NULL, NULL, '1', '',
+(14, 'Joao cacilds', 2, 'Mecânica', 'V', 45, 'Etil-benzeno', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '', 50, NULL, NULL, 15, 5, NULL, NULL, NULL, NULL, '1', ''),
 (15, 'Joao cacilds', 2, 'Mecânica', 'V', 45, 'Poliéster', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '', 50, NULL, NULL, 15, 5, NULL, NULL, NULL, NULL, '1', ''),
 (16, 'adm adm', 1, '', '', 50, 'Etil-benzeno', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '3', 100, NULL, NULL, 15, 5, '2023-11-19 17:01:30', '2023-11-19 17:01:30', NULL, NULL, '2', ''),
 (17, 'adm adm', 1, '', '', 50, 'Poliéster', 'Virgem', 'Comodities', '', 'Amarelo', 'MTB', '', 0, '', 'garrafinha', '', '', '3', 100, NULL, NULL, 15, 5, '2023-11-19 17:01:30', '2023-11-19 17:01:30', NULL, NULL, '2', ''),
