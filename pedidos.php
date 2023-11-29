@@ -4,7 +4,7 @@
 
     if (isset($_SESSION['user']) == 0){
 
-        alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
+        //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
         
         header('location: login');
 

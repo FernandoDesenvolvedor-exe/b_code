@@ -81,9 +81,15 @@
                             materiaPrima,
                             tipoMateria_prima,
                             classeMateria_prima,
+                            fornecedorMateria_Prima,
                             pigmento,
                             tipoPigmento,
-                            produto,';
+                            codigo,
+                            lote,
+                            fornecedorPigmento,
+                            produto,
+                            ferramental,
+                            tipoFerramental,';
             
             if ($_POST['nStatus'] == 2){
                 $sql .='maquina,';
@@ -112,12 +118,17 @@
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
+                            "'.$_POST['nFornecedorMateria'][$n].'",
                             "'.$_POST['nCor'].'",
                             "'.$_POST['nTipoCor'].'",
-                            "'.$_POST['nProduto'].'",';
+                            "'.$_POST['nCodCor'].'",
+                            "'.$_POST['nLoteCor'].'",
+                            "'.$_POST['nProduto'].'",;
+                            "'.$_POST['nFerramental'].'",
+                            "'.$_POST['nTipoFerramental'].'",';
             
             if ($_POST['nStatus'] == 2){
-                $sql .='"'.$_POST['nMaquina'].'",';
+                $sql .='"'.maquinaNome($_POST['nMaquina']).'",';
             }
 
             $sql .=
@@ -137,7 +148,7 @@
                             
             $result = mysqli_query($conn, $sql);
             
-            if($_POST['nStatus'] == 2){
+            /*if($_POST['nStatus'] == 2){
 
                 $sql2 =  'INSERT INTO historico_materia_prima(
                             idMateria,
@@ -164,7 +175,7 @@
                 die();
                 $result = mysqli_query($conn, $sql2);
 
-            }
+            }*/
         }
 
         mysqli_close($conn);

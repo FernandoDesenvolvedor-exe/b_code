@@ -56,21 +56,22 @@
                     $_SESSION['tipo'] = $campo['nivel'];
                     $_SESSION['turma'] = $campo['class'];
                     $_SESSION['turno'] = $campo['turn'];
+                    $_SESSION['filtro'] = 0;
 
-                    header('location:../index.php');
+                    header('location:../producao');
 
                 }else{
                     //usuario Inativo
                     $_SESSION['user'] = 0;
                     $_SESSION['msgLogin'] = $abreHTMLalert.'Usuário inativo'.$fechaHTMLalert;
-                    header('location:../login.php');
+                    header('location:../login');
                     die();
                 }
             }else{
                 //senha incorreta
                 $_SESSION['user'] = 0;
                 $_SESSION['msgLogin'] = $abreHTMLalert.'Senha incorreta'.$fechaHTMLalert;
-                header('location:../login.php');
+                header('location:../login');
                 die();
             }
         }
@@ -79,6 +80,6 @@
         //menssagem de email nao cadastrado
         $_SESSION['user'] = 0;
         $_SESSION['msgLogin'] = $abreHTMLalert.'Email não cadastrado'.$fechaHTMLalert;
-        header('location:../login.php');
+        header('location:../login');
     };
 ?>
