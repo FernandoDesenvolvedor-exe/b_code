@@ -47,17 +47,19 @@
                     }
                     
                 }),
-                array( 'db' => 'statusPedido',  'dt' => 6, 'formatter' => function($d, $row){
-                    if($d != 0){
+                array( 'db' => 'idPedido',  'dt' => 6, 'formatter' => function($d, $row){
+                    $status = consultaStatusHistoricoPedido($d);
+
+                    if($status != 0){
                         return
                         '<div class="div1">   
                             <a href="" class=""><span></span></a>                                                                      
-                            <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$_SESSION['idPedido'].'">
+                            <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                 Visualizar
                             </button>
                         </div>
                         <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$_SESSION['idPedido'].'">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                 Desativar
                             </button>
                         </div>';
@@ -66,15 +68,15 @@
             
                         return
                         '<div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalRestaura'.$_SESSION['idPedido'].'">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalRestaura'.$d.'">
                                 Desativar
                             </button>
                         </div>
                         <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$_SESSION['idPedido'].'">
+                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                 Desativar
                             </button>
-                        </div>';
+                        </div>';                      
                     }
                 }));
     

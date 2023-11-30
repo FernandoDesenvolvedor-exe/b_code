@@ -1,0 +1,119 @@
+<?php include('links/js.php'); ?>
+
+<script>
+function listarTotalPontos(){
+    $("#iTabela").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "retrieve": true,
+        "paging": false,
+    });
+}
+
+function listarTotalKm(){
+    $("#iTabela2").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "retrieve": true,
+        "paging": false,
+    });
+}
+
+
+function listarTotalPremiacao(){
+    $("#iTabela3").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "retrieve": true,
+        "paging": false,
+    });
+}
+
+function listarMedia(){
+    $("#iTabela4").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "retrieve": true,
+        "paging": false,
+    });
+}
+
+function rankingMotoristas(){
+    $('#msgRequired').attr("hidden", true);
+
+    var idTransportadora = <?php echo $_SESSION['idTransportadora']; ?>;
+    var dataInicio = $('#iDataInicio').val();
+    var dataFim = $('#iDataFim').val();
+
+    if(dataInicio != "" && dataFim != ""){
+        if($('#iFlgTotalPontos').prop("checked")){
+            $('#iCardPontos').removeAttr("hidden");
+            $.ajax({
+                url: "Controller/listarMotoristasTotalPontos.php",
+                type: "POST",
+                data: 'idTransportadora=' + idTransportadora + '&dataInicio=' + dataInicio + '&dataFim=' + dataFim,
+                beforeSend:function(){
+                    $(".listaPontos").html("Carregando...");
+                },
+                success:function(data){
+                    $(".listaPontos").html(data);
+                }
+            });
+        }else{
+            $('#iCardPontos').attr('hidden', true);
+        }
+
+        if($('#iFlgTotalKms').prop("checked")){
+            $('#iCardKm').removeAttr("hidden");
+            $.ajax({
+                url: "Controller/listarMotoristaTotalKm.php",
+                type: "POST",
+                data: 'idTransportadora=' + idTransportadora + '&dataInicio=' + dataInicio + '&dataFim=' + dataFim,
+                beforeSend:function(){
+                    $(".listaKmRodados").html("Carregando...");
+                },
+                success:function(data){
+                    $(".listaKmRodados").html(data);
+                }
+            });
+        }else{
+            $('#iCardKm').attr('hidden', true);
+        }
+
+        if($('#iFlgPremiacao').prop("checked")){
+            $('#iCardPremiacao').removeAttr("hidden");
+            $.ajax({
+                url: "Controller/listarMotoristaPremiacao.php",
+                type: "POST",
+                data: 'idTransportadora=' + idTransportadora + '&dataInicio=' + dataInicio + '&dataFim=' + dataFim,
+                beforeSend:function(){
+                    $(".listaPremiacao").html("Carregando...");
+                },
+                success:function(data){
+                    $(".listaPremiacao").html(data);
+                }
+            });
+        }else{
+            $('#iCardPremiacao').attr('hidden', true);
+        }
+
+        if($('#iFlgKmMedia').prop("checked")){
+            $('#iCardMedia').removeAttr("hidden");
+            $.ajax({
+                url: "Controller/listaMotoristaMedia.php",
+                type: "POST",
+                data: 'idTransportadora=' + idTransportadora + '&dataInicio=' + dataInicio + '&dataFim=' + dataFim,
+                beforeSend:function(){
+                    $(".listaMedia").html("Carregando...");
+                },
+                success:function(data){
+                    $(".listaMedia").html(data);
+                }
+            });
+        }else{
+            $('#iCardMedia').attr('hidden', true);
+        }
+    }else{
+        $('#msgRequired').removeAttr("hidden");
+    }
+}

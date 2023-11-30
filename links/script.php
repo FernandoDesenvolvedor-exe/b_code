@@ -39,6 +39,8 @@
 
 <!-- Js da tela login.php -->
 
+<script src="dist\js\labPlasticos.js"></script>
+<script src="dist\js\labDataTable.min.js"></script>
 
 <!-- Js da tela de cadastro de pedidos -->
 <script src="assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>

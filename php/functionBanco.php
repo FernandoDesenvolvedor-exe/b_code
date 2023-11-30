@@ -101,17 +101,28 @@
     }
 
     function consultaStatusHistoricoPedido($id){
-        $sql = 'SELECT statusPedido FROM historico_pedidos WHERE idPedido = '.$id.'';
+
+        $sql ='SELECT statusPedido FROM historico_pedidos WHERE idPedido = '.$id.';';
         
         include('connection.php');
+
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
         
-        if(mysqli_num_rows($result) > 0){
-            return $result;
-            break;
-        } else {    
-            return 'n';
-            break;
+        if(mysqli_num_rows($result) == 0){
+            $result = 'n';
+        } else if (mysqli_num_rows($result) > 1){
+            $array = array();
+
+            while($lista = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            foreach($array as $campo){
+                $result = $campo['statusPedido'];
+            }
         }
+        
+        return $result;
+    }
 ?>

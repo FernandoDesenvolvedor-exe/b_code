@@ -151,85 +151,81 @@
                             
                     <h3 class="card-title">Menu de Relatórios</h3>
 
-                    <div class="card">   
+                    <div class="card">
+                        <div class="d-flex justify-content-center flex-row m-4">
+                            
+                            <div class="form-group row col-md-4">     
+                                <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
 
-                        <form method="POST" action="" id="filtroSimples">
-                            <div class="d-flex justify-content-center flex-row m-4">
-                                
-                                <div class="form-group row col-md-4">     
-                                    <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+                                <div class="ml-1 col-sm-5">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked" value=1>
+                                        <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked" value=2>
+                                        <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked" value=3>
+                                        <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
+                                    </div>                                        
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked" value=0>
+                                        <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
+                                    </div>                                       
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked" value=4>
+                                        <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
+                                    </div>
+                                </div>
+                            </div>   
 
-                                    <div class="ml-1 col-sm-5">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked" value=1>
-                                            <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked" value=2>
-                                            <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked" value=3>
-                                            <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
-                                        </div>                                        
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked" value=0>
-                                            <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
-                                        </div>                                       
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked" value=4>
-                                            <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
+                            <div class="form-group row col-md-6">  
+                                <div>                                    
+                                    <h4 class="card-title">Periodo:</h4>
+                                </div>                                   
+                                <div class="input-group d-flex row">
+                                    <label>De:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
-                                </div>   
-
-                                <div class="form-group row col-md-6">  
-                                    <div>                                    
-                                        <h4 class="card-title">Periodo:</h4>
-                                    </div>                                   
-                                    <div class="input-group d-flex row">
-                                        <label>De:</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
+                                    <label>Até: </label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                        <label>Até: </label>
-                                        <div class="col-sm-5">
-                                            <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>                          
-                                </div>     
-
-                                <div class="form-group flex-column col-md-2">
-                                    <?php if($_SESSION['filtro'] == 1){?>
-                                        <div class="col-sm-12 m-3">
-                                            <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
-                                                <span class="fas fa-eraser"></span> 
-                                            </button> 
-                                        </div> 
-                                    <?php }?>
-
-                                    <div class="col-sm-12 m-3">                                    
-                                        <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
-                                            Filtros avançados
-                                        </button> 
                                     </div>
+                                </div>                          
+                            </div>     
 
+                            <div class="form-group flex-column col-md-2">
+                                <?php if($_SESSION['filtro'] == 1){?>
                                     <div class="col-sm-12 m-3">
-                                        <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                            Consulta
+                                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
+                                            <span class="fas fa-eraser"></span> 
                                         </button> 
                                     </div> 
-                                </div> 
+                                <?php }?>
 
-                            </div>                                                      
-                        </form>
-                        
+                                <div class="col-sm-12 m-3">                                    
+                                    <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
+                                        Filtros avançados
+                                    </button> 
+                                </div>
+
+                                <div class="col-sm-12 m-3">
+                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                        Consulta
+                                    </button> 
+                                </div> 
+                            </div> 
+
+                        </div>                          
                     </div> 
 
                     <div id="divDataTable" class="card p-3">        
@@ -260,9 +256,6 @@
 
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
-
-        <script src="dist\js\labPlasticos.js"></script>
-        <script src="dist\js\labDataTable.min.js"></script>
         <script>
             
         </script>
@@ -309,21 +302,57 @@
                     processing: true,
                     serverSide: true
                 }); 
-            });            
+            });       
         </script>
 
         <script>
-            $('#iConsulta').click(function(e){
-                e.preventDefault()
-                var radios = $("input[name='radio-stacked']:checked").val()
-                var dataInicio = document.getElementById('idDataInicio')
-                var dataFim = document.getElementById('idDataFim')
-                alert(dataInicio);
+
+            $('#iConsulta').click(function(e){                
+                e.preventDefault();                
+
+                if($('#idDataInicio').val() != ''){
+                    var dataInicio = $('#idDataInicio').val();
+                    alert('preencheu!');
+                } else {
+                    var dataInicio = '';
+                    alert('Não preencheu!');
+                }
+                
+                if($('#idDataFim').val() != ''){
+                    var dataFim = $('#idDataFim').val();
+                } else {
+                    var dataFim = '';
+                }
+
+                if($('input[name="radio-stacked"]')..prop("checked", true)){
+                    var radios = $("input[name='radio-stacked']:checked").val();
+                } else {
+                    var radios = '';
+                }
+
+                if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
+
+                    alert('Data inicial não pode ser maior que a final!');   
+
+                } else if(dataInicio == '' && dataFim == '' && radios == ''){
+
+                    alert('Nenhum filtro encontrado!');
+                    
+                } else {
+
+                    alert(dataInicio);
+                }
 
                 /*$.ajax({
                     url: 'historicoFiltro.php'
                     method: 'POST'
-                    data: { radio: radios, dataInicio: }
+                    data:'radio:' + radios + '&dataInicio:'.dataInicio.'&dataFim'.dataFim,
+                    beforeSend:function(){
+                    $(".listaKmRodados").html("Carregando...");
+                },
+                success:function(data){
+                    $(".listaKmRodados").html(data);
+                }
                 })*/
             })
         </script>
