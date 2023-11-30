@@ -161,23 +161,23 @@
 
                                     <div class="ml-1 col-sm-5">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked" value=1>
                                             <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
                                         </div>
                                          <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked" value=2>
                                             <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
                                         </div>
                                          <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked" value=3>
                                             <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
                                         </div>                                        
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked" value=0>
                                             <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
                                         </div>                                       
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked" value=4>
                                             <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
                                         </div>
                                     </div>
@@ -264,6 +264,9 @@
         <script src="dist\js\labPlasticos.js"></script>
         <script src="dist\js\labDataTable.min.js"></script>
         <script>
+            
+        </script>
+        <script>
             $('document').ready(function(){                
                 new DataTable('#datatable', {
                     language: {
@@ -306,28 +309,23 @@
                     processing: true,
                     serverSide: true
                 }); 
-            });   
-  
-            /*
-            $('#iConsulta').addEventListener('click' function(){
-                var dataRadio = document.querySelector('input[name="radio-stacked"]');
+            });            
+        </script>
 
-                if(dataRadio.checked == true){
-                    alert('OIOI');
-                    var dataRadio = document.querySelector('input[name="radio-stacked"]').value;
-                }
+        <script>
+            $('#iConsulta').click(function(e){
+                e.preventDefault()
+                var radios = $("input[name='radio-stacked']:checked").val()
+                var dataInicio = document.getElementById('idDataInicio')
+                var dataFim = document.getElementById('idDataFim')
+                alert(dataInicio);
 
-                var request = $.ajax({               
-                    url: "historicoFiltro.php",
-                    type: "POST",
-                    data: "campo1="+dataRadio+"&campo2=dado2&campo3=dado3",
-                    dataType: "html"
-                });
-            })*/
-
-            
-
-           
+                /*$.ajax({
+                    url: 'historicoFiltro.php'
+                    method: 'POST'
+                    data: { radio: radios, dataInicio: }
+                })*/
+            })
         </script>
 
         <script>
