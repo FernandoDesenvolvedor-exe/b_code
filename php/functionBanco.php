@@ -109,18 +109,19 @@
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
         
-        if(mysqli_num_rows($result) == 0){
-            $result = 'n';
-        } else if (mysqli_num_rows($result) > 1){
+        if (mysqli_num_rows($result) > 0){
             $array = array();
 
-            while($lista = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                 array_push($array, $linha);
             }
 
             foreach($array as $campo){
                 $result = $campo['statusPedido'];
             }
+
+        } else {
+            $result = 'n';
         }
         
         return $result;

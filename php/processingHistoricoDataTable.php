@@ -51,32 +51,33 @@
                     $status = consultaStatusHistoricoPedido($d);
 
                     if($status != 0){
-                        return
-                        '<div class="div1">   
-                            <a href="" class=""><span></span></a>                                                                      
-                            <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$d.'">
-                                Visualizar
-                            </button>
-                        </div>
-                        <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$d.'">
-                                Desativar
-                            </button>
-                        </div>';
+                        return                        
+                            '<div class="row justify-content-center">
+                                <div class="ml-2 mr-2">
+                                    <li class="fas fa-undo text-success">
+                                        <a href="#" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="ml-2 mr-2">
+                                    <li class="fas fa-times-circle text-danger">
+                                        <a href="#" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>';
             
                     } else {
             
                         return
-                        '<div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalRestaura'.$d.'">
-                                Desativar
-                            </button>
-                        </div>
-                        <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$d.'">
-                                Desativar
-                            </button>
-                        </div>';                      
+                            '<li>
+                                <a href="#" data-toggle="modal" class="fas fa-undo-alt bg-green" data-target="#modalRestaura'.$d.'">
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                </a>
+                            </li>';                      
                     }
                 }));
     

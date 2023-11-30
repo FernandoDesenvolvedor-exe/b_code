@@ -126,14 +126,14 @@
                                                 <div class="input-group">
                                                     <label class="col-sm-3">De:</label>
                                                     <div class="col-sm-9">
-                                                        <input id="idDataInicio" name="nDataInicio" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <input id="idDataInicioAvancado" name="nDataInicioAvancado" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
                                                     </div>
                                                     <label class="col-sm-3">Até:</label>
                                                     <div class="col-sm-9">
-                                                        <input id="idDataFim" name="nDataFim" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <input id="idDataFimAvancado" name="nDataFimAvancado" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
@@ -188,14 +188,11 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
                                     </div>
                                     <label>Até: </label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -238,7 +235,7 @@
                                         <th>Produto</th>
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
-                                        <th>Matéria(s) Prima(s)</th>
+                                        <th>COncluido em</th>
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
@@ -306,55 +303,57 @@
         </script>
 
         <script>
+            $('docuement').ready(function(){
+                $('#iConsulta').click(function(e){     
 
-            $('#iConsulta').click(function(e){                
-                e.preventDefault();                
+                    if($('#idDataInicio').val() != ''){
+                        var dataInicio = $('#idDataInicio').val();
+                        alert('preencheu!');
+                    } else {
+                        var dataInicio = '';
+                        alert('Não preencheu!');
+                    }
 
-                if($('#idDataInicio').val() != ''){
-                    var dataInicio = $('#idDataInicio').val();
-                    alert('preencheu!');
-                } else {
-                    var dataInicio = '';
-                    alert('Não preencheu!');
-                }
-                
-                if($('#idDataFim').val() != ''){
-                    var dataFim = $('#idDataFim').val();
-                } else {
-                    var dataFim = '';
-                }
+                    /*
+                    if($('#idDataFim').val() != ''){
+                        var dataFim = $('#idDataFim').val();
+                    } else {
+                        var dataFim = '';
+                    }
 
-                if($('input[name="radio-stacked"]')..prop("checked", true)){
-                    var radios = $("input[name='radio-stacked']:checked").val();
-                } else {
-                    var radios = '';
-                }
+                    if($('input[name="radio-stacked"]')..prop("checked", true)){
+                        var radios = $("input[name='radio-stacked']:checked").val();
+                    } else {
+                        var radios = '';
+                    }
 
-                if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
+                    if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
 
-                    alert('Data inicial não pode ser maior que a final!');   
+                        alert('Data inicial não pode ser maior que a final!');   
 
-                } else if(dataInicio == '' && dataFim == '' && radios == ''){
+                    } else if(dataInicio == '' && dataFim == '' && radios == ''){
 
-                    alert('Nenhum filtro encontrado!');
-                    
-                } else {
+                        alert('Nenhum filtro encontrado!');
+                        
+                    } else {
 
-                    alert(dataInicio);
-                }
+                        alert(dataInicio);
+                    }*/
 
-                /*$.ajax({
-                    url: 'historicoFiltro.php'
-                    method: 'POST'
-                    data:'radio:' + radios + '&dataInicio:'.dataInicio.'&dataFim'.dataFim,
-                    beforeSend:function(){
-                    $(".listaKmRodados").html("Carregando...");
-                },
-                success:function(data){
-                    $(".listaKmRodados").html(data);
-                }
-                })*/
-            })
+                    /*$.ajax({
+                        url: 'historicoFiltro.php'
+                        method: 'POST'
+                        data:'radio:' + radios + '&dataInicio:'.dataInicio.'&dataFim'.dataFim,
+                        beforeSend:function(){
+                        $(".listaKmRodados").html("Carregando...");
+                    },
+                    success:function(data){
+                        $(".listaKmRodados").html(data);
+                    }
+                    })*/
+                });
+            });
+            
         </script>
 
         <script>
