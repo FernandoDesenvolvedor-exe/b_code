@@ -188,7 +188,10 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
                                     </div>
                                     <label>Até: </label>
                                     <div class="col-sm-5">
@@ -253,9 +256,7 @@
 
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
-        <script>
-            
-        </script>
+    
         <script>
             $('document').ready(function(){                
                 new DataTable('#datatable', {
@@ -302,55 +303,46 @@
             });       
         </script>
 
-        <script>
+        <script>            
             $('docuement').ready(function(){
-                $('#iConsulta').click(function(e){     
+                function formataData(){
+                    $('#idDataInicio').val().toUpperCase();
+                }
+
+                $('#iConsulta').click(function(e){  
+
+                    <?php $_SESSION['filtro'] = 1;?>   
 
                     if($('#idDataInicio').val() != ''){
                         var dataInicio = $('#idDataInicio').val();
-                        alert('preencheu!');
                     } else {
                         var dataInicio = '';
-                        alert('Não preencheu!');
                     }
-
-                    /*
+                    
                     if($('#idDataFim').val() != ''){
                         var dataFim = $('#idDataFim').val();
                     } else {
                         var dataFim = '';
                     }
 
-                    if($('input[name="radio-stacked"]')..prop("checked", true)){
-                        var radios = $("input[name='radio-stacked']:checked").val();
-                    } else {
-                        var radios = '';
-                    }
-
                     if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
 
                         alert('Data inicial não pode ser maior que a final!');   
 
-                    } else if(dataInicio == '' && dataFim == '' && radios == ''){
+                    } else if (dataInicio == undefined && dataFim == undefined && radios == undefined){
 
                         alert('Nenhum filtro encontrado!');
                         
                     } else {
 
                         alert(dataInicio);
-                    }*/
-
-                    /*$.ajax({
-                        url: 'historicoFiltro.php'
-                        method: 'POST'
-                        data:'radio:' + radios + '&dataInicio:'.dataInicio.'&dataFim'.dataFim,
-                        beforeSend:function(){
-                        $(".listaKmRodados").html("Carregando...");
-                    },
-                    success:function(data){
-                        $(".listaKmRodados").html(data);
                     }
-                    })*/
+
+                    $.ajax({
+                        url: 'php/historicoFiltro.php'
+                        method: 'POST'
+                        data:'radio:' + radios + '&dataInicio:' + dataInicio + '&dataFim' + dataFim,
+                    })
                 });
             });
             

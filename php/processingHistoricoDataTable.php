@@ -1,17 +1,13 @@
 <?php
     include('function.php');
 
-    $filtros = '1 = 1'; //$_SESSION['filtroHistorico'];
-
+    $filtros = $_SESSION['filtroHistorico'];
     $tabelaBD = 'historico_pedidos';
     $primaryKey = 'idHistorico';
-    $idPedido = 1;
-    $_SESSION['idPedido'] = '';
-    $id = 0;
+
     $columns = array(
                 array( 'db' => 'idPedido',      'dt' => 0,'formatter' => function($d, $row){
-                    $_SESSION['idPedido'] = $d;
-                    return $_SESSION['idPedido'];
+                    return $d;
                 }),
                 array( 'db' => 'nomeUsuario',   'dt' => 1,'formatter' => function($d, $row){
                     return $d;
@@ -54,18 +50,18 @@
                         return                        
                             '<div class="row justify-content-center">
                                 <div class="ml-2 mr-2">
-                                    <li class="fas fa-undo text-success">
-                                        <a href="#" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                    <li>
+                                        <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
                                         </a>
                                     </li>
                                 </div>
                                 <div class="ml-2 mr-2">
-                                    <li class="fas fa-times-circle text-danger">
-                                        <a href="#" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                    <li>
+                                        <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                         </a>
                                     </li>
                                 </div>
-                            </div>';
+                            </div>'.modalExcluiPedido($d);
             
                     } else {
             
