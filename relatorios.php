@@ -153,38 +153,34 @@
 
                     <div class="card">   
 
-                        <form method="POST" action="" id="radioDataForm">
+                        <form method="POST" action="" id="filtroSimples">
                             <div class="d-flex justify-content-center flex-row m-4">
                                 
                                 <div class="form-group row col-md-4">     
                                     <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+
                                     <div class="ml-1 col-sm-5">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" value="1" class="custom-control-input" id="idAberto" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idAberto">Em aberto</label>
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked">
+                                            <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
                                         </div>
-
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" value="2" class="custom-control-input" id="idAndamento" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
+                                         <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked">
+                                            <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
                                         </div>
-                                        
+                                         <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked">
+                                            <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
+                                        </div>                                        
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" value="3" class="custom-control-input" id="idAtivo" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idAtivo">Ativos</label>
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked">
+                                            <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
+                                        </div>                                       
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked">
+                                            <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" value="4" class="custom-control-input" id="idConcluidos" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idConcluidos">Concluidos</label>
-                                        </div>
-
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" value="5" class="custom-control-input" id="idDesativados" name="radio-stacked" required>
-                                            <label class="custom-control-label" for="idDesativados">Desativados</label>
-                                        </div>
-                                    </div> 
                                 </div>   
 
                                 <div class="form-group row col-md-6">  
@@ -267,43 +263,78 @@
 
         <script src="dist\js\labPlasticos.js"></script>
         <script src="dist\js\labDataTable.min.js"></script>
-        <script>         
-            new DataTable('#datatable', {
-                ajax: {
-                    url: 'php/processingHistoricoDataTable.php',
-                    type: 'POST'
-                },
-                columns: [
-                    { data: 0 },
-                    { data: 1 },
-                    { data: 2 },
-                    { data: 3 },
-                    { data: 4 },
-                    { data: 5 },
-                    { data: 6 }
-                ],
-                processing: true,
-                serverSide: true
-            })
+        <script>
+            $('document').ready(function(){                
+                new DataTable('#datatable', {
+                    language: {
+                        "decimal":        ",",
+                        "emptyTable":     "Não há registros disponíveis na tabela",
+                        "info":           "Mostrando _START_ até _END_ de _TOTAL_ registros",
+                        "infoEmpty":      "Mostrando 0 até 0 de 0 entradas",
+                        "infoFiltered":   "(Filtrado para _MAX_ registros totais)",
+                        "infoPostFix":    "",
+                        "thousands":      ".",
+                        "lengthMenu":     "Mostrar  _MENU_  registros",
+                        "loadingRecords": "Loading...",
+                        "processing":     "",
+                        "search":         "Pesquisar:",
+                        "zeroRecords":    "Nenhum valor semelhante encontrado",
+                        "paginate": {
+                            "first":      "Primeiro",
+                            "last":       "Último",
+                            "next":       "Próximo",
+                            "previous":   "Aterior"
+                        },
+                        "aria": {
+                            "sortAscending":  ": Ative para organizar a coluna de forma ascendente",
+                            "sortDescending": ": Ative para organizar a coluna de forma descendente"
+                        }
+                    },
+                    ajax: {
+                        url: 'php/processingHistoricoDataTable.php',
+                        type: 'POST'
+                    },
+                    columns: [
+                        { data: 0 },
+                        { data: 1 },
+                        { data: 2 },
+                        { data: 3 },
+                        { data: 4 },
+                        { data: 5 },
+                        { data: 6 }
+                    ],
+                    processing: true,
+                    serverSide: true
+                }); 
+            });   
+  
+            /*
+            $('#iConsulta').addEventListener('click' function(){
+                var dataRadio = document.querySelector('input[name="radio-stacked"]');
+
+                if(dataRadio.checked == true){
+                    alert('OIOI');
+                    var dataRadio = document.querySelector('input[name="radio-stacked"]').value;
+                }
+
+                var request = $.ajax({               
+                    url: "historicoFiltro.php",
+                    type: "POST",
+                    data: "campo1="+dataRadio+"&campo2=dado2&campo3=dado3",
+                    dataType: "html"
+                });
+            })*/
+
+            
+
+           
         </script>
 
         <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
             $(".select2").select2();
 
-            /*colorpicker*/
             $('.demo').each(function() {
-            //
-            // Dear reader, it's actually very easy to initialize MiniColors. For example:
-            //
-            //  $(selector).minicolors();
-            //
-            // The way I've done it below is just for the demo, so don't get confused
-            // by it. Also, data- attributes aren't supported at this time...they're
-            // only used for this demo.
-            //
+
             $(this).minicolors({
                     control: $(this).attr('data-control') || 'hue',
                     position: $(this).attr('data-position') || 'bottom left',
@@ -319,7 +350,6 @@
                 });
 
             });
-            /*datwpicker*/
             jQuery('.mydatepicker').datepicker();
             jQuery('#datepicker-autoclose').datepicker({
                 autoclose: true,
