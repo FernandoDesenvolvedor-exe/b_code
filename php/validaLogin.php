@@ -1,22 +1,27 @@
 <?php
+    include('function.php');
+    include('connection.php');
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
-    } 
+    }
+    $abreHTMLalert = '<div class="input-group mb-3">
+                        <div class="input-group-prepend" style="width: 100%; height:100%;">
+                            <div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>';
     //stripslashes coloca uma barra dps de um caractere especial para evitar errro no codigo sql
-
     $login = stripslashes($_POST['nLogin']);
     $senha = stripslashes($_POST['nSenha']);
     $_SESSION['msgLogin'] = '';
-
-    $abreHTMLalert = '<div class="input-group mb-3">'
-                        .'<div class="input-group-prepend" style="width: 100%; height:100%;">'
-                            .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
-    $fechaHTMLalert = '</div></div></div>';
-    
-    include('connection.php');
-
-    $_SESSION['msgLogin'] = '';
-    
+    if(!validarDado(2,$login)){
+        $_SESSION['msgLogin'] = $abreHTMLalert.'Email inválido!'.$fechaHTMLalert;
+        header('location: ../login.php');
+        die();
+    }
+    if(!validarDado(3,$senha)){
+        $_SESSION['msgLogin'] = $abreHTMLalert.'Senha inválida!'.$fechaHTMLalert;
+        header('location: ../login.php');
+        die();
+    }
     $sql = 'SELECT user.idUsuario, 
                 user.senha as password,
                 user.nome as name,
