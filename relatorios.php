@@ -332,29 +332,28 @@
             $(".select2").select2();
 
             $('.demo').each(function() {
+                $(this).minicolors({
+                        control: $(this).attr('data-control') || 'hue',
+                        position: $(this).attr('data-position') || 'bottom left',
 
-            $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
+                        change: function(value, opacity) {
+                            if (!value) return;
+                            if (opacity) value += ', ' + opacity;
+                            if (typeof console === 'object') {
+                                console.log(value);
+                            }
+                        },
+                        theme: 'bootstrap'
+                    });
 
-                    change: function(value, opacity) {
-                        if (!value) return;
-                        if (opacity) value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
                 });
-
-            });
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
+                jQuery('.mydatepicker').datepicker();
+                jQuery('#datepicker-autoclose').datepicker({
+                    autoclose: true,
+                    todayHighlight: true
+                });
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
             });
 
         </script>
