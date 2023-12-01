@@ -25,6 +25,8 @@
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die(); 
     }
+    //VERIFICA SE RECICLADO NÃO É MAIOR QUE A QUANTIDADE DE MATERIAL
+    
     //Verifica se o peso da receita esta dentro do limite de variação de 5% em relação ao peço do proutudo
     $sql='SELECT peso FROM produtos WHERE idProduto='.$produto;
     $result= mysqli_query($conn, $sql);
@@ -52,16 +54,20 @@
     $result= mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 0 ){
         mysqli_close($conn);
-        $_SESSION['msgErro'] = $abreHTMLalert.'<h4>Relação entre material e pigmento inexistente.</h4><br> Material não pode ser fabricado com este pigmento!'.$fechaHTMLalert;
+        $_SESSION['msgErro'] = $abreHTMLalert.'<h5>Relação entre material e pigmento inexistente.</h5> Material não pode ser fabricado com este pigmento!'.$fechaHTMLalert;
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die();
     }
-
     //SEPARAÇÃO DO MATERIAL E PIGMENTO
     $pesoPigmento = $qMaterial*($porcentPigmento/100);
     $pesoMaterial = $qMaterial-$pesoPigmento;
 
-
+    if($qReciclado>$pesoMaterial){
+        mysqli_close($conn);
+        $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade de reciclado excedeu a quantidade de material!<br>Quant. Material:'.$pesoMaterial.'<br>Quant. Reciclado:'.$qReciclado.''.$fechaHTMLalert;
+        header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
+        die();
+    }
     mysqli_close($conn);
     $_SESSION['msgErro'] = $abreHTMLalert.'Cadastrado!!!(FAKE) idMat:'.$material.' idPig:'.$pigmento.' Pig:'.$pesoPigmento.'g Mat:'.$pesoMaterial.'g'.mysqli_num_rows($result) .$fechaHTMLalert;
     header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
