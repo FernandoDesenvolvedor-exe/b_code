@@ -174,14 +174,14 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
+                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <label>Até: </label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                        <input type="date" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
