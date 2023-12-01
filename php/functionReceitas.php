@@ -1,6 +1,4 @@
 <?php
-//LUIS FEZ VIEWS, ATUALIZAR ESSA FUNÇÃO
-
     function dataTableReceitas($idProduto){
         
         include('connection.php');

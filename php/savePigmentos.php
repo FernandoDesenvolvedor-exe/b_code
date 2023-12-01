@@ -68,7 +68,7 @@
         $result = mysqli_query($conn,$sql); 
         mysqli_close($conn);
 
-    } else if($validacao == 'U'){  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA
+    } else if($validacao == 'U'){  // ATUALIZA UM CADASTRO DE PIGMENTO
 
         $descricao = stripslashes($_POST['nDescricao']);
         $obs = stripslashes($_POST['nObservacoes']);

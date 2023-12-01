@@ -52,7 +52,7 @@
     $result= mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 0 ){
         mysqli_close($conn);
-        $_SESSION['msgErro'] = $abreHTMLalert.'Relação entre material e pigmento inexistente. Material não pode ser fabricado com este pigmento!'.$fechaHTMLalert;
+        $_SESSION['msgErro'] = $abreHTMLalert.'<h4>Relação entre material e pigmento inexistente.</h4><br> Material não pode ser fabricado com este pigmento!'.$fechaHTMLalert;
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die();
     }
