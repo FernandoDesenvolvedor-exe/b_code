@@ -1,4 +1,7 @@
 <?php 
+/*
+
+*/
     include('function.php');
     include('connection.php');
     if(session_status() !== PHP_SESSION_ACTIVE){

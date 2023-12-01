@@ -42,7 +42,12 @@
                             <div class="card-body">
                                 <!-- Titulo da div -->
                                 <h4 class="card-title">Receita</h4>
-                                <?php if(isset($_SESSION['error'])){ echo $_SESSION['error'];$_SESSION['error']='';}?>
+                                <?php 
+                                    if(isset($_SESSION['msgErro'])){ 
+                                        echo $_SESSION['msgErro'];
+                                        unset($_SESSION['msgErro']);
+                                    }
+                                ?>
                                 
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Produto</label>
@@ -106,17 +111,7 @@
                                         <textarea class="form-control" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                                     </div>
                                 </div>
-                            </div> 
-                            <?php 
-                                if(isset($_SESSION['cadastrar'])){
-                                    if($_SESSION['cadastrar']==true){
-                                        echo alert(2,'Cadastro Pedido',  );
-                                    }
-                                }else{
-                                    $_SESSION['cadastrar']=false;
-                                }
-                            ?>
-                                
+                            </div>
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">Salvar</button>

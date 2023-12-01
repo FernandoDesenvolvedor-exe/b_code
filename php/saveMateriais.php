@@ -33,12 +33,12 @@ Validações
         $observacoes = stripslashes($_POST['nObservacoes']);
         $fornecedor = stripslashes($_POST['nFornecedor']);      
         if(!validarDado(4,$descricao)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'1Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
         if(!validarDado(4,$observacoes)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'2Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
@@ -98,12 +98,12 @@ Validações
         $obs = stripslashes($_POST['nObservacoes']);
         //TESTE: echo $descMat.''.validarDado(4,$descMat).' '.$obs.''.validarDado(4,$obs);die();
         if(!validarDado(4,$descMat)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'3Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
         if(!validarDado(4,$obs)){
-            $_SESSION['msgErro'] = $abreHTMLalert.'4Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }

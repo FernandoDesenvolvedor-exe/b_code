@@ -4,7 +4,7 @@
         $sqlMatutino = "select idTurma, nomeTurma from turma where ativo='S' and turno='M';";
         $sqlVespertino = "select idTurma, nomeTurma from turma where ativo='S' and turno='V';";
         $sqlNoturno = "select idTurma,nomeTurma from turma where ativo='S' and turno='N';";
-        $listaTurmas = "<option value=null>Select turma</option>";
+        $listaTurmas = "<option value=''>Select turma</option>";
         //Matutino
         $result = mysqli_query($conn, $sqlMatutino);
         if(mysqli_num_rows($result)>0){

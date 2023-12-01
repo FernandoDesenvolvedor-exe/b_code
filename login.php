@@ -63,12 +63,6 @@
                                         unset($_SESSION['msgLogin']);
                                         
                                     }
-
-                                    if(isset($_SESSION['idUsuario']) && $_SESSION['idUsuario'] != ''){  
-                                        echo $_SESSION['idUsuario'];
-                                        unset($_SESSION['idUsuario']);
-                                        
-                                    } 
                                     ?> 
                                 </p>
                         </form>

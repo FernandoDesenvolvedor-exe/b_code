@@ -1,7 +1,8 @@
 <?php
 //LUIS FEZ VIEWS, ATUALIZAR ESSA FUNÇÃO
-    function dataTableReceitas($idProduto){
 
+    function dataTableReceitas($idProduto){
+        
         include('connection.php');
         
         $sql = 'SELECT * FROM view_receitas
@@ -31,11 +32,11 @@
                             'classe' => array(),
                             'quantidade' => array());
 
-            foreach($array as $campo){   
+            foreach($array as $campo){
 
-                $arrayQtdMat = receitas($campo['receitaId']);   
+                $arrayQtdMat = receitas($campo['receitaId']);
 
-                if(count($arrayQtdMat) > 1){                      
+                if(count($arrayQtdMat) > 1){
                     $n++;
 
                     if ($n == 1){
@@ -44,7 +45,7 @@
                         $arrayMat['tipo'] = array($campo['tipo_materiaNome']);  
                         $arrayMat['classe'] = array($campo['classeMaterial']);
                         $arrayMat['quantidade'] = array($campo['qtdeMateria']); 
-                    } else {  
+                    } else {
                         array_push($arrayMat['id'], $campo['materiaId']);
                         array_push($arrayMat['nome'], $campo['materialNome']);
                         array_push($arrayMat['tipo'], $campo['tipo_materiaNome']);  

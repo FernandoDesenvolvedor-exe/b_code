@@ -1,4 +1,8 @@
 <?php
+/*
+VALIDAÇÕES
+-login - ok
+*/
     include('function.php');
     include('connection.php');
     if(session_status() !== PHP_SESSION_ACTIVE){
@@ -8,7 +12,6 @@
                         <div class="input-group-prepend" style="width: 100%; height:100%;">
                             <div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
     $fechaHTMLalert = '</div></div></div>';
-    //stripslashes coloca uma barra dps de um caractere especial para evitar errro no codigo sql
     $login = stripslashes($_POST['nLogin']);
     $senha = stripslashes($_POST['nSenha']);
     $_SESSION['msgLogin'] = '';

@@ -29,7 +29,7 @@ VALIDAÇÕES
             $_SESSION['msgErro'] = $abreHTMLalert.'Nome inválido! Somente letras (a-z) e espaços são permitidos.'.$fechaHTMLalert;
             header('location: ../usuarios.php');
             die(); 
-        }else 
+        }
         if(!validarDado(1,$sobrenome)){     //Apenas letras e espaço
             $_SESSION['msgErro'] = $abreHTMLalert.'Sobrenome inválido! Somente letras (a-z) e espaços são permitidos.'.$fechaHTMLalert;
             header('location: ../usuarios.php');
@@ -49,13 +49,13 @@ VALIDAÇÕES
         }
         //_____________________________________________________________VALIDAÇÃO DOS DADOS__________________________________________________
         //Valida se adm n tem turma 
-        if($tipoUsu==1 and $turma!='null'){
+        if($tipoUsu==1 and $turma!=''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (administrador) não pode ter turma!'.$fechaHTMLalert;
             header('location: ../usuarios.php');
             die();     
         }
         //Valida se comum tem turma
-        if($tipoUsu==2 and $turma=='null'){
+        if($tipoUsu==2 and $turma==''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (comum) deve ter turma!'.$fechaHTMLalert;
             header('location: ../usuarios.php');
             die();  
@@ -85,13 +85,12 @@ VALIDAÇÕES
         saveUsuario($email, $senha, $nome, $sobrenome, $turma, $tipoUsu);
         $abreHTMLalert = '<div class="input-group mb-3"><div class="input-group-prepend" style="width: 100%; height:100%;">'
                             .'<div class="alert alert-success" role="alert" style="width:100%; height:100%">';
-        $_SESSION['msgErro'] = $abreHTMLalert.'Usuario cadastrado com sucesso.✔'.$fechaHTMLalert;
+        $_SESSION['msgErro'] = $abreHTMLalert.'Usuario '.$nome.' '.$sobrenome.' cadastrado com sucesso.✔'.$fechaHTMLalert;
         header('location: ../usuarios.php');
         die();
     } else if ($_GET['validacao'] == 'D'){
         include('connection.php');
         $sql= 'SELECT ativo FROM usuarios WHERE idUsuario='.$_GET['id'].';';
-        //echo $sql;Die();
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) > 0){
             $array = array();
@@ -101,11 +100,8 @@ VALIDAÇÕES
             foreach($array as $campo){
                 if($campo['ativo']==1){
                     $sqlUpdate = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].';';
-                    //echo 'Desativado';Die();
-
                 }else{
                     $sqlUpdate = 'UPDATE usuarios SET ativo = 1 WHERE idUsuario = '.$_GET['id'].';';
-                    //echo 'Desativado';Die();
                 }
             }
         }
@@ -143,15 +139,13 @@ VALIDAÇÕES
         }
         //-----VALIDAÇOES
         //Valida se adm n tem turma 
-        if($tipoUsu==1 and $turma!='null'){
+        if($tipoUsu==1 and $turma!=''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (administrador) não pode ter turma!'.$fechaHTMLalert;
             header('location: ../usuarios.php');
             die();     
-        }else{
-            $turma=null;
         }
         //Valida se comum tem turma
-        if($tipoUsu==2 and $turma=='null'){
+        if($tipoUsu==2 and $turma==''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Tipo de usuario (comum) deve ter turma!'.$fechaHTMLalert;
             header('location: ../usuarios.php');
             die();  
@@ -199,13 +193,12 @@ VALIDAÇÕES
             }
             $result = mysqli_query($conn,$sql);        
         }
-        if (isset($_POST['nTurma']) == true && $_POST['nTurma'] != "null"){  
+        if (isset($_POST['nTurma']) == true && $_POST['nTurma'] != ""){  
             $sql='UPDATE usuarios SET idTurma ="'.$_POST['nTurma'].'" WHERE idUsuario = '.$_GET['id'].' and tipo=2;';
                                                                                                         //Bloqueia de colocar turma em ADM
             $result = mysqli_query($conn,$sql);        
         }
         mysqli_close($conn);
     }
-
     header('location:../usuarios.php');
 ?>
