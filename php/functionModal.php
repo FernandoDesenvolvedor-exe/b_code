@@ -2,7 +2,6 @@
     function modalVisualizarHistorico($id){
 
         $array = selectHistoricoPedidos($id);
-        var_dump($array);
 
         if ($array == 0){
 
@@ -35,11 +34,12 @@
                                         </button>
                                     </div>
                                     <div class="modal-body pre-scrollable">
-                                        <div>
-                                            <h4>Autor da ordem de produção</h4>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Autor</label>
-                                                <div class="col-sm-8">
+                                        <div class="row mb-3">                                            
+                                            <h4 class="col-md-12">Autor da ordem de produção</h4>
+
+                                            <div class="input-group col-sm-6">
+                                                <label for="nClasse" class="col-sm-2 text-right control-label col-form-label">Autor</label>
+                                                <div class="col-sm-10">
                                                     <input value="'.$campo['nomeUsuario'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>';
@@ -47,18 +47,18 @@
                 if($campo['tipoUsuario'] == 1){
         
                     $table .=
-                                '<div class="input-group mb-3">
-                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">turma</label>
+                                '<div class="form-group col-md-6 text-left ">
+                                    <label for="nTurma" class="col-sm-2 control-label col-form-label">turma</label>
                                     <div class="col-sm-8">
-                                        <input value="Administrador" id="idTipoUser" name="nTipoUser" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        <input value="Administrador" id="idTipoUser" name="nTipoUser" type="text" class="form-control align-left" style="width: 100%; height:36px;" disabled>
                                     </div>
                                 </div>';
         
                 } else { 
                     $table .=
-                                '<div class="input-group mb-3">
-                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">turma</label>
-                                    <div class="col-sm-8">
+                                '<div class="input-group col-md-6 text-left">
+                                    <label for="nClasse" class="col-sm-2 control-label col-form-label">turma</label>
+                                    <div class="col-sm-10">
                                         <input value="'.$campo['turma'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                     </div>
                                 </div>';
@@ -69,52 +69,38 @@
                 $table .= 
                                             '                                   
                                         </div>
-                                        <div>
-                                            <h4>Status da ordem de produção</h4>';
+                                        <div class="row mb-3">
+                                            <h4 class="col-md-12">Status da ordem de produção</h4>';
         
                             if ($campo['statusPedido'] == 1){
         
                                 $table .=
-                                            '<div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['dataHora_aberto'].' às '.$campo['$dataHora_aberto'].'" id="idDataHoraOpen" name="idDataHoraOpen" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        '<div class="mb-3 col-lg-12 text-left">
+                                            <div class="input-group">
+                                                <label for="nClasse" class="col-sm-2 control-label col-form-label">Aberto em:</label>
+                                                <div class="col-sm-10">
+                                                    <input value="'.$campo['dataHora_aberto'].' às '.$campo['$dataHora_aberto'].'" id="idDataHoraOpen" name="idDataHoraOpen" type="text" class="form-control  align-left" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="Produção não iniciada" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="Produção não iniciada" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>';
+                                        </div>';
         
                             } else if ($campo['statusPedido'] == 2){
         
                                 $table .=
-                                            '<div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
-                                                <div class="col-sm-8">
+                                        '<div class="mb-3 col-lg-12 text-left">
+                                            <div class="input-group mb-3">
+                                                <label for="nClasse" class="col-sm-2 control-label col-form-label">Aberto em:</label>
+                                                <div class="col-sm-10">
                                                     <input value="'.$campo['dataHora_aberto'].' às '.$campo['dataHora_aberto'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
-                                                <div class="col-sm-8">
+                                                <label for="nClasse" class="col-sm-2 control-label col-form-label">Inicializada:</label>
+                                                <div class="col-sm-10">
                                                     <input value="'.$campo['dataHora_producao'].' às '.$campo['dataHora_producao'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="Produção não concluida" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>';
+                                        </div>';
         
                             } else if ($campo['statusPedido'] == 3){
         

@@ -109,21 +109,21 @@
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
         
+        $status = 0;
         if (mysqli_num_rows($result) > 0){
             $array = array();
 
             while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                 array_push($array, $linha);
             }
-
+            $n = 1;
             foreach($array as $campo){
-                $result = $campo['statusPedido'];
+                $status = $campo['statusPedido'];
             }
-
         } else {
-            $result = 'n';
+            $status = 'n';
         }
         
-        return $result;
+        return $status;
     }
 ?>

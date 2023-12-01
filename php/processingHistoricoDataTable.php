@@ -7,20 +7,22 @@
     $tabelaBD = 'historico_pedidos';
     $primaryKey = 'idHistorico';
 
+
+
     $columns = array(
-                array( 'db' => 'idPedido',      'dt' => 0,'formatter' => function($d, $row){
+                array( 'db' => 'idPedido',          'dt' => 0,'formatter' => function($d, $row){
                     return $d;
                 }),
-                array( 'db' => 'nomeUsuario',   'dt' => 1,'formatter' => function($d, $row){
+                array( 'db' => 'nomeUsuario',       'dt' => 1,'formatter' => function($d, $row){
                     return $d;
                 }),
-                array( 'db' => 'produto',       'dt' => 2,'formatter' => function($d, $row){
+                array( 'db' => 'produto',           'dt' => 2,'formatter' => function($d, $row){
                     return $d;
                 }),
-                array( 'db' => 'maquina',       'dt' => 3,'formatter' => function($d, $row){
+                array( 'db' => 'maquina',           'dt' => 3,'formatter' => function($d, $row){
                     return $d;
                 }),
-                array( 'db' => 'statusPedido',  'dt' => 4,'formatter' => function($d, $row){
+                array( 'db' => 'statusPedido',      'dt' => 4,'formatter' => function($d, $row){
                     if($d == 1){
                         return 'Em Aberto';
                     } else if($d == 2){
@@ -33,7 +35,7 @@
                     
                     return $d;
                 }),
-                array( 'db' => 'dataHora_aberto',  'dt' => 5,'formatter' => function($d, $row){                    
+                array( 'db' => 'dataHora_aberto',   'dt' => 5,'formatter' => function($d, $row){                    
                     if($d != ''){
                         $dataAberto =''.substr($d, 8, 2).'/';
                         $dataAberto .=''.substr($d, 5, 2).'/';
@@ -45,61 +47,61 @@
                     }
                     
                 }),
-                array( 'db' => 'idPedido',  'dt' => 6, 'formatter' => function($d, $row){
+                array( 'db' => 'idPedido',          'dt' => 6, 'formatter' => function($d, $row){
                     $status = consultaStatusHistoricoPedido($d);
 
-                    if($status != 0 && $status != 2){
+                    if($status == 1 || $status == 3){
                         return                        
-                            '<div class="row justify-content-center">
-                                <div class="ml-2 mr-2">
-                                    <li>
-                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
-                                        </a>
-                                    </li>
+                            '<div class="d-flex row-flex align-center">
+                                <div class="col-sm-5">
                                 </div>
-                                <div class="ml-2 mr-2">
-                                    <li>
-                                        <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
-                                        </a>
-                                    </li>
+                                <div class="col-sm-3">
+                                    <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$d.'">
+                                    </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                    </a>
                                 </div>
                             </div>'.modalVisualizarHistorico($d).'
                                   '.modalExcluiPedido($d);
             
-                    } else if($status == 2){
-                        '<div class="row justify-content-center">
-                            <div class="ml-2 mr-2">
-                                <li>
-                                    <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
-                                    </a>
-                                </li>
-                            </div>
-                        </div>'/*.modalVisualizarHistorico($d)*/;
-
-                    } else {
+                    } else if ($status == 2){
                         return
-                            '<div class="row justify-content-center">
-                                <div class="ml-2 mr-2">
-                                    <li>
-                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
-                                        </a>
-                                    </li>
+                        '<div class="d-flex row-flex align-center">                        
+                            <div class="col-md-5">
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="#" class="fas fa-eye text-info  align-right" data-toggle="modal" data-target="#modalPedido'.$d.'">
+                                </a>
+                            </div>
+                        </div>'.modalVisualizarHistorico($d);
+
+                    } else if($status == 0){
+                        return
+                            '<div class="d-flex row-flex align-right">
+                                <div class="col-sm-2">
                                 </div>
-                                <div class="ml-2 mr-2">
-                                    <li>
-                                        <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalRestaura'.$d.'">
-                                        </a>
-                                    </li>
+                                <div class="col-sm-3">
+                                    <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$d.'">
+                                    </a>
                                 </div>
-                                <div class="ml-2 mr-2">
-                                    <li>
-                                        <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
-                                        </a>
-                                    </li>
+                                <div class="col-sm-3">
+                                    <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalRestaura'.$d.'">
+                                    </a>
                                 </div>
-                            </div>  './*modalVisualizarHistorico($d).'
-                                    '.*/modalExcluiPedido($d).'
+                                <div class="col-sm-2">
+                                    <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                    </a>
+                                </div>
+                            </div>  '.modalVisualizarHistorico($d).'
+                                    '.modalExcluiPedido($d).'
                                     '.modalRestauraPedido($d);                     
+                    } else {
+
+                        return
+                            'vazio';
                     }
                 }));
     
