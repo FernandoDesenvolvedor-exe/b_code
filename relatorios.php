@@ -3,11 +3,8 @@
     include('php/function.php');
 
     if (isset($_SESSION['user']) == 0){
-
-        //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');
-        
+        //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');        
         header('location: login');
-
     }
 ?>
 <!DOCTYPE html>
@@ -156,28 +153,14 @@
                             
                             <div class="form-group row col-md-4">     
                                 <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
-
-                                <div class="ml-1 col-sm-5">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked" value=1>
-                                        <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
-                                    </div>
-                                        <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked" value=2>
-                                        <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
-                                    </div>
-                                        <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked" value=3>
-                                        <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
-                                    </div>                                        
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked" value=0>
-                                        <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
-                                    </div>                                       
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked" value=4>
-                                        <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
-                                    </div>
+                                <div class="col-sm-10">
+                                    <select id="idSelecao" name="nSelecao" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                        <option value="">Todos</option>
+                                        <option value="1">Em Aberto</option>
+                                        <option value="2">Em Andamento</option>
+                                        <option value="0">Cancelados</option>
+                                        <option value="3">Concluidos</option>
+                                    </select>
                                 </div>
                             </div>   
 
@@ -204,13 +187,11 @@
                             </div>     
 
                             <div class="form-group flex-column col-md-2">
-                                <?php if($_SESSION['filtro'] == 1){?>
-                                    <div class="col-sm-12 m-3">
-                                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
-                                            <span class="fas fa-eraser"></span> 
-                                        </button> 
-                                    </div> 
-                                <?php }?>
+                                <div class="col-sm-12 m-3" id='idDivlimpaConsulta'>
+                                    <button id="iLimpaConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
+                                        <span class="fas fa-eraser"></span> 
+                                    </button> 
+                                </div> 
 
                                 <div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
@@ -258,7 +239,8 @@
         <?php include('links/script.php');?>
     
         <script>
-            $('document').ready(function(){                
+            
+            function dataTableHistorico(){
                 new DataTable('#datatable', {
                     language: {
                         "decimal":        ",",
@@ -299,19 +281,22 @@
                     ],
                     processing: true,
                     serverSide: true
-                }); 
-            });       
+                });                 
+            }
+
+            $('document').ready(dataTableHistorico());       
         </script>
 
         <script>            
-            $('docuement').ready(function(){
+            $('document').ready(function(){
+                $('#idDivlimpaConsulta').hide();
+
                 function formataData(){
                     $('#idDataInicio').val().toUpperCase();
                 }
 
-                $('#iConsulta').click(function(e){  
-
-                    <?php $_SESSION['filtro'] = 1;?>   
+                $('#iConsulta').click(function(e){   
+                    var select = $('#idSelecao').val();
 
                     if($('#idDataInicio').val() != ''){
                         var dataInicio = $('#idDataInicio').val();
@@ -323,26 +308,23 @@
                         var dataFim = $('#idDataFim').val();
                     } else {
                         var dataFim = '';
-                    }
+                    }                                  
 
-                    if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
-
-                        alert('Data inicial não pode ser maior que a final!');   
-
-                    } else if (dataInicio == undefined && dataFim == undefined && radios == undefined){
-
-                        alert('Nenhum filtro encontrado!');
-                        
-                    } else {
-
-                        alert(dataInicio);
-                    }
+                    //e.preventDefault();
 
                     $.ajax({
-                        url: 'php/historicoFiltro.php'
-                        method: 'POST'
-                        data:'radio:' + radios + '&dataInicio:' + dataInicio + '&dataFim' + dataFim,
-                    })
+                        url: 'php/historicoFiltro.php',
+                        method: 'GET',
+                        dataType: 'html',
+                        data:'&selecao='+select+'&dataInicio='+dataInicio+'&dataFim='+dataFim+'',
+                        success: function() {
+                            var table = $('#datatable').DataTable();
+                            table.destroy();
+                        }
+                    }).done(function(){
+                        //$("#limpaConsulta").show();
+                        dataTableHistorico();
+                    });
                 });
             });
             

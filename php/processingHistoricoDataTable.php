@@ -1,6 +1,8 @@
 <?php
+    session_start();
     include('function.php');
 
+    $filtros = '';    
     $filtros = $_SESSION['filtroHistorico'];
     $tabelaBD = 'historico_pedidos';
     $primaryKey = 'idHistorico';
@@ -80,6 +82,9 @@
 
     include('ajaxConnection.php');
     include('../ssp/ssp.class.php');
+
+    //echo $filtros;
+
     echo json_encode(
-        SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns, null, $filtros)
+        SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns, $filtros, null)
     );
