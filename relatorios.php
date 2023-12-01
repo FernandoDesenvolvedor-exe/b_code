@@ -1,10 +1,13 @@
 <?php
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
+
     include('php/function.php');
 
     if (isset($_SESSION['user']) == 0){
         //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');        
-        header('location: login');
+        header('location: php/logout.php');
     }
 ?>
 <!DOCTYPE html>
@@ -171,7 +174,7 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -283,17 +286,43 @@
                     serverSide: true
                 });                 
             }
-
-            $('document').ready(dataTableHistorico());       
-        </script>
-
-        <script>            
+                
+            var filtro = <?php echo $_SESSION['filtro']; ?>
+                  
             $('document').ready(function(){
-                $('#idDivlimpaConsulta').hide();
+                dataTableHistorico();
 
-                function formataData(){
-                    $('#idDataInicio').val().toUpperCase();
-                }
+                if(filtro == 1){
+                    $('#idDivlimpaConsulta').show();
+                } else {
+                    $('#idDivlimpaConsulta').hide();
+                } 
+
+                /*$('#iLimpaConsulta').click(function(e){                    
+                   
+                    e.preventDefault();
+                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
+
+                    $.ajax({
+                        url: "php/historicoFiltro.php",
+                        type: "POST",
+                        data: datas,
+                        dataType: "html",
+                        success: function(){        
+                            var table = $('#datatable').DataTable();
+                            table.destroy();
+                        }
+                    }).done(function() { 
+                        dataTableHistorico();
+                    }).fail(function() {
+                        console.log("Request failed: ");
+
+                    }).always(function() {
+                        console.log("completou");
+                    });
+
+                });*/
+
 
                 $('#iConsulta').click(function(e){   
                     var select = $('#idSelecao').val();
@@ -310,20 +339,25 @@
                         var dataFim = '';
                     }                                  
 
-                    //e.preventDefault();
+                    e.preventDefault();
+                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
 
                     $.ajax({
-                        url: 'php/historicoFiltro.php',
-                        method: 'GET',
-                        dataType: 'html',
-                        data:'&selecao='+select+'&dataInicio='+dataInicio+'&dataFim='+dataFim+'',
-                        success: function() {
+                        url: "php/historicoFiltro.php",
+                        type: "POST",
+                        data: datas,
+                        dataType: "html",
+                        success: function(){        
                             var table = $('#datatable').DataTable();
                             table.destroy();
                         }
-                    }).done(function(){
-                        //$("#limpaConsulta").show();
+                    }).done(function() { 
                         dataTableHistorico();
+                    }).fail(function() {
+                        console.log("Request failed: ");
+
+                    }).always(function() {
+                        console.log("completou");
                     });
                 });
             });

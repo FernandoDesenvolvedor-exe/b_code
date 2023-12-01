@@ -48,12 +48,12 @@
                 array( 'db' => 'idPedido',  'dt' => 6, 'formatter' => function($d, $row){
                     $status = consultaStatusHistoricoPedido($d);
 
-                    if($status != 0){
+                    if($status != 0 && $status != 2){
                         return                        
                             '<div class="row justify-content-center">
                                 <div class="ml-2 mr-2">
                                     <li>
-                                        <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
                                         </a>
                                     </li>
                                 </div>
@@ -63,19 +63,43 @@
                                         </a>
                                     </li>
                                 </div>
-                            </div>'.modalExcluiPedido($d);
+                            </div>'.modalVisualizarHistorico($d).'
+                                  '.modalExcluiPedido($d);
             
+                    } else if($status == 2){
+                        '<div class="row justify-content-center">
+                            <div class="ml-2 mr-2">
+                                <li>
+                                    <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                    </a>
+                                </li>
+                            </div>
+                        </div>'/*.modalVisualizarHistorico($d)*/;
+
                     } else {
-            
                         return
-                            '<li>
-                                <a href="#" data-toggle="modal" class="fas fa-undo-alt bg-green" data-target="#modalRestaura'.$d.'">
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="#" data-toggle="modal" data-target="#modalExclui'.$d.'">
-                                </a>
-                            </li>';                      
+                            '<div class="row justify-content-center">
+                                <div class="ml-2 mr-2">
+                                    <li>
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="ml-2 mr-2">
+                                    <li>
+                                        <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalRestaura'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="ml-2 mr-2">
+                                    <li>
+                                        <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>  './*modalVisualizarHistorico($d).'
+                                    '.*/modalExcluiPedido($d).'
+                                    '.modalRestauraPedido($d);                     
                     }
                 }));
     
@@ -83,7 +107,7 @@
     include('ajaxConnection.php');
     include('../ssp/ssp.class.php');
 
-    //echo $filtros;
+    $filtros;
 
     echo json_encode(
         SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns, $filtros, null)
