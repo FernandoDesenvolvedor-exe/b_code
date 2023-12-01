@@ -560,7 +560,7 @@ function dataTablePedido(){
                                     <div class="form-group row">
                                         <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantiade usada</label>
                                         <div class="col-lg-3">
-                                            <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.($arrayMat['materialQuantidade'][$cont] * $campo['qtdeProduto']).'g">
+                                            <input type="text" id="idQtdeMaterial" name="nQtdeMaterial[]" class="form-control" value="'.($arrayMat['materialQuantidade'][$cont] * $campo['qtdPrevista']).'g">
                                         </div> 
                                     </div>
                                         

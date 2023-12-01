@@ -2,6 +2,7 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="dist\js\jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -38,6 +39,8 @@
 
 <!-- Js da tela login.php -->
 
+<script src="dist\js\labPlasticos.js"></script>
+<script src="dist\js\labDataTable.min.js"></script>
 
 <!-- Js da tela de cadastro de pedidos -->
 <script src="assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>

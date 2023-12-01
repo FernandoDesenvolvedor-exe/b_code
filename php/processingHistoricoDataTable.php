@@ -1,17 +1,13 @@
 <?php
     include('function.php');
 
-    $filtros = '1 = 1'; //$_SESSION['filtroHistorico'];
-
+    $filtros = $_SESSION['filtroHistorico'];
     $tabelaBD = 'historico_pedidos';
     $primaryKey = 'idHistorico';
-    $idPedido = 1;
-    $_SESSION['idPedido'] = '';
-    $id = 0;
+
     $columns = array(
                 array( 'db' => 'idPedido',      'dt' => 0,'formatter' => function($d, $row){
-                    $_SESSION['idPedido'] = $d;
-                    return $_SESSION['idPedido'];
+                    return $d;
                 }),
                 array( 'db' => 'nomeUsuario',   'dt' => 1,'formatter' => function($d, $row){
                     return $d;
@@ -47,34 +43,37 @@
                     }
                     
                 }),
-                array( 'db' => 'statusPedido',  'dt' => 6, 'formatter' => function($d, $row){
-                    if($d != 0){
-                        return
-                        '<div class="div1">   
-                            <a href="" class=""><span></span></a>                                                                      
-                            <button style="width: auto; border-radius: 5px;" type="button;" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$_SESSION['idPedido'].'">
-                                Visualizar
-                            </button>
-                        </div>
-                        <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$_SESSION['idPedido'].'">
-                                Desativar
-                            </button>
-                        </div>';
+                array( 'db' => 'idPedido',  'dt' => 6, 'formatter' => function($d, $row){
+                    $status = consultaStatusHistoricoPedido($d);
+
+                    if($status != 0){
+                        return                        
+                            '<div class="row justify-content-center">
+                                <div class="ml-2 mr-2">
+                                    <li>
+                                        <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalVisualizar'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="ml-2 mr-2">
+                                    <li>
+                                        <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>'.modalExcluiPedido($d);
             
                     } else {
             
                         return
-                        '<div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalRestaura'.$_SESSION['idPedido'].'">
-                                Desativar
-                            </button>
-                        </div>
-                        <div class="div2">
-                            <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExclui'.$_SESSION['idPedido'].'">
-                                Desativar
-                            </button>
-                        </div>';
+                            '<li>
+                                <a href="#" data-toggle="modal" class="fas fa-undo-alt bg-green" data-target="#modalRestaura'.$d.'">
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#" data-toggle="modal" data-target="#modalExclui'.$d.'">
+                                </a>
+                            </li>';                      
                     }
                 }));
     

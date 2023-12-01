@@ -126,14 +126,14 @@
                                                 <div class="input-group">
                                                     <label class="col-sm-3">De:</label>
                                                     <div class="col-sm-9">
-                                                        <input id="idDataInicio" name="nDataInicio" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <input id="idDataInicioAvancado" name="nDataInicioAvancado" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
                                                     </div>
                                                     <label class="col-sm-3">Até:</label>
                                                     <div class="col-sm-9">
-                                                        <input id="idDataFim" name="nDataFim" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
+                                                        <input id="idDataFimAvancado" name="nDataFimAvancado" type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                         </div>
@@ -151,85 +151,81 @@
                             
                     <h3 class="card-title">Menu de Relatórios</h3>
 
-                    <div class="card">   
+                    <div class="card">
+                        <div class="d-flex justify-content-center flex-row m-4">
+                            
+                            <div class="form-group row col-md-4">     
+                                <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
 
-                        <form method="POST" action="" id="filtroSimples">
-                            <div class="d-flex justify-content-center flex-row m-4">
-                                
-                                <div class="form-group row col-md-4">     
-                                    <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+                                <div class="ml-1 col-sm-5">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked" value=1>
+                                        <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked" value=2>
+                                        <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked" value=3>
+                                        <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
+                                    </div>                                        
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked" value=0>
+                                        <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
+                                    </div>                                       
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked" value=4>
+                                        <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
+                                    </div>
+                                </div>
+                            </div>   
 
-                                    <div class="ml-1 col-sm-5">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro1" name="radio-stacked">
-                                            <label class="custom-control-label" for="idRadioFiltro1">Em Aberto</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro2" name="radio-stacked">
-                                            <label class="custom-control-label" for="idRadioFiltro2">Em Andamento</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro3" name="radio-stacked">
-                                            <label class="custom-control-label" for="idRadioFiltro3">Concluidos</label>
-                                        </div>                                        
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro4" name="radio-stacked">
-                                            <label class="custom-control-label" for="idRadioFiltro4">Cancelados</label>
-                                        </div>                                       
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="idRadioFiltro5" name="radio-stacked">
-                                            <label class="custom-control-label" for="idRadioFiltro5">Todos</label>
+                            <div class="form-group row col-md-6">  
+                                <div>                                    
+                                    <h4 class="card-title">Periodo:</h4>
+                                </div>                                   
+                                <div class="input-group d-flex row">
+                                    <label>De:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
-                                </div>   
-
-                                <div class="form-group row col-md-6">  
-                                    <div>                                    
-                                        <h4 class="card-title">Periodo:</h4>
-                                    </div>                                   
-                                    <div class="input-group d-flex row">
-                                        <label>De:</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" id="idDataInicio" name="nDataInicio" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
+                                    <label>Até: </label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                        <label>Até: </label>
-                                        <div class="col-sm-5">
-                                            <input type="text" id="idDataFim" name="nDataFim" class="form-control mydatepicker" placeholder="dd/mm/yyyy">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>                          
-                                </div>     
-
-                                <div class="form-group flex-column col-md-2">
-                                    <?php if($_SESSION['filtro'] == 1){?>
-                                        <div class="col-sm-12 m-3">
-                                            <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
-                                                <span class="fas fa-eraser"></span> 
-                                            </button> 
-                                        </div> 
-                                    <?php }?>
-
-                                    <div class="col-sm-12 m-3">                                    
-                                        <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
-                                            Filtros avançados
-                                        </button> 
                                     </div>
+                                </div>                          
+                            </div>     
 
+                            <div class="form-group flex-column col-md-2">
+                                <?php if($_SESSION['filtro'] == 1){?>
                                     <div class="col-sm-12 m-3">
-                                        <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                            Consulta
+                                        <button id="iConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
+                                            <span class="fas fa-eraser"></span> 
                                         </button> 
                                     </div> 
-                                </div> 
+                                <?php }?>
 
-                            </div>                                                      
-                        </form>
-                        
+                                <div class="col-sm-12 m-3">                                    
+                                    <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
+                                        Filtros avançados
+                                    </button> 
+                                </div>
+
+                                <div class="col-sm-12 m-3">
+                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                        Consulta
+                                    </button> 
+                                </div> 
+                            </div> 
+
+                        </div>                          
                     </div> 
 
                     <div id="divDataTable" class="card p-3">        
@@ -242,7 +238,7 @@
                                         <th>Produto</th>
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
-                                        <th>Matéria(s) Prima(s)</th>
+                                        <th>COncluido em</th>
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
@@ -260,9 +256,7 @@
 
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
-
-        <script src="dist\js\labPlasticos.js"></script>
-        <script src="dist\js\labDataTable.min.js"></script>
+    
         <script>
             $('document').ready(function(){                
                 new DataTable('#datatable', {
@@ -306,57 +300,80 @@
                     processing: true,
                     serverSide: true
                 }); 
-            });   
-  
-            /*
-            $('#iConsulta').addEventListener('click' function(){
-                var dataRadio = document.querySelector('input[name="radio-stacked"]');
+            });       
+        </script>
 
-                if(dataRadio.checked == true){
-                    alert('OIOI');
-                    var dataRadio = document.querySelector('input[name="radio-stacked"]').value;
+        <script>            
+            $('docuement').ready(function(){
+                function formataData(){
+                    $('#idDataInicio').val().toUpperCase();
                 }
 
-                var request = $.ajax({               
-                    url: "historicoFiltro.php",
-                    type: "POST",
-                    data: "campo1="+dataRadio+"&campo2=dado2&campo3=dado3",
-                    dataType: "html"
+                $('#iConsulta').click(function(e){  
+
+                    <?php $_SESSION['filtro'] = 1;?>   
+
+                    if($('#idDataInicio').val() != ''){
+                        var dataInicio = $('#idDataInicio').val();
+                    } else {
+                        var dataInicio = '';
+                    }
+                    
+                    if($('#idDataFim').val() != ''){
+                        var dataFim = $('#idDataFim').val();
+                    } else {
+                        var dataFim = '';
+                    }
+
+                    if(dataFim != '' || dataInicio != '' && dataFim < dataInicio){
+
+                        alert('Data inicial não pode ser maior que a final!');   
+
+                    } else if (dataInicio == undefined && dataFim == undefined && radios == undefined){
+
+                        alert('Nenhum filtro encontrado!');
+                        
+                    } else {
+
+                        alert(dataInicio);
+                    }
+
+                    $.ajax({
+                        url: 'php/historicoFiltro.php'
+                        method: 'POST'
+                        data:'radio:' + radios + '&dataInicio:' + dataInicio + '&dataFim' + dataFim,
+                    })
                 });
-            })*/
-
+            });
             
-
-           
         </script>
 
         <script>
             $(".select2").select2();
 
             $('.demo').each(function() {
+                $(this).minicolors({
+                        control: $(this).attr('data-control') || 'hue',
+                        position: $(this).attr('data-position') || 'bottom left',
 
-            $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
+                        change: function(value, opacity) {
+                            if (!value) return;
+                            if (opacity) value += ', ' + opacity;
+                            if (typeof console === 'object') {
+                                console.log(value);
+                            }
+                        },
+                        theme: 'bootstrap'
+                    });
 
-                    change: function(value, opacity) {
-                        if (!value) return;
-                        if (opacity) value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
                 });
-
-            });
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
+                jQuery('.mydatepicker').datepicker();
+                jQuery('#datepicker-autoclose').datepicker({
+                    autoclose: true,
+                    todayHighlight: true
+                });
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
             });
 
         </script>
