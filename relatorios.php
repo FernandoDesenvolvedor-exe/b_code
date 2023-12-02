@@ -93,31 +93,18 @@
                                         
                                         <div class="card-body d-flex flex-row align-items-left">
                                             
-                                            <div class="card-body col-sm-6">                       
-                                                <h4 class="card-title">Organizar ordens de produção por:</h4>
-                                                <div class="d-flex flex-row align-items-left m-3">
-                                                    <div class="m-1 mr-4">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idDataAberto">Em aberto</label>
-                                                        </div>
-                                                            <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-4" id="idAndamento" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="m-1">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="idConcluido" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idConcluido">Concluidos</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="idDesativado" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idDesativado">Desativados</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="form-group row col-md-4">     
+                                            <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+                                            <div class="col-sm-10">
+                                                <select id="idSelecaoAvancado" name="nSelecao" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                    <option value="">Todos</option>
+                                                    <option value="1">Em Aberto</option>
+                                                    <option value="2">Em Andamento</option>
+                                                    <option value="0">Cancelados</option>
+                                                    <option value="3">Concluidos</option>
+                                                </select>
                                             </div>
+                                        </div>  
 
                                             <div class="card-body col-sm-6">
                                                 <div>                                    
@@ -149,8 +136,6 @@
                         </div>
                     </div>
                             
-                    <h3 class="card-title">Menu de Relatórios</h3>
-
                     <div class="card">
                         <div class="d-flex justify-content-center flex-row m-4">
                             

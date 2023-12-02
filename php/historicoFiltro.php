@@ -22,5 +22,7 @@
         $_SESSION['filtroHistorico'] .= ' AND statusPedido = 0';  
 
     } 
+    
+    $_SESSION['filtroHistorico'] .= ' GROUP BY idPedido';
 
 ?>
