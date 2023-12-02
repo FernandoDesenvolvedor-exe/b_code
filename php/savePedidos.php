@@ -73,11 +73,11 @@
             
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
             $sql = 'INSERT INTO historico_pedidos
-                            (idPedido,
-                            nomeUsuario,
+                           (nomeUsuario,
                             tipoUsuario,
                             turma,
                             turno,
+                            idPedido,
                             materiaPrima,
                             tipoMateria_prima,
                             classeMateria_prima,
@@ -89,32 +89,23 @@
                             fornecedorPigmento,
                             produto,
                             ferramental,
-                            tipoFerramental,';
-            
-            if ($_POST['nStatus'] == 2){
-                $sql .='maquina,';
-            }
-
-            $sql .=
-                            'producaoPrevista,
+                            tipoFerramental,
+                            maquina,
+                            producaoPrevista,
                             quantidadeMateria_prima,
-                            quantidadePigmento,';
-            
-            if ($_POST['nStatus'] == 2){
-                $sql .='dataHora_aberto,
-                        dataHora_producao,';
-            }
-                
-            $sql .=
-                            'statusPedido,
-                            obsPedido,
-                            ativo)
+                            quantidadePigmento,            
+                            dataHora_aberto,
+                            dataHora_producao,
+                            dataHora_fechado,
+                            dataHora_alterado,
+                            statusPedido,
+                            obsPedido)
                         VALUES(
-                            '.$idPedido.',
                             "'.$_SESSION['nome'].'",
                             "'.$_SESSION['tipo'].'",
                             "'.$_SESSION['turma'].'",
                             "'.$_SESSION['turno'].'",
+                            '.$idPedido.',
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
@@ -126,27 +117,38 @@
                             "'.$_POST['nProduto'].'",;
                             "'.$_POST['nFerramental'].'",
                             "'.$_POST['nTipoFerramental'].'",';
-            
-            if ($_POST['nStatus'] == 2){
+
+            if($_POST['nStatus'] == 1){                
+                $sql .='"",';
+            } else if ($_POST['nStatus'] == 2){
                 $sql .='"'.maquinaNome($_POST['nMaquina']).'",';
             }
 
             $sql .=
                             ''.$qtde.',
+                            0,
+                            0,
                             "'.$_POST['nQtdeMaterial'][$n].'",
                             '.$_POST['nQtdPigmento'].',';
             
-            if ($_POST['nStatus'] == 2){
+            if($_POST['nStatus'] == 1){                
                 $sql .='"'.$current_date.'",
-                        "'.$current_date.'",';
+                        "0000-00-00 00:00:00",
+                        "0000-00-00 00:00:00",
+                        "0000-00-00 00:00:00",';
+            } else if ($_POST['nStatus'] == 2){
+                $sql .='"'.$current_date.'",
+                        "'.$current_date.'",
+                        "0000-00-00 00:00:00",
+                        "0000-00-00 00:00:00",';
             }
 
             $sql .=
                             ''.nomeStatus($_POST['nStatus']).',
-                            "'.$obs.'",
-                            1);'; 
+                            "'.$obs.'");'; 
                             
             $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
             
             /*if($_POST['nStatus'] == 2){
 
@@ -178,7 +180,6 @@
             }*/
         }
 
-        mysqli_close($conn);
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
         

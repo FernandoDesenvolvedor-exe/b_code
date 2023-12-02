@@ -152,35 +152,39 @@
                                 </div>
                             </div>   
 
-                            <div class="form-group row col-md-6">  
+                            <div class="form-group row col-md-6" id="iDivDatas">  
                                 <div>                                    
                                     <h4 class="card-title">Periodo:</h4>
                                 </div>                                   
                                 <div class="input-group d-flex row">
-                                    <label>De:</label>
-                                    <div class="col-sm-5">
-                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
+                                    <label class="mt-2 col-md-1 text-right">De:</label>
+                                    <div class="col-md-4">
+                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                                                             
                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            <div>
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>                                           
                                         </div>
-                                    </div>
-                                    <label>Até: </label>
-                                    <div class="col-sm-5">
+                                    </div>      
+                                    <div class="mt-2 col-md-1">
+                                        <a href='#' id='resetInicio' class="fas fa-undo text-success"></a>
+                                    </div>  
+
+                                    <label class="mt-2 col-md-1 text-right">Até: </label>                                    
+                                    <div class="col-md-4">
                                         <input type="date" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                    </div>
+                                    </div>                                                                           
+                                    <div class="mt-2 col-md-1">
+                                        <a href='#' id='resetFim' class="fas fa-undo text-success"></a>
+                                    </div> 
+
                                 </div>                          
-                            </div>     
+                            </div>
 
                             <div class="form-group flex-column col-md-2">
-                                <div class="col-sm-12 m-3" id='idDivlimpaConsulta'>
-                                    <button id="iLimpaConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
-                                        <span class="fas fa-eraser"></span> 
-                                    </button> 
-                                </div> 
-
                                 <div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Filtros avançados
@@ -207,7 +211,7 @@
                                         <th>Produto</th>
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
-                                        <th>COncluido em</th>
+                                        <th>Aberto em</th>
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
@@ -239,7 +243,7 @@
                         "infoPostFix":    "",
                         "thousands":      ".",
                         "lengthMenu":     "Mostrar  _MENU_  registros",
-                        "loadingRecords": "Loading...",
+                        "loadingRecords": "Carregando...",
                         "processing":     "",
                         "search":         "Pesquisar:",
                         "zeroRecords":    "Nenhum valor semelhante encontrado",
@@ -271,11 +275,52 @@
                     serverSide: true
                 });                 
             }
+
+            function resetData(){
+                if($('#idDataInicio').val() == ''){
+                    $('#resetInicio').hide();
+                }else{                                                
+                    $('#resetInicio').show();
+                }
+
+                $('#idDataInicio').on('change', function(){    
+                    if($('#idDataInicio').val() == ''){
+                        $('#resetInicio').hide();
+                    }else{                                                
+                        $('#resetInicio').show();
+                    }
+                })
+
+                $('#resetInicio').click(function(){
+                    $('#idDataInicio').val('');
+                    $('#resetInicio').hide();
+                })
+
+                if($('#idDataFim').val() == ''){
+                    $('#resetFim').hide();
+                }else{                                                
+                    $('#resetFim').show();
+                }
+
+                $('#idDataFim').on('change', function(){    
+                    if($('#idDataFim').val() == ''){
+                        $('#resetFim').hide();
+                    }else{                                                
+                        $('#resetFim').show();
+                    }
+                })
+
+                $('#resetFim').click(function(){
+                    $('#idDataFim').val('');
+                    $('#resetFim').hide();
+                })
+            }
                 
             var filtro = <?php echo $_SESSION['filtro']; ?>
                   
             $('document').ready(function(){
                 dataTableHistorico();
+                resetData();
 
                 if(filtro == 1){
                     $('#idDivlimpaConsulta').show();
@@ -283,34 +328,17 @@
                     $('#idDivlimpaConsulta').hide();
                 } 
 
-                /*$('#iLimpaConsulta').click(function(e){                    
-                   
-                    e.preventDefault();
-                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
-
-                    $.ajax({
-                        url: "php/historicoFiltro.php",
-                        type: "POST",
-                        data: datas,
-                        dataType: "html",
-                        success: function(){        
-                            var table = $('#datatable').DataTable();
-                            table.destroy();
-                        }
-                    }).done(function() { 
-                        dataTableHistorico();
-                    }).fail(function() {
-                        console.log("Request failed: ");
-
-                    }).always(function() {
-                        console.log("completou");
-                    });
-
-                });*/
-
+                $('#idSelecao').on('change', function(){
+                    if($('#idSelecao').val() == ''){
+                        $('#iDivDatas').hide();
+                    }else{
+                        $('#iDivDatas').show();
+                    }
+                })
 
                 $('#iConsulta').click(function(e){   
                     var select = $('#idSelecao').val();
+                    var datas ="campo1="+select;
 
                     if($('#idDataInicio').val() != ''){
                         var dataInicio = $('#idDataInicio').val();
@@ -322,28 +350,57 @@
                         var dataFim = $('#idDataFim').val();
                     } else {
                         var dataFim = '';
-                    }                                  
+                    } 
 
-                    e.preventDefault();
-                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
+                    if(dataInicio != '' && dataFim != ''){
+                        if(dataInicio > dataFim){
+                            alert('Data de Inicio não pode ser maior que a final');
+                        }else{
+                            datas += '&campo2='+dataInicio+'&campo3='+dataFim;
 
-                    $.ajax({
-                        url: "php/historicoFiltro.php",
-                        type: "POST",
-                        data: datas,
-                        dataType: "html",
-                        success: function(){        
-                            var table = $('#datatable').DataTable();
-                            table.destroy();
+                            e.preventDefault();
+
+                            $.ajax({
+                                url: "php/historicoFiltro.php",
+                                type: "POST",
+                                data: datas,
+                                dataType: "html",
+                                success: function(){        
+                                    var table = $('#datatable').DataTable();
+                                    table.destroy();
+                                }
+                            }).done(function() { 
+                                dataTableHistorico();
+                            }).fail(function() {
+                                console.log("Request failed: ");
+
+                            }).always(function() {
+                                console.log("completou");
+                            });
                         }
-                    }).done(function() { 
-                        dataTableHistorico();
-                    }).fail(function() {
-                        console.log("Request failed: ");
+                    } else {
+                        datas += '&campo2='+dataInicio+'&campo3='+dataFim;
 
-                    }).always(function() {
-                        console.log("completou");
-                    });
+                        e.preventDefault();
+
+                        $.ajax({
+                            url: "php/historicoFiltro.php",
+                            type: "POST",
+                            data: datas,
+                            dataType: "html",
+                            success: function(){        
+                                var table = $('#datatable').DataTable();
+                                table.destroy();
+                            }
+                        }).done(function() { 
+                            dataTableHistorico();
+                        }).fail(function() {
+                            console.log("Request failed: ");
+
+                        }).always(function() {
+                            console.log("completou");
+                        });
+                    }                    
                 });
             });
             

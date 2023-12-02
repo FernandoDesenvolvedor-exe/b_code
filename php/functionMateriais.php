@@ -1,11 +1,13 @@
-<?php     
-    function materiais($id,$case){
+<?php
+    function materiaisHistorico($id,$case){
 
         include('connection.php');
 
-        $sql ='SELECT materiaPrima, producaoPrevista as material
-            FROM historico_pedidos             
-            WHERE idPedido = '.$id.';';
+        $sql =' SELECT  mat.descricao as material,
+                        t.descricao as tipo,
+                        c.descricao as classe,
+                FROM receita_materia_prima rmat
+                WHERE  = '.$id.';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -22,6 +24,7 @@
             $n = 1;
 
             foreach($array as $campo){
+
                 // case 1 para modal -- case 2 para tabela 
                 switch($case){
                     case 1:                                                   
@@ -50,7 +53,7 @@
                                 <div class="form-group row">
                                     <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                     <div class="col-sm-8">
-                                        <input value="'.$campo['fornecedorMateria_prima'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        <input value="'.$campo['fornecedorMateria_prima'].'" id="idFornecedor" name="nFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                     </div>
                                 </div>';
                     break;
@@ -60,6 +63,70 @@
                             $table .= ' '.$campo['materiaPrima'].'';
                         } else {
                             $table .= ''.$campo['materiaPrima'].' -';
+                        }
+                    break;                      
+                }
+
+                $n++;                
+            }
+        }
+        
+        return $table;
+    }     
+    function materiaisReceita($idReceita,$case){
+
+        include('connection.php');
+
+        $sql ='SELECT * FROM view_materia_receitas WHERE id = '.$idReceita.';';
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $table= '';
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            $n = 1;
+
+            foreach($array as $campo){
+
+                // case 1 para modal -- case 2 para tabela 
+                switch($case){
+                    case 1:                                                   
+                        $table .=
+                                '<div class="card-body">
+                                    <label>Matéria Prima</label>
+                                    <div class="row mb-3">
+                                        <div class="col-lg-4">
+                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'g">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['fornecedor'].'" id="idFornecedor" name="nFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                </div>';
+                    break;
+                        
+                    case 2:
+                        if(count($array) == $n){
+                            $table .= ' '.$campo['material'].'';
+                        } else {
+                            $table .= ''.$campo['material'].' -';
                         }
                     break;                      
                 }
