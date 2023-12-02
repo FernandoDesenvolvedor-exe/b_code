@@ -58,16 +58,17 @@ VALIDAÇÕES
                 //valida se conta esta ativa
                 if($campo['active'] == 1){
 
-                    $_SESSION['user'] = 1;
-                    $_SESSION['idUsuario']= $campo['idUsuario'];
-                    $_SESSION['login']=$login;
-                    $_SESSION['nome']= ''.$campo['name'].' '.$campo['surname'];
-                    $_SESSION['tipo'] = $campo['nivel'];
-                    $_SESSION['turma'] = $campo['class'];
-                    $_SESSION['turno'] = $campo['turn'];
-                    $_SESSION['filtroHistorico'] = '1 = 1';
-                    header('location:../producao');
+                    $_SESSION['user']               = 1;
+                    $_SESSION['idUsuario']          = $campo['idUsuario'];
+                    $_SESSION['login']              =$login;
+                    $_SESSION['nome']               = ''.$campo['name'].' '.$campo['surname'];
+                    $_SESSION['tipo']               = $campo['nivel'];
+                    $_SESSION['turma']              = $campo['class'];
+                    $_SESSION['turno']              = $campo['turn'];
+                    $_SESSION['filtroHistorico']    = '1 = 1';
+                    $_SESSION['filtro']             = 0;
 
+                    header('location:../producao');
                 }else{
                     //usuario Inativo
                     $_SESSION['user'] = 0;

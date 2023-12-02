@@ -1,10 +1,13 @@
 <?php
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
+
     include('php/function.php');
 
     if (isset($_SESSION['user']) == 0){
         //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');        
-        header('location: login');
+        header('location: php/logout.php');
     }
 ?>
 <!DOCTYPE html>
@@ -90,31 +93,18 @@
                                         
                                         <div class="card-body d-flex flex-row align-items-left">
                                             
-                                            <div class="card-body col-sm-6">                       
-                                                <h4 class="card-title">Organizar ordens de produção por:</h4>
-                                                <div class="d-flex flex-row align-items-left m-3">
-                                                    <div class="m-1 mr-4">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idDataAberto">Em aberto</label>
-                                                        </div>
-                                                            <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-4" id="idAndamento" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="m-1">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="idConcluido" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idConcluido">Concluidos</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input col-md-3" id="idDesativado" name="radio-modal" required>
-                                                            <label class="custom-control-label" for="idDesativado">Desativados</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="form-group row col-md-4">     
+                                            <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
+                                            <div class="col-sm-10">
+                                                <select id="idSelecaoAvancado" name="nSelecao" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                    <option value="">Todos</option>
+                                                    <option value="1">Em Aberto</option>
+                                                    <option value="2">Em Andamento</option>
+                                                    <option value="0">Cancelados</option>
+                                                    <option value="3">Concluidos</option>
+                                                </select>
                                             </div>
+                                        </div>  
 
                                             <div class="card-body col-sm-6">
                                                 <div>                                    
@@ -146,8 +136,6 @@
                         </div>
                     </div>
                             
-                    <h3 class="card-title">Menu de Relatórios</h3>
-
                     <div class="card">
                         <div class="d-flex justify-content-center flex-row m-4">
                             
@@ -171,14 +159,14 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
+                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                        
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <label>Até: </label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                        <input type="date" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -283,17 +271,43 @@
                     serverSide: true
                 });                 
             }
-
-            $('document').ready(dataTableHistorico());       
-        </script>
-
-        <script>            
+                
+            var filtro = <?php echo $_SESSION['filtro']; ?>
+                  
             $('document').ready(function(){
-                $('#idDivlimpaConsulta').hide();
+                dataTableHistorico();
 
-                function formataData(){
-                    $('#idDataInicio').val().toUpperCase();
-                }
+                if(filtro == 1){
+                    $('#idDivlimpaConsulta').show();
+                } else {
+                    $('#idDivlimpaConsulta').hide();
+                } 
+
+                /*$('#iLimpaConsulta').click(function(e){                    
+                   
+                    e.preventDefault();
+                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
+
+                    $.ajax({
+                        url: "php/historicoFiltro.php",
+                        type: "POST",
+                        data: datas,
+                        dataType: "html",
+                        success: function(){        
+                            var table = $('#datatable').DataTable();
+                            table.destroy();
+                        }
+                    }).done(function() { 
+                        dataTableHistorico();
+                    }).fail(function() {
+                        console.log("Request failed: ");
+
+                    }).always(function() {
+                        console.log("completou");
+                    });
+
+                });*/
+
 
                 $('#iConsulta').click(function(e){   
                     var select = $('#idSelecao').val();
@@ -310,20 +324,25 @@
                         var dataFim = '';
                     }                                  
 
-                    //e.preventDefault();
+                    e.preventDefault();
+                    var datas ="campo1="+select+"&campo2="+dataInicio+"&campo3="+dataFim;
 
                     $.ajax({
-                        url: 'php/historicoFiltro.php',
-                        method: 'GET',
-                        dataType: 'html',
-                        data:'&selecao='+select+'&dataInicio='+dataInicio+'&dataFim='+dataFim+'',
-                        success: function() {
+                        url: "php/historicoFiltro.php",
+                        type: "POST",
+                        data: datas,
+                        dataType: "html",
+                        success: function(){        
                             var table = $('#datatable').DataTable();
                             table.destroy();
                         }
-                    }).done(function(){
-                        //$("#limpaConsulta").show();
+                    }).done(function() { 
                         dataTableHistorico();
+                    }).fail(function() {
+                        console.log("Request failed: ");
+
+                    }).always(function() {
+                        console.log("completou");
                     });
                 });
             });

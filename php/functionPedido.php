@@ -1,4 +1,25 @@
 <?php 
+function selectHistoricoPedidos($id){
+    $sql = 'SELECT * FROM historico_pedidos WHERE idPedido = '.$id.' GROUP BY idPedido;';
+
+    include('connection.php');
+
+    $result = mysqli_query($conn,$sql);
+    mysqli_close($conn);
+
+    $array = array();
+
+    if(mysqli_num_rows($result) > 0){
+        while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            array_push($array, $linha);
+        }
+    } else {
+
+        $array = 0;
+    }
+    
+    return $array;
+}
 
 function nomeStatus($stats){
     $status = '';
