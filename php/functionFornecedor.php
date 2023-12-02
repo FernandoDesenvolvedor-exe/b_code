@@ -105,7 +105,7 @@
 
         include('connection.php');
 
-        $sql = 'SELECT f.descricao 
+        $sql = 'SELECT f.descricao as descricao
                     FROM materia_prima mat
                     INNER JOIN materia_fornecedor mfor
                     ON mfor.idMateriaPrima = mat.idMateriaPrima
@@ -113,27 +113,53 @@
                     ON mfor.idFornecedor = f.idFornecedor
                     WHERE mat.idMateriaPrima = '.$idMateria.';';
 
-        $result=mysqli_query($conn,$sql);
+        $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 
-        return $result;
+        $fornecedor = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            foreach($array as $campo){
+                $fornecedor = $campo['descricao'];
+            }
+        }
+
+        return $fornecedor;
     }
 
     function pigmentoFornecedor($idPigmento){
 
         include('connection.php');
 
-        $sql = 'SELECT f.descricao 
+        $sql = 'SELECT f.descricao as descricao
                     FROM pigmentos pig
                     INNER JOIN pigmento_fornecedor pfor
                     ON pig.idPigmento = pfor.idPigmento
                     LEFT JOIN fornecedores f 
                     ON pfor.idFornecedor = f.idFornecedor
-                    WHERE mat.idPigmento = '.$idPigmento.';';
+                    WHERE pig.idPigmento = '.$idPigmento.';';
 
         $result=mysqli_query($conn,$sql);
         mysqli_close($conn);
 
-        return $result;
+        $fornecedor = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            foreach($array as $campo){
+                $fornecedor = $campo['descricao'];
+            }
+        }
+
+        return $fornecedor;
     }
 ?>
