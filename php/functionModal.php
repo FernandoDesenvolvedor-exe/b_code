@@ -34,12 +34,14 @@
                                             <span aria-hidden="true ">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body pre-scrollable">
+                                    <div class="modal-body pre-scrollable align-items-left">
                                         <div class="row mb-3">                                            
                                             <h4 class="col-md-12">Autor da ordem de produção</h4>
 
-                                            <div class="input-group col-sm-8">
-                                                <label for="nClasse" class="col-sm-2 text-right control-label col-form-label">Autor</label>
+                                            <div class="input-group col-md-8">
+                                                <div class="col-sm-2 text-right">
+                                                    <label for="nClasse" class="control-label col-form-label">Autor</label>
+                                                </div>
                                                 <div class="col-sm-10">
                                                     <input value="'.$campo['nomeUsuario'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
@@ -48,7 +50,7 @@
                 if($campo['tipoUsuario'] == 1){
         
                     $table .=
-                                            '<div class="form-group col-md-4 text-left ">
+                                            '<div class="input-group col-md-4 text-left ">
                                                 <div>
                                                     <input value="Administrador" id="idTipoUser" name="nTipoUser" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
@@ -57,7 +59,9 @@
                 } else { 
                     $table .=
                                             '<div class="input-group col-md-4 text-left">
-                                                <label for="nClasse" class="col-sm-3 control-label text-right col-form-label">turma</label>
+                                                <div class="col-sm-3 text-right">
+                                                    <label for="nClasse" class="control-label text-right col-form-label">turma</label>
+                                                </div>
                                                 <div class="col-sm-9">
                                                     <input value="'.$campo['turma'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
@@ -65,43 +69,94 @@
         
         
                 }  
+                
                                           
-                $table .= 
-                                            '                                   
-                                        </div>
-                                        <div class="row mb-3">
-                                            <h4 class="col-lg-12">Status da ordem de produção</h4>';
-        
+                $table .=               '</div>
+                                            <div class="row mb-3">
+                                                <h4 class="col-lg-12">Ordem de produção</h4>';
                             if ($campo['statusPedido'] == 1){
         
                                 $table .=
-                                        '   <div class="col-lg-12">
-                                                <div class="input-group align-items-left">                                       
-                                                    <label for="nClasse" class="col-md-3 control-label col-form-label text-right">Aberto em:</label>
-                                                    <div class="col-md-9">
-                                                        <input value="'.date('d/m/Y h:i:s', strtotime($campo['dataHora_aberto'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                    </div> 
+                                            '<div class="col-lg-12 mt-2">
+                                                <h6 class="col-lg-12">Data de Abertura da OP</h6>
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Aberto</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('d/m/Y', strtotime($campo['dataHora_aberto'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">às</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('h:i:s', strtotime($campo['dataHora_aberto'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>';
+                                            </div>';
         
                             } else if ($campo['statusPedido'] == 2){
         
                                 $table .=
-                                        '<div class="mb-3 col-lg-12 text-left">
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-2 control-label col-form-label">Aberto em:</label>
-                                                <div class="col-sm-10">
-                                                    <input value="'.$campo['dataHora_aberto'].' às '.$campo['dataHora_aberto'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                            '<div class="col-lg-12 mt-1 mb-2">
+                                                <h6 class="col-lg-12">Máquinário</h6>
+                                                <div class="row">
+                                                    <div class="input-group">  
+                                                        <div class="col-sm-4 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Máquina que atendeu a OP</label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <input value="'.$campo['maquina'].'" type="text" class="form-control sm-4" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-2 control-label col-form-label">Inicializada:</label>
-                                                <div class="col-sm-10">
-                                                    <input value="'.$campo['dataHora_producao'].' às '.$campo['dataHora_producao'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                            <div class="col-lg-12 mt-4 mb-2">
+                                                <h6 class="col-lg-12">Data/Hora de Abertura/Produção da OP</h6>
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Aberto</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('d/m/Y', strtotime($campo['dataHora_aberto'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">às</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('h:i:s', strtotime($campo['dataHora_aberto'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>';
+
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Inicio</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('d/m/Y', strtotime($campo['dataHora_producao'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">às</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('h:i:s', strtotime($campo['dataHora_producao'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>';
         
                             } else if ($campo['statusPedido'] == 3){
         
@@ -114,56 +169,114 @@
                                 $diff = $datatime1->diff($datatime2);
         
                                 $table .=
-                                            '
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Duração</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$diff->format("%a dias e %H:%I:%S").' horas" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>  
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Aberto em:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['dataHora_aberto'].' às '.$campo['dataHora_aberto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Inicializada:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['dataHora_producao'].' às '.$campo['dataHora_producao'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                            '<div class="col-lg-12 mt-1 mb-2">
+                                                <h6 class="col-lg-12">Máquinário</h6>
+                                                <div class="row">
+                                                    <div class="input-group col-md-12">  
+                                                        <div class="col-sm-4 text-left">
+                                                            <label for="nClasse" class="control-label col-form-label">Máquina que atendeu a OP</label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <input value="'.$campo['maquina'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Concluido em:</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['dataHora_fechado'].' às '.$campo['dataHora_fechado'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+
+                                            <div class="col-lg-12 mt-4 mb-2">                                                
+                                                <h6 class="col-lg-12">Data/Hora de Abertura/Produção/Finalização da OP</h6>
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Inicio</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('d/m/Y', strtotime($campo['dataHora_producao'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">às</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('h:i:s', strtotime($campo['dataHora_producao'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
                                                 </div>
-                                            </div>';
-        
+                                            </div>
+
+                                            <div class="col-lg-12 mb-2">
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Fim</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('d/m/Y', strtotime($campo['dataHora_fechado'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">às</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.date('h:i:s', strtotime($campo['dataHora_fechado'])).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="input-group col-md-6">
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">Duração</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.$diff->format("%a dias").'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="input-group col-md-6">  
+                                                        <div class="col-sm-2 text-right">
+                                                            <label for="nClasse" class="control-label col-form-label">e</label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <input value="'.$diff->format("%H:%I:%S").'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>';        
                             }
         
                             $table .=
-                                    '   </div>
-                                        <div>
-                                            <div class="input-group mb-3">
-                                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produto</label>
-                                                    <div class="col-sm-8">
-                                                        <input value="'.$campo['produto'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        '<div class="col-lg-12 mt-4 mb-2">
+                                            <h6 class="col-lg-12">Informação do produto</h6>
+                                            <div class="row">
+                                                <div class="input-group col-md-6">  
+                                                    <div class="col-sm-2 text-right">
+                                                        <label for="nClasse" class="control-label col-form-label">Produto</label>
                                                     </div>
+                                                    <div class="col-sm-10">
+                                                        <input value="'.$campo['produto'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    </div> 
                                                 </div>
-                                
-                                                <div class="input-group mb-3">
-                                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Ferramental</label>
+                                                <div class="input-group col-md-3">  
+                                                    <div class="col-sm-4 text-right">
+                                                        <label for="nClasse" class="control-label col-form-label">Molde</label>
+                                                    </div>
                                                     <div class="col-sm-8">
                                                         <input value="'.$campo['ferramental'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                    </div>
+                                                    </div> 
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de Ferramental</label>
+                                                <div class="input-group col-md-3">  
+                                                    <div class="col-sm-4 text-right">
+                                                        <label for="nClasse" class="control-label col-form-label">Tipo</label>
+                                                    </div>
                                                     <div class="col-sm-8">
                                                         <input value="'.$campo['tipoFerramental'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                    </div>
-                                                </div>';
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>';
         
                             if ($campo['statusPedido'] == 1 || $campo['statusPedido'] == 2){
             
