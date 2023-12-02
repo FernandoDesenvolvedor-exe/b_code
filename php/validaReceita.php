@@ -61,7 +61,7 @@
     //SEPARAÇÃO DO MATERIAL E PIGMENTO
     $pesoPigmento = $qMaterial*($porcentPigmento/100);
     $pesoMaterial = $qMaterial-$pesoPigmento;
-
+    //VERIFICA SE QUANTIDADE DE RECICLADO É MAIOR QUE MATERIAL 
     if($qReciclado>$pesoMaterial){
         mysqli_close($conn);
         $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade de reciclado excedeu a quantidade de material!<br>Quant. Material:'.$pesoMaterial.'<br>Quant. Reciclado:'.$qReciclado.''.$fechaHTMLalert;
