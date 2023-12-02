@@ -77,7 +77,7 @@
                                         <div class="modal-body">
                                         
                                             <diiv class="card">
-                                                <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['receitaId'].'&idMateria='.$campo['materiaId'].'">
+                                                <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['receitaId'].'">
         
                                                     <div class="card-body">
                                                         <div class="input-group mb-3">
@@ -105,6 +105,13 @@
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                             <div class="col-sm-7">
                                                                 <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                            <div class="col-sm-7">
+                                                                <input value="'.nomeFornecedorPigmento($campo['pigmentoId']).'" id="idCorFornecedor" name="nCorFornecedor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                             </div>
                                                         </div>
                                     

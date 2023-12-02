@@ -72,7 +72,67 @@
         }
         
         return $table;
-    }     
+    } 
+    
+    function validaEstoque($idMaterial,$quantidade){
+        $minimo = $_SESSION['estoqueMinimo'];
+
+        $sql = 'SELECT quantidade FROM materia_prima WHERE idMateriaPrima = '.$idMaterial.'';
+
+        include('connection.php');
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $validado = false;
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            $n = 1;
+
+            foreach($array as $campo){
+                if($campo['quantidade'] <= $minimo){
+                    $validado = false;
+                } else {
+                    if($quantidade > $campo['quantidade']){                        
+                        $validado = true;
+                    }
+                }
+            }
+
+            return $validado;
+        }
+    }
+    function nomeFornecedorPigmento($id){
+        $sql='  SELECT f.descricao as fornecedor
+                FROM pigmentoFornecedor pf
+                LEFT JOIN fornecedores f 
+                ON pf.idFornecedor = f.idFornecedor
+                WHERE pf.idPigmento = '.$id.'';
+
+        include('connection.php');
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $fornecedor = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                array_push($array,$linha);
+            }
+
+            foreach($array as $campo){
+                $fornecedor = $campo['fornecedor'];
+            }
+        }
+
+        return $fornecedor;
+    }
     function materiaisReceita($idReceita,$case){
 
         include('connection.php');
@@ -102,6 +162,9 @@
                                 '<div class="card-body">
                                     <label>Matéria Prima</label>
                                     <div class="row mb-3">
+                                        <div class="col-lg-4" hidden>
+                                            <input type="text" id="nIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'">
+                                        </div>
                                         <div class="col-lg-4">
                                             <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'">
                                         </div>
@@ -109,7 +172,7 @@
                                             <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'">
                                         </div>
                                         <div class="col-lg-4">
-                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'g">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'">
                                         </div>
                                     </div>
                                     

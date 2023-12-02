@@ -5,9 +5,11 @@
     include("function.php");    
 
     if ($_GET['validacao'] == 'I'){ // INSERT
+        mysqli_close($conn);
 
         $qtde = stripslashes($_POST['nQtdeProduto']);
         $obs = stripslashes($_POST['nObservacoes']);
+        $status = $_POST['nStatus'];
 
         // set default timezone
         date_default_timezone_set('America/Sao_Paulo'); // CDT
@@ -19,12 +21,27 @@
         $hora = $info['hours'];
         $min = $info['minutes'];
         $sec = $info['seconds'];
-
         $data = "$ano-$mes-$dia";
         $horario = "$hora:$min:$sec";
-
         $current_date = "$data $horario";
 
+        
+        for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
+            if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
+                $status = 1;
+                $_SESSION['msg'] = 'Pedido aberto!';
+                $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
+            }               
+        }
+
+        if($status == 2){
+        }
+
+        $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQtdeMaterial'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
+
+        include('connection.php');           
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
 
         $sql = 'INSERT INTO pedidos(
                     idUsuario,
@@ -67,7 +84,9 @@
                     '.$qtde.',
                     1);';
 
+        include('connection.php');
         $result = mysqli_query($conn, $sql);     
+        mysqli_close($conn);
 
         $idPedido = buscaId("pedidos","idPedido");  
             
@@ -109,17 +128,18 @@
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
-                            "'.$_POST['nFornecedorMateria'][$n].'",
+                            "'.$_POST['nFornecedor'][$n].'",
                             "'.$_POST['nCor'].'",
                             "'.$_POST['nTipoCor'].'",
                             "'.$_POST['nCodCor'].'",
                             "'.$_POST['nLoteCor'].'",
+                            "'.$_POST['nCorFornecedor'].'",
                             "'.$_POST['nProduto'].'",;
                             "'.$_POST['nFerramental'].'",
                             "'.$_POST['nTipoFerramental'].'",';
 
             if($_POST['nStatus'] == 1){                
-                $sql .='"",';
+                $sql .='"Pendente",';
             } else if ($_POST['nStatus'] == 2){
                 $sql .='"'.maquinaNome($_POST['nMaquina']).'",';
             }
@@ -147,39 +167,12 @@
                             ''.nomeStatus($_POST['nStatus']).',
                             "'.$obs.'");'; 
                             
-            $result = mysqli_query($conn, $sql);
-            mysqli_close($conn);
-            
-            /*if($_POST['nStatus'] == 2){
-
-                $sql2 =  'INSERT INTO historico_materia_prima(
-                            idMateria,
-                            nomeUsuario,
-                            turma,
-                            turno,
-                            tipoUsuario,
-                            nomeMateria,
-                            quantidadeAlterada,
-                            dataAlteracao,
-                            ativo)
-                        VALUES(
-                            '.$_GET['idMateria'].',
-                            "'.$_SESSION['nome'].'",
-                            "'.$_SESSION['turma'].'",
-                            "'.$_SESSION['turno'].'",
-                            "'.$_SESSION['tipo'].'",
-                            "'.$_POST['nMaterial'][$n].'",
-                            '.-($qtde * $_POST['nQtdeMaterial'][$n]).',
-                            '.$current_date.',
-                            1);';
-                                
-                var_dump($sql);
-                die();
-                $result = mysqli_query($conn, $sql2);
-
-            }*/
+            include('connection.php');
+            $result = mysqli_query($conn, $sql);     
+            mysqli_close($conn);            
         }
 
+        
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
         

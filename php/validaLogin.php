@@ -67,6 +67,7 @@ VALIDAÇÕES
                     $_SESSION['turno']              = $campo['turn'];
                     $_SESSION['filtroHistorico']    = '1 = 1';
                     $_SESSION['filtro']             = 0;
+                    $_SESSION['estoqueMinimo']      = 50;
 
                     header('location:../producao');
                 }else{
