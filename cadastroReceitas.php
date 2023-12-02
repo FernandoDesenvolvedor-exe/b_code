@@ -90,6 +90,7 @@
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                                     <div class="col-md-9">
                                         <select id="iPigmento" name="nPigmento" class="select2 form-control custom-select" style="width: 80%; height:36px;">
+                                            <?php echo optionPigmento(); ?>
                                         </select>
                                     </div>                                    
                                 </div>
@@ -123,7 +124,7 @@
                 </div>
 
                 <div class="card" style="padding: 10px;"> 
-                        <h4 class="card-title">Receitas de <?php echo $_GET['pr']?></h4>
+                        <h4 class="card-title">Receita <?php echo $_GET['pr']?></h4>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
@@ -143,6 +144,7 @@
         </div>
         <?php include('links/script.php'); ?>
         <script>
+
         </script>
     </body>    
 </html>
