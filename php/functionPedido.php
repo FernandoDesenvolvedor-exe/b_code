@@ -3,6 +3,7 @@ function selectHistoricoPedidos($id){
     $sql = 'SELECT * FROM historico_pedidos WHERE idPedido = '.$id.' GROUP BY idPedido;';
 
     include('connection.php');
+
     $result = mysqli_query($conn,$sql);
     mysqli_close($conn);
 
@@ -16,7 +17,7 @@ function selectHistoricoPedidos($id){
 
         $array = 0;
     }
-
+    
     return $array;
 }
 

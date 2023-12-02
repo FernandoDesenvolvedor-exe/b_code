@@ -117,6 +117,7 @@
                 array_push($array, $linha);
             }
             $n = 1;
+            
             foreach($array as $campo){
                 $status = $campo['statusPedido'];
             }
