@@ -703,7 +703,7 @@ receitaId int(11)
 --
 DROP TABLE IF EXISTS view_materia_receitas;
 
-CREATE VIEW view_materia_receitas  AS SELECT rmat.idReceita AS id, m.descricao AS material, t.descricao AS tipo, c.descricao AS classe, f.descricao AS fornecedor FROM (((((receita_materia_prima rmat left join materia_prima m on(rmat.idMateriaPrima = m.idMateriaPrima)) join materia_fornecedor mf on(m.idMateriaPrima = mf.idMateriaPrima)) left join fornecedores f on(mf.idFornecedor = f.idFornecedor)) left join tipo_materia_prima t on(t.idTipoMateriaPrima = m.idTipoMateriaPrima)) left join classe_material c on(m.idClasse = c.idClasse)) ;
+CREATE VIEW view_materia_receitas  AS SELECT rmat.idReceita AS id, rmat.quantidadeMaterial AS quantidade, m.descricao AS material, t.descricao AS tipo, c.descricao AS classe, f.descricao AS fornecedor FROM (((((receita_materia_prima rmat left join materia_prima m on(rmat.idMateriaPrima = m.idMateriaPrima)) join materia_fornecedor mf on(m.idMateriaPrima = mf.idMateriaPrima)) left join fornecedores f on(mf.idFornecedor = f.idFornecedor)) left join tipo_materia_prima t on(t.idTipoMateriaPrima = m.idTipoMateriaPrima)) left join classe_material c on(m.idClasse = c.idClasse)) ;
 
 -- --------------------------------------------------------
 

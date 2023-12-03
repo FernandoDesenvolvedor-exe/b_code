@@ -9,8 +9,6 @@
 
         $qtde = stripslashes($_POST['nQtdeProduto']);
         $obs = stripslashes($_POST['nObservacoes']);
-        var_dump($_POST['nStatus'.$_GET['id']]);
-        die();
         $status = $_POST['nStatus'.$_GET['id'].''];
 
         // set default timezone
@@ -26,12 +24,11 @@
         $data = "$ano-$mes-$dia";
         $horario = "$hora:$min:$sec";
         $current_date = "$data $horario";
-
         
         $_SESSION['msg'] = 'Pedido aberto!';
 
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
-            if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
+            if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n]) == false){
                 $status = 1;
                 $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
             }
@@ -39,13 +36,13 @@
         
         if($status == 2){
             for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
-                if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
-                    $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQtdeMaterial'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
+                if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n]) == false){
+                    $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQuantidadeMat'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
 
                     include('connection.php');
                     $result = mysqli_query($conn,$sql);
                     mysqli_close($conn);
-                }               
+                }                                
             }
         }
 
@@ -96,7 +93,8 @@
             
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
             $sql = 'INSERT INTO historico_pedidos
-                           (nomeUsuario,
+                           (idHistorico,
+                            nomeUsuario,
                             tipoUsuario,
                             turma,
                             turno,
@@ -124,6 +122,7 @@
                             statusPedido,
                             obsPedido)
                         VALUES(
+                            '.$idPedido.',
                             "'.$_SESSION['nome'].'",
                             "'.$_SESSION['tipo'].'",
                             "'.$_SESSION['turma'].'",
@@ -132,15 +131,15 @@
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
-                            "'.$_POST['nFornecedor'][$n].'",
+                            "'.$_POST['nMateriaFornecedor'][$n].'",
                             "'.$_POST['nCor'].'",
                             "'.$_POST['nTipoCor'].'",
-                            "'.$_POST['nCodCor'].'",
-                            "'.$_POST['nLoteCor'].'",
+                            "'.selectCor($_POST['nPigmento'],1).'",
+                            "'.selectCor($_POST['nPigmento'],2).'",
                             "'.$_POST['nCorFornecedor'].'",
-                            "'.$_POST['nProduto'].'",;
-                            "'.$_POST['nFerramental'].'",
-                            "'.$_POST['nTipoFerramental'].'",';
+                            "'.$_POST['nProduto'].'",
+                            "'.$_POST['nMolde'].'",
+                            "'.$_POST['nTipoMolde'].'",';
 
             if($status == 1){                
                 $sql .='"Pendente",';
@@ -150,10 +149,8 @@
 
             $sql .=
                             ''.$qtde.',
-                            0,
-                            0,
-                            "'.$_POST['nQtdeMaterial'][$n].'",
-                            '.$_POST['nQtdPigmento'].',';
+                            '.($_POST['nQuantidadeMat'][$n]*$qtde).',
+                            '.($_POST['nQtdPigmento']*$qtde).',';
             
             if($status == 1){                
                 $sql .='"'.$current_date.'",
@@ -168,7 +165,7 @@
             }
 
             $sql .=
-                            ''.nomeStatus($status).',
+                            ''.$status.',
                             "'.$obs.'");'; 
                             
             include('connection.php');
@@ -218,19 +215,21 @@
 
         if ($_GET['stats'] == 1){
 
+            include('connection.php');
             $sql = 'UPDATE pedidos SET 
                         status = 2, 
                         dataHora_producao="'.$current_date.'",
                         idMaquina=  
                         WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
-
+            mysqli_close($conn);
+            
+            include('connection.php');
             $sql = 'UPDATE historico_pedidos 
                         SET statusPedido = 2,
                         dataHora_producao="'.$current_date.'" 
                         WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
-            
             mysqli_close($conn);
 
         } else if ($_GET['stats'] == 2){

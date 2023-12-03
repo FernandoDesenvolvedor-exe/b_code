@@ -388,11 +388,12 @@
                             type: "POST",
                             data: datas,
                             dataType: "html",
-                            success: function(){        
-                                var table = $('#datatable').DataTable();
-                                table.destroy();
+                            success: function(){  
                             }
                         }).done(function() { 
+                                  
+                            var table = $('#datatable').DataTable();
+                                table.destroy();
                             dataTableHistorico();
                         }).fail(function() {
                             console.log("Request failed: ");

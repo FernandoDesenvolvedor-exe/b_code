@@ -66,7 +66,7 @@
                             </div>
                         
                             <div style="max-height: 700px" class="modal fade" id="modalPedido'.$campo["receitaId"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                                <div class="modal-dialog" role="document ">
+                                <div class="modal-dialog modal-lg" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Criar pedido</h5>
@@ -93,8 +93,15 @@
                                                                 <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                             </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Ferramental</label>                                                            
+                                                            <div class="col-sm-7">
+                                                                <input value="'.$campo['tipoMolde_nome'].'" id="idTipoMolde" name="nTipoMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                            </div>
+                                                        </div>
                                                         '.materiaisReceita($campo['receitaId'],1).'
                                                         <div class="form-group row">
+                                                            <input value="'.$campo['pigmentoId'].'" id="idPigmento" name="nPigmento" type="text" class="form-control" style="width: 100%; height:36px;" hidden>
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Pigmento</label>
                                                             <div class="col-sm-7">
                                                                 <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
@@ -105,7 +112,7 @@
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                             <div class="col-sm-7">
                                                                 <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
-                                                            </div>
+                                                            </div>                                                            
                                                         </div>
 
                                                         <div class="form-group row">
@@ -129,9 +136,9 @@
                                                             </div>
                                                         </div>                                                        
                                                         
-                                                        <label style="text-align=center;" class="col-md-8">Status da ordem de produção</label>
                                                         <div class="form-group row">
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-5 text-right mt-2">Status:</label>
+                                                            <div class="col-sm-7">
                                                                 <select id="idStatus'.$campo['receitaId'].'" name="nStatus'.$campo['receitaId'].'" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                                     <option value="1">Em Aberto</option>
                                                                     <option value="2">Em Andamento</option>
@@ -142,7 +149,7 @@
                                                         <div class="form-group row" id="iDivMaquina'.$campo['receitaId'].'">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
                                                             <div class="col-sm-7">
-                                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                     '.optionMaquina($campo['moldeId']).'
                                                                 </select>
                                                             </div>

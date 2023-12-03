@@ -1,4 +1,35 @@
 <?php
+
+    function selectCor($id,$coluna){
+        if($coluna == 1){
+            $coluna = 'codigo';            
+        } else if ($coluna == 2){
+            $coluna = 'lote';            
+        }
+
+        $sql='SELECT * FROM pigmentos WHERE idPigmento = '.$id.'';
+
+        include('connection.php');
+        $result=mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $resultado = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array,$linha);
+            }
+
+            foreach($array as $campo){
+                $resultado = $campo[''.$coluna.''];
+            }
+        }
+
+        return $resultado;
+    }
+
     function materiaisHistorico($id,$case){
 
         include('connection.php');
@@ -158,17 +189,19 @@
                         $table .=
                                 '<div class="card-body">
                                     <label>Matéria Prima</label>
-                                    <div class="row mb-3">
-                                        <div class="col-lg-4" hidden>
-                                            <input type="text" id="nIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'">
+                                    <div class="row mb-3">                                    
+                                        <div class="col-sm-2">
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto">
+                                            
                                         </div>
-                                        <div class="col-lg-4">
+                                        <a class="col-sm-1 mt-3">g</a>
+                                        <div class="col-sm-3">
                                             <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'">
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-sm-3">
                                             <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'">
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-sm-3">
                                             <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'">
                                         </div>
                                     </div>
@@ -176,8 +209,11 @@
                                     <div class="form-group row">
                                         <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                         <div class="col-sm-8">
-                                            <input value="'.$campo['fornecedor'].'" id="idFornecedor" name="nFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                        </div>
+                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedor'].'">
+                                        </div>                                        
+                                        <div class="col-lg-3" hidden>
+                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'">
+                                        </div>    
                                     </div>
                                 </div>';
                     break;
