@@ -9,7 +9,9 @@
 
         $qtde = stripslashes($_POST['nQtdeProduto']);
         $obs = stripslashes($_POST['nObservacoes']);
-        $status = $_POST['nStatus'];
+        var_dump($_POST['nStatus'.$_GET['id']]);
+        die();
+        $status = $_POST['nStatus'.$_GET['id'].''];
 
         // set default timezone
         date_default_timezone_set('America/Sao_Paulo'); // CDT
@@ -32,7 +34,7 @@
             if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
                 $status = 1;
                 $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
-            }               
+            }
         }
         
         if($status == 2){
@@ -40,23 +42,22 @@
                 if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
                     $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQtdeMaterial'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
 
-                    include('connection.php');           
+                    include('connection.php');
                     $result = mysqli_query($conn,$sql);
                     mysqli_close($conn);
                 }               
             }
         }
 
-
         $sql = 'INSERT INTO pedidos(
                     idUsuario,
                     idReceita,';        
 
-        if ($_POST['nStatus'] == 1){
+        if ($status == 1){
 
             $sql .='dataHora_aberto,';
 
-        } else if ($_POST['nStatus'] == 2){
+        } else if ($status == 2){
 
             $sql .='idMaquina,
                     dataHora_aberto,
@@ -66,17 +67,16 @@
 
         $sql .=    'status,
                     observacoes,
-                    producaoPrevista,
-                    ativo)
+                    producaoPrevista)
                     VALUES(
                     '.$_SESSION['idUsuario'].',
                     '.$_GET['id'].',';        
 
-        if ($_POST['nStatus'] == 1){
+        if ($status == 1){
 
             $sql .= '"'.$current_date.'",';
 
-        } else if ($_POST['nStatus'] == 2){
+        } else if ($status == 2){
 
             $sql .= ''.$_POST['nMaquina'].',
                     "'.$current_date.'",
@@ -84,10 +84,9 @@
 
         }
 
-        $sql .=     ''.$_POST['nStatus'].',
+        $sql .=     ''.$status.',
                     "'.$obs.'",
-                    '.$qtde.',
-                    1);';
+                    '.$qtde.');';
 
         include('connection.php');
         $result = mysqli_query($conn, $sql);     
@@ -143,9 +142,9 @@
                             "'.$_POST['nFerramental'].'",
                             "'.$_POST['nTipoFerramental'].'",';
 
-            if($_POST['nStatus'] == 1){                
+            if($status == 1){                
                 $sql .='"Pendente",';
-            } else if ($_POST['nStatus'] == 2){
+            } else if ($status == 2){
                 $sql .='"'.maquinaNome($_POST['nMaquina']).'",';
             }
 
@@ -156,12 +155,12 @@
                             "'.$_POST['nQtdeMaterial'][$n].'",
                             '.$_POST['nQtdPigmento'].',';
             
-            if($_POST['nStatus'] == 1){                
+            if($status == 1){                
                 $sql .='"'.$current_date.'",
                         "0000-00-00 00:00:00",
                         "0000-00-00 00:00:00",
                         "0000-00-00 00:00:00",';
-            } else if ($_POST['nStatus'] == 2){
+            } else if ($status == 2){
                 $sql .='"'.$current_date.'",
                         "'.$current_date.'",
                         "0000-00-00 00:00:00",
@@ -169,15 +168,13 @@
             }
 
             $sql .=
-                            ''.nomeStatus($_POST['nStatus']).',
+                            ''.nomeStatus($status).',
                             "'.$obs.'");'; 
                             
             include('connection.php');
             $result = mysqli_query($conn, $sql);     
             mysqli_close($conn);            
-        }
-
-        
+        }        
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
         

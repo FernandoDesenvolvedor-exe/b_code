@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         
-                            <div class="modal fade" id="modalPedido'.$campo["receitaId"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div style="max-height: 700px" class="modal fade" id="modalPedido'.$campo["receitaId"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -74,10 +74,10 @@
                                                 <span aria-hidden="true ">&times;</span>
                                             </button>
                                         </div>  
-                                        <div class="modal-body">
+                                        <div class="modal-body pre-scrollable">
                                         
                                             <diiv class="card">
-                                                <form method="POST" action="php/savePedidos.php? validacao=I&id='.$campo['receitaId'].'">
+                                                <form method="POST" action="php/savePedidos.php?validacao=I&id='.$campo['receitaId'].'&idMateria='.$campo['materiaId'].'">
         
                                                     <div class="card-body">
                                                         <div class="input-group mb-3">
@@ -127,37 +127,40 @@
                                                             <div class="col-sm-7">
                                                                 <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                             </div>
-                                                        </div>            
-                                                        
-                                                        
+                                                        </div>                                                        
                                                         
                                                         <label style="text-align=center;" class="col-md-8">Status da ordem de produção</label>
                                                         <div class="form-group row">
                                                             <div class="col-md-9">
-                                                                <fieldset>
-                                                                    <div class="custom-control custom-radio">
-                                                                        <input value=1 type="radio" class="custom-control-input" id="idAberto" name="nMaquina" >
-                                                                        <label class="custom-control-label" for="idAdm"> Administrador </label>
-                                                                    </div>
-                                                                    <div class="custom-control custom-radio">
-                                                                        <input value=2 type="radio" class="custom-control-input" id="idInicializado" name="nMaquina" >
-                                                                        <label class="custom-control-label" for="idComum"> Comum </label>
-                                                                    </div>
-                                                                </fieldset>
+                                                                <select id="idStatus'.$campo['receitaId'].'" name="nStatus'.$campo['receitaId'].'" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                                    <option value="1">Em Aberto</option>
+                                                                    <option value="2">Em Andamento</option>
+                                                                </select>
                                                             </div>
-                                                        </div>    
-
-
-
-                                                        <div class="form-group row">
+                                                        </div>
+                                                        
+                                                        <div class="form-group row" id="iDivMaquina'.$campo['receitaId'].'">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Maquina</label>
                                                             <div class="col-sm-7">
-                                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                                                <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                                     '.optionMaquina($campo['moldeId']).'
                                                                 </select>
                                                             </div>
                                                         </div>      
-                                    
+                                                       
+                                                        <script>                                                            
+                                                            $("document").ready(function(){
+                                                                $("#iDivMaquina'.$campo['receitaId'].'").hide();
+                                                                $("#idStatus'.$campo['receitaId'].'").on("change", function(){
+                                                                    if($("#idStatus'.$campo['receitaId'].'").val() == 2){                    
+                                                                        $("#iDivMaquina'.$campo['receitaId'].'").show();
+                                                                    }else{
+                                                                        $("#iDivMaquina'.$campo['receitaId'].'").hide();
+                                                                    }
+                                                                })
+                                                            });
+                                                        </script>
+
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Observações</label>
                                                             <div class="col-sm-7">
@@ -180,7 +183,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
 
                         </tr>';

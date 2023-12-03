@@ -72,8 +72,7 @@
         }
         
         return $table;
-    } 
-    
+    }    
     function validaEstoque($idMaterial,$quantidade){
         $minimo = $_SESSION['estoqueMinimo'];
 
@@ -92,8 +91,6 @@
                 array_push($array, $linha);
             }
 
-            $n = 1;
-
             foreach($array as $campo){
                 if($campo['quantidade'] <= $minimo){
                     $validado = false;
@@ -109,7 +106,7 @@
     }
     function nomeFornecedorPigmento($id){
         $sql='  SELECT f.descricao as fornecedor
-                FROM pigmentoFornecedor pf
+                FROM pigmento_fornecedor pf
                 LEFT JOIN fornecedores f 
                 ON pf.idFornecedor = f.idFornecedor
                 WHERE pf.idPigmento = '.$id.'';
