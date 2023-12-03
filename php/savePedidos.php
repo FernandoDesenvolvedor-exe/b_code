@@ -26,22 +26,27 @@
         $current_date = "$data $horario";
 
         
+        $_SESSION['msg'] = 'Pedido aberto!';
+
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
             if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
                 $status = 1;
-                $_SESSION['msg'] = 'Pedido aberto!';
                 $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
             }               
         }
-
+        
         if($status == 2){
+            for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
+                if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQtdeMaterial'][$n]) == false){
+                    $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQtdeMaterial'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
+
+                    include('connection.php');           
+                    $result = mysqli_query($conn,$sql);
+                    mysqli_close($conn);
+                }               
+            }
         }
 
-        $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQtdeMaterial'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
-
-        include('connection.php');           
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
 
         $sql = 'INSERT INTO pedidos(
                     idUsuario,
