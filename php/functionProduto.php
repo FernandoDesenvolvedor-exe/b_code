@@ -216,10 +216,10 @@
             }
 
             
-            $card='<div class="row el-element-overlay">';
+            $card='';
             foreach($array as $campo){
 
-                $card .='   <div class="col-lg-2 col-md-6">
+                $card .='   <div class="w-25 p-3" height="100px">
                                 <div class="card">
                                     <div class="el-card-item">
                                         <div class="el-card-avatar el-overlay-1">                                          
@@ -248,7 +248,6 @@
                             </div>';
             }   
         }  
-        $card .= '</div>';
 
         return $card;
     }

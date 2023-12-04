@@ -13568,6 +13568,7 @@ User card page
     text-align: center; }
   .el-element-overlay .el-card-item .el-overlay-1 {
     width: 100%;
+    height: var(--breakpoint-sm);
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -13579,7 +13580,7 @@ User card page
       -o-transition: all .4s linear;
       transition: all .4s linear;
       width: 100%;
-      height: auto; }
+      height: 200px; }
     .el-element-overlay .el-card-item .el-overlay-1:hover img {
       -ms-transform: scale(1.2) translateZ(0);
       -webkit-transform: scale(1.2) translateZ(0);
