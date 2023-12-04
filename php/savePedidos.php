@@ -25,35 +25,47 @@
         $horario = "$hora:$min:$sec";
         $current_date = "$data $horario";
         
-        $_SESSION['msg'] = 'Ordem de produção aberta!';
+        $_SESSION['msgSucesso'] = ' <h4 class="alert-heading">Sucesso!</h4><br>
+                                        <p>Ordem de produção Registrada!</p><br>                                
+                                        <hr>';
+
+        $_SESSION['msgAviso'] = ' <h4 class="alert-heading">Aviso!</h4><br>
+                                        <p>Ordem de produção Registrada!</p><br>                                
+                                        <hr>';
+
+        /*$_SESSION['msgPerigo'] = '     <h4 class="alert-heading">Sucesso!</h4><br>
+                                        <p>Ordem de produção Registrada!</p><br>                                
+                                        <hr>
+                                        <p>Descontado do estoque</p>';*/
 
         // valida se a quantidade de material no estoque supre a 
         // quantidade necessária do pedido se o mesmo for registrado em andamento.
-        if($status == 2){
+        if($status == 2){           
             for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
                 if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n],'materia_prima','idMateriaPrima') == false){
                     $status = 1;
-                    $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
+                    $_SESSION['msgAviso'] .= '<p class="mb-0">'.$_POST['nMaterial'][$n].': Material insuficiente!</p><br>';              
                 }
             }
 
-            if(validaEstoque($_POST['nPigmento'][$n],$_POST['nQtdPigmento'][$n],'pigmentos','idPigmento') == false){
+            if(validaEstoque($_POST['nPigmento'],$_POST['nQtdPigmento'],'pigmentos','idPigmento') == false){
                 $status = 1;
-                $_SESSION['msg'] .=  $_POST['nCor'][$n].'- '.$_POST['nTipoCor'].': Material insuficiente!';
+                $_SESSION['msgAviso'] .= '  <p class="mb-0">'.$_POST['nCor'][$n].'- '.$_POST['nTipoCor'].': Material insuficiente!</p><br>';
             }
 
+            
+            if($status == 1){                
+                $_SESSION['ativaMsgS'] = 1; 
+                $_SESSION['msgAviso'] .= '<p>Status da OP: '.nomeStatus($stats).'</p>';
+            }
+
+            //var_dump($status);
+            //die();
             //se qualquer um dos materiais requisitados não forem o suficiente, 
             //o pedido fica em aberto e grava uma menssagem mostrando quais materiais estão em falta
 
             //Um pedido só pode ser inicializado quando o estoque tiver material o suficiente para supri-lo
-        }
-        
-        
-        if($status == 2){
-            for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
-                                                
-            }
-        }
+        }        
 
         $sql = 'INSERT INTO pedidos(
                     idUsuario,
@@ -185,7 +197,7 @@
             mysqli_close($conn);      
         }  
         
-        if($status == 2){            
+        if($status == 2){     
             alteraEstoque($idPedido);
         }
 
@@ -242,7 +254,7 @@
             include('connection.php');
             $sql = 'UPDATE historico_pedidos 
                         SET statusPedido = 2,
-                        dataHora_producao="'.$current_date.'" 
+                        dataHora_producao="'.$current_date.'", 
                         maquina = "'.maquinaNome($_POST['nMaquina']).'"
                         WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
@@ -250,6 +262,7 @@
 
             alteraEstoque($_GET['id']);
 
+            header('location:../materiaPrima');
         } else if ($_GET['stats'] == 2){
 
             $sql = 'UPDATE pedidos 

@@ -68,6 +68,12 @@ VALIDAÇÕES
                     $_SESSION['filtroHistorico']    = '1 = 1';
                     $_SESSION['filtro']             = 0;
                     $_SESSION['estoqueMinimo']      = 50;
+                    $_SESSION['ativaMsgS']           = 0;
+                    $_SESSION['ativaMsgA']           = 0;
+                    $_SESSION['ativaMsgD']           = 0;
+                    $_SESSION['msgSucesso']         = '';
+                    $_SESSION['msgAviso']           = '';
+                    $_SESSION['msgPerigo']          = '';
 
                     header('location:../producao');
                 }else{

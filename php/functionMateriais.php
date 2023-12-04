@@ -368,6 +368,7 @@
 
                                                 <div class="card-body">                                                                                                       
                                                     <h4 class="card-title">Informações da matéria Prima</h4>
+
                                                     <div class="form-group row">
                                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome</label>
                                                         <div class="col-sm-9">
@@ -376,7 +377,7 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 m-t-15" style="text-align: right;">Classe</label
+                                                        <label class="col-sm-3 text-right control-label col-form-label">Classe</label>
                                                         <div class="col-md-9">
                                                             <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                 '.optionClaseMaterial().'
@@ -385,7 +386,7 @@
                                                     </div>
                                 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>
+                                                        <label class="col-sm-3 text-right control-label col-form-label">Tipo</label>
                                                         <div class="col-md-9">
                                                             <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                 '. optionTipoMaterial().'
@@ -393,7 +394,7 @@
                                                         </div>
                                                     </div>
                                 
-                                                    <div style="align-itens= side;"  class="form-group row">
+                                                    <div class="form-group row">
                                                         <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                                         <div style="display:inline;" class="col-sm-9">
                                                             <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
