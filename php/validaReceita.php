@@ -14,6 +14,7 @@
     //POST
     $material = $_POST['nMaterial']; 
     $qMaterial = intval($_POST['nQuantMaterial']);
+    $reciclado= $_POST['nReciclado'];
     $qReciclado = intval($_POST['nQuantReciclado']);
     $pigmento = $_POST['nPigmento'];
     $porcentPigmento = intval($_POST['nQuantPigmento']);
@@ -68,9 +69,16 @@
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die();
     }
-    //echo 'Reciclado: '.$qReciclado;
-    //die();
     mysqli_close($conn);
-    //$_SESSION['msgErro'] = $abreHTMLalert.'Cadastrado!!!(FAKE) idMat:'.$material.' idPig:'.$pigmento.' Pig:'.$pesoPigmento.'g Mat:'.$pesoMaterial.'g'.mysqli_num_rows($result) .$fechaHTMLalert;
-    header('location: saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
+    header('location: saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&rec='.$reciclado.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
+    
+    //unico material virgem 
+    //material virgem n mistura
+    //peso receita varia 5%
+    //maximo de 6% de pigmento
+    //salva reciclado no mesmo pedido e borra
+    
+
+    //-----Sem tempo-----------
+    //Estimativa de tempo da produção de um pedido
 ?>

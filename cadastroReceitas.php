@@ -81,6 +81,16 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row" id="divReciclado">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Reciclado</label>
+                                    <div class="col-sm-9" id='qntM'>
+                                    <select id="iReciclado" name="nReciclado" class="select2 form-control custom-select" style="width: 80%; height:36px;">
+                                            <?php
+                                                echo optionMaterial(3);
+                                            ?> 
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row" id="divQtdReciclado">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quant. Reciclado</label>
                                     <div class="col-sm-9" id='qntM'>
@@ -143,18 +153,22 @@
         <script>
             $('document').ready(function(){
                 $('#divSelectPigmento').hide();
-                $('#divQtdReciclado').hide();
                 $('#divQtdMaterial').hide();
                 $('#divQtdPigmento').hide();
+                $('#divReciclado').hide();
+                $('#divQtdReciclado').hide();
 
                 $('#btnAddReciclado').on('click', function(){
                     if($('#divQtdReciclado').is(':hidden')){                        
                         $('#divQtdReciclado').show();
+                        $('#divReciclado').show();
                         $('#btnAddReciclado').text('Remover Reciclado');
                     } else {                     
                         $('#btnAddReciclado').text('Adicionar Reciclado');
                         $('#iQuantReciclado').val('');
                         $('#divQtdReciclado').hide();
+                        $('#iReciclado').val('');
+                        $('#divReciclado').hide();
                     }
                 })
 
@@ -175,6 +189,8 @@
                         $('#divSelectPigmento').hide();
                         $('#divQtdMaterial').hide();
                         $('#divQtdPigmento').hide();
+                        $('#divReciclado').hide();
+                        $('#divQtdReciclado').hide();
                     } else {                     
                         $.ajax({
                             url: "php/carregaPigmentosCompativeis.php",
@@ -188,6 +204,15 @@
                                 $('#divQtdPigmento').show();
                             }
                         });  
+                        $.ajax({
+                            url: "php/carregaRecicladosCompativeis.php",
+                            type: "POST",
+                            data: datas,
+                            dataType: "html",
+                            success: function(html) {
+                                $('#iReciclado').html(html);
+                            }
+                        });
                     }                  
                 });               
             })
