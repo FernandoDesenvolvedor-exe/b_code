@@ -400,7 +400,12 @@ class SSP {
 			 FROM   `$table`
 			 $where"
 		);
-		$recordsFiltered = $resFilterLength[0][0];
+
+		if(isset($resFilterLength[0][0]) != null){
+			$recordsFiltered = $resFilterLength[0][0];
+		} else {
+			$recordsFiltered = 0;
+		}
 
 		// Total data set length
 		$resTotalLength = self::sql_exec( $db, $whereAllBindings,

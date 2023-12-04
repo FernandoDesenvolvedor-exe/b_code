@@ -171,14 +171,14 @@
                                 <div class="input-group d-flex row">
                                     <label>De:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
+                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <label>Até: </label>
                                     <div class="col-sm-5">
-                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                        <input type="date" id="idDataFim" min="2" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -187,12 +187,6 @@
                             </div>     
 
                             <div class="form-group flex-column col-md-2">
-                                <div class="col-sm-12 m-3" id='idDivlimpaConsulta'>
-                                    <button id="iLimpaConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
-                                        <span class="fas fa-eraser"></span> 
-                                    </button> 
-                                </div> 
-
                                 <div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Filtros avançados
@@ -219,7 +213,7 @@
                                         <th>Produto</th>
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
-                                        <th>COncluido em</th>
+                                        <th>Data de abertura</th>
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
@@ -288,37 +282,48 @@
         </script>
 
         <script>            
-            function
-
             $('document').ready(function(){
-                $('#idDivlimpaConsulta').hide();
+                $('#idDataInicio').on('change', function(){
+                    $('#idDataFim').attr({"min" : ''+$('#idDataInicio').val()+''});
+                });
 
-                function formataData(){
-                    $('#idDataInicio').val().toUpperCase();
-                }
+                $('#idDataFim').on('blur', function(){
+                    if($('#idDataInicio').val() > $('#idDataFim').val()){
+                        alert('Data inicial maior que data final!');
+                    }
+                });
 
-                $('#iConsulta').click(function(e){   
+                $('#iConsulta').on('click', function(e){   
                     var select = $('#idSelecao').val();
 
                     if($('#idDataInicio').val() != ''){
-                        var dataInicio = $('#idDataInicio').val();
+                        var dataInicio = $('#idDataInicio').val();   
                     } else {
-                        var dataInicio = '';
+                        var dataInicio = '';                        
                     }
-                    
                     if($('#idDataFim').val() != ''){
-                        var dataFim = $('#idDataFim').val();
+                        var dataFim = $('#idDataFim').val();   
                     } else {
                         var dataFim = '';
                     }                                  
 
-                    //e.preventDefault();
+                    if(dataFim != '' && dataInicio != ''){
+                        if(dataInicio > dataFim){
+                            alert('Data inicial não pode ser maior que a final');
+                        } else {                            
+                            let datas ='campo1='+select+'&campo2='+dataInicio+'&campo3='+dataFim; 
+                        }
+                    } else {                        
+                        let datas ='campo1='+select+'&campo2='+dataInicio+'&campo3='+dataFim; 
+                    }
+
+                    e.preventDefault();
 
                     $.ajax({
                         url: 'php/historicoFiltro.php',
-                        method: 'GET',
+                        method: 'POST',
                         dataType: 'html',
-                        data:'&selecao='+select+'&dataInicio='+dataInicio+'&dataFim='+dataFim+'',
+                        data:datas,
                         success: function() {
                             var table = $('#datatable').DataTable();
                             table.destroy();
