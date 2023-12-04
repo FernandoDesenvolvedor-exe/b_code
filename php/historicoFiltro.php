@@ -27,7 +27,7 @@
     }
 
     if($dataFim != ''){
-        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_aberto, "%Y-%m-%d") >= '.$dataFim.'';  
+        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_fechado, "%Y-%m-%d") <= '.$dataFim.'';  
     }
 
 ?>

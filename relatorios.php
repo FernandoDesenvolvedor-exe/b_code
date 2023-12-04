@@ -28,7 +28,7 @@
 
                 <div class="container-fluid">
 
-                    <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                    <!--div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                         <div class="modal-dialog modal-lg" role="document ">                                
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div -->
                             
                     <h3 class="card-title">Menu de Relatórios</h3>
 
@@ -186,18 +186,16 @@
                                 </div>                          
                             </div>     
 
-                            <div class="form-group flex-column col-md-2">
-                                <div class="col-sm-12 m-3">                                    
+                            <div class="form-group col-md-2">
+                                <!--div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Filtros avançados
                                     </button> 
-                                </div>
+                                </div -->
 
-                                <div class="col-sm-12 m-3">
-                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
-                                        Consulta
-                                    </button> 
-                                </div> 
+                                <button id="iConsulta" align=center type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px; text-align: center;">
+                                    Consulta
+                                </button> 
                             </div> 
 
                         </div>                          
@@ -305,18 +303,9 @@
                         var dataFim = $('#idDataFim').val();   
                     } else {
                         var dataFim = '';
-                    }                                  
-
-                    if(dataFim != '' && dataInicio != ''){
-                        if(dataInicio > dataFim){
-                            alert('Data inicial não pode ser maior que a final');
-                        } else {                            
-                            let datas ='campo1='+select+'&campo2='+dataInicio+'&campo3='+dataFim; 
-                        }
-                    } else {                        
-                        let datas ='campo1='+select+'&campo2='+dataInicio+'&campo3='+dataFim; 
-                    }
-
+                    }     
+                    
+                    let datas ='campo1='+select+'&campo2='+dataInicio+'&campo3='+dataFim; 
                     e.preventDefault();
 
                     $.ajax({
