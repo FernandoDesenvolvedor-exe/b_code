@@ -49,7 +49,7 @@
 
                         <!-- MODAL NOVO PIGMENTO -->
                         <div class="modal fade" id="modalAddPigmento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">                                
+                            <div class="modal-dialog modal-lg" role="document ">                                
                                 <div class="modal-content" style='width:105%'>
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Cadastrar Novo Pigmento</h5>
@@ -109,9 +109,9 @@
                                                 </div>
 
                                                 <div class="form-group row">                                                    
-                                                    <label class="col-md-3 m-t-15" style="text-align: right;">Matéria(s) prima(s) compatível(eis)</label>
-                                                    <div class="col-md-9">
-                                                        <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15" multiple="multiple" style="width: 100%; height:36px;" required>
+                                                    <label class="col-md-4 m-t-15" align="center" style="text-align: right;">Matéria(s) prima(s) compatível(eis)</label>
+                                                    <div class="col-md-8">
+                                                        <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15 mt-1" multiple="multiple" style="width: 100%; height:36px;" required>
                                                             <?php echo optionMaterial(1);?>
                                                         </select>
                                                     </div>

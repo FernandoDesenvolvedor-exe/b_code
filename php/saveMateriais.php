@@ -32,6 +32,7 @@ Validações
         $tipoMaterial = stripslashes($_POST['nTipo']);
         $observacoes = stripslashes($_POST['nObservacoes']);
         $fornecedor = stripslashes($_POST['nFornecedor']);      
+        /*
         if(!validarDado(4,$descricao)){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
@@ -41,7 +42,7 @@ Validações
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
-        }
+        }*/
 
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
@@ -57,16 +58,18 @@ Validações
         
         $result = mysqli_query($conn,$sql);
 
-        if (count($_POST['nPigmento']) > 0){ 
+        if($_POST['nPigmento'] != ''){
+            if (count($_POST['nPigmento']) > 0){ 
 
-            for($n = 0; $n < count($_POST['nPigmento']); $n++){
-                
-                $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
-                        ."VALUES(".$idMaterial.", ".$_POST['nPigmento'][$n].");";
-    
-                $result = mysqli_query($conn, $sql);
-            } 
-        }
+                for($n = 0; $n < count($_POST['nPigmento']); $n++){
+                    
+                    $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
+                            ."VALUES(".$idMaterial.", ".$_POST['nPigmento'][$n].");";
+        
+                    $result = mysqli_query($conn, $sql);
+                } 
+            }
+        }        
         
         //fecha a conexão
         mysqli_close($conn);

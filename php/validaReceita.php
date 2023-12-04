@@ -73,5 +73,5 @@
 
     mysqli_close($conn);
     $_SESSION['msgErro'] = $abreHTMLalert.'Cadastrado!!!(FAKE) idMat:'.$material.' idPig:'.$pigmento.' Pig:'.$pesoPigmento.'g Mat:'.$pesoMaterial.'g'.mysqli_num_rows($result) .$fechaHTMLalert;
-    header('location: ../saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
+    header('location: saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
 ?>

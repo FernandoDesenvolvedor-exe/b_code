@@ -10,26 +10,20 @@
         $pesoPigmento=$_GET['qPig'];
         $observacoes=$_GET['obs'];
         //INSERT na tabela receita
+
+        include('connection.php');
         $sqlInsert = "Insert into receitas (idProduto,IdPigmento,quantidadePigmento,observacoes,ativo) values (".$produto.",".$pigmento.",".$pesoPigmento.",'".$observacoes."',1);";
         mysqli_query($conn,$sqlInsert);
+        mysqli_close();
+
         //Pega ID da receita criada
-        $sql='SELECT MAX(idReceita) as idReceita from receitas;';
-        $result= mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0){
-            $array = array();
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
-                array_push($array,$linha);
-            }
-            foreach($array as $campo){
-                $idReceita=$campo['idReceita'];
-            }
-        }
+        $id = buscaId('receitas','idReceita');
         //INSERT idReceita, materia_prima e a quantidade_de_materia
         $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial) values
-        (".$idReceita.",".$material.",".$pesoMaterial.");";
-            
-        }
-        //INSERT NA TABELA           
+        (".$idReceita.",".$material.",".$pesoMaterial.");";            
+        
+        //INSERT NA TABELA          
+        include('connection.php');        
         mysqli_query($conn, $sqlInsert);
         mysqli_close($conn);
         //$_SESSION['error'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔👍'.$fechaHTMLalert;

@@ -830,6 +830,8 @@
                 $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']."</option>";                                  
                                                      
             }
+        } else {
+            $select="<option value=''>Nenhum pigmento encontrado</option>";     
         }
 
         return $select;
