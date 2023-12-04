@@ -163,8 +163,13 @@
                 })
 
                 $('#divQtdMaterial').on('change', function(){
+                    $('#zero_config').append('<tr><td>'+$('#iMaterial').val()+'</td><td>'+$('#iQuantMaterial').val()+'g</td></tr>');
+                });
+
+                $('#iQuantPigmento').on('change', function(){
                     $('#zero_config').append('<td>'+$('#iMaterial').val()+'</td><td>'+$('#iQuantMaterial').val()+'g</td>');
                 });
+                
 
                 $('#iMaterial').on('change', function(){
                     datas = 'campo1='+$(this).val();
