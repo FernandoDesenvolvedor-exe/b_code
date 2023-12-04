@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 04/12/2023 às 22:42
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Banco de dados: `lab_plasticos`
@@ -177,14 +159,10 @@ INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
-(1, 'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', NULL, 1, 0),
+(1, 'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', NULL, 1, 1),
 (2, 'Luis@LabPlasticos.com.br', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', NULL, 1, 1),
 (3, 'b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 1),
 (4, 'c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'sobrenome teste', 1, 2, 1),
 (5, 'adm1@adm.com', '202cb962ac59075b964b07152d234b70', 'adm', 'adm', NULL, 1, 1),
 (6, 'ad@ad.v', '202cb962ac59075b964b07152d234b70', 'daniel', 'dani', 2, 2, 1);
 
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
