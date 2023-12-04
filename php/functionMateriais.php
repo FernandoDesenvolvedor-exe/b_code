@@ -104,37 +104,7 @@
         
         return $table;
     }    
-    function validaEstoque($idMaterial,$quantidade){
-        $minimo = $_SESSION['estoqueMinimo'];
-
-        $sql = 'SELECT quantidade FROM materia_prima WHERE idMateriaPrima = '.$idMaterial.'';
-
-        include('connection.php');
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
-
-        $validado = false;
-
-        if(mysqli_num_rows($result) > 0){            
-            $array = array();
-
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                array_push($array, $linha);
-            }
-
-            foreach($array as $campo){
-                if($campo['quantidade'] <= $minimo){
-                    $validado = false;
-                } else {
-                    if($quantidade > $campo['quantidade']){                        
-                        $validado = true;
-                    }
-                }
-            }
-
-            return $validado;
-        }
-    }
+    
     function nomeFornecedorPigmento($id){
         $sql='  SELECT f.descricao as fornecedor
                 FROM pigmento_fornecedor pf
@@ -259,9 +229,6 @@
     }
 
     function dataTableMateria(){
-        if(session_status() !== PHP_SESSION_ACTIVE){
-            session_start();
-        }
         include('connection.php');
     
         $sql = "SELECT mat.idMateriaPrima as idMateria,

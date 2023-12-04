@@ -25,24 +25,33 @@
         $horario = "$hora:$min:$sec";
         $current_date = "$data $horario";
         
-        $_SESSION['msg'] = 'Pedido aberto!';
+        $_SESSION['msg'] = 'Ordem de produção aberta!';
 
-        for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
-            if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n]) == false){
-                $status = 1;
-                $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
+        // valida se a quantidade de material no estoque supre a 
+        // quantidade necessária do pedido se o mesmo for registrado em andamento.
+        if($status == 2){
+            for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
+                if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n],'materia_prima','idMateriaPrima') == false){
+                    $status = 1;
+                    $_SESSION['msg'] .=  $_POST['nMaterial'][$n].': Material insuficiente!';
+                }
             }
+
+            if(validaEstoque($_POST['nPigmento'][$n],$_POST['nQtdPigmento'][$n],'pigmentos','idPigmento') == false){
+                $status = 1;
+                $_SESSION['msg'] .=  $_POST['nCor'][$n].'- '.$_POST['nTipoCor'].': Material insuficiente!';
+            }
+
+            //se qualquer um dos materiais requisitados não forem o suficiente, 
+            //o pedido fica em aberto e grava uma menssagem mostrando quais materiais estão em falta
+
+            //Um pedido só pode ser inicializado quando o estoque tiver material o suficiente para supri-lo
         }
+        
         
         if($status == 2){
             for ($n = 0; $n < count($_POST['nMaterial']); $n++){ 
-                if(validaEstoque($_POST['nIdMaterial'][$n],$_POST['nQuantidadeMat'][$n]) == false){
-                    $sql = 'UPDATE materia_prima SET quantidade = -'.($_POST['nQuantidadeMat'][$n] * $qtde).' WHERE idMateriaPrima = '.$_POST['nIdMaterial'][$n].'';
-
-                    include('connection.php');
-                    $result = mysqli_query($conn,$sql);
-                    mysqli_close($conn);
-                }                                
+                                                
             }
         }
 
@@ -92,6 +101,9 @@
         $idPedido = buscaId("pedidos","idPedido");  
             
         for ($n = 0; $n < count($_POST['nMaterial']); $n++){            
+
+            //Cria um registro em historico_pedidos para cada materia prima 
+
             $sql = 'INSERT INTO historico_pedidos
                            (idHistorico,
                             nomeUsuario,
@@ -170,8 +182,12 @@
                             
             include('connection.php');
             $result = mysqli_query($conn, $sql);     
-            mysqli_close($conn);            
-        }        
+            mysqli_close($conn);      
+        }  
+        
+        if($status == 2){            
+            alteraEstoque($idPedido);
+        }
 
     } else if($_GET['validacao'] == 'D'){ // DESATIVAR Pedido
         
@@ -216,21 +232,23 @@
         if ($_GET['stats'] == 1){
 
             include('connection.php');
-            $sql = 'UPDATE pedidos SET 
-                        status = 2, 
+            $sql = 'UPDATE pedidos SET status = 2, 
                         dataHora_producao="'.$current_date.'",
-                        idMaquina=  
+                        idMaquina='.$_POST['nMaquina'].' 
                         WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
-            mysqli_close($conn);
-            
+            mysqli_close($conn);            
+
             include('connection.php');
             $sql = 'UPDATE historico_pedidos 
                         SET statusPedido = 2,
                         dataHora_producao="'.$current_date.'" 
+                        maquina = "'.maquinaNome($_POST['nMaquina']).'"
                         WHERE idPedido = '.$_GET['id'].';';
             $result = mysqli_query($conn, $sql);
             mysqli_close($conn);
+
+            alteraEstoque($_GET['id']);
 
         } else if ($_GET['stats'] == 2){
 

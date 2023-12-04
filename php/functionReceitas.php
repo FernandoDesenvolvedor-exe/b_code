@@ -77,7 +77,7 @@
                                         <div class="modal-body pre-scrollable">
                                         
                                             <diiv class="card">
-                                                <form method="POST" action="php/savePedidos.php?validacao=I&id='.$campo['receitaId'].'&idMateria='.$campo['materiaId'].'">
+                                                <form method="POST" action="php/savePedidos.php?validacao=I&id='.$campo['receitaId'].'&idProduto='.$campo['produtoId'].'">
         
                                                     <div class="card-body">
                                                         <div class="input-group mb-3">
