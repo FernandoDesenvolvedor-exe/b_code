@@ -672,7 +672,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option value=''>Selecione uma opção</option>";     
+        $select = "<option value='0'>Selecione uma opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso == 1){

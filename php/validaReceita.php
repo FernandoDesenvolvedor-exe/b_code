@@ -36,14 +36,14 @@
             array_push($array,$linha);
         }
         foreach($array as $campo){
-            if($campo['peso']+($campo['peso']*0.05)<$qMaterial){
+            if(($campo['peso']+($campo['peso']*0.05)) < $qMaterial){
                 mysqli_close($conn);
-                $_SESSION['msgErro'] = $abreHTMLalert.'Peso total ultrapassa do peso do produto!'.$fechaHTMLalert;
+                $_SESSION['msgErro'] = $abreHTMLalert.'quantidade total de material ultrapassa variação de máxima permitida!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
                 die();
-            }else if($campo['peso']-($campo['peso']*0.05)>$qMaterial){
+            }else if(($campo['peso']-($campo['peso']*0.05))>$qMaterial){
                 mysqli_close($conn);
-                $_SESSION['msgErro'] = $abreHTMLalert.'Peso total insuficiente para fabricar o produto!'.$fechaHTMLalert;
+                $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade total de material menor que variação minima permitida!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
                 die();
             }
@@ -68,8 +68,9 @@
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die();
     }
-    echo 'Reciclado: '.$qReciclado;
-    die();
+    //echo 'Reciclado: '.$qReciclado;
+    //die();
+
     mysqli_close($conn);
     $_SESSION['msgErro'] = $abreHTMLalert.'Cadastrado!!!(FAKE) idMat:'.$material.' idPig:'.$pigmento.' Pig:'.$pesoPigmento.'g Mat:'.$pesoMaterial.'g'.mysqli_num_rows($result) .$fechaHTMLalert;
     header('location: ../saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
