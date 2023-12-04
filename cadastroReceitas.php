@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row" id="divQtdMaterial">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quant. Material</label>
                                     <div class="col-sm-5" id='qntM'>
                                         <input id="iQuantMaterial" name="nQuantMaterial" type="number" class="form-control" placeholder="quantidade Material" style="width:100%;" min="0" required>
@@ -149,6 +149,7 @@
             $('document').ready(function(){
                 $('#divSelectPigmento').hide();
                 $('#divQtdReciclado').hide();
+                $('#divQtdMaterial').hide();
 
                 $('#btnAddReciclado').on('click', function(){
                     if($('#divQtdReciclado').is(':hidden')){                        
@@ -161,12 +162,18 @@
                     }
                 })
 
+                $('#divQtdMaterial').on('change', function(){
+                    $('#zero_config').append('<td>'+$('#iMaterial').val()+'</td><td>'+$('#iQuantMaterial').val()+'g</td>');
+                });
+
                 $('#iMaterial').on('change', function(){
                     datas = 'campo1='+$(this).val();
 
                     if($('#iMaterial').val() == '0'){
                         $('#divSelectPigmento').hide();
-                    } else {
+                        $('#divQtdMaterial').hide();
+                    } else {                        
+                        $('#divQtdMaterial').show();
                         $.ajax({
                             url: "php/carregaPigmentosCompativeis.php",
                             type: "POST",
@@ -177,7 +184,7 @@
                                 $('#divSelectPigmento').show();
                             }
                         });  
-                    }                    
+                    }                  
                 });               
             })
         </script>

@@ -672,7 +672,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option value='0'>Selecione uma opção</option>";     
+        $select = "<option value=''>Selecione uma opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso == 1){
@@ -714,16 +714,21 @@
 
         }else if($caso == 2){
             $sql = 'SELECT mat.idMateriaPrima as id,
-            mat.descricao as nome,
-            tipo.descricao as tipos,
-            class.descricao as classe
-            FROM materia_prima as mat
-            LEFT JOIN tipo_materia_prima as tipo
-            ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-            LEFT JOIN classe_material as class
-            ON mat.idClasse = class.idClasse
-            WHERE mat.ativo = 1
-            AND mat.idTipoMateriaPrima = 1;';
+                        mat.descricao as nome,
+                        tipo.descricao as tipos,
+                        class.descricao as classe,
+                        f.descricao as fornecedor
+                    FROM materia_prima as mat
+                    LEFT JOIN tipo_materia_prima as tipo
+                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
+                    LEFT JOIN classe_material as class
+                    ON mat.idClasse = class.idClasse
+                    RIGHT JOIN materia_fornecedor mf
+                    ON mat.idMateriaPrima = mf.idMateriaPrima
+                    RIGHT JOIN fornecedores f
+                    ON mf.idFornecedor = f.idFornecedor
+                    WHERE mat.ativo = 1
+                    AND mat.idTipoMateriaPrima = 1;';
         
             //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
             //executa o script sql na variavel $sql,
@@ -743,7 +748,7 @@
                 
                 foreach($array as $campo){
                     
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
                                                         
                 }
             }     
