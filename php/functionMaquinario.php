@@ -192,7 +192,7 @@ function optionMaquina($caso){
 
     if ($caso == '0'){
 
-        $select ="<option value=''> Selecione uma opção </option>";
+        $select ="<option value='' disabled> Selecione uma opção </option>";
     
         $sql = "SELECT * FROM maquinas WHERE ativo = 1;";
     
@@ -213,7 +213,7 @@ function optionMaquina($caso){
             }
         }
 
-    } else if ($caso != '0'){
+    } else {
 
         $select ="<option value=''> Selecione uma opção </option>";
     

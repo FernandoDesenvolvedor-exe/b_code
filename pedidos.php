@@ -34,7 +34,7 @@
                     
                     <h1 style="text-align:center;">Selecione um produto</h1>   
                         
-                    <div style="display: inline !important;">
+                    <div class="d-flex row" style="display: inline !important;">
 
                         <?php echo cardProduto();?>
 

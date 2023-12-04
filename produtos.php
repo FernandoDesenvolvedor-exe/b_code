@@ -74,7 +74,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 m-t-15" style="text-align: right;">Tipo de ferramental</label>
                                                 <div class="col-md-9">
-                                                    <select id="idMaquina" name="nMaquina" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                    <select id="idMaquina1" name="nMaquina1" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                         <?php echo optionMaquina('0');?>                                         
                                                     </select>
                                                 </div>
@@ -92,7 +92,7 @@
 
                         <!-- MODAL NOVO PRODUTO/MOLDE -->
                         <div class="modal fade" id="modalAddProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">                                
+                            <div class="modal-dialog modal-lg" role="document ">                                
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto e molde</h5>
@@ -151,7 +151,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 m-t-15"  style="text-align: right;">Maquinas Compatíveis</label>
                                                     <div class="col-md-9">
-                                                        <select id="iMaquina[]" name="nMaquina[]" multiple = 'multiple' class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
+                                                        <select id="iMaquina2" name="nMaquina2[]" multiple='multiple' class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
                                                             <?php echo optionMaquina('0');?>
                                                         </select>
                                                     </div>
@@ -229,7 +229,7 @@
                                                 <div class="form-group row">
                                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome da máquina</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="iMaquina" name= "nMaquina" placeholder="Ex: máquina" required>
+                                                        <input type="text" class="form-control" id="iMaquina3" name="nMaquina3" placeholder="Ex: máquina" required>
                                                     </div>
                                                 </div> 
 
@@ -293,22 +293,9 @@
         
         <script>
             
-            //***********************************//
-            // For select 2
-            //***********************************//
             $(".select2").select2();
 
-            /*colorpicker*/
             $('.demo').each(function() {
-            //
-            // Dear reader, it's actually very easy to initialize MiniColors. For example:
-            //
-            //  $(selector).minicolors();
-            //
-            // The way I've done it below is just for the demo, so don't get confused
-            // by it. Also, data- attributes aren't supported at this time...they're
-            // only used for this demo.
-            //
             $(this).minicolors({
                     control: $(this).attr('data-control') || 'hue',
                     position: $(this).attr('data-position') || 'bottom left',
@@ -324,7 +311,6 @@
                 });
 
             });
-            /*datwpicker*/
             jQuery('.mydatepicker').datepicker();
             jQuery('#datepicker-autoclose').datepicker({
                 autoclose: true,
