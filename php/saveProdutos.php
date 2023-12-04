@@ -25,10 +25,10 @@
 
         $idFerr = buscaId('ferramental', 'idFerramental');
 
-        for($i = 0; $i < count($_POST['nMaquina']); $i++){
+        for($i = 0; $i < count($_POST['nMaquina2']); $i++){
 
             $sql = "INSERT INTO ferramental_maquina(idFerramental, idMaquina)" 
-                    ."VALUES(".$idFerr.", ".$_POST['nMaquina'][$i].");";
+                    ."VALUES(".$idFerr.", ".$_POST['nMaquina2'][$i].");";
 
             $result = mysqli_query($conn, $sql);
         }
@@ -202,7 +202,7 @@
         
     } else if($validacao == 'IM'){   // Insert um cadastro de maquina   
 
-        $descricao = stripslashes($_POST['nMaquina']);
+        $descricao = stripslashes($_POST['nMaquina3']);
         $observacoes = stripslashes($_POST['nMObservacoes']);
 
         $sql = "INSERT INTO maquinas(descricao, ativo, observacoes)"
@@ -238,7 +238,7 @@
 
     } else if($validacao == 'DM'){ // DELETE DE UM CADASTRO DE MAQUINAS
 
-        $sql="UPDATE maquinas SET ativo = 0 WHERE idMaquina=".$_POST['nMaquina'].";";
+        $sql="UPDATE maquinas SET ativo = 0 WHERE idMaquina=".$_POST['nMaquina1'].";";
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);

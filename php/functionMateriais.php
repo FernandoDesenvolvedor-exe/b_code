@@ -1,11 +1,44 @@
-<?php     
-    function materiais($id,$case){
+<?php
+
+    function selectCor($id,$coluna){
+        if($coluna == 1){
+            $coluna = 'codigo';            
+        } else if ($coluna == 2){
+            $coluna = 'lote';            
+        }
+
+        $sql='SELECT * FROM pigmentos WHERE idPigmento = '.$id.'';
+
+        include('connection.php');
+        $result=mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $resultado = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array,$linha);
+            }
+
+            foreach($array as $campo){
+                $resultado = $campo[''.$coluna.''];
+            }
+        }
+
+        return $resultado;
+    }
+
+    function materiaisHistorico($id,$case){
 
         include('connection.php');
 
-        $sql ='SELECT materiaPrima, producaoPrevista as material
-            FROM historico_pedidos             
-            WHERE idPedido = '.$id.';';
+        $sql =' SELECT  mat.descricao as material,
+                        t.descricao as tipo,
+                        c.descricao as classe,
+                FROM receita_materia_prima rmat
+                WHERE  = '.$id.';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -22,6 +55,7 @@
             $n = 1;
 
             foreach($array as $campo){
+
                 // case 1 para modal -- case 2 para tabela 
                 switch($case){
                     case 1:                                                   
@@ -50,7 +84,7 @@
                                 <div class="form-group row">
                                     <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                     <div class="col-sm-8">
-                                        <input value="'.$campo['fornecedorMateria_prima'].'" id="idTipoMaterial" name="nTipoMaterial" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        <input value="'.$campo['fornecedorMateria_prima'].'" id="idFornecedor" name="nFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                     </div>
                                 </div>';
                     break;
@@ -60,6 +94,105 @@
                             $table .= ' '.$campo['materiaPrima'].'';
                         } else {
                             $table .= ''.$campo['materiaPrima'].' -';
+                        }
+                    break;                      
+                }
+
+                $n++;                
+            }
+        }
+        
+        return $table;
+    }    
+    
+    function nomeFornecedorPigmento($id){
+        $sql='  SELECT f.descricao as fornecedor
+                FROM pigmento_fornecedor pf
+                LEFT JOIN fornecedores f 
+                ON pf.idFornecedor = f.idFornecedor
+                WHERE pf.idPigmento = '.$id.'';
+
+        include('connection.php');
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $fornecedor = '';
+
+        if(mysqli_num_rows($result) > 0){
+            $array = array();
+            while($linha = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                array_push($array,$linha);
+            }
+
+            foreach($array as $campo){
+                $fornecedor = $campo['fornecedor'];
+            }
+        }
+
+        return $fornecedor;
+    }
+    function materiaisReceita($idReceita,$case){
+
+        include('connection.php');
+
+        $sql ='SELECT * FROM view_materia_receitas WHERE id = '.$idReceita.';';
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $table= '';
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            $n = 1;
+
+            foreach($array as $campo){
+
+                // case 1 para modal -- case 2 para tabela 
+                switch($case){
+                    case 1:                                                   
+                        $table .=
+                                '<div class="card-body">
+                                    <label>Matéria Prima</label>
+                                    <div class="row mb-3">                                    
+                                        <div class="col-sm-2">
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto">
+                                            
+                                        </div>
+                                        <a class="col-sm-1 mt-3">g</a>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
+                                        <div class="col-sm-8">
+                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedor'].'">
+                                        </div>                                        
+                                        <div class="col-lg-3" hidden>
+                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'">
+                                        </div>    
+                                    </div>
+                                </div>';
+                    break;
+                        
+                    case 2:
+                        if(count($array) == $n){
+                            $table .= ' '.$campo['material'].'';
+                        } else {
+                            $table .= ''.$campo['material'].' -';
                         }
                     break;                      
                 }
@@ -96,9 +229,6 @@
     }
 
     function dataTableMateria(){
-        if(session_status() !== PHP_SESSION_ACTIVE){
-            session_start();
-        }
         include('connection.php');
     
         $sql = "SELECT mat.idMateriaPrima as idMateria,
@@ -238,6 +368,7 @@
 
                                                 <div class="card-body">                                                                                                       
                                                     <h4 class="card-title">Informações da matéria Prima</h4>
+
                                                     <div class="form-group row">
                                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nome</label>
                                                         <div class="col-sm-9">
@@ -246,7 +377,7 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 m-t-15" style="text-align: right;">Classe</label
+                                                        <label class="col-sm-3 text-right control-label col-form-label">Classe</label>
                                                         <div class="col-md-9">
                                                             <select id="iClasse" name="nClasse" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                 '.optionClaseMaterial().'
@@ -255,7 +386,7 @@
                                                     </div>
                                 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 m-t-15" style="text-align: right;">Tipo</label>
+                                                        <label class="col-sm-3 text-right control-label col-form-label">Tipo</label>
                                                         <div class="col-md-9">
                                                             <select id="iTipo" name="nTipo" class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                                                 '. optionTipoMaterial().'
@@ -263,7 +394,7 @@
                                                         </div>
                                                     </div>
                                 
-                                                    <div style="align-itens= side;"  class="form-group row">
+                                                    <div class="form-group row">
                                                         <label for="email1" class="col-sm-3 text-right control-label col-form-label">Fornecedor</label>
                                                         <div style="display:inline;" class="col-sm-9">
                                                             <select id="iFornecedor" name="nFornecedor" class="select2 form-control custom-select" style="width: 100%; height:36px;">                                           
@@ -541,7 +672,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option value=''>Selecione um opção</option>";     
+        $select = "<option value='0'>Selecione uma opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso == 1){
@@ -583,16 +714,21 @@
 
         }else if($caso == 2){
             $sql = 'SELECT mat.idMateriaPrima as id,
-            mat.descricao as nome,
-            tipo.descricao as tipos,
-            class.descricao as classe
-            FROM materia_prima as mat
-            LEFT JOIN tipo_materia_prima as tipo
-            ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-            LEFT JOIN classe_material as class
-            ON mat.idClasse = class.idClasse
-            WHERE mat.ativo = 1
-            AND mat.idTipoMateriaPrima = 1;';
+                        mat.descricao as nome,
+                        tipo.descricao as tipos,
+                        class.descricao as classe,
+                        f.descricao as fornecedor
+                    FROM materia_prima as mat
+                    LEFT JOIN tipo_materia_prima as tipo
+                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
+                    LEFT JOIN classe_material as class
+                    ON mat.idClasse = class.idClasse
+                    RIGHT JOIN materia_fornecedor mf
+                    ON mat.idMateriaPrima = mf.idMateriaPrima
+                    RIGHT JOIN fornecedores f
+                    ON mf.idFornecedor = f.idFornecedor
+                    WHERE mat.ativo = 1
+                    AND mat.idTipoMateriaPrima = 1;';
         
             //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
             //executa o script sql na variavel $sql,
@@ -612,7 +748,7 @@
                 
                 foreach($array as $campo){
                     
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
                                                         
                 }
             }     
@@ -694,6 +830,8 @@
                 $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']."</option>";                                  
                                                      
             }
+        } else {
+            $select="<option value=''>Nenhum pigmento encontrado</option>";     
         }
 
         return $select;

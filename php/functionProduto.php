@@ -126,7 +126,7 @@
 
 
                             ."<div class='modal fade' id='EditaModal".$campo['idP']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
-                                ."<div class='modal-dialog' role='document '>"
+                                ."<div class='modal-dialog modal-lg' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
                                             .'<h5 class="modal-title" id="exampleModalLabel">Alterar produto e/ou molde</h5>'
@@ -215,36 +215,40 @@
                 array_push($array,$linha);
             }
 
-            foreach($array as $campo){
-                //col-lg-3 col-md-6el-card-avatar el-overlay-1
-                            
-                $card .="<div class='row divBoxProduto'>
-                            <div class='row el-element-overlay'> "
-                                ."<div class='divBoxCard'>"
-                                    ."<div class='card'>"
-                                        ."<div class='el-card-item'>"
-                                            ."<div>"                                            
-                                                ."<img class='divBoxImg' name='nImg' id='idImg' src='".$campo['imagem']."' alt='user'/>"
-                                            ."</div>"
-                                            ."<div class='el-card-content'>"
-                                            ."  <form method='POST' action='receitas.php? idProduto=".$campo['idProduto']."&pr=".$campo['descricao']."'>"
-                                                    ."<h4 id='idProduto' name='nProduto' class='m-b-0'>".$campo['descricao']."</h4> <span class='text-muted'></span>" 
-                                                    .'<button style="width: auto; border-radius: 5px;" type="submit" class="btn btn-info margin-5">'
-                                                        .'Selecionar'
-                                                    .'</button>'
-                                            .'  </form>'
-                                            ."</div>" 
-                                        ."</div>"
-                                    ."</div>"
-                                ."</div>"
-                            ."</div>"
-                        ."</div>";
-
-            }   
-
             
+            $card='';
+            foreach($array as $campo){
+
+                $card .='   <div class="w-25 p-3" height="100px">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">                                          
+                                            <img src="'.$campo['imagem'].'" alt="user" />
+                                            <div class="el-overlay">
+                                                <ul class="list-style-none el-info">
+                                                    <li class="el-item">
+                                                        <a class="btn default btn-outline image-popup-vertical-fit el-link" href="'.$campo['imagem'].'">
+                                                            <i class="mdi mdi-magnify-plus">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="el-card-content">
+                                            <form method="POST" action="receitas.php?idProduto='.$campo['idProduto'].'&pr='.$campo['descricao'].'">
+                                                <h4 id="idProduto" name="nProduto" class="m-b-0">'.$campo['descricao'].'</h4> <span class="text-muted"></span>
+                                                <button style="width: auto; border-radius: 5px;" type="submit" class="btn btn-info margin-5">
+                                                    Selecionar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+            }   
         }  
-        
+
         return $card;
     }
 ?>

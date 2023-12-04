@@ -30,10 +30,30 @@
                 
                 <?php include('links/side_bar_direita.php');?>
 
-                <div class="container-fluid">    
+                <div class="container-fluid">  
 
+                    <?php 
+                    if($_SESSION['ativaMsgS'] == 1){?>
+                        <div class="alert alert-success" role="alert">
+                            <p class="mb-0"><?php echo $_SESSION['msgSucesso']; $_SESSION['msgSucesso'] = ''; $_SESSION['ativaMsgS'] = 0;?></p>
+                        </div>
+                    <?php 
+                    } 
+                    if ($_SESSION['ativaMsgA'] == 1){?>
+                        <div class="alert alert-warning" role="alert">
+                            <p class="mb-0"><?php echo $_SESSION['msgAviso']; $_SESSION['msgAviso'] = ''; $_SESSION['ativaMsgA'] = 0;?></p>
+                        </div>
+                    <?php 
+                    } 
+                    if($_SESSION['ativaMsgD'] == 1){?>
+                        <div class="alert alert-danger" role="alert">
+                            <p class="mb-0"><?php echo $_SESSION['msgPerigo']; $_SESSION['msgPerigo'] = ''; $_SESSION['ativaMsgD'] = 0;?></p>
+                        </div>                    
+                    <?php 
+                    }
+                    ?>
                     <!-- Start Page Content -->                    
-                    <div class="card" style="padding: 10px;">  
+                    <div class="card" style="padding: 10px;">                         
 
                         <h4 class="card-title">Monitoramento de Pedidos</h4>
                                     
@@ -45,8 +65,7 @@
                             </a>                                          
                         </div> 
 
-                        <div class="card" style="padding: 10px;"> 
-
+                        <div class="card" style="padding: 10px;">        
                             <div class="table-responsive">
                                 <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
@@ -83,6 +102,6 @@
             *       Basic Table                   *
             ****************************************/
             $('#zero_config').DataTable();
-        </script> 
+        </script>         
     </body>
 </html>

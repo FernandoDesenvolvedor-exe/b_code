@@ -22,7 +22,13 @@
         $_SESSION['filtroHistorico'] .= ' AND statusPedido = 0';  
 
     } 
-    
-    $_SESSION['filtroHistorico'] .= ' GROUP BY idPedido';
+
+    if($dataInicio !=  ''){
+        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_aberto, "%Y-%m-%d") >= '.$dataInicio.'';  
+    }
+
+    if($dataFim != ''){
+        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_aberto, "%Y-%m-%d") >= '.$dataFim.'';  
+    }
 
 ?>

@@ -53,7 +53,7 @@
 
                         </div>
                     </div>
-
+                    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
                     <div class="card" style="padding: 10px;"> 
                         <h4 class="card-title">Receitas de <?php echo $_GET['pr']?></h4>
                         <div class="table-responsive">
@@ -87,7 +87,7 @@
         
 
         <script>
-
+            /*
             var select = document.getElementById('#idStatus');
 
             //document.getElementById('#idStatus').addEventListener("click", function(){         });
@@ -104,7 +104,10 @@
 
                 div.style.display = block;
 
-            }
+            }*/
+            $('document').ready(function(){
+                
+            })
 
         </script>
 

@@ -73,7 +73,6 @@
         <?php include('links/script.php');?>
 
         <script>
-
             $('[data-toggle="tooltip"]').tooltip();
             $(".preloader").fadeOut();
             // ============================================================== 
