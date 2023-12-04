@@ -1,4 +1,6 @@
-
+DROP DATABASE lab_plasticos;
+CREATE DATABASE lab_plasticos;
+USE lab_plasticos;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
