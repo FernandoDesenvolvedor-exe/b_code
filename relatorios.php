@@ -1,13 +1,10 @@
 <?php
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }
-
+    session_start();
     include('php/function.php');
 
     if (isset($_SESSION['user']) == 0){
         //alert(1,'Acesso negado!','Tentativa de acesso ilegal!');        
-        header('location: php/logout.php');
+        header('location: login');
     }
 ?>
 <!DOCTYPE html>
@@ -93,18 +90,31 @@
                                         
                                         <div class="card-body d-flex flex-row align-items-left">
                                             
-                                        <div class="form-group row col-md-4">     
-                                            <h4 class="card-title col-sm-12">Organizar ordens de produção por:</h4>
-                                            <div class="col-sm-10">
-                                                <select id="idSelecaoAvancado" name="nSelecao" class="select2 form-control custom-select" style="width: 100%; height:36px;" required>
-                                                    <option value="">Todos</option>
-                                                    <option value="1">Em Aberto</option>
-                                                    <option value="2">Em Andamento</option>
-                                                    <option value="0">Cancelados</option>
-                                                    <option value="3">Concluidos</option>
-                                                </select>
+                                            <div class="card-body col-sm-6">                       
+                                                <h4 class="card-title">Organizar ordens de produção por:</h4>
+                                                <div class="d-flex flex-row align-items-left m-3">
+                                                    <div class="m-1 mr-4">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-2" id="idAberto" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idDataAberto">Em aberto</label>
+                                                        </div>
+                                                            <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-4" id="idAndamento" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idAndamento">Em andamento</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-1">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-3" id="idConcluido" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idConcluido">Concluidos</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input col-md-3" id="idDesativado" name="radio-modal" required>
+                                                            <label class="custom-control-label" for="idDesativado">Desativados</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>  
 
                                             <div class="card-body col-sm-6">
                                                 <div>                                    
@@ -136,6 +146,8 @@
                         </div>
                     </div>
                             
+                    <h3 class="card-title">Menu de Relatórios</h3>
+
                     <div class="card">
                         <div class="d-flex justify-content-center flex-row m-4">
                             
@@ -152,39 +164,35 @@
                                 </div>
                             </div>   
 
-                            <div class="form-group row col-md-6" id="iDivDatas">  
+                            <div class="form-group row col-md-6">  
                                 <div>                                    
                                     <h4 class="card-title">Periodo:</h4>
                                 </div>                                   
                                 <div class="input-group d-flex row">
-                                    <label class="mt-2 col-md-1 text-right">De:</label>
-                                    <div class="col-md-4">
-                                        <input type="date" id="idDataInicio" name="nDataInicio" class="form-control" placeholder="dd/mm/yyyy">                                                                             
-                                        <div class="input-group-append">
-                                            <div>
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>                                           
-                                        </div>
-                                    </div>      
-                                    <div class="mt-2 col-md-1">
-                                        <a href='#' id='resetInicio' class="fas fa-undo text-success"></a>
-                                    </div>  
-
-                                    <label class="mt-2 col-md-1 text-right">Até: </label>                                    
-                                    <div class="col-md-4">
-                                        <input type="date" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                    <label>De:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataInicio" name="nDataInicio" class="form-control" onchange="formataData()" placeholder="dd/mm/yyyy">                                        
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                    </div>                                                                           
-                                    <div class="mt-2 col-md-1">
-                                        <a href='#' id='resetFim' class="fas fa-undo text-success"></a>
-                                    </div> 
-
+                                    </div>
+                                    <label>Até: </label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="idDataFim" name="nDataFim" class="form-control" placeholder="dd/mm/yyyy">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
                                 </div>                          
-                            </div>
+                            </div>     
 
                             <div class="form-group flex-column col-md-2">
+                                <div class="col-sm-12 m-3" id='idDivlimpaConsulta'>
+                                    <button id="iLimpaConsulta" type=button class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;"  title="Apagar Filtros">
+                                        <span class="fas fa-eraser"></span> 
+                                    </button> 
+                                </div> 
+
                                 <div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Filtros avançados
@@ -211,7 +219,7 @@
                                         <th>Produto</th>
                                         <th>Máquina</th>
                                         <th>Status do pedido</th>
-                                        <th>Aberto em</th>
+                                        <th>COncluido em</th>
                                         <th>Alterar/Restaurar/Desativar</th>
                                     </tr>
                                 </thead>
@@ -243,7 +251,7 @@
                         "infoPostFix":    "",
                         "thousands":      ".",
                         "lengthMenu":     "Mostrar  _MENU_  registros",
-                        "loadingRecords": "Carregando...",
+                        "loadingRecords": "Loading...",
                         "processing":     "",
                         "search":         "Pesquisar:",
                         "zeroRecords":    "Nenhum valor semelhante encontrado",
@@ -276,69 +284,21 @@
                 });                 
             }
 
-            function resetData(){
-                if($('#idDataInicio').val() == ''){
-                    $('#resetInicio').hide();
-                }else{                                                
-                    $('#resetInicio').show();
-                }
+            $('document').ready(dataTableHistorico());       
+        </script>
 
-                $('#idDataInicio').on('change', function(){    
-                    if($('#idDataInicio').val() == ''){
-                        $('#resetInicio').hide();
-                    }else{                                                
-                        $('#resetInicio').show();
-                    }
-                })
+        <script>            
+            function
 
-                $('#resetInicio').click(function(){
-                    $('#idDataInicio').val('');
-                    $('#resetInicio').hide();
-                })
-
-                if($('#idDataFim').val() == ''){
-                    $('#resetFim').hide();
-                }else{                                                
-                    $('#resetFim').show();
-                }
-
-                $('#idDataFim').on('change', function(){    
-                    if($('#idDataFim').val() == ''){
-                        $('#resetFim').hide();
-                    }else{                                                
-                        $('#resetFim').show();
-                    }
-                })
-
-                $('#resetFim').click(function(){
-                    $('#idDataFim').val('');
-                    $('#resetFim').hide();
-                })
-            }
-                
-            var filtro = <?php echo $_SESSION['filtro']; ?>
-                  
             $('document').ready(function(){
-                dataTableHistorico();
-                resetData();
+                $('#idDivlimpaConsulta').hide();
 
-                if(filtro == 1){
-                    $('#idDivlimpaConsulta').show();
-                } else {
-                    $('#idDivlimpaConsulta').hide();
-                } 
-
-                $('#idSelecao').on('change', function(){
-                    if($('#idSelecao').val() == ''){
-                        $('#iDivDatas').hide();
-                    }else{
-                        $('#iDivDatas').show();
-                    }
-                })
+                function formataData(){
+                    $('#idDataInicio').val().toUpperCase();
+                }
 
                 $('#iConsulta').click(function(e){   
                     var select = $('#idSelecao').val();
-                    var datas ="campo1="+select;
 
                     if($('#idDataInicio').val() != ''){
                         var dataInicio = $('#idDataInicio').val();
@@ -350,58 +310,23 @@
                         var dataFim = $('#idDataFim').val();
                     } else {
                         var dataFim = '';
-                    } 
+                    }                                  
 
-                    if(dataInicio != '' && dataFim != ''){
-                        if(dataInicio > dataFim){
-                            alert('Data de Inicio não pode ser maior que a final');
-                        }else{
-                            datas += '&campo2='+dataInicio+'&campo3='+dataFim;
+                    //e.preventDefault();
 
-                            e.preventDefault();
-
-                            $.ajax({
-                                url: "php/historicoFiltro.php",
-                                type: "POST",
-                                data: datas,
-                                dataType: "html",
-                                success: function(){        
-                                    var table = $('#datatable').DataTable();
-                                    table.destroy();
-                                }
-                            }).done(function() { 
-                                dataTableHistorico();
-                            }).fail(function() {
-                                console.log("Request failed: ");
-
-                            }).always(function() {
-                                console.log("completou");
-                            });
-                        }
-                    } else {
-                        datas += '&campo2='+dataInicio+'&campo3='+dataFim;
-
-                        e.preventDefault();
-
-                        $.ajax({
-                            url: "php/historicoFiltro.php",
-                            type: "POST",
-                            data: datas,
-                            dataType: "html",
-                            success: function(){  
-                            }
-                        }).done(function() { 
-                                  
+                    $.ajax({
+                        url: 'php/historicoFiltro.php',
+                        method: 'GET',
+                        dataType: 'html',
+                        data:'&selecao='+select+'&dataInicio='+dataInicio+'&dataFim='+dataFim+'',
+                        success: function() {
                             var table = $('#datatable').DataTable();
-                                table.destroy();
-                            dataTableHistorico();
-                        }).fail(function() {
-                            console.log("Request failed: ");
-
-                        }).always(function() {
-                            console.log("completou");
-                        });
-                    }                    
+                            table.destroy();
+                        }
+                    }).done(function(){
+                        //$("#limpaConsulta").show();
+                        dataTableHistorico();
+                    });
                 });
             });
             
