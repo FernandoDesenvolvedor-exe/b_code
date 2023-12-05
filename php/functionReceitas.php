@@ -29,20 +29,17 @@
                             <td>'.$campo['receitaId'].'</td>
                             <td>'.materiaisReceita($campo['receitaId'],2).'</td>
                             <td>'.$campo['pigmentoNome'].'</td>
-                            <td>
-                                <div class="divButtons">
-                                    <div class="div1">                                   
-                                        <button type="button" style="width: auto; border-radius:5px" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'">
-                                            Selecionar
-                                        </button>
+                            <td>                                                
+                                <div class="d-flex justify-content-center">                                                
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'"></a>
                                     </div>
-                                    <div class="div2">
-                                        <button type="button" style="width: auto; border-radius:5px" class="btn btn-danger margin-5" data-toggle="modal" data-target="#ExcluiModal'.$campo['receitaId'].'">
-                                            Desativar
-                                        </button>      
-                                    </div>   
-                                </div>                      
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-undo text-success" data-target="#ExcluiModal'.$campo['receitaId'].'"></a>
+                                    </div>
+                                </div>
                             </td>
+
 
                             <div class="modal fade" id="ExcluiModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">

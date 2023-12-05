@@ -23,15 +23,17 @@
                 
                 $table .=   
                         '<tr align-items="center";>'
-                            .'<td>'.$campo['descricao'].'</td>'
-                            .'<td>'                                                
-                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraFornecedor'.$campo['idFornecedor'].'">'
-                                    .'Alterar'
-                                .'</button>'                            
-                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExcluiFornecedor'.$campo['idFornecedor'].'">'
-                                    .'Desativar'
-                                .'</button>'
-                            .'</td>'
+                            .'<td>'.$campo['descricao'].'</td>'                            
+                            .'<td>                                                
+                                <div class="d-flex justify-content-center">                                                
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalAlteraFornecedor'.$campo['idFornecedor'].'"></a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-undo text-success" data-target="#modalExcluiFornecedor'.$campo['idFornecedor'].'"></a>
+                                    </div>
+                                </div>
+                            </td>'
 
                             // MODAL DESATIVA MATERIA_PRIMA
                             ."<div class='modal fade' id='modalExcluiFornecedor".$campo['idFornecedor']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"

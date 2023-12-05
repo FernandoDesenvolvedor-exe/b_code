@@ -93,15 +93,16 @@
                             ."<td>".$campo['peso']."g</td>"
                             ."<td>".$campo['molde']."</td>"
                             ."<td>".$campo['tipo']."</td>"
-                            ."<td>"                            
-                                ."<button type='button' class='btn btn-info margin-5' data-toggle='modal' data-target='#EditaModal".$campo['idP']."'>"
-                                    ."Alterar"
-                                ."</button>"
-
-                                ."<button type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#ExcluiModal".$campo['idP']."'>"
-                                    ."Desativar"
-                                ."</button>"                               
-                            ."</td>"
+                            .'<td>                                                
+                                <div class="d-flex justify-content-center">                                                
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#EditaModal'.$campo['idP'].'"></a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-undo text-success" data-target="#ExcluiModal'.$campo['idP'].'"></a>
+                                    </div>
+                                </div>
+                            </td>'
 
                             ."<div class='modal fade' id='ExcluiModal".$campo['idP']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"

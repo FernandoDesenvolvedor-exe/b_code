@@ -1,7 +1,5 @@
 <?php
     session_start();
-
-    include("connection.php");
     include("function.php");    
 
     if ($_GET['validacao'] == 'I'){ // INSERT
@@ -130,6 +128,7 @@
                             turma,
                             turno,
                             idPedido,
+                            idMateriaPrima,
                             materiaPrima,
                             tipoMateria_prima,
                             classeMateria_prima,
@@ -140,11 +139,13 @@
                             lote,
                             fornecedorPigmento,
                             produto,
+                            idFerramental,
                             ferramental,
                             tipoFerramental,
                             maquina,
                             producaoPrevista,
                             quantidadeMateria_prima,
+                            quantidadeReciclado,
                             quantidadePigmento,            
                             dataHora_aberto,
                             dataHora_producao,
@@ -159,6 +160,7 @@
                             "'.$_SESSION['turma'].'",
                             "'.$_SESSION['turno'].'",
                             '.$idPedido.',
+                            '.$_POST['nIdMaterial'].',
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
@@ -169,6 +171,7 @@
                             "'.selectCor($_POST['nPigmento'],2).'",
                             "'.$_POST['nCorFornecedor'].'",
                             "'.$_POST['nProduto'].'",
+                            "'.getIdFerramental($_GET['idProduto']).'"
                             "'.$_POST['nMolde'].'",
                             "'.$_POST['nTipoMolde'].'",';
 
@@ -180,8 +183,9 @@
 
             $sql .=
                             ''.$qtde.',
-                            '.($_POST['nQuantidadeMat'][$n]*$qtde).',
-                            '.($_POST['nQtdPigmento']*$qtde).',';
+                            '.$_POST['nQuantidadeMat'][$n].',
+                            0,
+                            '.$_POST['nQtdPigmento'].',';
             
             if($status == 1){                
                 $sql .='"'.$current_date.'",
@@ -295,13 +299,44 @@
             mysqli_close($conn);
         }  
 
-    } else if ($_GET['validacao'] == 'U'){
+    } else if($_GET['validacao'] == 'U'){
 
         $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
 
+        include("connection.php");
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
-    } 
+    } else if($_GET['validacao'] == 'UR'){
+        $sql = 'SELECT quantidadeReciclado FROM historico_pedidos WHERE idPedido = '.$_GET['idPedido'].';';
+
+        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        $pedidoReciclado = '';
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            $n = 1;
+
+            foreach($array as $campo){
+                $pedidoReciclado = $campo['quantidadeReciclado'];
+            }
+        }
+
+        $soma = $pedidoReciclado + $_POST['nqtdReciclado'];
+
+        $sql = 'UPDATE historico_pedidos SET quantidadeReciclado = '.$soma.' WHERE idPedido = '.$_GET['idPedido'].'';
+
+        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    }
     
     header('location:../producao');
 ?>

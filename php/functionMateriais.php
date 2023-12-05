@@ -135,7 +135,7 @@
 
         include('connection.php');
 
-        $sql ='SELECT * FROM view_materia_receitas WHERE idReceita = '.$idReceita.';';
+        $sql ='SELECT * FROM view_materia_receitas WHERE id = '.$idReceita.';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -151,7 +151,7 @@
 
             $n = 1;
 
-            foreach($array as $campo){
+            foreach($array as $campo){                
                 // case 1 para modal -- case 2 para tabela 
                 switch($case){
                     case 1:                                                   
@@ -191,6 +191,74 @@
                             $table .= ' '.$campo['material'].'';
                         } else {
                             $table .= ''.$campo['material'].' -';
+                        }
+                    break;                      
+                }
+
+                $n++;                
+            }
+        }
+        
+        return $table;
+    }
+    function materiaisPedido($idPedido,$case){
+
+        include('connection.php');
+
+        $sql ='SELECT * FROM historico_pedidos WHERE idPedido = '.$idPedido.';';
+
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        $table= '';
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+
+            $n = 1;
+
+            foreach($array as $campo){
+                // case 1 para modal -- case 2 para tabela 
+                switch($case){
+                    case 1:                                                   
+                        $table .=   
+                                '   <h4>Matéria Prima<h4>
+                                    <div class="form-group row">                          
+                                        <div class="col-sm-2">
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidadeMateria_prima'].'" title="Por produto">                                            
+                                        </div>
+                                        <a class="col-sm-1 mt-3">g</a>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materiaPrima'].'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipoMateria_prima'].'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMateria_prima'].'">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
+                                        <div class="col-sm-8">
+                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedorMateria_Prima'].'">
+                                        </div>                                        
+                                        <div class="col-sm-3" hidden>
+                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['idMateriaPrima'].'">
+                                        </div>    
+                                    </div>';
+                    break;
+                        
+                    case 2:
+                        if(count($array) == $n){
+                            $table .= ' '.$campo['materiaPrima'].'';
+                        } else {
+                            $table .= ''.$campo['materiaPrima'].' -';
                         }
                     break;                      
                 }
@@ -278,25 +346,25 @@
                             <td><label>'.$campo['obs'].'</label></td>';
                 //ALTERAR
                 $table .=
-                            "<td>                           
-                                <button style='width:50%' type='button' class='btn btn-info margin-1' data-toggle='modal' data-target='#modalAlteraMateria".$campo['idMateria']."'>
-                                    Alterar
-                                </button>";
+                            '<td> 
+                                <div class="d-flex justify-content-center">
+                                    <div class="col-sm-4">
+                                        <a href="#" class="fas fa-eye text-info" align="center" data-toggle="modal" data-target="#modalAlteraMateria'.$campo['idMateria'].'" title="Alterar Material"></a>
+                                    </div>';
                 if($_SESSION['tipo']==1){
                     if($campo['ativo']==1){
                         //DESATIVAR
                         $table .=
-                                    "<button style='width:50%' type='button' class='btn btn-danger margin-1' data-toggle='modal' data-target='#modalDesativaMateria".$campo['idMateria']."'>
-                                        Desativar
-                                    </button>
-                                </td>";
+                                    '<div class="col-sm-4">
+                                        <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#modalDesativaMateria'.$campo['idMateria'].'" title="Desativar Material"></a>
+                                    </div>';
                     }else{
                         //ATIVAR
-                        $table .=
-                                    "<button style='width:50%' type='button' class='btn btn-success margin-1' data-toggle='modal' data-target='#modalAtivaMateria".$campo['idMateria']."'>
-                                        Ativar
-                                    </button>
-                                </td>"; 
+                        $table .=   '<div class="col-sm-4">
+                                        <a href="#" class="fas fa-undo text-success" align="center" data-toggle="modal" data-target="#modalAtivaMateria'.$campo['idMateria'].'" title="Desativar Material"></a>
+                                    </div>
+                                </div>
+                            </td>'; 
                     }
                 }else{
                     //DESATIVAR
@@ -490,16 +558,18 @@
                             .'<td>'.$campo['tipo'].'</td>'
                             .'<td>'.$campo['qtde'].'g</td>'
                             .'<td>'.$campo['obs'].'</td>'
-                            .'<td>'                                                
-                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'">'
-                                    .'Alterar'
-                                .'</button>'
-                                .'<button style="width: auto; border-radius: 5px;" type="button" class="btn btn-danger margin-5" data-toggle="modal" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'">'
-                                    .'Desativar'
-                                .'</button>'
-                            .'</td>'
+                            .'<td>                                                
+                                <div class="d-flex justify-content-center">                                                
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'"></a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="#" class="fas fa-undo text-success" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
+                                    </div>
+                                </div>
+                            </td>'
 
-
+                            
 
     
                             // MODAL DESATIVA CADASTRO DE PIGMENTO
