@@ -35,8 +35,8 @@
         $sqlInsert .=", (".$idReceita.",".$reciclado.",".$pesoReciclado.");";
     }
     
-    var_dump($sqlInsert);
-    die();
+    //var_dump($sqlInsert);
+    //die();
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
     
