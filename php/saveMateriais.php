@@ -84,12 +84,12 @@ Validações
         $descMat = stripslashes($_POST['nDescricao']);
         $obs = stripslashes($_POST['nObservacoes']);
         //TESTE: echo $descMat.''.validarDado(4,$descMat).' '.$obs.''.validarDado(4,$obs);die();
-        if(!validarDado(4,$descMat)){
+        if(!validarDado(4,$descMat) && $descMat != ""){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
-        if(!validarDado(4,$obs)){
+        if(!validarDado(4,$obs) && $obs != ""){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();

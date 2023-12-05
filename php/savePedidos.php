@@ -14,7 +14,6 @@
 
         // set default timezone
         date_default_timezone_set('America/Sao_Paulo'); // CDT
-
         $info = getdate();
         $dia = $info['mday'];
         $mes = $info['mon'];
@@ -240,6 +239,7 @@
         $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
         header('location:../receitas.php? idProduto='.$_GET['id'].'&pr='.$_GET['pr'].'');
+        die();
 
     } else if($_GET['validacao'] == 'A'){
 
@@ -282,6 +282,7 @@
             }
 
             header('location:../materiaPrima');
+            die();
         } else if ($_GET['stats'] == 2){
 
             $sql = 'UPDATE pedidos 
@@ -345,4 +346,5 @@
     }
     
     header('location:../producao');
+    die();
 ?>
