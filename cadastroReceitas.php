@@ -166,7 +166,6 @@
                         $('#divSelectPigmento').hide();
                         $('#divQtdMaterial').hide();
                         $('#divReciclado').hide();
-                        $('#divQtdReciclado').hide();
                     } else {   
                         //Pigmentos relacionados ao material                  
                         $.ajax({
@@ -207,21 +206,21 @@
                         material='| '+pesoMaterial+'g';
                         pigmento='| '+pesoPigmento+'g';
                     }
-                    if($('#iMaterial').val()!='0'){
+                    if($('#iMaterial').val()!='0' && $('#iQuantMaterial').val()!=0){
                         $('#iQuantMaterial').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
                     } else {
                         $('#iQuantMaterial').prop('required',false);
                         $('#zero_config').append('');
                     }
-                    if($('#iReciclado').val()!='0'){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
                         $('#iQuantReciclado').prop('required',false);
                         $('#zero_config').append('');
                     }
-                    if($('#iPigmento').val()!='0'){
+                    if($('#iPigmento').val()!='0' && $('#iQuantPigmento').val()!=0){
                         $('#iQuantPigmento').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
@@ -231,8 +230,7 @@
                 });
                 // --------------------------------------------------------------------------
                 $('#btnAddReciclado').on('click', function(){
-                    if($('#divQtdReciclado').is(':hidden')){                                                
-                        $('#divQtdReciclado').show();
+                    if($('#divQtdReciclado').is(':hidden')){
                         $('#divReciclado').show();
                         $('#btnAddReciclado').text('Remover Reciclado');
                     } else {                     
@@ -244,10 +242,17 @@
                     }
                 });
                 $('#iPigmento').on('change', function(){
-                    if($('#iPigmento').val() == '0'){
+                    if($('#iPigmento').val() == 0){
                         $('#divQtdPigmento').hide();
                     } else {
                         $('#divQtdPigmento').show();
+                    }
+                });
+                $('#iReciclado').on('change', function(){
+                    if($('#iReciclado').val() == 0){
+                        $('#divQtdReciclado').hide();
+                    } else {
+                        $('#divQtdReciclado').show();
                     }
                 });
                 // PREENCHE TABELA ----------------------------------------------------------------------------------------------
@@ -264,7 +269,7 @@
                         material='| '+pesoMaterial+'g';
                         pigmento='| '+pesoPigmento+'g';
                     }
-                    if($('#iMaterial').val()!='0'){
+                    if($('#iMaterial').val()!='0' && $('#iQuantMaterial').val()!=0){
                         $('#iQuantMaterial').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
                     } else {
@@ -272,7 +277,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iReciclado').val()!='0'){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
@@ -280,7 +285,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iPigmento').val()!='0'){
+                    if($('#iPigmento').val()!='0' && $('#iQuantPigmento').val()!=0){
                         $('#iQuantPigmento').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
@@ -303,7 +308,7 @@
                         pigmento='| '+pesoPigmento+'g';
                     }
 
-                    if($('#iMaterial').val()!='0'){
+                    if($('#iMaterial').val()!='0' && $('#iQuantMaterial').val()!=0){
                         $('#iQuantMaterial').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
                     } else {
@@ -311,7 +316,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iReciclado').val()!='0'){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
@@ -319,7 +324,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iPigmento').val()!='0'){
+                    if($('#iPigmento').val()!='0' && $('#iQuantPigmento').val()!=0){
                         $('#iQuantPigmento').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
