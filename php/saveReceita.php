@@ -10,15 +10,16 @@
     $fechaHTMLalert = '</div></div></div>';
     
     //Pegar dados validados por GET
-    $produto=$_GET['idProduto'];
-    $nProduto=$_GET['pr'];
-    $material=$_GET['mat'];
-    $pesoMaterial=$_GET['qMat'];
-    $reciclado=$_GET['rec'];
-    $pesoReciclado=$_GET['qRec'];
-    $pigmento=$_GET['pig'];
-    $pesoPigmento=$_GET['qPig'];
-    $observacoes=$_GET['obs'];
+
+    $produto        = $_GET['idProduto'];
+    $nProduto       = $_GET['pr'];
+    $material       = $_GET['mat'];
+    $pesoMaterial   = $_GET['qMat'];
+    $reciclado      = $_GET['rec'];
+    $pesoReciclado  = $_GET['qRec'];
+    $pigmento       = $_GET['pig'];
+    $pesoPigmento   = $_GET['qPig'];
+    $observacoes    = $_GET['obs'];
 
     //INSERT na tabela receita
     $sqlInsert = "Insert into receitas (idProduto,IdPigmento,quantidadePigmento,observacoes,ativo) values 
@@ -31,7 +32,8 @@
     //INSERT idReceita, materia_prima e a quantidade_de_materia
     $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial) values
     (".$idReceita.",".$material.",".$pesoMaterial.")";
-    if($reciclado != ''){
+    
+    if($reciclado != 0){
         $sqlInsert .=", (".$idReceita.",".$reciclado.",".$pesoReciclado.");";
     }
     

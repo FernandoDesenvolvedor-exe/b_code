@@ -173,7 +173,7 @@
                             "'.selectCor($_POST['nPigmento'],2).'",
                             "'.$_POST['nCorFornecedor'].'",
                             "'.$_POST['nProduto'].'",
-                            "'.getIdFerramental($_GET['idProduto']).'"
+                            "'.getIdFerramental($_GET['idProduto']).'",
                             "'.$_POST['nMolde'].'",
                             "'.$_POST['nTipoMolde'].'",';
 
