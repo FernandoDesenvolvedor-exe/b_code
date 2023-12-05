@@ -822,49 +822,7 @@
                                                         
                 }
             }     
-        }else if($caso == 3){
-            $select = "<option value='0'>Selecione um opção</option>";
-            $sql = 'SELECT mat.idMateriaPrima as id,
-                        mat.descricao as nome,
-                        tipo.descricao as tipos,
-                        class.descricao as classe,
-                        f.descricao as fornecedor
-                    FROM materia_prima mat
-                    LEFT JOIN tipo_materia_prima tipo
-                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-                    LEFT JOIN classe_material class
-                    ON mat.idClasse = class.idClasse
-                    LEFT JOIN materia_fornecedor mf
-                    ON mat.idMateriaPrima = mf.idMateriaPrima
-                    LEFT JOIN fornecedores f
-                    ON mf.idFornecedor = f.idFornecedor
-                    WHERE mat.ativo = 1
-                    AND mat.idTipoMateriaPrima = 2;';
-        
-            //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
-            //executa o script sql na variavel $sql,
-            //salva o resultado em $result
-            //mysqli_close($conn) fecha a conexão
-            $result = mysqli_query($conn,$sql);
-            mysqli_close($conn);
-
-            //este if verifica se foi encontrado um linha correspondente ao que foi enviado
-            if(mysqli_num_rows($result) > 0){
-                //Cria e inicializa uma array 
-                $array = array();
-
-                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    array_push($array, $linha);
-                }
-                
-                foreach($array as $campo){
-                    
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
-                                                        
-                }
-            }     
-        }      
-       
+        }
         return $select;        
     }
 

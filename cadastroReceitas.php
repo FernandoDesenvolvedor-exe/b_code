@@ -84,10 +84,7 @@
                                 <div class="form-group row" id="divReciclado">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Reciclado</label>
                                     <div class="col-sm-9" id='qntM'>
-                                    <select id="iReciclado" name="nReciclado" class="select2 form-control custom-select" style="width: 80%; height:36px;">
-                                            <?php
-                                                echo optionMaterial(3);
-                                            ?> 
+                                    <select id="iReciclado" name="nReciclado" class="select2 form-control custom-select" style="width: 80%; height:36px;"> 
                                         </select>
                                     </div>
                                 </div>
@@ -213,7 +210,7 @@
                         $('#iQuantMaterial').prop('required',false);
                         $('#zero_config').append('');
                     }
-                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado').val()!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
@@ -277,7 +274,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado').val()!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
@@ -316,7 +313,7 @@
                         $('#zero_config').append('');
                     }
 
-                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado')!=0){ 
+                    if($('#iReciclado').val()!='0' && $('#iQuantReciclado').val()!=0){ 
                         $('#iQuantReciclado').prop('required',true);
                         $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
                     } else {
