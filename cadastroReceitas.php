@@ -122,7 +122,7 @@
                                         <textarea class="form-control" style="width:80%;" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="card" id="divTable" style="padding: 10px;"> 
                                     <h4 class="card-title">Receita <?php echo $_GET['pr']?></h4>
@@ -183,7 +183,18 @@
                                 $('#divSelectPigmento').show();   
                                 $('#divQtdMaterial').show();     
                             }
-                        });                          
+                        });      
+                           
+                        //Reciclados da mesma classe que o material
+                        $.ajax({
+                            url: "php/carregaRecicladosCompativeis.php",
+                            type: "POST",
+                            data: datas,
+                            dataType: "html",
+                            success: function(html) {
+                                $('#iReciclado').html(html);
+                            }
+                        });                 
                     }                  
                 });    
                 
@@ -222,7 +233,7 @@
 
                     if($('#iPigmento').val()!='0'){
                         $('#iQuantPigmento').prop('required',true);
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
                         $('#zero_config').append('');
                         $('#iQuantPigmento').prop('required',false);
@@ -235,16 +246,6 @@
                         $('#divQtdReciclado').show();
                         $('#divReciclado').show();
                         $('#btnAddReciclado').text('Remover Reciclado');
-                        //Reciclados da mesma classe que o material
-                        $.ajax({
-                            url: "php/carregaRecicladosCompativeis.php",
-                            type: "POST",
-                            data: datas,
-                            dataType: "html",
-                            success: function(html) {
-                                $('#iReciclado').html(html);
-                            }
-                        });
                     } else {                     
                         $('#btnAddReciclado').text('Adicionar Reciclado');
                         $('#iQuantReciclado').val('');
@@ -295,7 +296,7 @@
 
                     if($('#iPigmento').val()!='0'){
                         $('#iQuantPigmento').prop('required',true);
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
                         $('#zero_config').append('');
                         $('#iQuantPigmento').prop('required',false);
@@ -334,7 +335,7 @@
 
                     if($('#iPigmento').val()!='0'){
                         $('#iQuantPigmento').prop('required',true);
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
                     }else{
                         $('#zero_config').append('');
                         $('#iQuantPigmento').prop('required',false);
