@@ -1,31 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 05-Dez-2023 às 23:45
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `lab_plasticos`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `historico_pedidos`
---
+drop table historico_pedidos;
 
 CREATE TABLE `historico_pedidos` (
   `idHistorico` int(11) NOT NULL COMMENT 'Chave identificadora de registros da tabela histórico',
@@ -70,7 +44,3 @@ CREATE TABLE `historico_pedidos` (
 INSERT INTO `historico_pedidos` (`idHistorico`, `nomeUsuario`, `tipoUsuario`, `turma`, `turno`, `idPedido`, `idMateriaPrima`, `materiaPrima`, `tipoMateria_prima`, `classeMateria_prima`, `fornecedorMateria_Prima`, `pigmento`, `tipoPigmento`, `codigo`, `lote`, `fornecedorPigmento`, `produto`, `idFerramental`, `ferramental`, `tipoFerramental`, `maquina`, `producaoPrevista`, `refugo`, `producaoRealizada`, `quantidadeMateria_prima`, `quantidadeReciclado`, `quantidadePigmento`, `dataHora_aberto`, `dataHora_producao`, `dataHora_fechado`, `dataHora_alterado`, `statusPedido`, `obsPedido`) VALUES
 (5, 'Luis Fernando Pereira', 1, '', '', 5, 17, 'Poliéster', 'Virgem', 'Comodities', 'SGS Polímeros', 'Amarelo', 'MTB', '3907.30', 0, 'CRISTAL MASTER', 'Garrafinha', 2, 'GARR8484654', 'Injetadas Auto.', 'VF - 35', 10, NULL, NULL, 19, 6, 0.6, '2023-12-05 19:30:00', '2023-12-05 19:42:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2', '');
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
