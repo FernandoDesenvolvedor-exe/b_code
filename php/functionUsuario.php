@@ -71,16 +71,15 @@
                                 </button>";
                 if($campo['ativo']==1){
                     $table .=
-                                "<button style='width:50%' type='button' class='btn btn-danger margin-5' data-toggle='modal' data-target='#DesativaModal".$campo['idUser']."'>
-                                    Desativar
-                                </button>
-                            </td>";
+                            '<div class="col-sm-4">
+                                <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#DesativaModal'.$campo['idUser'].'" title="Desativar Usuário"></a>
+                            </div>';
                 }else{
                     $table .=
-                                "<button style='width:50%' type='button' class='btn btn-success margin-5' data-toggle='modal' data-target='#AtivaModal".$campo['idUser']."'>
-                                    Ativar
-                                </button>
-                            </td>"; 
+                                '<div class="col-sm-4">
+                                    <a href="#" class="fas fa-undo text-success" align="center" data-toggle="modal" data-target="#AtivaModal'.$campo['idUser'].'" title="Ativar Usúario"></a>
+                                </div>
+                            </td>'; 
                 }
                 
                 $table .=

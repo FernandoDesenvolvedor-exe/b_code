@@ -2,7 +2,9 @@
     //inclui o arquivo function.php ao login, assim usando as demais funções presentes nelas
     include("php/function.php");
 
-    session_start();   
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }  
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

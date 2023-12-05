@@ -73,10 +73,13 @@ Validações
 
     }else if($validacao == 'DMP') {  // Ativa/DESATIVA UM CADASTRO DE MATERIA_PRIMA
         include('connection.php');
-        $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=1;';
-        $result = mysqli_query($conn,$sqlUpdate);
-        $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=0;';
-        $result = mysqli_query($conn,$sqlUpdate);
+        if($_GET['op']==1){
+            $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=0;';
+            $result = mysqli_query($conn,$sqlUpdate);
+        }else{
+            $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=1;';
+            $result =mysqli_query($conn,$sqlUpdate);
+        }
         mysqli_close($conn);
 
     }else if($validacao == 'UMP') {  // ATUALIZA UM CADASTRO DE MATERIA_PRIMA

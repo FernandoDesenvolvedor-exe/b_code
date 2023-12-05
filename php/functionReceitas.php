@@ -2,7 +2,7 @@
     function dataTableReceitas($idProduto,$produto){
         
         include('connection.php');
-        
+        echo $idProduto;
         $sql = 'SELECT * FROM view_receitas
                     WHERE produtoId = '.$idProduto.'
                     GROUP BY receitaId;';
@@ -70,7 +70,7 @@
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/savePedidos.php? validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
+                                            <form method="POST" action="php/savePedidos.php?op=0&validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
@@ -88,13 +88,13 @@
                                 <div class="modal-dialog" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Desativar Receita</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Ativar Receita</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true ">&times;</span>
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/savePedidos.php? validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
+                                            <form method="POST" action="php/savePedidos.php?op=1&validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
