@@ -107,14 +107,13 @@
     include('ajaxConnection.php');
     include('../ssp/ssp.class.php');
 
-    //echo $filtros; 
+    //echo $filtros;
     /*para ver essa variavel no navegador, clique com o botao direito
     na tela do navegador em que essa pagina é chamada, acesse inspecionar 
     elementos, no console que abrir, vá em network, filtre por Fetch/XHR. 
     Em baixo, aparecerá uma lista mostrrando as atividades do ajax. clique 
     na opção que aparecer e acesse response. Lá estará mostrando o valor da variavel $filtros*/
     //echo $filtros;
-
     echo json_encode(
         SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns, $filtros, null)
     );

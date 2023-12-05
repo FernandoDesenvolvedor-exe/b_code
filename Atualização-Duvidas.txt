@@ -1,0 +1,7 @@
+❓Dúvidas❓
+- Pq o reciclado é cadastrado na receita?
+- Seria o reciclado q sobra? ou o reciclado do ciclo?(Virgem q virou reciclado e foi usado para produzir o produto)
+------------------------------------------------------------------------------------------------------------------------------------------------
+❗Atualizações Futuras❗
+- Salvar reciclado na finalização do pedido(Motivo: Reciclado que não foi usado e volta pro estoque)
+- Estimativa de tempo da produção de um pedido

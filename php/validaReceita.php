@@ -65,7 +65,7 @@
     //VERIFICA SE QUANTIDADE DE RECICLADO É MAIOR QUE MATERIAL 
     if($qReciclado>$pesoMaterial){
         mysqli_close($conn);
-        $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade de reciclado excedeu a quantidade de material!<br>Quant. Material:'.$pesoMaterial.'<br>Quant. Reciclado:'.$qReciclado.''.$fechaHTMLalert;
+        $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade de reciclado excedeu a quantidade de material!'.$fechaHTMLalert;
         header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
         die();
     }

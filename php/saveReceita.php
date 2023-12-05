@@ -4,6 +4,10 @@
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
+    $abreHTMLalert = '<div class="input-group mb-3">'
+                    .'<div class="input-group-prepend" style="width: 100%; height:100%;">'
+                    .'<div class="alert alert-success" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>';
     //Pegar dados validados por GET
     $produto=$_GET['idProduto'];
     $nProduto=$_GET['pr'];
@@ -24,10 +28,9 @@
     $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial) values
     (".$idReceita.",".$material.",".$pesoMaterial."),
     (".$idReceita.",".$reciclado.",".$pesoReciclado.");";
-    //(".$idReceita.",".$borra.",".$pesoBorra.") atualização futura: Adcionar borra no cadastro de receita
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
-    $_SESSION['msgErro'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔👍'.$fechaHTMLalert;
+    $_SESSION['msgErro'] = $abreHTMLalert.'Receita cadastrada com sucesso ✔'.$fechaHTMLalert;
     header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
     die();
 ?>

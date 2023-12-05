@@ -121,6 +121,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card" style="padding: 10px;"> 
+                                    <h4 class="card-title">Receita <?php echo $_GET['pr']?></h4>
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Quantidade</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>                         
+                            </div>
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">Salvar</button>
@@ -129,21 +142,6 @@
                         </form>
                     </div>  
                 </div>
-
-                <!--div class="card" style="padding: 10px;"> 
-                        <h4 class="card-title">Receita <?php echo $_GET['pr']?></h4>
-                        <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Quantidade</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>                         
-                    </div-->
-
                 <footer class="footer text-center">
                     All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>
                 </footer>
@@ -172,16 +170,86 @@
                     }
                 })
 
-                /*
+
+                
                 $('#divQtdMaterial').on('change', function(){
-                    $('#zero_config').append('<tr><td>'+$('#iMaterial').val()+'</td><td>'+$('#iQuantMaterial').val()+'g</td></tr>');
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+toString(pesoMaterial)+'g';
+                        pigmento='| '+toString(pesoPigmento)+'g';
+                    }
+                    if($('#iQuantMaterial').val()!=''){
+                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                        $('#iQuantReciclado').prop('max',$('#iQuantMaterial').val());
+                    }
+                    if($('#iQuantReciclado').val()!=''){
+                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    }
+                    if($('#iQuantPigmento').val()!=''){
+                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }
+                });
+                $('#iQuantReciclado').on('change', function(){
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+toString(pesoMaterial)+'g';
+                        pigmento='| '+toString(pesoPigmento)+'g';
+                    }
+                    if($('#iQuantMaterial').val()!=''){
+                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                    }
+                    if($('#iQuantReciclado').val()!=''){
+                        $('#iReciclado').prop('required',true);
+                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    }else{
+                        $('#iQuantReciclado').prop('required',false);
+                    }
+                    if($('#iQuantPigmento').val()!=''){
+                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }
+                });
+                $('#iQuantPigmento').on('change', function(){
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+toString(pesoMaterial)+'g';
+                        pigmento='| '+toString(pesoPigmento)+'g';
+                    }
+                    if($('#iQuantMaterial').val()!=''){
+                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                    }
+                    if($('#iQuantReciclado').val()!=''){
+                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    }
+                    if($('#iQuantPigmento').val()!=''){
+                        $('#iPigmento').prop('required',true);
+                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }else{
+                        $('#iQuantPigmento').prop('required',false);
+                    }
                 });
 
-                $('#iQuantPigmento').on('change', function(){
-                    $('#zero_config').append('<td>'+$('#iMaterial').val()+'</td><td>'+$('#iQuantMaterial').val()+'g</td>');
-                });*/
-                
-                //Busca no banco de dados e preenche o select de pigmentos com as informações encontradas
+                //Busca no banco de dados e preenche o select de pigmentos e reciclados com as informações encontradas
                 $('#iMaterial').on('change', function(){
                     datas = 'campo1='+$(this).val();
 
@@ -191,7 +259,8 @@
                         $('#divQtdPigmento').hide();
                         $('#divReciclado').hide();
                         $('#divQtdReciclado').hide();
-                    } else {                     
+                    } else {   
+                        //Pigmentos relacionados ao material                  
                         $.ajax({
                             url: "php/carregaPigmentosCompativeis.php",
                             type: "POST",
@@ -204,6 +273,7 @@
                                 $('#divQtdPigmento').show();
                             }
                         });  
+                        //Reciclados da mesma classe que o material
                         $.ajax({
                             url: "php/carregaRecicladosCompativeis.php",
                             type: "POST",
@@ -216,6 +286,7 @@
                     }                  
                 });               
             })
+            
         </script>
     </body>    
 </html>
