@@ -9,16 +9,18 @@
                     .'<div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
     $fechaHTMLalert = '</div></div></div>';
     //GET
-    $produto = $_GET["idProduto"];
-    $nProduto = $_GET['pr'];
+    $produto            = $_GET["idProduto"];
+    $nProduto           = $_GET['pr'];
     //POST
-    $material = $_POST['nMaterial']; 
-    $qMaterial = intval($_POST['nQuantMaterial']);
-    $reciclado= $_POST['nReciclado'];
-    $qReciclado = intval($_POST['nQuantReciclado']);
-    $pigmento = $_POST['nPigmento'];
-    $porcentPigmento = intval($_POST['nQuantPigmento']);
-    $observacoes = stripslashes($_POST['nObservacoes']);
+
+    $material           = $_POST['nMaterial']; 
+    $qMaterial          = intval($_POST['nQuantMaterial']);
+    $reciclado          = $_POST['nReciclado'];
+    $qReciclado         = intval($_POST['nQuantReciclado']);
+    $pigmento           = $_POST['nPigmento'];
+    $porcentPigmento    = intval($_POST['nQuantPigmento']);
+    $observacoes        = stripslashes($_POST['nObservacoes']);
+
     //--------VALIDA DADOS---------
     if(!validarDado(4,$observacoes) and $observacoes!=''){
         mysqli_close($conn);
@@ -36,13 +38,14 @@
         while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
             array_push($array,$linha);
         }
+
         foreach($array as $campo){
-            if(($campo['peso']+($campo['peso']*0.05)) < $qMaterial){
+            if(($campo['peso']+($campo['peso']*0.05)) > ($qMaterial + $qReciclado)){
                 mysqli_close($conn);
                 $_SESSION['msgErro'] = $abreHTMLalert.'quantidade total de material ultrapassa variação de máxima permitida!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
                 die();
-            }else if(($campo['peso']-($campo['peso']*0.05))>$qMaterial){
+            }else if(($campo['peso']-($campo['peso']*0.05)) < $qMaterial + $qReciclado){
                 mysqli_close($conn);
                 $_SESSION['msgErro'] = $abreHTMLalert.'Quantidade total de material menor que variação minima permitida!'.$fechaHTMLalert;
                 header('location: ../cadastroReceitas.php?idProduto='.$produto.'&pr='.$nProduto);
@@ -62,6 +65,7 @@
     //SEPARAÇÃO DO MATERIAL E PIGMENTO
     $pesoPigmento = $qMaterial*($porcentPigmento/100);
     $pesoMaterial = $qMaterial-$pesoPigmento;
+
     //VERIFICA SE QUANTIDADE DE RECICLADO É MAIOR QUE MATERIAL 
     if($qReciclado>$pesoMaterial){
         mysqli_close($conn);
