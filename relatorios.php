@@ -360,20 +360,6 @@
                 dataTableHistorico();
                 resetData();
 
-                if(filtro == 1){
-                    $('#idDivlimpaConsulta').show();
-                } else {
-                    $('#idDivlimpaConsulta').hide();
-                } 
-
-                $('#idSelecao').on('change', function(){
-                    if($('#idSelecao').val() == ''){
-                        $('#iDivDatas').hide();
-                    }else{
-                        $('#iDivDatas').show();
-                    }
-                })
-
                 $('#iConsulta').click(function(e){   
                     var select = $('#idSelecao').val();
                     var datas ="campo1="+select;

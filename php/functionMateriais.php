@@ -135,7 +135,7 @@
 
         include('connection.php');
 
-        $sql ='SELECT * FROM view_materia_receitas WHERE id = '.$idReceita.';';
+        $sql ='SELECT * FROM view_materia_receitas WHERE idReceita = '.$idReceita.';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -152,7 +152,6 @@
             $n = 1;
 
             foreach($array as $campo){
-
                 // case 1 para modal -- case 2 para tabela 
                 switch($case){
                     case 1:                                                   
@@ -161,8 +160,7 @@
                                     <label>Matéria Prima</label>
                                     <div class="row mb-3">                                    
                                         <div class="col-sm-2">
-                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto">
-                                            
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto">                                            
                                         </div>
                                         <a class="col-sm-1 mt-3">g</a>
                                         <div class="col-sm-3">
