@@ -32,10 +32,10 @@
                             <td>                                                
                                 <div class="d-flex justify-content-center">                                                
                                     <div class="col-sm-3">
-                                        <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'"></a>
+                                        <a href="#" class="fas fa-newspaper text-info" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'"></a>
                                     </div>
                                     <div class="col-sm-3">
-                                        <a href="#" class="fas fa-undo text-success" data-target="#ExcluiModal'.$campo['receitaId'].'"></a>
+                                        <a href="#" class="fas fa-trash text-danger" data-target="#ExcluiModal'.$campo['receitaId'].'"></a>
                                     </div>
                                 </div>
                             </td>

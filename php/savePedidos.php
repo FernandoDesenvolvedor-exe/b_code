@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("function.php");    
+    include('connection.php');
 
     if ($_GET['validacao'] == 'I'){ // INSERT
         mysqli_close($conn);
@@ -160,7 +161,7 @@
                             "'.$_SESSION['turma'].'",
                             "'.$_SESSION['turno'].'",
                             '.$idPedido.',
-                            '.$_POST['nIdMaterial'].',
+                            '.$_POST['nIdMaterial'][$n].',
                             "'.$_POST['nMaterial'][$n].'",
                             "'.$_POST['nTipoMaterial'][$n].'",
                             "'.$_POST['nClasseMaterial'][$n].'",
@@ -203,7 +204,9 @@
                             ''.$status.',
                             "'.$obs.'");'; 
                             
-            include('connection.php');
+            //var_dump($sql);
+            //die();               
+            include('connection.php');            
             $result = mysqli_query($conn, $sql);     
             mysqli_close($conn);      
         }

@@ -135,7 +135,7 @@
 
         include('connection.php');
 
-        $sql ='SELECT * FROM view_materia_receitas WHERE id = '.$idReceita.';';
+        $sql ='SELECT * FROM view_materia_receitas WHERE idReceita = '.$idReceita.';';
 
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
