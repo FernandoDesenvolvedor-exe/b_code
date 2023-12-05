@@ -782,6 +782,7 @@
         }     
 
         }else if($caso == 2){
+            $select = "<option value='0'>Selecione um opção</option>";
             $sql = 'SELECT mat.idMateriaPrima as id,
                         mat.descricao as nome,
                         tipo.descricao as tipos,
@@ -822,6 +823,7 @@
                 }
             }     
         }else if($caso == 3){
+            $select = "<option value='0'>Selecione um opção</option>";
             $sql = 'SELECT mat.idMateriaPrima as id,
                         mat.descricao as nome,
                         tipo.descricao as tipos,
