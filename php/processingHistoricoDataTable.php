@@ -6,7 +6,9 @@
     $filtros = $_SESSION['filtroHistorico'].' GROUP BY idPedido ';  
     $tabelaBD = 'historico_pedidos';
     $primaryKey = 'idHistorico';
-    
+
+
+
     $columns = array(
                 array( 'db' => 'idPedido',          'dt' => 0,'formatter' => function($d, $row){
                     return $d;
@@ -113,7 +115,6 @@
     elementos, no console que abrir, vá em network, filtre por Fetch/XHR. 
     Em baixo, aparecerá uma lista mostrrando as atividades do ajax. clique 
     na opção que aparecer e acesse response. Lá estará mostrando o valor da variavel $filtros*/
-    echo $filtros;
 
     echo json_encode(
         SSP::complex( $_POST, $sql_details, $tabelaBD, $primaryKey, $columns, $filtros, null)

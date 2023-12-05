@@ -116,22 +116,21 @@
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Fornecedor</label>
+                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                             <div class="col-sm-7">
                                                                 <input value="'.nomeFornecedorPigmento($campo['pigmentoId']).'" id="idCorFornecedor" name="nCorFornecedor" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                             </div>
                                                         </div>
                                     
                                                         <div class="form-group row">
-                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Quantidade de pigmento</label>
-                                                            <div class="col-sm-2">
+                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
+                                                            <div class="col-sm-7">
                                                                 <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
                                                             </div>
-                                                            <label for="nClasse" class="col-sm-5 text-left control-label col-form-label">g</label>
                                                         </div>
                                     
                                                         <div class="form-group row">
-                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produção prevista</label>
+                                                            <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Quantidade de produção</label>
                                                             <div class="col-sm-7">
                                                                 <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
                                                             </div>

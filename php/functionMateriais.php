@@ -672,7 +672,7 @@
         include("connection.php");
 
         //inicializa variavel select 
-        $select = "<option value='0'>Selecione uma opção</option>";     
+        $select = "<option value=''>Selecione um opção</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
         if($caso == 1){
@@ -689,6 +689,42 @@
                 AND (mat.idTipoMateriaPrima = 1
                 OR mat.idTipoMateriaPrima = 2);';
             
+        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+        //executa o script sql na variavel $sql,
+        //salva o resultado em $result
+        //mysqli_close($conn) fecha a conexão
+        $result = mysqli_query($conn,$sql);
+        mysqli_close($conn);
+
+        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+        if(mysqli_num_rows($result) > 0){
+            //Cria e inicializa uma array 
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
+            
+            foreach($array as $campo){
+                
+                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                                                     
+            }
+        }     
+
+        }else if($caso == 2){
+            $sql = 'SELECT mat.idMateriaPrima as id,
+            mat.descricao as nome,
+            tipo.descricao as tipos,
+            class.descricao as classe
+            FROM materia_prima as mat
+            LEFT JOIN tipo_materia_prima as tipo
+            ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
+            LEFT JOIN classe_material as class
+            ON mat.idClasse = class.idClasse
+            WHERE mat.ativo = 1
+            AND mat.idTipoMateriaPrima = 1;';
+        
             //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
             //executa o script sql na variavel $sql,
             //salva o resultado em $result
@@ -711,76 +747,7 @@
                                                         
                 }
             }     
-
-        }else if($caso == 2){
-            $sql = 'SELECT mat.idMateriaPrima as id,
-                        mat.descricao as nome,
-                        tipo.descricao as tipos,
-                        class.descricao as classe,
-                        f.descricao as fornecedor
-                    FROM materia_prima as mat
-                    LEFT JOIN tipo_materia_prima as tipo
-                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-                    LEFT JOIN classe_material as class
-                    ON mat.idClasse = class.idClasse
-                    RIGHT JOIN materia_fornecedor mf
-                    ON mat.idMateriaPrima = mf.idMateriaPrima
-                    RIGHT JOIN fornecedores f
-                    ON mf.idFornecedor = f.idFornecedor
-                    WHERE mat.ativo = 1
-                    AND mat.idTipoMateriaPrima = 1;';
-        
-            //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
-            //executa o script sql na variavel $sql,
-            //salva o resultado em $result
-            //mysqli_close($conn) fecha a conexão
-            $result = mysqli_query($conn,$sql);
-            mysqli_close($conn);
-
-            //este if verifica se foi encontrado um linha correspondente ao que foi enviado
-            if(mysqli_num_rows($result) > 0){
-                //Cria e inicializa uma array 
-                $array = array();
-
-                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    array_push($array, $linha);
-                }
-                
-                foreach($array as $campo){
-                    
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
-                                                        
-                }
-            }     
-        }else if($caso == 3){
-            $sql = 'SELECT mat.idMateriaPrima as id,
-                        mat.descricao as nome,
-                        tipo.descricao as tipos,
-                        class.descricao as classe,
-                        f.descricao as fornecedor
-                    FROM materia_prima as mat
-                    LEFT JOIN tipo_materia_prima as tipo
-                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
-                    LEFT JOIN classe_material as class
-                    ON mat.idClasse = class.idClasse
-                    RIGHT JOIN materia_fornecedor mf
-                    ON mat.idMateriaPrima = mf.idMateriaPrima
-                    RIGHT JOIN fornecedores f
-                    ON mf.idFornecedor = f.idFornecedor
-                    WHERE mat.ativo = 1
-                    AND mat.idTipoMateriaPrima = 2;';
-            $result = mysqli_query($conn,$sql);
-            mysqli_close($conn);
-            if(mysqli_num_rows($result) > 0){
-                $array = array();
-                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    array_push($array, $linha);
-                }
-                foreach($array as $campo){
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";
-                }
-            }     
-        }     
+        }       
        
         return $select;        
     }
@@ -858,8 +825,6 @@
                 $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']."</option>";                                  
                                                      
             }
-        } else {
-            $select="<option value=''>Nenhum pigmento encontrado</option>";     
         }
 
         return $select;
