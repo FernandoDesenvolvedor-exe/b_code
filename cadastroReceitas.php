@@ -91,12 +91,14 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row" id="divQtdReciclado">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quant. Reciclado</label>
                                     <div class="col-sm-9" id='qntM'>
                                         <input id="iQuantReciclado" name="nQuantReciclado" type="number" class="form-control" placeholder="quantidade reciclado" style="width:30%;" min="0"  >                                        
                                     </div>
                                 </div>
+
                                 <div class="form-group row" id="divSelectPigmento">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Pigmento</label>
                                     <div class="col-md-9">
@@ -120,8 +122,9 @@
                                         <textarea class="form-control" style="width:80%;" id= "iObservacoes" name="nObservacoes" placeholder="Campo não obrigatório"></textarea>
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="card" style="padding: 10px;"> 
+                            <div class="card" id="divTable" style="padding: 10px;"> 
                                     <h4 class="card-title">Receita <?php echo $_GET['pr']?></h4>
                                     <div class="table-responsive">
                                         <table id="zero_config" class="table table-striped table-bordered">
@@ -154,107 +157,9 @@
                 $('#divQtdMaterial').hide();
                 $('#divQtdPigmento').hide();
                 $('#divReciclado').hide();
-                $('#divQtdReciclado').hide();
-
-                $('#btnAddReciclado').on('click', function(){
-                    if($('#divQtdReciclado').is(':hidden')){                        
-                        $('#divQtdReciclado').show();
-                        $('#divReciclado').show();
-                        $('#btnAddReciclado').text('Remover Reciclado');
-                    } else {                     
-                        $('#btnAddReciclado').text('Adicionar Reciclado');
-                        $('#iQuantReciclado').val('');
-                        $('#divQtdReciclado').hide();
-                        $('#iReciclado').val('');
-                        $('#divReciclado').hide();
-                    }
-                })
-
-
+                $('#divQtdReciclado').hide();                
+                $('#divTable').hide();               
                 
-                $('#divQtdMaterial').on('change', function(){
-                    $('#zero_config').empty();
-                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
-                    var material='';
-                    var pigmento='';
-                    console.log('a - '+material+' b- '+pigmento);
-                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
-                        var pesoPigmento=0;
-                        var pesoMaterial=$('#iQuantMaterial').val();
-                        var porcentPigmento=$('#iQuantPigmento').val();
-                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
-                        console.log('1- '+pesoMaterial);
-                        console.log('2- '+porcentPigmento);
-                        console.log('3- '+pesoPigmento);
-                        pesoMaterial=pesoMaterial-pesoPigmento;
-                        material='| '+pesoMaterial+'g';
-                        pigmento='| '+pesoPigmento+'g';
-                    }
-                    console.log('mat: '+material);
-                    console.log('pig: '+pigmento);
-                    if($('#iQuantMaterial').val()!=''){
-                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
-                        $('#iQuantReciclado').prop('max',$('#iQuantMaterial').val());
-                    }
-                    if($('#iQuantReciclado').val()!='' && $('#iQuantReciclado').val()!=0){
-                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
-                    }
-                    if($('#iQuantPigmento').val()!=''){
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
-                    }
-                });
-                $('#iQuantReciclado').on('change', function(){
-                    $('#zero_config').empty();
-                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
-                    var material='';
-                    var pigmento='';
-                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
-                        var pesoMaterial=$('#iQuantMaterial').val();
-                        var porcentPigmento=$('#iQuantPigmento').val();
-                        var pesoPigmento=pesoMaterial*(porcentPigmento/100);
-                        pesoMaterial=pesoMaterial-pesoPigmento;
-                        material='| '+toString(pesoMaterial)+'g';
-                        pigmento='| '+toString(pesoPigmento)+'g';
-                    }
-                    if($('#iQuantMaterial').val()!=''){
-                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
-                    }
-                    if($('#iQuantReciclado').val()!='' && $('#iQuantReciclado').val()!=0){
-                        $('#iReciclado').prop('required',true);
-                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
-                    }else{
-                        $('#iQuantReciclado').prop('required',false);
-                    }
-                    if($('#iQuantPigmento').val()!=''){
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
-                    }
-                });
-                $('#iQuantPigmento').on('change', function(){
-                    $('#zero_config').empty();
-                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
-                    var material='';
-                    var pigmento='';
-                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
-                        var pesoMaterial=$('#iQuantMaterial').val();
-                        var porcentPigmento=$('#iQuantPigmento').val();
-                        var pesoPigmento=pesoMaterial*(porcentPigmento/100);
-                        pesoMaterial=pesoMaterial-pesoPigmento;
-                        material='| '+toString(pesoMaterial)+'g';
-                        pigmento='| '+toString(pesoPigmento)+'g';
-                    }
-                    if($('#iQuantMaterial').val()!=''){
-                        $('#zero_config').append('<tr><td>Material</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
-                    }
-                    if($('#iQuantReciclado').val()!='' && $('#iQuantReciclado').val()!=0){
-                        $('#zero_config').append('<tr><td>Reciclado</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
-                    }
-                    if($('#iQuantPigmento').val()!=''){
-                        $('#iPigmento').prop('required',true);
-                        $('#zero_config').append('<tr><td>Pigmento</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
-                    }else{
-                        $('#iQuantPigmento').prop('required',false);
-                    }
-                });
 
                 //Busca no banco de dados e preenche o select de pigmentos e reciclados com as informações encontradas
                 $('#iMaterial').on('change', function(){
@@ -263,9 +168,9 @@
                     if($('#iMaterial').val() == '0'){
                         $('#divSelectPigmento').hide();
                         $('#divQtdMaterial').hide();
-                        $('#divQtdPigmento').hide();
                         $('#divReciclado').hide();
                         $('#divQtdReciclado').hide();
+
                     } else {   
                         //Pigmentos relacionados ao material                  
                         $.ajax({
@@ -276,10 +181,10 @@
                             success: function(html) {
                                 $('#iPigmento').html(html);
                                 $('#divSelectPigmento').show();   
-                                $('#divQtdMaterial').show();                        
-                                $('#divQtdPigmento').show();
+                                $('#divQtdMaterial').show();     
                             }
-                        });  
+                        });      
+                           
                         //Reciclados da mesma classe que o material
                         $.ajax({
                             url: "php/carregaRecicladosCompativeis.php",
@@ -289,9 +194,154 @@
                             success: function(html) {
                                 $('#iReciclado').html(html);
                             }
-                        });
+                        });                 
                     }                  
+                });    
+                
+                // PREENCHE TABELA ------------------------------------------------------
+                $('#divQtdMaterial').on('change', function(){                                  
+                    $('#divTable').show();     
+
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+/*toString(*/pesoMaterial/*)*/+'g';
+                        pigmento='| '+/*toString(*/pesoPigmento/*)*/+'g';
+                    }
+
+                    if($('#iMaterial').val()!='0'){
+                        $('#iQuantMaterial').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                    } else {
+                        $('#iQuantMaterial').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iReciclado').val()!='0'){ 
+                        $('#iQuantReciclado').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    } else {
+                        $('#iQuantReciclado').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iPigmento').val()!='0'){
+                        $('#iQuantPigmento').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }else{
+                        $('#zero_config').append('');
+                        $('#iQuantPigmento').prop('required',false);
+                    }
+                });
+                // --------------------------------------------------------------------------
+
+                $('#btnAddReciclado').on('click', function(){
+                    if($('#divQtdReciclado').is(':hidden')){                                                
+                        $('#divQtdReciclado').show();
+                        $('#divReciclado').show();
+                        $('#btnAddReciclado').text('Remover Reciclado');
+                    } else {                     
+                        $('#btnAddReciclado').text('Adicionar Reciclado');
+                        $('#iQuantReciclado').val('');
+                        $('#divQtdReciclado').hide();
+                        $('#iReciclado').val('');
+                        $('#divReciclado').hide();
+                    }
+                });
+
+                $('#iPigmento').on('change', function(){
+                    if($('#iPigmento').val() == '0'){
+                        $('#divQtdPigmento').hide();
+                    } else {
+                        $('#divQtdPigmento').show();
+                    }
+                });
+                
+                // PREENCHE TABELA ----------------------------------------------------------------------------------------------
+                $('#iQuantReciclado').on('change', function(){
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+/*toString(*/pesoMaterial/*)*/+'g';
+                        pigmento='| '+/*toString(*/pesoPigmento/*)*/+'g';
+                    }
+
+                    if($('#iMaterial').val()!='0'){
+                        $('#iQuantMaterial').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                    } else {
+                        $('#iQuantMaterial').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iReciclado').val()!='0'){ 
+                        $('#iQuantReciclado').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    } else {
+                        $('#iQuantReciclado').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iPigmento').val()!='0'){
+                        $('#iQuantPigmento').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }else{
+                        $('#zero_config').append('');
+                        $('#iQuantPigmento').prop('required',false);
+                    }
+                });                
+
+                $('#iQuantPigmento').on('change', function(){
+                    $('#zero_config').empty();
+                    $('#zero_config').append('<thead><tr><th>Item</th><th>Quantidade</th></tr></thead>');
+                    material='';
+                    pigmento='';
+                    if($('#iQuantMaterial').val()!='' && $('#iQuantPigmento').val()!=''){
+                        pesoMaterial=$('#iQuantMaterial').val();
+                        porcentPigmento=$('#iQuantPigmento').val();
+                        pesoPigmento=pesoMaterial*(porcentPigmento/100);
+                        pesoMaterial=pesoMaterial-pesoPigmento;
+                        material='| '+/*toString(*/pesoMaterial/*)*/+'g';
+                        pigmento='| '+/*toString(*/pesoPigmento/*)*/+'g';
+                    }
+
+                    if($('#iMaterial').val()!='0'){
+                        $('#iQuantMaterial').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iMaterial option:selected').text()+'</td><td>'+$('#iQuantMaterial').val()+'g '+material+'</td></tr>');
+                    } else {
+                        $('#iQuantMaterial').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iReciclado').val()!='0'){ 
+                        $('#iQuantReciclado').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iReciclado option:selected').text()+'</td><td>'+$('#iQuantReciclado').val()+'g</td></tr>');
+                    } else {
+                        $('#iQuantReciclado').prop('required',false);
+                        $('#zero_config').append('');
+                    }
+
+                    if($('#iPigmento').val()!='0'){
+                        $('#iQuantPigmento').prop('required',true);
+                        $('#zero_config').append('<tr><td>'+$('#iPigmento option:selected').text()+'</td><td>'+$('#iQuantPigmento').val()+'% '+pigmento+'</td></tr>');
+                    }else{
+                        $('#zero_config').append('');
+                        $('#iQuantPigmento').prop('required',false);
+                    }
                 });               
+                // -------------------------------------------------------------------------------------------------------
             })
             /*
             //Função Geral
