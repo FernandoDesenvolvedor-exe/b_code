@@ -69,9 +69,7 @@
                                             <p>Descontado do estoque</p>';
                 foreach($array as $campo){  
 
-                    $sql = 'UPDATE materia_prima 
-                            SET quantidade = '.($campo['estoqueMaterial'] - ($campo['qtdMaterial'] * $campo['producao'])).' 
-                            WHERE idMateriaPrima = '.$campo['idMaterial'].'';
+                    $sql = 'UPDATE materia_prima SET quantidade = '.($campo['estoqueMaterial'] - ($campo['qtdMaterial'] * $campo['producao'])).' WHERE idMateriaPrima = '.$campo['idMaterial'].'';
     
                     include('connection.php');
                     $result = mysqli_query($conn,$sql);
@@ -86,9 +84,7 @@
                     $pigmento = $campo['nomePigmento'];
                 }
     
-                $sql = 'UPDATE pigmentos 
-                        SET quantidade = '.($estoquePigmento - ($qtdPigmento * $producao)).' 
-                        WHERE idPigmento = '.$idPigmento.'';
+                $sql = 'UPDATE pigmentos SET quantidade = '.($estoquePigmento - ($qtdPigmento * $producao)).' WHERE idPigmento = '.$idPigmento.'';
     
                 include('connection.php');
                 $result = mysqli_query($conn,$sql);

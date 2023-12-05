@@ -7,6 +7,7 @@
     $select                         = $array['campo1'];
     $dataInicio                     = $array['campo2'];
     $dataFim                        = $array['campo3'];
+    $_SESSION['filtro']             = 1;
         
     if($select == '1'){
         $_SESSION['filtroHistorico'] .= ' AND statusPedido = 1';
@@ -27,7 +28,7 @@
     }
 
     if($dataFim != ''){
-        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_fechado, "%Y-%m-%d") <= '.$dataFim.'';  
+        $_SESSION['filtroHistorico'] .= ' AND DATE_FORMAT(dataHora_aberto, "%Y-%m-%d") >= '.$dataFim.'';  
     }
 
 ?>
