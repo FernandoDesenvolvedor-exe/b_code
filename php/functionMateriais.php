@@ -369,10 +369,9 @@
                 }else{
                     //DESATIVAR
                     $table .=
-                                "<button style='width:50%' type='button' class='btn btn-danger margin-1' data-toggle='modal' data-target='#modalDesativaMateria".$campo['idMateria']."'>
-                                    Desativar
-                                </button>
-                            </td>";
+                                '<div class="col-sm-4">
+                                <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#modalDesativaMateria'.$campo['idMateria'].'" title="Desativar Material"></a>
+                            </div>';
 
                 }
                 //MODAL ATIVAR/DESATIVAR/ALTERAR
@@ -387,7 +386,7 @@
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'">
+                                            <form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'>
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>

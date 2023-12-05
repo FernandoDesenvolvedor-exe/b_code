@@ -73,22 +73,9 @@ Validações
 
     }else if($validacao == 'DMP') {  // Ativa/DESATIVA UM CADASTRO DE MATERIA_PRIMA
         include('connection.php');
-        $sql= 'SELECT ativo FROM materia_prima WHERE idMateriaPrima = '.$_GET["idMateria"].';';
-        $result = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($result) > 0){
-            $array = array();
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
-                array_push($array,$linha);
-            }
-            foreach($array as $campo){
-                //echo $sql.'<br>'.$campo['ativo'].'<br>'.$_GET["idMateria"];die();
-                if($campo['ativo']==1){
-                    $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
-                }else{
-                    $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].';';
-                }
-            }
-        }
+        $sqlUpdate = 'UPDATE materia_prima SET ativo = 0 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=1;';
+        $result = mysqli_query($conn,$sqlUpdate);
+        $sqlUpdate = 'UPDATE materia_prima SET ativo = 1 WHERE idMateriaPrima = '.$_GET["idMateria"].' AND ativo=0;';
         $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
 

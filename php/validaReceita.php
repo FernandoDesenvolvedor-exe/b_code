@@ -71,12 +71,11 @@
     }
     mysqli_close($conn);
     header('location: saveReceita.php?idProduto='.$produto.'&pr='.$nProduto.'&mat='.$material.'&qMat='.$pesoMaterial.'&rec='.$reciclado.'&qRec='.$qReciclado.'&pig='.$pigmento.'&qPig='.$pesoPigmento.'&obs='.$observacoes);
-    
     //unico material virgem 
     //material virgem n mistura
     //peso receita varia 5%
     //maximo de 6% de pigmento
-    //salva reciclado no mesmo pedido e borra
+    //salva reciclado no mesmo pedido
     
 
     //-----Sem tempo-----------

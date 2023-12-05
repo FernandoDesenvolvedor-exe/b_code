@@ -63,11 +63,11 @@
                                         <th>ID</th>
                                         <th>Matéria Prima</th>
                                         <th>Pigmento</th>
-                                        <th>Selecionar/Desativar</th>
+                                        <th>Selecionar/Desativar/Ativar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php echo dataTableReceitas($_GET['idProduto']); ?>
+                                    <?php echo dataTableReceitas($_GET['idProduto'],$_GET['pr']); ?>
                                 </tbody>
                             </table>
                         </div>                         

@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
     include("function.php");    
 
     if ($_GET['validacao'] == 'I'){ // INSERT
@@ -226,13 +228,14 @@
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-    } else if($_GET['validacao'] == 'DR'){ // DESATIVAR RECEITA
+    } else if($_GET['validacao'] == 'DR'){ // DESATIVAR/ATIVAR RECEITA
 
-        $sql = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].';';
-
-        $result = mysqli_query($conn, $sql);
+        include('connection.php');
+        $sqlUpdate = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].' AND ativo=1;';
+        $result = mysqli_query($conn,$sqlUpdate);
+        $sqlUpdate = 'UPDATE receitas SET ativo = 1 WHERE idReceita = '.$_GET['id'].' AND ativo=0;';     
+        $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
-        
         header('location:../receitas.php? idProduto='.$_GET['id'].'&pr='.$_GET['pr'].'');
 
     } else if($_GET['validacao'] == 'A'){

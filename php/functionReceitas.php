@@ -1,11 +1,10 @@
 <?php
-    function dataTableReceitas($idProduto){
+    function dataTableReceitas($idProduto,$produto){
         
         include('connection.php');
         
         $sql = 'SELECT * FROM view_receitas
-                    WHERE ativoReceita = 1
-                    AND produtoId = '.$idProduto.'
+                    WHERE produtoId = '.$idProduto.'
                     GROUP BY receitaId;';
 
 
@@ -33,15 +32,35 @@
                                 <div class="d-flex justify-content-center">                                                
                                     <div class="col-sm-3">
                                         <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$campo['receitaId'].'"></a>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <a href="#" class="fas fa-undo text-success" data-target="#ExcluiModal'.$campo['receitaId'].'"></a>
+                                    </div>';
+                if($_SESSION['tipo']==1){
+                    if($campo['ativoReceita']==1){
+                        //DESATIVAR
+                        $table .=
+                                    '<div class="col-sm-3">
+                                    <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#desativaModal'.$campo['receitaId'].'" title="Desativar Receita"></a>
+                                </div>
+                            </td>';
+                    }else{
+                        //ATIVAR
+                        $table .=   
+                                    '<div class="col-sm-3">
+                                        <a href="#" class="fas fa-undo text-success" align="center" data-toggle="modal" data-target="#ativaModal'.$campo['receitaId'].'" title="Ativar Receita"></a>
                                     </div>
                                 </div>
-                            </td>
+                            </td>'; 
+                    }
+                }else{
+                    //DESATIVAR
+                    $table .=
+                                    '<div class="col-sm-3">
+                                    <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#desativaModal'.$campo['receitaId'].'" title="Desativar Receita"></a>
+                                </div>
+                            </td>';
 
-
-                            <div class="modal fade" id="ExcluiModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                }
+                $table .= 
+                            '<div class="modal fade" id="desativaModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog" role="document ">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -51,7 +70,7 @@
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/savePedidos.php? validacao=DR&id='.$campo["receitaId"].'&pr='.$campo['produtoNome'].'">
+                                            <form method="POST" action="php/savePedidos.php? validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
@@ -61,6 +80,33 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+                            <div class="modal fade" id="ativaModal'.$campo['receitaId'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                                <div class="modal-dialog" role="document ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Desativar Receita</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true ">&times;</span>
+                                            </button>
+                                        </div>                            
+                                        <div class="modal-body">
+                                            <form method="POST" action="php/savePedidos.php? validacao=DR&id='.$campo["receitaId"].'&idProduto='.$idProduto.'&pr='.$produto.'">
+                                                <label> Confirmar esta ação? </label>
+                                                <div align-items="right">
+                                                    <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         
                             <div style="max-height: 700px" class="modal fade" id="modalPedido'.$campo["receitaId"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                 <div class="modal-dialog modal-lg" role="document ">
@@ -74,7 +120,7 @@
                                         <div class="modal-body pre-scrollable">
                                         
                                             <diiv class="card">
-                                                <form method="POST" action="php/savePedidos.php?validacao=I&id='.$campo['receitaId'].'&idProduto='.$campo['produtoId'].'">
+                                                <form method="POST" action="php/savePedidos.php?validacao=I&id='.$campo['receitaId'].'&idProduto='.$idProduto.'&pr='.$produto.'">
         
                                                     <div class="card-body">
                                                         <div class="input-group mb-3">
