@@ -7,6 +7,7 @@
     $select                         = $array['campo1'];
     $dataInicio                     = $array['campo2'];
     $dataFim                        = $array['campo3'];
+    $_SESSION['filtro']             = 1;
         
     if($select == '1'){
         $_SESSION['filtroHistorico'] .= ' AND statusPedido = 1';

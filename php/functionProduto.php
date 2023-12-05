@@ -219,7 +219,7 @@
             $card='';
             foreach($array as $campo){
 
-                $card .='   <div class="w-25 p-3" height="100px">
+                $card .='   <div class="col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="el-card-item">
                                         <div class="el-card-avatar el-overlay-1">                                          
