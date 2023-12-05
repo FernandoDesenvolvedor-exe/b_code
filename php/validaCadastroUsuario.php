@@ -90,22 +90,13 @@ VALIDAÇÕES
         die();
     } else if ($_GET['validacao'] == 'D'){
         include('connection.php');
-        $sql= 'SELECT ativo FROM usuarios WHERE idUsuario='.$_GET['id'].';';
-        $result = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($result) > 0){
-            $array = array();
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC )){
-                array_push($array,$linha);
-            }
-            foreach($array as $campo){
-                if($campo['ativo']==1){
-                    $sqlUpdate = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].';';
-                }else{
-                    $sqlUpdate = 'UPDATE usuarios SET ativo = 1 WHERE idUsuario = '.$_GET['id'].';';
-                }
-            }
+        if($_GET['op']==1){
+            $sqlUpdate = 'UPDATE usuarios SET ativo = 0 WHERE idUsuario = '.$_GET['id'].';';
+            $result = mysqli_query($conn,$sqlUpdate);
+        }else{
+            $sqlUpdate = 'UPDATE usuarios SET ativo = 1 WHERE idUsuario = '.$_GET['id'].';';
+            $result = mysqli_query($conn,$sqlUpdate);
         }
-        $result = mysqli_query($conn,$sqlUpdate);
         mysqli_close($conn);
     } else if ($_GET['validacao'] == 'U'){
         $_SESSION['msgErro']='';

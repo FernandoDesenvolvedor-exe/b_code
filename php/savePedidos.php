@@ -231,12 +231,14 @@
         mysqli_close($conn);
 
     } else if($_GET['validacao'] == 'DR'){ // DESATIVAR/ATIVAR RECEITA
-
         include('connection.php');
-        $sqlUpdate = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].' AND ativo=1;';
-        $result = mysqli_query($conn,$sqlUpdate);
-        $sqlUpdate = 'UPDATE receitas SET ativo = 1 WHERE idReceita = '.$_GET['id'].' AND ativo=0;';     
-        $result = mysqli_query($conn,$sqlUpdate);
+        if($_GET['op']==1){
+            $sqlUpdate = 'UPDATE receitas SET ativo = 0 WHERE idReceita = '.$_GET['id'].' AND ativo=1;';
+            $result = mysqli_query($conn,$sqlUpdate);
+        }else{
+            $sqlUpdate = 'UPDATE receitas SET ativo = 1 WHERE idReceita = '.$_GET['id'].' AND ativo=0;';     
+            $result = mysqli_query($conn,$sqlUpdate);
+        }
         mysqli_close($conn);
         header('location:../receitas.php? idProduto='.$_GET['id'].'&pr='.$_GET['pr'].'');
         die();

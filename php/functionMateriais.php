@@ -1,5 +1,7 @@
 <?php
-
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
     function selectCor($id,$coluna){
         if($coluna == 1){
             $coluna = 'codigo';            
@@ -386,7 +388,7 @@
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'>
+                                            <form method="POST" action="php/saveMateriais.php?op=0&validacao=DMP&idMateria='.$campo["idMateria"].'>
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>
@@ -407,7 +409,7 @@
                                             </button>
                                         </div>                            
                                         <div class="modal-body">
-                                            <form method="POST" action="php/saveMateriais.php? validacao=DMP&idMateria='.$campo["idMateria"].'">
+                                            <form method="POST" action="php/saveMateriais.php?op=1&validacao=DMP&idMateria='.$campo["idMateria"].'">
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items="right">
                                                     <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>

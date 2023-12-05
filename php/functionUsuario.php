@@ -94,7 +94,7 @@
                                             </button>
                                         </div>                                 
                                         <div class='modal-body'>
-                                            <form method='POST' action='php/validaCadastroUsuario.php? validacao=D&id=".$campo["idUser"]."'>
+                                            <form method='POST' action='php/validaCadastroUsuario.php?op=0&validacao=D&id=".$campo["idUser"]."'>
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items='right'>
                                                     <button  type='submit' id='iBtnSalvar' name='nBtnSalvar' class='btn btn-primary'> Confirmar </button>
@@ -115,7 +115,7 @@
                                             </button>
                                         </div>                                 
                                         <div class='modal-body'>
-                                            <form method='POST' action='php/validaCadastroUsuario.php? validacao=D&id=".$campo["idUser"]."'>
+                                            <form method='POST' action='php/validaCadastroUsuario.php?op=1&validacao=D&id=".$campo["idUser"]."'>
                                                 <label> Confirmar esta ação? </label>
                                                 <div align-items='right'>
                                                     <button  type='submit' id='iBtnSalvar' name='nBtnSalvar' class='btn btn-primary'> Confirmar </button>

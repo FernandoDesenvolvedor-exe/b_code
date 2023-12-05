@@ -52,6 +52,8 @@
                     <?php 
                     }
                     ?>
+                    <?php echo $_SESSION?>
+
                     <!-- Start Page Content -->                    
                     <div class="card" style="padding: 10px;">                         
 
