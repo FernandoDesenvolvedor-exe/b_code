@@ -137,11 +137,7 @@ function dataTablePedido(){
                 $table .=
                         '<td>Cancelado</td>';
 
-            }
-
-
-
-                                
+            }            
                                 
 
             $table .=

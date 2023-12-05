@@ -16,7 +16,7 @@
             <?php include('links/preloader.php');?> 
             
             <!-- Login box.scss -->            
-            <div class="auth-wrapper d-flex no-block justify-content-center bg-cyan align-items-center">
+            <div class="auth-wrapper d-flex no-block justify-content-center bg-info align-items-center">
                 <div class="auth-box bg-blue border-top border-secondary">
                     <div id="loginform">
                         <div class="text-center p-t-20 p-b-20">
