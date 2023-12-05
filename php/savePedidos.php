@@ -52,10 +52,9 @@
                 $status = 1;
                 $_SESSION['msgAviso'] .= '  <p class="mb-0">'.$_POST['nCor'][$n].'- '.$_POST['nTipoCor'].': Material insuficiente!</p><br>';
             }
-
             
             if($status == 1){                
-                $_SESSION['ativaMsgS'] = 1; 
+                $_SESSION['ativaMsgA'] = 1; 
                 $_SESSION['msgAviso'] .= '<p>Status da OP: '.nomeStatus($stats).'</p>';
             }
 
@@ -195,8 +194,8 @@
             include('connection.php');
             $result = mysqli_query($conn, $sql);     
             mysqli_close($conn);      
-        }  
-        
+        }
+                
         if($status == 2){     
             alteraEstoque($idPedido);
         }
@@ -243,24 +242,26 @@
 
         if ($_GET['stats'] == 1){
 
-            include('connection.php');
-            $sql = 'UPDATE pedidos SET status = 2, 
-                        dataHora_producao="'.$current_date.'",
-                        idMaquina='.$_POST['nMaquina'].' 
-                        WHERE idPedido = '.$_GET['id'].';';
-            $result = mysqli_query($conn, $sql);
-            mysqli_close($conn);            
-
-            include('connection.php');
-            $sql = 'UPDATE historico_pedidos 
-                        SET statusPedido = 2,
-                        dataHora_producao="'.$current_date.'", 
-                        maquina = "'.maquinaNome($_POST['nMaquina']).'"
-                        WHERE idPedido = '.$_GET['id'].';';
-            $result = mysqli_query($conn, $sql);
-            mysqli_close($conn);
-
             alteraEstoque($_GET['id']);
+
+            if($_SESSION['ativaMsgS'] == 1 && $_SESSION['ativaMsgA'] == 0){
+                include('connection.php');
+                $sql = 'UPDATE pedidos SET status = 2, 
+                            dataHora_producao="'.$current_date.'",
+                            idMaquina='.$_POST['nMaquina'].' 
+                            WHERE idPedido = '.$_GET['id'].';';
+                $result = mysqli_query($conn, $sql);
+                mysqli_close($conn);            
+    
+                include('connection.php');
+                $sql = 'UPDATE historico_pedidos 
+                            SET statusPedido = 2,
+                            dataHora_producao="'.$current_date.'", 
+                            maquina = "'.maquinaNome($_POST['nMaquina']).'"
+                            WHERE idPedido = '.$_GET['id'].';';
+                $result = mysqli_query($conn, $sql);
+                mysqli_close($conn);
+            }            
 
             header('location:../materiaPrima');
         } else if ($_GET['stats'] == 2){

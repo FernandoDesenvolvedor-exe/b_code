@@ -133,7 +133,7 @@
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produção prevista</label>
                                                             <div class="col-sm-7">
-                                                                <input id="idQtdeProduto" name="nQtdeProduto" value="50" type="number" min="50" class="form-control" style="width: 100%; height:36px;">
+                                                                <input id="idQtdeProduto" name="nQtdeProduto" type="number" min="0" class="form-control" style="width: 100%; height:36px;">
                                                             </div>
                                                         </div>                                                        
                                                         

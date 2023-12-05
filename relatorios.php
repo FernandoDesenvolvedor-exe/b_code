@@ -31,7 +31,7 @@
 
                 <div class="container-fluid">
 
-                    <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                    <!--div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                         <div class="modal-dialog modal-lg" role="document ">                                
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -134,7 +134,45 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div-->
+                    <div class="modal fade" id="modalAvancado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                        <div class="modal-dialog modal-lg" role="document ">                                
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Filtros avançados</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true ">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pre-scrollable">
+                                    <?php if($_SESSION['ativaMsgS'] == 1){?>                        
+                                        <div class="alert alert-success" role="alert">      
+                                            <?php 
+                                                echo $_SESSION['msgSucesso'];
+                                                $_SESSION['ativaMsgS'] = 0;    
+                                            ?>                      
+                                        </div>
+                                    <?php } if ($_SESSION['ativaMsgA'] == 1){?>
+                                        <div class="alert alert-warning" role="alert">  
+                                            <?php 
+                                                    echo $_SESSION['msgAviso'];
+                                                    $_SESSION['ativaMsgA'] = 0;    
+                                                ?>                      
+                                            </div>
+                                    <?php } if($_SESSION['ativaMsgD'] == 1){?>
+                                        <div class="alert alert-danger" role="alert">   
+                                            <?php 
+                                                    echo $_SESSION['msgPerigo'];
+                                                    $_SESSION['ativaMsgD'] = 0;    
+                                                ?>                      
+                                            </div>
+                                    <?php }?>
+                                </div>    
+                            </div>    
+                        </div>    
+                    </div>    
+
+                    
                             
                     <div class="card">
                         <div class="d-flex justify-content-center flex-row m-4">
@@ -185,14 +223,14 @@
                             </div>
 
                             <div class="form-group flex-column col-md-2">
-                                <div class="col-sm-12 m-3">                                    
+                                <!--div class="col-sm-12 m-3">                                    
                                     <button style="width: 150px; height:36px; border-radius: 5px;" type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#modalAvancado">
                                         Filtros avançados
                                     </button> 
-                                </div>
+                                </div-->
 
                                 <div class="col-sm-12 m-3">
-                                    <button id="iConsulta" type=submit class="btn btn-info margin-5" style="width: 150px; height:36px; border-radius: 5px;">
+                                    <button id="iConsulta" type=submit class="btn btn-info mt-10" style="width: 150px; height:36px; border-radius: 5px;">
                                         Consulta
                                     </button> 
                                 </div> 

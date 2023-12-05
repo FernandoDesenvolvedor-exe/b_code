@@ -33,7 +33,7 @@
         }
     }
 
-    function alteraEstoque($idPedido){
+    function alteraEstoque($idPedido){        
 
         $sql = 'SELECT * FROM view_altera_estoque WHERE idPedido = '.$idPedido.'';
         
@@ -94,7 +94,7 @@
             } else {
                 // Se a validação for falsa, prepara uma menssagem de aviso e mostra quais materiais faltam no estoque
 
-                $_SESSION['ativaMsgS'] = 0;
+                $_SESSION['ativaMsgA'] = 1;
                 $_SESSION['msgAviso'] =   '<h4 class="alert-heading">Aviso!</h4><br>                               
                                             <hr>
                                             <p>Materiais insuficientes no estoque:</p>';
@@ -110,8 +110,7 @@
                     $pigmento = $campo['nomePigmento'];
                 }
     
-                $_SESSION['msgAviso'] = 1;
-                $_SESSION['msgSucesso'] .= '<p class="mb-0">Quantidade atual:'.$estoquePigmento.' - Necessário:'.$pigmento.' = -'.($qtdPigmento * $producao).'g</p><br>';
+                $_SESSION['msgAviso'] .= '<p class="mb-0">'.$pigmento.' = Quantidade atual:'.$estoquePigmento.' - Necessário: '.($qtdPigmento * $producao).'g</p><br>';
             }
         }        
     }
