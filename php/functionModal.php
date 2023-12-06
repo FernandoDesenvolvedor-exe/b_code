@@ -1,29 +1,30 @@
 <?php 
-    function modalVisualizarHistorico($id){
 
+    function carregaModalPedidos($id){
+        
         $array = selectHistoricoPedidos($id);
 
         if ($array == 0){
             date_default_timezone_set('America/Sao_Paulo');
 
-            $table ='   <div class="modal fade" id="modalPedido'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog modal-lg" role="document ">                                
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true ">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body pre-scrollable">
-                                    </div>
-                                </div>
+            $table =
+                '<div class="modal fade" id="modalPedido'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                    <div class="modal-dialog modal-lg" role="document ">                                
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true ">&times;</span>
+                                </button>
                             </div>
-                        </div>';
+                            <div class="modal-body pre-scrollable">
+                            </div>
+                        </div>
+                    </div>
+                </div>';
         } else {
 
             foreach($array as $campo){
-
                 $table =   
                         '<div class="modal fade" id="modalPedido'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                             <div class="modal-dialog modal-lg" role="document ">                                
@@ -35,7 +36,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body pre-scrollable justify-content-center">
-                                        <div class="row mb-3">                                            
+                                        <div class="row mb-3">                                    
                                             <h4 class="col-md-12">Autor da ordem de produção</h4>
 
                                             <div class="input-group col-md-8">
@@ -65,19 +66,15 @@
                                                 <div class="col-sm-9">
                                                     <input value="'.$campo['turma'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
-                                            </div>';
-        
-        
-                }                  
-                                          
-                $table .=               '</div>
-                                            <div class="row mb-3">
-                                                <h4 class="col-lg-12">Ordem de produção</h4>';
+                                            </div>
+                                        </div>';              
+                }
 
-                if ($campo['statusPedido'] == 1){
+                if ($campo['statusPedido'] == 1 || $campo['statusPedido'] == 0){
 
                     $table .=
-                                '<div class="col-lg-12 mt-2">
+                            '<div class="col-lg-12 mt-1 mb-2">
+                                <div class="col-lg-12 mt-2">
                                     <h6 class="col-lg-12">Data de Abertura da OP</h6>
                                     <div class="row">
                                         <div class="input-group col-md-6">  
@@ -248,7 +245,8 @@
                 }
         
                 $table .=
-                                        '<div class="col-lg-12 mt-4 mb-2">
+                                        '
+                                        <div class="col-lg-12 mt-4 mb-2">
                                             <h6 class="col-lg-12">Informação do produto</h6> 
 
                                             <div class="form-group row">
@@ -381,39 +379,37 @@
                                         </div>
 
                                         <div class="col-lg-12 mt-4">
-                                            <form method="POST" action="php/savePedidos.php?validacao=U&id='.$id.'">                     
-                                                <h4> Observações </h4>       
+                                            <form method="POST" action="php/savePedidos.php?validacao=U&id='.$campo['idPedido'].'">              
+                                                <h4> Observações </h4>
                                                 <div class="form-group row">
-                                                    <label for="cono1" class="col-sm-4 text-right control-label col-form-label">Observações</label>
-                                                    <div class="col-sm-8">
-                                                        <textarea class="form-control" id="iObs" name="nObs" style="width: 100%; height:36px;" placeholder="Campo não obrigatório">'.$campo['obsPedido'].'</textarea>
+                                                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
+                                                    <div class="col-sm-9">
+                                                        <textarea class="form-control" id="iObs" name="nObs" placeholder="Campo não obrigatório">'.$campo['obsPedido'].'</textarea>
                                                     </div>
-                                                </div>
+                                                </div>  
+
+                                                <button type="submit" class="btn btn-primary">
+                                                    Alterar observação
+                                                </button>
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-                        </div>';
-            }
-            
-        }
+                        </div>';                        
 
-        return $table;
-    }
-    function modalExcluiPedido($id){
-        
-        $modal = '  <div class="modal fade" id="modalExclui'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog" role="document ">
+                if(consultaStatusHistoricoPedido($id) == 1 || consultaStatusHistoricoPedido($id) == 3){
+                    $table .=   
+                    '<div class="modal fade" id="modalExclui'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                        <div class="modal-dialog modal-lg" role="document ">                                
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Excluir Registro</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true ">&times;</span>
                                     </button>
-                                </div>                       
-                                <div class="modal-body">
+                                </div>
+                                <div class="modal-body pre-scrollable justify-content-center">                                        
                                     <form method="POST" action="php/saveHistorico.php?validacao=D&id='.$id.'">
                                         <h6> Confirmar esta ação?</h6>
                                         <div class="align-items=left">      
@@ -427,36 +423,39 @@
                                 </div>
                             </div>
                         </div>
-                    </div>';
+                    </div>';                            
+                }
+                
+                if(consultaStatusHistoricoPedido($id) == 0){            
 
-        return $modal;
-    }    
-    function modalRestauraPedido($id){        
-
-        $modal ='   <div class="modal fade" id="modalRestaura'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog" role="document ">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Restaurar Registro</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true ">&times;</span>
-                                    </button>
-                                </div>                       
-                                <div class="modal-body">
-                                    <form method="POST" action="php/savePedidos.php? validacao=R&id='.$id.'">
-                                        <label> Confirmar esta ação? </label>
-                                        <div align-items="right">
-                                            <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">
-                                                Confirmar
-                                            </button>
-                                        </div>
-                                    </form>
+                    $table .=   
+                        '<div class="modal fade" id="modalRestaura'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div class="modal-dialog modal-lg" role="document ">                                
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Restaurar Pedido</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pre-scrollable justify-content-center">
+                                        <form method="POST" action="php/savePedidos.php? validacao=R&id='.$id.'">
+                                            <label> Confirmar esta ação? </label>
+                                            <div align-items="right">
+                                                <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">
+                                                    Confirmar
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>';
-
-        return $modal;
-        
+                        </div>';
+                    } 
+                }
+            
+        }       
+      
+        return $table;
     }
 ?>

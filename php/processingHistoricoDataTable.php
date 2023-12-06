@@ -65,8 +65,7 @@
                                     </a>
                                 </div>
                             </div>
-                            '.modalVisualizarHistorico($d).'
-                            '.modalExcluiPedido($d).'';
+                            '.carregaModalPedidos($d);
             
                     } else if ($status == 2){
                         return
@@ -78,7 +77,7 @@
                                 <a href="#" class="fas fa-eye text-info  align-right" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                 </a>
                             </div>
-                        </div>'.modalVisualizarHistorico($d).'';
+                        </div>'.carregaModalPedidos($d);
 
                     } else if($status == 0){
                         return
@@ -98,13 +97,7 @@
                                     </a>
                                 </div>
                             </div>
-                            '.
-                            modalVisualizarHistorico($d)
-                            .''.
-                            modalRestauraPedido($d)
-                            .''.
-                            modalExcluiPedido($d)
-                            .'';                     
+                            '.carregaModalPedidos($d);                     
                     } else {
 
                         return
