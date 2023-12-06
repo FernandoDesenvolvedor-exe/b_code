@@ -621,7 +621,7 @@
                                     </div>';
                 if($campo['ativo']==1){
                     //Desativa
-                                    $table .=        
+                    $table .=        
                                     '<div class="col-sm-3">
                                         <a href="#" class="fas fa-unlink text-danger" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
                                     </div>
@@ -629,21 +629,16 @@
                             </td>';
                 }else{
                     //Ativa
-                                    $table .=     
+                    $table .=     
                                     '<div class="col-sm-3">
-                                    <a href="#" class="fas fa-undo text-success" align="center" data-toggle="modal" data-target="#AtivaModal'.$campo['idUser'].'" title="Ativar Usúario"></a>
                                         <a href="#" class="fas fa-undo text-success" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
                                     </div>
                                 </div>
                             </td>';
                 }
+                // MODAL DESATIVA CADASTRO DE PIGMENTO
                 $table .=     
 
-
-                            
-
-    
-                            // MODAL DESATIVA CADASTRO DE PIGMENTO
                             "<div class='modal fade' id='modalExcluiPigmento".$campo['idPigmento']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
