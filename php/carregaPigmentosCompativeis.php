@@ -25,7 +25,7 @@
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);
 
-        $option .='<option value="0">Transparente</option>';
+        $option .='<option value="">Selecione um pigmento</option>';
 
         if(mysqli_num_rows($result) > 0){
             $array = array();

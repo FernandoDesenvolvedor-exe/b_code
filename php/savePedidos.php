@@ -357,6 +357,13 @@
         include("connection.php");
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
+    }else if($_GET['validacao'] == 'R'){
+
+        $sql = 'UPDATE historico_pedidos set statusPedido = '.$_GET['stats'].' where idPedido = '.$_GET['id'].'';
+
+        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
     }
     
     header('location:../producao');

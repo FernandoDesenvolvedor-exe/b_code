@@ -25,9 +25,9 @@
     
     //INSERT na tabela receita
     $sqlInsert = "Insert into receitas (idProduto,IdPigmento,quantidadePigmento,observacoes,ativo) values 
-    (".$produto.",".$pigmento.",".$pesoPigmento.",'".$observacoes."',1);";
-    //mysqli_query($conn,$sqlInsert);
+    (".$produto.",".$pigmento.",".$pesoPigmento.",'".$observacoes."',1);";    
 
+    mysqli_query($conn, $sqlInsert);
     //Pega ID da receita criada
     $idReceita=buscaId('receitas','idReceita');
 
@@ -38,8 +38,6 @@
     if($reciclado != 0){
         $sqlInsert .=", (".$idReceita.",".$reciclado.",".$pesoReciclado.");";
     }
-    //var_dump($sqlInsert);
-    //die();
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
     

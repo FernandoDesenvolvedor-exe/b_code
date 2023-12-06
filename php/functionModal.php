@@ -400,6 +400,15 @@
                     </div>                            
                 </div>';   
                 
+                if($campo['dataHora_aberto'] != '' && $campo['dataHora_producao'] == ''){
+                    $restauraStats = 1;
+                } else if($campo['dataHora_aberto'] != '' && $campo['dataHora_producao'] != '' && $campo['dataHora_fechado'] == ''){
+                    $restauraStats = 2;
+                }else if($campo['dataHora_aberto'] != '' && $campo['dataHora_producao'] != '' && $campo['dataHora_fechado'] != ''){
+                    $restauraStats = 3;
+                }
+
+
                 if(consultaStatusHistoricoPedido($id) == 0){            
 
                     $table .=   
@@ -413,7 +422,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body pre-scrollable justify-content-center">
-                                        <form method="POST" action="php/savePedidos.php? validacao=R&id='.$id.'">
+                                        <form method="POST" action="php/savePedidos.php?validacao=R&id='.$id.'&stats='.$restauraStats.'">
                                             <label> Confirmar esta ação? </label>
                                             <div align-items="right">
                                                 <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary">
