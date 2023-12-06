@@ -268,8 +268,7 @@
         <!-- Linhas de javaScript em geral -->
         <?php include('links/script.php');?>
     
-        <script>
-            
+        <script>            
             function dataTableHistorico(){
                 new DataTable('#datatable', {
                     language: {

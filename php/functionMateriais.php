@@ -254,7 +254,7 @@
                                             <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['idMateriaPrima'].'">
                                         </div>    
                                     </div>';
-                    break;
+                        break;
                         
                     case 2:
                         if(count($array) == $n){
@@ -262,7 +262,57 @@
                         } else {
                             $table .= ''.$campo['materiaPrima'].' -';
                         }
-                    break;                      
+                        break;   
+                    
+                    case 3:
+                        $table .= '
+                        
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h6>Matéria Prima</h6>
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Material:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['materiaPrima'].'" id="idQtdPrev" name="nQtdPrev" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">                                        
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Tipo de material:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['tipoMateria_prima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">                                    
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Classe:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['classeMateria_prima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['fornecedorMateria_Prima'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Quantidade de matéria prima:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.$campo['quantidadeMateria_prima'].'" type="text" class="form-control" style="width: 100%; height:36px;" title="p/ produto" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Total utilizado:</label>
+                                        <div class="col-sm-8">
+                                            <input value="'.($campo['quantidadeMateria_prima'] * $campo['producaoPrevista']).'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                        </div>
+                                    </div>
+                                </div>';
+                        break;  
+
                 }
 
                 $n++;                

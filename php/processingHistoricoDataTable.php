@@ -52,7 +52,8 @@
 
                     if($status == 1 || $status == 3){
                         return                        
-                            '<div class="d-flex row-flex align-center">
+                            '
+                            <div class="d-flex row-flex align-center">
                                 <div class="col-sm-5">
                                 </div>
                                 <div class="col-sm-3">
@@ -63,8 +64,9 @@
                                     <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                     </a>
                                 </div>
-                            </div>'.modalVisualizarHistorico($d).'
-                                  '.modalExcluiPedido($d);
+                            </div>
+                            '.modalVisualizarHistorico($d).'
+                            '.modalExcluiPedido($d).'';
             
                     } else if ($status == 2){
                         return
@@ -76,7 +78,7 @@
                                 <a href="#" class="fas fa-eye text-info  align-right" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                 </a>
                             </div>
-                        </div>'.modalVisualizarHistorico($d);
+                        </div>'.modalVisualizarHistorico($d).'';
 
                     } else if($status == 0){
                         return
@@ -95,9 +97,14 @@
                                     <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                     </a>
                                 </div>
-                            </div>  '.modalVisualizarHistorico($d).'
-                                    '.modalExcluiPedido($d).'
-                                    '.modalRestauraPedido($d);                     
+                            </div>
+                            '.
+                            modalVisualizarHistorico($d)
+                            .''.
+                            modalRestauraPedido($d)
+                            .''.
+                            modalExcluiPedido($d)
+                            .'';                     
                     } else {
 
                         return

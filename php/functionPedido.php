@@ -431,13 +431,6 @@ function dataTablePedido(){
                                                 <div class="col-sm-8">
                                                     <input value="'.$campo['produto'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
                                                 </div>
-                                            </div>
-                            
-                                            <div class="input-group mb-3">
-                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Peso do Produto</label>
-                                                <div class="col-sm-8">
-                                                    <input value="'.$campo['pesoProduto'].'g" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
-                                                </div>
                                             </div>';
 
             if ($campo['statusPedido'] == 1 || $campo['statusPedido'] == 2){
