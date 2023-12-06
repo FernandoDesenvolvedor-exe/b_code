@@ -316,25 +316,14 @@
         }  
 
     } else if($_GET['validacao'] == 'U'){
-        include("connection.php");
-        if(!validarDado(2,$_POST['nObs'])){
-            $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
-            header('location: ../producao');
-            die();
-        }
-        $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
-        $result = mysqli_query($conn, $sql);
-        $sql ='UPDATE historico_pedidos SET obsPedido = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-    } else if($_GET['validacao'] == 'UR'){
-        $sql = 'SELECT quantidadeReciclado FROM historico_pedidos WHERE idPedido = '.$_GET['idPedido'].';';
+
+        $sql = 'SELECT * FROM historico_pedidos WHERE idPedido = '.$_GET['id'].';';
 
         include("connection.php");
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
-        $pedidoReciclado = '';
+        $quantidadePrevista = '';
 
         if(mysqli_num_rows($result) > 0){            
             $array = array();
@@ -343,7 +332,51 @@
                 array_push($array, $linha);
             }
 
-            $n = 1;
+            foreach($array as $campo){
+                $quantidadePrevista = $campo['producaoPrevista'];
+            }
+        }     
+
+        if($_POST['nQtdPrev'] != $quantidadePrevista && $_POST['nQtdPrev'] > 0){
+            $sql = 'UPDATE historico_pedidos SET producaoPrevista = '.$_POST['nQtdPrev'].' WHERE idPedido = '.$_GET['id'].';';
+
+            include("connection.php");
+            $result = mysqli_query($conn, $sql);
+            mysqli_close($conn);
+        }        
+
+        if(!validarDado(2,$_POST['nObs'])){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../producao');
+            die();
+        }   
+
+        $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
+
+        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+
+        $sql ='UPDATE historico_pedidos SET obsPedido = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
+
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+    } else if($_GET['validacao'] == 'UR'){
+        $sql = 'SELECT * FROM historico_pedidos WHERE idPedido = '.$_GET['idPedido'].';';
+
+        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        $pedidoReciclado = '';
+        $quantidadePrevista = '';
+
+        if(mysqli_num_rows($result) > 0){            
+            $array = array();
+
+            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                array_push($array, $linha);
+            }
 
             foreach($array as $campo){
                 $pedidoReciclado = $campo['quantidadeReciclado'];

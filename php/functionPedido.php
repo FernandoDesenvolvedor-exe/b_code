@@ -99,7 +99,7 @@ function dataTablePedido(){
             $dataFechado =''.substr($campo['dataHora_fechado'], 8, 2).'/';
             $dataFechado .=''.substr($campo['dataHora_fechado'], 5, 2).'/';
             $dataFechado .=''.substr($campo['dataHora_fechado'], 0, 4).'';
-            $horaFechado = substr($campo['dataHora_fechado'], 11, 8);            
+            $horaFechado = substr($campo['dataHora_fechado'], 11, 8);
 
             $table .=   
                     '<tr align-items="center";>
@@ -433,13 +433,23 @@ function dataTablePedido(){
                                                 </div>
                                             </div>';
 
-            if ($campo['statusPedido'] == 1 || $campo['statusPedido'] == 2){
+            if ($campo['statusPedido'] == 1 ){
 
                 $table .=
                                             '<div class="form-group row">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção prevista</label>
                                                 <div class="col-sm-8">
-                                                    <input value='.$campo['producaoPrevista'].' id="idQtdPrev" name="nQtdPrev" type="number" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value='.$campo['producaoPrevista'].' id="idQtdPrev" name="nQtdPrev" type="number" class="form-control" style="width: 100%; height:36px;" readonly>
+                                                </div>
+                                            </div>';
+
+            } else if ($campo['statusPedido'] == 2){
+
+                $table .=
+                                            '<div class="form-group row">
+                                                <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção prevista</label>
+                                                <div class="col-sm-8">
+                                                    <input value='.$campo['producaoPrevista'].' id="idQtdPrev" name="nQtdPrev" type="number" class="form-control" style="width: 100%; height:36px;" readonly>
                                                 </div>
                                             </div>';
 
@@ -449,21 +459,21 @@ function dataTablePedido(){
                                             '<div class="input-group mb-3">
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção Prevista:</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['producaoPrevista'].'" id="idQtdPrev" name="nQtdPrev" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['producaoPrevista'].'" id="idQtdPrev" name="nQtdPrev" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="input-group mb-3">                                        
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Produção Real:</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['producaoRealizada'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['producaoRealizada'].'" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="input-group mb-3">                                    
                                                 <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Refugos:</label>
                                                 <div class="col-sm-8">
-                                                    <input value="'.$campo['refugo'].'" type="text" class="form-control" style="width: 100%; height:36px;" disabled>
+                                                    <input value="'.$campo['refugo'].'" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                 </div>
                                             </div>
 
@@ -556,15 +566,18 @@ function dataTablePedido(){
                                                 </div>
                                             </div>
                                             <div>   
-                                                <form method="POST" action="php/savePedidos.php?validacao=U&id='.$campo['idPedido'].'">              
+                                                <form method="POST" action="php/savePedidos.php?validacao=U&id='.$campo['idPedido'].'">   
                                                     <h4> Observações </h4>
                                                     <div class="form-group row">
                                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observações</label>
                                                         <div class="col-sm-9">
                                                             <textarea class="form-control" id="iObs" name="nObs" placeholder="Campo não obrigatório">'.$campo['obsPedido'].'</textarea>
                                                         </div>
-                                                    </div>  
+                                                    </div>
 
+                                                    <label class="class="col-sm-6 text-right control-label col-form-label">Alterar produção prevista</label>
+                                                    <input value="'.$campo['producaoPrevista'].'" id="idQtdPrev" name="nQtdPrev" type="text" class="form-control" align="right" style="width: 100%; height:36px;">
+                                                        
                                                     <button type="submit" class="btn btn-primary">
                                                         Alterar observação
                                                     </button>
