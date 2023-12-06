@@ -159,6 +159,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-factory"></i><span class="hide-menu"> Produção </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="producao" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pedidos </span></a></li>
+                        <li class="sidebar-item"><a href="produtos" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
                     </ul>                        
                 </li>  
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-warehouse"></i><span class="hide-menu">Estoque</span></a>
@@ -168,8 +169,6 @@
                         <li class="sidebar-item"><a href="fornecedores" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Fornecedores </span></a></li>
                     </ul>                        
                 </li>                
-                <li class="sidebar-item"><a href="produtos" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Produtos </span></a></li>        
-
                 <?php if ($_SESSION['tipo'] == 1){?>  
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="relatorios" aria-expanded="false"><i class="fab fa-wpforms"></i><span class="hide-menu">Relatórios</span></a></li>                      
                 <?php }?>                                                                                                                                    <!-- fas fa-clipboard-list -->

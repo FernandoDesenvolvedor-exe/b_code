@@ -232,9 +232,9 @@
                         $('#btnAddReciclado').text('Remover Reciclado');
                     } else {                     
                         $('#btnAddReciclado').text('Adicionar Reciclado');
-                        $('#iQuantReciclado').val('');
+                        $('#iQuantReciclado').val(0);
                         $('#divQtdReciclado').hide();
-                        $('#iReciclado').val('');
+                        $('#iReciclado').val(0);
                         $('#divReciclado').hide();
                     }
                 });
