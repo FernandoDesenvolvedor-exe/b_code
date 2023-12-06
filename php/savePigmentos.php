@@ -8,6 +8,10 @@
 
     include('connection.php');
     include('function.php'); 
+    $abreHTMLalert = '<div class="input-group mb-3">
+    <div class="input-group-prepend" style="width: 100%; height:100%;">
+        <div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>';
 
     $validacao = $_GET["validacao"]; 
 
@@ -17,6 +21,27 @@
         $observacoes = stripslashes($_POST['nObservacoes']);
         $codigo = stripslashes($_POST['nCodigo']);
         $lote = stripslashes($_POST['nLote']);   
+        if(!validarDado(4,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../pigmentos.php');
+            die();
+        }
+        if(!validarDado(4,$observacoes)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../pigmentos.php');
+            die();
+        }
+        if(!validarDado(4,$codigo)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../pigmentos.php');
+            die();
+        }
+        if(!validarDado(4,$lote)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../pigmentos.php');
+            die();
+        }
+        
 
         //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO pigmentos(descricao, idTipoPigmento, quantidade, codigo, lote, ativo, observacoes)" 
@@ -51,6 +76,12 @@
     } else if($validacao == 'IT'){    // insert tipo pigmentos
 
         $descricao = stripslashes($_POST['nTipoPigmento']);
+        
+        if(!validarDado(4,$descricao)){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../pigmentos.php');
+            die();
+        }
         //Script SQL que insere na tabela classe_material os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO tipo_pigmentos (descricao, ativo)" 
                 ." VALUES('".$descricao."', 1);";
