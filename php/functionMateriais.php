@@ -389,7 +389,7 @@
             foreach($array as $campo){
                 
                 $table .=   
-                        '<tr align-items="center";>
+                        '<tr align-items="center">
                             <td>'.$campo['materia'].'</td>
                             <td>'.$campo['fonecedor'].'</td>
                             <td>'.$campo['tipo'].'</td>
