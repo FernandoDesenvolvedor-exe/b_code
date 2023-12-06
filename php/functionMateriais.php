@@ -580,6 +580,7 @@
                 ." p.quantidade as qtde,"
                 ." p.observacoes as obs,"
                 ." t.descricao as tipo,"
+                ."p.ativo as ativo,"
                 ." f.descricao as fonecedor"
                 ." FROM pigmentos as p"
                 ." LEFT JOIN tipo_pigmentos as t"
@@ -617,18 +618,33 @@
                                 <div class="d-flex justify-content-center">                                                
                                     <div class="col-sm-3">
                                         <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'"></a>
-                                    </div>
-                                    <div class="col-sm-3">
+                                    </div>';
+                if($campo['ativo']==1){
+                    //Desativa
+                                    $table .=        
+                                    '<div class="col-sm-3">
                                         <a href="#" class="fas fa-unlink text-danger" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
                                     </div>
                                 </div>
-                            </td>'
+                            </td>';
+                }else{
+                    //Ativa
+                                    $table .=     
+                                    '<div class="col-sm-3">
+                                    <a href="#" class="fas fa-undo text-success" align="center" data-toggle="modal" data-target="#AtivaModal'.$campo['idUser'].'" title="Ativar Usúario"></a>
+                                        <a href="#" class="fas fa-undo text-success" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
+                                    </div>
+                                </div>
+                            </td>';
+                }
+                $table .=     
+
 
                             
 
     
                             // MODAL DESATIVA CADASTRO DE PIGMENTO
-                            ."<div class='modal fade' id='modalExcluiPigmento".$campo['idPigmento']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                            "<div class='modal fade' id='modalExcluiPigmento".$campo['idPigmento']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'

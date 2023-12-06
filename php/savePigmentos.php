@@ -93,10 +93,14 @@
         mysqli_close($conn);
     
     } else if($validacao == 'D'){  // DESATIVA UM CADASTRO DE PIGMENTO
-
-        $sql='UPDATE pigmentos SET ativo=0 WHERE idPigmento='.$_GET['id'].'';    
-
-        $result = mysqli_query($conn,$sql); 
+        if($_GET['op']==1){
+            $sql='UPDATE pigmentos SET ativo=1 WHERE idPigmento='.$_GET['id'].'';
+            $result = mysqli_query($conn,$sql); 
+        }else{
+            $sql='UPDATE pigmentos SET ativo=0 WHERE idPigmento='.$_GET['id'].'';
+            $result = mysqli_query($conn,$sql); 
+        }
+        
         mysqli_close($conn);
 
     } else if($validacao == 'U'){  // ATUALIZA UM CADASTRO DE PIGMENTO
