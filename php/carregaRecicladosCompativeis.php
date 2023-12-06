@@ -34,7 +34,7 @@
                 RIGHT JOIN fornecedores f
                 ON mf.idFornecedor = f.idFornecedor
                 WHERE mat.ativo = 1
-                AND mat.idTipoMateriaPrima = 2 
+                AND mat.idTipoMateriaPrima = 3 
                 AND mat.idClasse='.$classe.';';
         $result = mysqli_query($conn,$sql);
         mysqli_close($conn);

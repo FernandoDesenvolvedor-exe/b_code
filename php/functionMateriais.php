@@ -791,7 +791,9 @@
             }
 
             foreach($array as $campo){
-                $select .= "<option value ='".$campo['idTipoMateriaPrima']."'>".$campo['descricao']."</option>";
+                if($campo['idTipoMateriaPrima'] != 1){
+                    $select .= "<option value ='".$campo['idTipoMateriaPrima']."'>".$campo['descricao']."</option>";
+                }
             }
         }
 
@@ -816,7 +818,9 @@
             }
 
             foreach($array as $campo){
-                $select .= "<option value ='".$campo['idClasse']."'>".$campo['descricao']."</option>";
+                if($campo['idClasse'] != 1){
+                    $select .= "<option value ='".$campo['idClasse']."'>".$campo['descricao']."</option>";
+                }
             }
         }
 
@@ -824,14 +828,10 @@
     }    
 
     function optionMaterial($caso){
-        // acessa a conexão com o banco de dados         
-        include("connection.php");
-
         //inicializa variavel select 
         $select = "<option value='0'>Selecione um opção</option>";   
          
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
-
         if($caso == 1){
             $sql = 'SELECT mat.idMateriaPrima as id,
                 mat.descricao as nome,
@@ -843,31 +843,35 @@
                 LEFT JOIN classe_material as class
                 ON mat.idClasse = class.idClasse
                 WHERE mat.ativo = 1
-                AND (mat.idTipoMateriaPrima = 1
-                OR mat.idTipoMateriaPrima = 2);';
+                AND (mat.idTipoMateriaPrima = 2
+                OR mat.idTipoMateriaPrima = 3);';
             
-        //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
-        //executa o script sql na variavel $sql,
-        //salva o resultado em $result
-        //mysqli_close($conn) fecha a conexão
-        $result = mysqli_query($conn,$sql);
-        mysqli_close($conn);
-
-        //este if verifica se foi encontrado um linha correspondente ao que foi enviado
-        if(mysqli_num_rows($result) > 0){
-            //Cria e inicializa uma array 
-            $array = array();
-
-            while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                array_push($array, $linha);
-            }
+            //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+            //executa o script sql na variavel $sql,
+            //salva o resultado em $result
+            //mysqli_close($conn) fecha a conexão
             
-            foreach($array as $campo){
+            // acessa a conexão com o banco de dados         
+            include("connection.php");
+            $result = mysqli_query($conn,$sql);
+            mysqli_close($conn);
+
+            //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+            if(mysqli_num_rows($result) > 0){
+                //Cria e inicializa uma array 
+                $array = array();
+
+                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    array_push($array, $linha);
+                }
                 
-                $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
-                                                     
-            }
-        }     
+                foreach($array as $campo){
+
+                    if($campo['idMateriaPrima'] != 1){
+                        $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']."</option>";                                  
+                    }   
+                }
+            }     
 
         }else if($caso == 2){
             $select = "<option value='0'>Selecione um opção</option>";
@@ -886,12 +890,13 @@
                     LEFT JOIN fornecedores f
                     ON mf.idFornecedor = f.idFornecedor
                     WHERE mat.ativo = 1
-                    AND mat.idTipoMateriaPrima = 1;';
+                    AND mat.idTipoMateriaPrima = 2;';
         
             //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
             //executa o script sql na variavel $sql,
             //salva o resultado em $result
             //mysqli_close($conn) fecha a conexão
+            include('connection.php');
             $result = mysqli_query($conn,$sql);
             mysqli_close($conn);
 
@@ -904,13 +909,55 @@
                     array_push($array, $linha);
                 }
                 
-                foreach($array as $campo){
-                    
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
-                                                        
+                foreach($array as $campo){                    
+                    if($campo['id'] != 1){
+                        $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                  
+                    }                         
+                }
+            }     
+
+        } else if($caso == 3){
+            $select = "<option value='0'>Selecione um opção</option>";
+            $sql = 'SELECT mat.idMateriaPrima as id,
+                        mat.descricao as nome,
+                        tipo.descricao as tipos,
+                        class.descricao as classe,
+                        f.descricao as fornecedor
+                    FROM materia_prima mat
+                    LEFT JOIN tipo_materia_prima tipo
+                    ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima
+                    LEFT JOIN classe_material class
+                    ON mat.idClasse = class.idClasse
+                    LEFT JOIN materia_fornecedor mf
+                    ON mat.idMateriaPrima = mf.idMateriaPrima
+                    LEFT JOIN fornecedores f
+                    ON mf.idFornecedor = f.idFornecedor
+                    WHERE mat.ativo = 1
+                    AND mat.idTipoMateriaPrima = 2;';
+        
+            //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
+            //executa o script sql na variavel $sql,
+            //salva o resultado em $result
+            //mysqli_close($conn) fecha a conexão
+            include('connection.php');
+            $result = mysqli_query($conn,$sql);
+            mysqli_close($conn);
+
+            //este if verifica se foi encontrado um linha correspondente ao que foi enviado
+            if(mysqli_num_rows($result) > 0){
+                //Cria e inicializa uma array 
+                $array = array();
+
+                while($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    array_push($array, $linha);
+                }
+                
+                foreach($array as $campo){   
+                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                                                             
                 }
             }     
         }
+
         return $select;        
     }
 
@@ -923,8 +970,7 @@
         $select = "<option value=''>Selecione um Fornecedor</option>";     
         //script sql a ser enviado ao banco de dados. Busca as informações solicitadas
 
-        $sql = "SELECT * FROM fornecedores"
-                ." WHERE ativo = 1;";
+        $sql = "SELECT * FROM fornecedores WHERE ativo = 1;";
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,
         //salva o resultado em $result
@@ -942,8 +988,9 @@
             }
             
             foreach($array as $campo){
-                
-                $select .="<option value=".$campo['idFornecedor'].">".$campo['descricao']."</option>";                                  
+                if($campo['idFornecedor'] != 1){
+                    $select .="<option value=".$campo['idFornecedor'].">".$campo['descricao']."</option>";
+                }
                                                      
             }
         }     

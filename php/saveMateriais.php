@@ -35,20 +35,16 @@ Validações
 
         
         if(!validarDado(4,$descricao)){
-            var_dump('erro1');
-            die();
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
         }
         
-        /*if(!validarDado(4,$observacoes)){
-            var_dump('erro2');
-            die();
+        if(!validarDado(4,$observacoes) && $observacoes != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
-        }*/
+        }
 
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 

@@ -59,7 +59,7 @@
                 ." LEFT JOIN classe_material as classe"
                 ." ON mat.idClasse = classe.idClasse"
                 ." LEFT JOIN tipo_materia_prima as tipo"
-                ." ON mat.idTipoMateriaPrima = tipo.idTipoMAteriaPrima;";
+                ." ON mat.idTipoMateriaPrima = tipo.idTipoMateriaPrima;";
 
         //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
         //executa o script sql na variavel $sql,

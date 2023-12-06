@@ -20,18 +20,20 @@ INSERT INTO `produtos` (`idProduto`, `descricao`, `peso`, `imagem`, `ativo`) VAL
 --
 
 INSERT INTO `tipo_materia_prima` (`idTipoMateriaPrima`, `descricao`, `ativo`) VALUES
-(1, 'Virgem', 1),
-(2, 'Reciclado', 1),
-(3, 'Remoido', 1),
-(4, 'Scrap', 1);
+(1, '', 1),
+(2, 'Virgem', 1),
+(3, 'Reciclado', 1),
+(4, 'Remoido', 1),
+(5, 'Scrap', 1);
 
 --
 -- Despejando dados para a tabela `classe_material`
 --
 
 INSERT INTO `classe_material` (`idClasse`, `descricao`, `ativo`) VALUES
-(1, 'Comodities', 1),
-(2, 'Engenharia', 1);
+(1, '', 1),
+(2, 'Comodities', 1),
+(3, 'Engenharia', 1);
 
 
 --
@@ -59,10 +61,11 @@ INSERT INTO `ferramental` (`idFerramental`, `descricao`, `ativo`, `idTiposFerram
 --
 
 INSERT INTO `fornecedores` (`idFornecedor`, `descricao`, `ativo`) VALUES
-(1, 'COLORFIX', 1),
-(2, 'CRISTAL MASTER', 1),
-(3, 'ROYAL QUÍMICA', 1),
-(4, 'SGS Polímeros', 1);
+(1, '', 1),
+(2, 'COLORFIX', 1),
+(3, 'CRISTAL MASTER', 1),
+(4, 'ROYAL QUÍMICA', 1),
+(5, 'SGS Polímeros', 1);
 
 --
 -- Despejando dados para a tabela `maquinas`
@@ -79,27 +82,23 @@ INSERT INTO `maquinas` (`idMaquina`, `descricao`, `ativo`, `observacoes`) VALUES
 --
 
 INSERT INTO `materia_prima` (`idMateriaPrima`, `idClasse`, `idTipoMateriaPrima`, `descricao`, `quantidade`, `ativo`, `observacoes`) VALUES
-(1, 1, 1, 'Poliéster', 1800, 1, ''),
-(2, 1, 1, 'Poliéster', 1800, 1, ''),
-(3, 2, 1, 'Etil-Benzeno', 1600, 1, ''),
-(4, 1, 2, 'Etil-Benzeno', 600, 1, '');
+(1, 1, 1, '', 0, 1, '');
 
 --
 -- Despejando dados para a tabela `tipo_pigmentos`
 --
 
 INSERT INTO `tipo_pigmentos` (`idTipoPigmento`, `descricao`, `ativo`) VALUES
-(1, 'MB', 1),
-(2, 'MTB', 1);
+(1, '', 1),
+(2, 'MB', 1),
+(3, 'MTB', 1);
 
 --
 -- Despejando dados para a tabela `pigmentos`
 --
 
 INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
-(1, 'Azul', 1, 800, '3901.20.21', '', 1, ''),
-(2, 'Amarelo', 2, 700, '3907.30', '', 1, ''),
-(3, 'Vermelho', 1, 856, '3907301', '4539562169526', 1, '');
+(1, 'Nenhum', 1, 0, '0', '0', 1, ''),
 
 
 --
@@ -123,22 +122,6 @@ INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idT
 (5, 'adm1@adm.com', '202cb962ac59075b964b07152d234b70', 'adm', 'adm', NULL, 1, 1),
 (6, 'ad@ad.v', '202cb962ac59075b964b07152d234b70', 'daniel', 'dani', 2, 2, 1);
 
-
---
--- Despejando dados para a tabela `materia_pigmento`
---
-
-INSERT INTO `materia_pigmento` (`idMateriaPrima`, `idPigmento`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 2),
-(2, 3),
-(3, 1),
-(3, 3),
-(4, 1),
-(4, 3);
-
 --
 -- Despejando dados para a tabela `ferramental_maquina`
 --
@@ -152,23 +135,3 @@ INSERT INTO `ferramental_maquina` (`idFerramental`, `idMaquina`) VALUES
 (2, 3),
 (3, 4),
 (4, 4);
-
---
--- Despejando dados para a tabela `materia_fornecedor`
---
-
-INSERT INTO `materia_fornecedor` (`idMateriaPrima`, `idFornecedor`) VALUES
-(1, 2),
-(2, 4),
-(3, 3),
-(4, 3);
-
-
---
--- Despejando dados para a tabela `pigmento_fornecedor`
---
-
-INSERT INTO `pigmento_fornecedor` (`idPigmento`, `idFornecedor`) VALUES
-(1, 1),
-(2, 2),
-(3, 1);

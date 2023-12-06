@@ -112,7 +112,7 @@
                                                     <label class="col-md-4 m-t-15" align="center" style="text-align: right;">Matéria(s) prima(s) compatível(eis)</label>
                                                     <div class="col-md-8">
                                                         <select id="iMateriaPrima" name="nMateriaPrima[]" class="select2 form-control m-t-15 mt-1" multiple="multiple" style="width: 100%; height:36px;" required>
-                                                            <?php echo optionMaterial(1);?>
+                                                            <?php echo optionMaterial(3);?>
                                                         </select>
                                                     </div>
                                                 </div>
