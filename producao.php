@@ -64,6 +64,12 @@
                                 </button>         
                             </a>                                          
                         </div> 
+                        <?php
+                            if(isset($_SESSION['msgErro'])){
+                                echo $_SESSION['msgErro'];
+                                unset($_SESSION['msgErro']);
+                            }
+                        ?>
 
                         <div class="card" style="padding: 10px;">        
                             <div class="table-responsive">

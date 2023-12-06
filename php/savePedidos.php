@@ -292,9 +292,6 @@
                 $result = mysqli_query($conn, $sql);
                 mysqli_close($conn);
             }
-
-            header('location:../materiaPrima');
-            die();
         } else if ($_GET['stats'] == 2){
 
             $sql = 'UPDATE pedidos 
@@ -319,14 +316,15 @@
         }  
 
     } else if($_GET['validacao'] == 'U'){
-        if(!validarDado(2,$_POST['nObs']) && $_POST['nObs']!=''){
+        include("connection.php");
+        if(!validarDado(2,$_POST['nObs'])){
             $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../producao');
             die();
         }
         $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
-
-        include("connection.php");
+        $result = mysqli_query($conn, $sql);
+        $sql ='UPDATE historico_pedidos SET obsPedido = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
     } else if($_GET['validacao'] == 'UR'){
