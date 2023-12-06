@@ -54,13 +54,16 @@
                         return                        
                             '
                             <div class="d-flex row-flex align-center">
-                                <div class="col-sm-5">
-                                </div>
-                                <div class="col-sm-3">
+                                
+                                <div class="col-sm-4">
                                     <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                     </a>
                                 </div>
-                                <div class="col-sm-3">
+
+                                <div class="col-sm-4">
+                                </div>
+
+                                <div class="col-sm-4">
                                     <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                     </a>
                                 </div>
@@ -69,30 +72,29 @@
             
                     } else if ($status == 2){
                         return
-                        '<div class="d-flex row-flex align-center">                        
-                            <div class="col-md-5">
-                            </div>
-
-                            <div class="col-md-2">
+                        '<div class="d-flex row-flex align-center">                         
+                            <div class="col-md-4">
                                 <a href="#" class="fas fa-eye text-info  align-right" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                 </a>
+                            </div>                       
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
                             </div>
                         </div>'.carregaModalPedidos($d);
 
                     } else if($status == 0){
                         return
                             '<div class="d-flex row-flex align-right">
-                                <div class="col-sm-2">
-                                </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalPedido'.$d.'">
                                     </a>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <a href="#" class="fas fa-undo text-success" data-toggle="modal" data-target="#modalRestaura'.$d.'">
                                     </a>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <a href="#" class="fas fa-times-circle text-danger" data-toggle="modal" data-target="#modalExclui'.$d.'">
                                     </a>
                                 </div>

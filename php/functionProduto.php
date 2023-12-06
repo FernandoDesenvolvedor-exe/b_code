@@ -99,7 +99,7 @@
                                         <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#EditaModal'.$campo['idP'].'"></a>
                                     </div>
                                     <div class="col-sm-3">
-                                        <a href="#" class="fas fa-undo text-success" data-target="#ExcluiModal'.$campo['idP'].'"></a>
+                                        <a href="#" class="fas fa-unlink text-danger" data-target="#ExcluiModal'.$campo['idP'].'"></a>
                                     </div>
                                 </div>
                             </td>'

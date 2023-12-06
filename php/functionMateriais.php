@@ -619,7 +619,7 @@
                                         <a href="#" class="fas fa-eye text-info" data-toggle="modal" data-target="#modalAlteraPigmento'.$campo['idPigmento'].'"></a>
                                     </div>
                                     <div class="col-sm-3">
-                                        <a href="#" class="fas fa-undo text-success" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
+                                        <a href="#" class="fas fa-unlink text-danger" data-target="#modalExcluiPigmento'.$campo['idPigmento'].'"></a>
                                     </div>
                                 </div>
                             </td>'

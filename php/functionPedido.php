@@ -156,7 +156,7 @@ function dataTablePedido(){
 
                 $table .= 
                                 '<div class="col-sm-4">
-                                    <a href="#" class="fas fa-times-circle text-danger" align="center" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'" title="Excluir Pedido"></a>
+                                    <a href="#" class="fas fa-unlink text-danger" align="center" data-toggle="modal" data-target="#modalExclui'.$campo['idPedido'].'" title="Excluir Pedido"></a>
                                 </div>
                             <div>
                         </td>

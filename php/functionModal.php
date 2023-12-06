@@ -396,35 +396,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>';                        
-
-                if(consultaStatusHistoricoPedido($id) == 1 || consultaStatusHistoricoPedido($id) == 3){
-                    $table .=   
-                    '<div class="modal fade" id="modalExclui'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                        <div class="modal-dialog modal-lg" role="document ">                                
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true ">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body pre-scrollable justify-content-center">                                        
-                                    <form method="POST" action="php/saveHistorico.php?validacao=D&id='.$id.'">
-                                        <h6> Confirmar esta ação?</h6>
-                                        <div class="align-items=left">      
-                                            <div align="right">                        
-                                                <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> 
-                                                    Confirmar 
-                                                </button>
-                                            <div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>';                            
-                }
+                        </div>                        
+                    </div>                            
+                </div>';   
                 
                 if(consultaStatusHistoricoPedido($id) == 0){            
 
@@ -452,6 +426,34 @@
                             </div>
                         </div>';
                     } 
+                }
+
+                if(consultaStatusHistoricoPedido($id) == 1 || consultaStatusHistoricoPedido($id) == 3 || consultaStatusHistoricoPedido($id) == 0){
+                    $table .=   
+                        '<div class="modal fade" id="modalExclui'.$id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+                            <div class="modal-dialog modal-lg" role="document ">                                
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true ">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pre-scrollable justify-content-center">                                        
+                                        <form method="POST" action="php/saveHistorico.php?validacao=D&id='.$id.'">
+                                            <h6> Confirmar esta ação?</h6>
+                                            <div class="align-items=left">      
+                                                <div align="right">                        
+                                                    <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> 
+                                                        Confirmar 
+                                                    </button>
+                                                <div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';                            
                 }
             
         }       
