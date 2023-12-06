@@ -1,10 +1,17 @@
 <?php
+/*
+
+*/
+
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
     include("function.php");    
     include('connection.php');
-
+    $abreHTMLalert = '<div class="input-group mb-3">
+                        <div class="input-group-prepend" style="width: 100%; height:100%;">
+                            <div class="alert alert-warning" role="alert" style="width:100%; height:100%">';
+    $fechaHTMLalert = '</div></div></div>';
     if ($_GET['validacao'] == 'I'){ // INSERT
         mysqli_close($conn);
 
@@ -12,6 +19,15 @@
         $obs = stripslashes($_POST['nObservacoes']);
         $status = $_POST['nStatus'.$_GET['id'].''];
 
+        /*
+        if(!validarDado(2,$obs) && $obs!=''){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../receitas.php?&idProduto='.$_GET['idProduto'].'&pr='.$_GET['pr']);
+            die();
+        }else{
+            $obs='';
+        }
+*/
         // set default timezone
         date_default_timezone_set('America/Sao_Paulo'); // CDT
         $info = getdate();

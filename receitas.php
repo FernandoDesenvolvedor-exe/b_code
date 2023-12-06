@@ -50,6 +50,12 @@
                                         Adicionar Receita
                                 </button>
                             </a>
+                            <?php
+                                if(isset($_SESSION['msgErro'])){
+                                    echo $_SESSION['msgErro'];
+                                    unset($_SESSION['msgErro']);
+                                }
+                            ?>
 
                         </div>
                     </div>
