@@ -587,8 +587,7 @@
                 ." RIGHT JOIN pigmento_fornecedor as pf"
                 ." ON p.idPigmento = pf.idPigmento"
                 ." LEFT JOIN fornecedores as f"
-                ." ON f.idFornecedor = pf.idFornecedor"
-                ." WHERE p.ativo = 1;";
+                ." ON f.idFornecedor = pf.idFornecedor";
     
         $table = "";
     
@@ -633,14 +632,36 @@
                                 ."<div class='modal-dialog' role='document '>"
                                     ."<div class='modal-content'>"
                                         .'<div class="modal-header">'
-                                            .'<h5 class="modal-title" id="exampleModalLabel">Desativar Produto/molde</h5>'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Desativar Pigmento/molde</h5>'
                                             .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                                                 .'<span aria-hidden="true ">&times;</span>'
                                             .'</button>'
                                         .'</div>'                                  
                                         .'<div class="modal-body">'
                                         .''
-                                        .'  <form method="POST" action="php/savePigmentos.php? validacao=D&id='.$campo["idPigmento"].'">'
+                                        .'  <form method="POST" action="php/savePigmentos.php?op=0&validacao=D&id='.$campo["idPigmento"].'">'
+                                        .'      <label> Confirmar esta ação? </label>'
+                                        .'      <div align-items="right">'
+                                        .'          <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
+                                        .'      </div>'
+                                        .'  </form>'
+                                        .''
+                                        .'</div>'
+                                    .'</div>'
+                                .'</div>'
+                            .'</div>' 
+                            ."<div class='modal fade' id='modalExcluiPigmento".$campo['idPigmento']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true '>"
+                                ."<div class='modal-dialog' role='document '>"
+                                    ."<div class='modal-content'>"
+                                        .'<div class="modal-header">'
+                                            .'<h5 class="modal-title" id="exampleModalLabel">Ativar Pigmento/molde</h5>'
+                                            .'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                                                .'<span aria-hidden="true ">&times;</span>'
+                                            .'</button>'
+                                        .'</div>'                                  
+                                        .'<div class="modal-body">'
+                                        .''
+                                        .'  <form method="POST" action="php/savePigmentos.php?op=1&validacao=D&id='.$campo["idPigmento"].'">'
                                         .'      <label> Confirmar esta ação? </label>'
                                         .'      <div align-items="right">'
                                         .'          <button  type="submit" id="iBtnSalvar" name="nBtnSalvar" class="btn btn-primary"> Confirmar </button>'
