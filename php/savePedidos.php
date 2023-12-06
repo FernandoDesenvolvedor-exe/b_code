@@ -1,8 +1,4 @@
 <?php
-/*
-
-*/
-
     if(session_status() !== PHP_SESSION_ACTIVE){
         session_start();
     }
@@ -19,15 +15,13 @@
         $obs = stripslashes($_POST['nObservacoes']);
         $status = $_POST['nStatus'.$_GET['id'].''];
 
-        /*
+        
         if(!validarDado(2,$obs) && $obs!=''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../receitas.php?&idProduto='.$_GET['idProduto'].'&pr='.$_GET['pr']);
             die();
-        }else{
-            $obs='';
         }
-*/
+
         // set default timezone
         date_default_timezone_set('America/Sao_Paulo'); // CDT
         $info = getdate();
@@ -128,7 +122,6 @@
         $sql .=     ''.$status.',
                     "'.$obs.'",
                     '.$qtde.');';
-
         include('connection.php');
         $result = mysqli_query($conn, $sql);     
         mysqli_close($conn);
@@ -326,7 +319,11 @@
         }  
 
     } else if($_GET['validacao'] == 'U'){
-
+        if(!validarDado(2,$_POST['nObs']) && $_POST['nObs']!=''){
+            $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
+            header('location: ../producao');
+            die();
+        }
         $sql ='UPDATE pedidos SET observacoes = "'.$_POST['nObs'].'" WHERE idPedido = '.$_GET['id'].';';
 
         include("connection.php");

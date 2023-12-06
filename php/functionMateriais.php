@@ -162,27 +162,27 @@
                                     <label>Matéria Prima</label>
                                     <div class="row mb-3">                                    
                                         <div class="col-sm-2">
-                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto">                                            
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidade'].'" title="Por produto" readonly>                                            
                                         </div>
                                         <a class="col-sm-1 mt-3">g</a>
                                         <div class="col-sm-3">
-                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'">
+                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['material'].'" readonly>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'">
+                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipo'].'" readonly>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classe'].'" readonly>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
                                         <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                         <div class="col-sm-8">
-                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedor'].'">
+                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedor'].'" readonly>
                                         </div>                                        
                                         <div class="col-lg-3" hidden>
-                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'">
+                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['id'].'" readonly>
                                         </div>    
                                     </div>
                                 </div>';
@@ -231,27 +231,27 @@
                                 '   <h4>Matéria Prima<h4>
                                     <div class="form-group row">                          
                                         <div class="col-sm-2">
-                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidadeMateria_prima'].'" title="Por produto">                                            
+                                            <input type="text"  id="idQuantidadeMat" name="nQuantidadeMat[]" class="form-control" value="'.$campo['quantidadeMateria_prima'].'" title="Por produto" readonly>                                            
                                         </div>
                                         <a class="col-sm-1 mt-3">g</a>
                                         <div class="col-sm-3">
-                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materiaPrima'].'">
+                                            <input type="text" id="idMaterial" name="nMaterial[]" class="form-control" value="'.$campo['materiaPrima'].'" readonly>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipoMateria_prima'].'">
+                                            <input type="text" id="idTipoMaterial" name="nTipoMaterial[]" class="form-control" value="'.$campo['tipoMateria_prima'].'" readonly>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMateria_prima'].'">
+                                            <input type="text"  id="idClasseMaterial" name="nClasseMaterial[]" class="form-control" value="'.$campo['classeMateria_prima'].'" readonly>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
                                         <label for="nClasse" class="col-sm-4 text-right control-label col-form-label">Fornecedor</label>
                                         <div class="col-sm-8">
-                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedorMateria_Prima'].'">
+                                            <input id="idMateriaFornecedor" name="nMateriaFornecedor[]" type="text" class="form-control" style="width: 100%; height:36px;" value="'.$campo['fornecedorMateria_Prima'].'" readonly>
                                         </div>                                        
                                         <div class="col-sm-3" hidden>
-                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['idMateriaPrima'].'">
+                                            <input type="text" id="idIdMaterial" name="nIdMaterial[]" class="form-control" value="'.$campo['idMateriaPrima'].'" readonly>
                                         </div>    
                                     </div>';
                         break;

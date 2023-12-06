@@ -2,7 +2,6 @@
     function dataTableReceitas($idProduto,$produto){
         
         include('connection.php');
-        echo $idProduto;
         $sql = 'SELECT * FROM view_receitas
                     WHERE produtoId = '.$idProduto.'
                     GROUP BY receitaId;';
@@ -126,20 +125,20 @@
                                                         <div class="input-group mb-3">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produto</label>
                                                             <div class="col-sm-7">
-                                                                <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['produtoNome'].'" id="idProduto" name="nProduto" type="text" class="form-control" style="width: 100%; height:36px;" readonly >
                                                             </div>
                                                         </div>               
                                     
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Ferramental</label>
                                                             <div class="col-sm-7">
-                                                                <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['moldeNome'].'" id="idMolde" name="nMolde" type="text" class="form-control" style="width: 100%; height:36px;" readonly >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Ferramental</label>                                                            
                                                             <div class="col-sm-7">
-                                                                <input value="'.$campo['tipoMolde_nome'].'" id="idTipoMolde" name="nTipoMolde" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['tipoMolde_nome'].'" id="idTipoMolde" name="nTipoMolde" type="text" class="form-control" style="width: 100%; height:36px;" readonly >
                                                             </div>
                                                         </div>
                                                         '.materiaisReceita($campo['receitaId'],1).'
@@ -147,28 +146,28 @@
                                                             <input value="'.$campo['pigmentoId'].'" id="idPigmento" name="nPigmento" type="text" class="form-control" style="width: 100%; height:36px;" hidden>
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Pigmento</label>
                                                             <div class="col-sm-7">
-                                                                <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['pigmentoNome'].'" id="idCor" name="nCor" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                             </div>
                                                         </div>
                                     
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Tipo de Pigmento</label>
                                                             <div class="col-sm-7">
-                                                                <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['tipoPigmento'].'" id="idTipoCor" name="nTipoCor" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                             </div>                                                            
                                                         </div>
 
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Fornecedor</label>
                                                             <div class="col-sm-7">
-                                                                <input value="'.nomeFornecedorPigmento($campo['pigmentoId']).'" id="idCorFornecedor" name="nCorFornecedor" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.nomeFornecedorPigmento($campo['pigmentoId']).'" id="idCorFornecedor" name="nCorFornecedor" type="text" class="form-control" style="width: 100%; height:36px;" readonly>
                                                             </div>
                                                         </div>
                                     
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Quantidade de pigmento</label>
                                                             <div class="col-sm-2">
-                                                                <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="text" class="form-control" style="width: 100%; height:36px;" >
+                                                                <input value="'.$campo['qtdePigmento'].'" id="idQtdPigmento" name="nQtdPigmento" type="number" class="form-control" style="width: 100%; height:36px;" min="0" readonly>
                                                             </div>
                                                             <label for="nClasse" class="col-sm-5 text-left control-label col-form-label">g</label>
                                                         </div>
@@ -176,7 +175,7 @@
                                                         <div class="form-group row">
                                                             <label for="nClasse" class="col-sm-5 text-right control-label col-form-label">Produção prevista</label>
                                                             <div class="col-sm-7">
-                                                                <input id="idQtdeProduto" name="nQtdeProduto" type="number" min="0" class="form-control" style="width: 100%; height:36px;">
+                                                                <input id="idQtdeProduto" name="nQtdeProduto" type="number" min="0" class="form-control" style="width: 100%; height:36px;" required>
                                                             </div>
                                                         </div>                                                        
                                                         
