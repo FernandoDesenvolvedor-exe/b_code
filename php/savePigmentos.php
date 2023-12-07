@@ -22,7 +22,7 @@
         $codigo = stripslashes($_POST['nCodigo']);
         $lote = stripslashes($_POST['nLote']);   
 
-        if(!validarDado(4,$descricao) && $descricao != ''){
+        /*if(!validarDado(4,$descricao) && $descricao != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
@@ -41,7 +41,7 @@
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
-        }
+        }*/
         
 
         //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
