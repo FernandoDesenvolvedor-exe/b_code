@@ -98,7 +98,7 @@ INSERT INTO `tipo_pigmentos` (`idTipoPigmento`, `descricao`, `ativo`) VALUES
 --
 
 INSERT INTO `pigmentos` (`idPigmento`, `descricao`, `idTipoPigmento`, `quantidade`, `codigo`, `lote`, `ativo`, `observacoes`) VALUES
-(1, 'Nenhum', 1, 0, '0', '0', 1, ''),
+(1, 'Nenhum', 1, 0, '0', '0', 1, '');
 
 
 --
