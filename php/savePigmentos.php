@@ -27,9 +27,7 @@
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$observacoes) && $observacoes != ''){            
-            var_dump('2');
-            die();
+        if(!validarDado(4,$observacoes) && $observacoes != ''){    
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
