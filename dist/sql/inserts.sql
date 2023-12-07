@@ -115,12 +115,7 @@ INSERT INTO `turma` (`idTurma`, `turno`, `nomeTurma`, `ativo`) VALUES
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `login`, `senha`, `nome`, `sobrenome`, `idTurma`, `tipo`, `ativo`) VALUES
-(1, 'adm@adm.com', '202cb962ac59075b964b07152d234b70', 'Adm', 'Adm', NULL, 1, 1),
-(2, 'Luis@LabPlasticos.com.br', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', NULL, 1, 1),
-(3, 'b@teste.com', '202cb962ac59075b964b07152d234b70', 'Marco', 'dos Santos', 1, 2, 1),
-(4, 'c@teste.com', '202cb962ac59075b964b07152d234b70', 'Teste', 'sobrenome teste', 1, 2, 1),
-(5, 'adm1@adm.com', '202cb962ac59075b964b07152d234b70', 'adm', 'adm', NULL, 1, 1),
-(6, 'ad@ad.v', '202cb962ac59075b964b07152d234b70', 'daniel', 'dani', 2, 2, 1);
+(1, 'Admin@LabPlasticos.com', '202cb962ac59075b964b07152d234b70', 'Luis', 'Fernando Pereira', NULL, 1, 1);
 
 --
 -- Despejando dados para a tabela `ferramental_maquina`
