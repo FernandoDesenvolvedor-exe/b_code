@@ -22,26 +22,26 @@
         $codigo = stripslashes($_POST['nCodigo']);
         $lote = stripslashes($_POST['nLote']);   
 
-        /*if(!validarDado(4,$descricao)){
+        if(!validarDado(4,$descricao) && $descricao != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$observacoes)){
+        if(!validarDado(4,$observacoes) && $observacoes != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$codigo)){
+        if(!validarDado(4,$codigo) && $codigo != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$lote)){
+        if(!validarDado(4,$lote) && $lote != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
-        }*/
+        }
         
 
         //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
