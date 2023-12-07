@@ -15,24 +15,15 @@ VALIDAÇÕES
     $login = stripslashes($_POST['nLogin']);
     $senha = stripslashes($_POST['nSenha']);
     $_SESSION['msgLogin'] = '';
-    if(!validarDado(2,$login)){
-        $_SESSION['msgLogin'] = $abreHTMLalert.'Email inválido!'.$fechaHTMLalert;
-        header('location: ../login.php');
-        die();
-    }
-    if(!validarDado(3,$senha)){
-        $_SESSION['msgLogin'] = $abreHTMLalert.'Senha inválida!'.$fechaHTMLalert;
-        header('location: ../login.php');
-        die();
-    }
+
     $sql = 'SELECT user.idUsuario, 
-                user.senha as password,
-                user.nome as name,
-                user.sobrenome as surname,
-                user.tipo as nivel,
-                user.ativo as active,
-                turma.turno as turn,
-                turma.nomeTurma as class
+                    user.senha as password,
+                    user.nome as name,
+                    user.sobrenome as surname,
+                    user.tipo as nivel,
+                    user.ativo as active,
+                    turma.turno as turn,
+                    turma.nomeTurma as class
                 FROM usuarios as user
                 LEFT JOIN turma 
                 ON user.idTurma = turma.idTurma      
@@ -60,7 +51,7 @@ VALIDAÇÕES
 
                     $_SESSION['user']               = 1;
                     $_SESSION['idUsuario']          = $campo['idUsuario'];
-                    $_SESSION['login']              =$login;
+                    $_SESSION['login']              = $login;
                     $_SESSION['nome']               = ''.$campo['name'].' '.$campo['surname'];
                     $_SESSION['tipo']               = $campo['nivel'];
                     $_SESSION['turma']              = $campo['class'];
@@ -68,9 +59,9 @@ VALIDAÇÕES
                     $_SESSION['filtroHistorico']    = '1 = 1';
                     $_SESSION['filtro']             = 0;
                     $_SESSION['estoqueMinimo']      = 50;
-                    $_SESSION['ativaMsgS']           = 0;
-                    $_SESSION['ativaMsgA']           = 0;
-                    $_SESSION['ativaMsgD']           = 0;
+                    $_SESSION['ativaMsgS']          = 0;
+                    $_SESSION['ativaMsgA']          = 0;
+                    $_SESSION['ativaMsgD']          = 0;
                     $_SESSION['msgSucesso']         = '';
                     $_SESSION['msgAviso']           = '';
                     $_SESSION['msgPerigo']          = '';
@@ -97,5 +88,5 @@ VALIDAÇÕES
         $_SESSION['user'] = 0;
         $_SESSION['msgLogin'] = $abreHTMLalert.'Email não cadastrado'.$fechaHTMLalert;
         header('location:../login');
-    };
+    }
 ?>

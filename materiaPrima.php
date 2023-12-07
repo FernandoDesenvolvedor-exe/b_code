@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="modal-body">                                        
                                                                                 
-                                        <form method="POST" class="form-horizontal" action= "php/saveMateriais.php?validacao=IMP">
+                                        <form method="POST" id="MateriaForm" class="form-horizontal" action= "php/saveMateriais.php?validacao=IMP">
                                             <div class="card-body">
                                                 
                                                 <!-- Titulo da div -->
@@ -210,7 +210,7 @@
                                             </div>
                                             <div class="border-top">
                                                 <div class="card-body">
-                                                    <button type="submit" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
+                                                    <button type="button" id="iBtnSalvar" name="nBtnSalvar" onclick="alterarValorObs()" class="btn btn-primary">Salvar</button>
                                                 </div>                      
                                             </div>
                                         </form>
@@ -258,6 +258,16 @@
             ****************************************/
             $('#zero_config').DataTable();
         </script> 
+
+        <script>
+            $('document').ready(function(){
+                $('#MateriaForm').on('submit', function(e){
+                    e.preventDefault();
+
+
+                })
+            })        
+        </script>
 
         <script>
             

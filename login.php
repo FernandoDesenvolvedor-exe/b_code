@@ -14,19 +14,15 @@
     
     <body>
         <div class="main-wrapper">
-            
+
             <?php include('links/preloader.php');?> 
             
             <!-- Login box.scss -->            
             <div class="auth-wrapper d-flex no-block justify-content-center bg-info align-items-center">
                 <div class="auth-box bg-blue border-top border-secondary">
                     <div id="loginform">
-                        <div class="text-center p-t-20 p-b-20">
-                            <img src="assets/images/logoSenai300x82.jpg" alt="logo"/>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                        <div class="text-center p-t-20 p-b-20 mb-5">
+                            <img src="assets/images/logoSenai300x82.jpg" alt="logo"/>                            
                         </div>
                         <!-- Form -->
                         <form class="form-horizontal m-t-20" id="loginform" method="POST" action="php/validaLogin.php">
@@ -56,15 +52,16 @@
                                     </div>
                                 </div>
                             </div>
-                                <p>
+                            <div class="alert alert-success" role="alert" id="msgAlerta">
+                                <p id="alert">
                                     <?PHP 
-                                    if(isset($_SESSION['msgLogin']) && $_SESSION['msgLogin'] != ''){  
-                                        echo $_SESSION['msgLogin'];
-                                        unset($_SESSION['msgLogin']);
-                                        
-                                    }
+                                        if(isset($_SESSION['msgLogin']) && $_SESSION['msgLogin'] != ''){  
+                                            echo $_SESSION['msgLogin'];
+                                            unset($_SESSION['msgLogin']);                                        
+                                        }
                                     ?> 
                                 </p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -72,7 +69,7 @@
         </div>
 
         <!-- Linhas de javaScript em geral -->
-        <?php include('links/script.php');?>
+        <?php include('links/script.php');?>        
 
         <script>
             $('[data-toggle="tooltip"]').tooltip();
@@ -88,7 +85,31 @@
                 
                 $("#recoverform").hide();
                 $("#loginform").fadeIn();
-            });
+            });            
+        </script>
+
+        <script>
+            $('document').ready(function(){
+                $('#msgAlerta').hide();
+
+                $('#loginform').on('submit', function(e){
+                    e.preventDefault();
+
+                    let login = $('#idLogin').val();
+                    let senha = $('#idSenha').val();
+                    var regex = /[^\w\s]/gi;
+
+                    if(regex.test(login) == false) {
+                        alert('Este login contém caracteres ilegais');
+                    }
+
+                    if(regex.test(senha) == false) {
+                        alert('Esta senha contém carateres ilegais');
+                    }
+
+                    $('#loginform').submit();
+                })
+            })        
         </script>
     </body>
 </html>
