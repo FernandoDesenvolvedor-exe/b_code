@@ -22,28 +22,26 @@
         $codigo = stripslashes($_POST['nCodigo']);
         $lote = stripslashes($_POST['nLote']);   
         
-        if(!validarDado(4,$descricao) && $descricao != ''){
+        if(!validarDado(4,$descricao) && $descricao != '' || $descricao !=0){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$observacoes) && $observacoes != ''){    
+        if(!validarDado(4,$observacoes) && $observacoes != '' || $observacoes != 0){    
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        /*if(!validarDado(4,$codigo) && $codigo != ''){
+        if(!validarDado(4,$codigo) && $codigo != '' || $codigo != 0){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$lote) && $lote != ''){
-            //var_dump('3');
-            //die();
+        if(!validarDado(4,$lote) && $lote != '' || $lote != 0){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
-        }*/
+        }
         
 
         //Script SQL que insere na tabela pigmentos so valores indicados, id é AUTO-INCREMENT
