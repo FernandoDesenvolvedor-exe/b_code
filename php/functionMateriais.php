@@ -932,8 +932,7 @@
                     ON mat.idMateriaPrima = mf.idMateriaPrima
                     LEFT JOIN fornecedores f
                     ON mf.idFornecedor = f.idFornecedor
-                    WHERE mat.ativo = 1
-                    AND mat.idTipoMateriaPrima = 2;';
+                    WHERE mat.ativo = 1;';
         
             //mysqli_query($conn,$sql) cria uma conexão com o banco de dados atraves de $conn,
             //executa o script sql na variavel $sql,
@@ -953,7 +952,7 @@
                 }
                 
                 foreach($array as $campo){   
-                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                                                             
+                    $select .="<option value=".$campo['id'].">".$campo['nome']." - ".$campo['tipos']." - ".$campo['classe']." - ".$campo['fornecedor']."</option>";                                                      
                 }
             }     
         }

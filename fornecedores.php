@@ -37,12 +37,10 @@
 
                         <h4 class="card-title">Fornecedores Registrados</h4>
 
-                        <div>
-                            
+                        <div>                            
                             <button style="width: auto; border-radius: 5px;" type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#modalAddFornecedor">
                                 Novo Fornecedor
                             </button>
-
                         </div>
 
                         <!-- MODAL NOVO FORNECEDOR -->
@@ -59,9 +57,8 @@
 
                                         <div class="card">
                                             <!-- Cria um formulário -->
-                                            <form method="POST" class="form-horizontal" action= "php/saveFornecedor.php? validacao=I&pg=M">
+                                            <form method="POST" class="form-horizontal" action= "php/saveFornecedor.php?validacao=I&pg=M">
                                                 <div class="card-body">
-
                                                     <!-- Titulo da div -->
                                                     <h4 class="card-title">Adicionar Fornecedor</h4>
                                                     <div class="form-group row">
@@ -99,6 +96,8 @@
                                 </table>
                             </div>                         
                         </div>  
+
+
                     </div>                 
                 </div>  
                 <footer class="footer text-center">
