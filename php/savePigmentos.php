@@ -21,23 +21,27 @@
         $observacoes = stripslashes($_POST['nObservacoes']);
         $codigo = stripslashes($_POST['nCodigo']);
         $lote = stripslashes($_POST['nLote']);   
-
-        /*if(!validarDado(4,$descricao) && $descricao != ''){
+        
+        if(!validarDado(4,$descricao) && $descricao != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$observacoes) && $observacoes != ''){
+        if(!validarDado(4,$observacoes) && $observacoes != ''){            
+            var_dump('2');
+            die();
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
-        if(!validarDado(4,$codigo) && $codigo != ''){
+        /*if(!validarDado(4,$codigo) && $codigo != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
         }
         if(!validarDado(4,$lote) && $lote != ''){
+            //var_dump('3');
+            //die();
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../pigmentos.php');
             die();
