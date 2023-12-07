@@ -345,7 +345,7 @@
             mysqli_close($conn);
         }        
 
-        if(!validarDado(2,$_POST['nObs'])){
+        if(!validarDado(2,$_POST['nObs']) && $_POST['nObs'] != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Observação. Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../producao');
             die();

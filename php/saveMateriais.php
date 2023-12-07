@@ -40,11 +40,11 @@ Validações
             die();
         }
         
-        if(!validarDado(4,$observacoes) && $observacoes != ''){
+        /*if(!validarDado(4,$observacoes) && $observacoes != ''){
             $_SESSION['msgErro'] = $abreHTMLalert.'Apenas letras, numeros e caracters especiais (.,!,@,#,$,%,_,-).'.$fechaHTMLalert;
             header('location: ../materiaPrima.php');
             die();
-        }
+        }*/
 
         //Script SQL que insere na tabela materia_prima os valores indicados, id é AUTO-INCREMENT
         $sql = "INSERT INTO materia_prima(idClasse, idTipoMateriaPrima, descricao, quantidade, ativo, observacoes)" 
@@ -69,11 +69,13 @@ Validações
     
                 $result = mysqli_query($conn, $sql);
             } 
-
+/*
             $sql = "INSERT INTO materia_pigmento(idMateriaPrima, idPigmento)"
-                        ."VALUES(".$idMaterial.", 4);";
+                        ."VALUES(".$idMaterial.", 1);";
     
-            $result = mysqli_query($conn, $sql);
+            var_dump($sql);
+            die();
+            $result = mysqli_query($conn, $sql);*/
         }
         
         //fecha a conexão

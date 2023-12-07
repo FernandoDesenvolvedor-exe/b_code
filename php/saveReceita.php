@@ -35,9 +35,12 @@
     $sqlInsert = "Insert into receita_materia_prima (idReceita,idMateriaPrima,quantidadeMaterial) values
     (".$idReceita.",".$material.",".$pesoMaterial.")";
     
-    if($reciclado != 0){
+    if($reciclado != ''){
         $sqlInsert .=", (".$idReceita.",".$reciclado.",".$pesoReciclado.");";
     }
+
+    //var_dump($sqlInsert);
+    //die();
     mysqli_query($conn, $sqlInsert);
     mysqli_close($conn);
     
