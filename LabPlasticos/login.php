@@ -52,16 +52,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="alert alert-success" role="alert" id="msgAlerta">
-                                <p id="alert">
-                                    <?PHP 
-                                        if(isset($_SESSION['msgLogin']) && $_SESSION['msgLogin'] != ''){  
-                                            echo $_SESSION['msgLogin'];
-                                            unset($_SESSION['msgLogin']);                                        
-                                        }
-                                    ?> 
-                                </p>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -89,27 +79,7 @@
         </script>
 
         <script>
-            $('document').ready(function(){
-                $('#msgAlerta').hide();
 
-                $('#loginform').on('submit', function(e){
-                    e.preventDefault();
-
-                    let login = $('#idLogin').val();
-                    let senha = $('#idSenha').val();
-                    var regex = /[^\w\s]/gi;
-
-                    if(regex.test(login) == false) {
-                        alert('Este login contém caracteres ilegais');
-                    }
-
-                    if(regex.test(senha) == false) {
-                        alert('Esta senha contém carateres ilegais');
-                    }
-
-                    $('#loginform').submit();
-                })
-            })        
         </script>
     </body>
 </html>
