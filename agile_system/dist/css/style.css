@@ -34,10 +34,17 @@ body{
     width: 70px;
     min-width: 70px;
     z-index: 1000;
+<<<<<<< Updated upstream
     transition: all .25s ease-in-out;
     display: flex;
     flex-direction: column;
     background-color: #053c8d;
+=======
+    transition: all .35s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #1346b3f8;
+>>>>>>> Stashed changes
 }
 #sidebar.expand{
     width: 260px;
