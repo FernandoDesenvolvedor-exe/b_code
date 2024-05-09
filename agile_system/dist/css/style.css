@@ -34,17 +34,10 @@ body{
     width: 70px;
     min-width: 70px;
     z-index: 1000;
-<<<<<<< Updated upstream
-    transition: all .25s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    background-color: #053c8d;
-=======
     transition: all .35s ease-in-out;
     display: flex;
     flex-direction: column;
     background-color: #1346b3f8;
->>>>>>> Stashed changes
 }
 #sidebar.expand{
     width: 260px;
@@ -154,4 +147,22 @@ li.dropdown-item{
 .navbar-logo{
     width: 60px;
     height: 40px;
+}
+
+.btn-login{
+    background-color: #044dbb;
+    border-radius: 8px;
+    padding: .25rem;
+    width: 70px;
+    height: 40px;
+    color: #ffffff;
+}
+
+button.btn-login{
+    font-size: large;
+    font: bold;
+}
+
+.btn-login:hover{
+    background-color: #0995f3;    
 }
