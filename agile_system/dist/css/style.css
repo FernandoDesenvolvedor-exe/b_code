@@ -22,14 +22,13 @@ body{
 }
 .wrapper {
     display: flex;
-
 }
 .main{
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
     transition: all 0.35s ease-in-out;
-    background-color: #ffffff;
+    background-color:lightblue;
 }
 #sidebar{
     width: 70px;
@@ -38,7 +37,7 @@ body{
     transition: all .25s ease-in-out;
     display: flex;
     flex-direction: column;
-    background-color: #0d6efd;
+    background-color: #053c8d;
 }
 #sidebar.expand{
     width: 260px;
@@ -49,13 +48,14 @@ body{
     cursor: pointer;
     border: 0;
     padding: 1rem 1.5rem;
+    height:56px;
 }
 #toggle-btn i{
     font-size: 1.5rem;
     color: #ffffff;
 }
 .sidebar-logo{
-    margin: auto 0;    
+    margin: auto 0;
 }
 .logo{
     padding-left: 24px;
@@ -74,10 +74,11 @@ body{
 .sidebar-nav{
     padding: 2rem 0;
     flex: 1 1 auto;
+    padding-top:0;
 }
 
 a.sidebar-link{
-    padding: .625rem 1.625rem;
+    padding: .625rem 1.625rem .625rem 1.4rem;
     color: #ffffff;
     display: block;
     font-size: 0.9rem;
@@ -90,6 +91,11 @@ a.sidebar-link{
     margin-right: .75rem;
     margin-top: 7px;
 }
+#menu_logo:hover{
+    background-color: #092b5f;
+    border-left: 3px solid #0d6efd;
+}
+
 a.sidebar-link:hover{
     background-color: #092b5f;
     border-left: 3px solid #0d6efd;
@@ -97,11 +103,15 @@ a.sidebar-link:hover{
 .sidebar-item{
     position: relative;
 }
+li.dropdown-item{
+    padding-left: 30px;
+}
+
 #sidebar:not(.expand) .sidebar-item .sidebar-dropdown{
     position: absolute;
     top: 0;
     left: 70px;
-    background-color: #0d6efd;
+    background-color: #0e5bce;
     padding: 0;
     min-width: 15rem;
     display: none;
