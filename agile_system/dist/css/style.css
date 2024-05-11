@@ -24,25 +24,32 @@ body{
     display: flex;
 }
 .main{
-    min-height: 100vh;
+    min-height: 100%;
     width: 100%;
+    left: 5.1%;
+    position: fixed;
     overflow: hidden;
     transition: all 0.35s ease-in-out;
-    background-color:lightblue;
+    background-color:lightblue; 
 }
-#sidebar{
-    width: 70px;
-    min-width: 70px;
+
+#sidebar{ 
+    position: fixed;
+    min-height: 100%;
+    width: 5.1%;
+    min-width: 5.1%;
     z-index: 1000;
     transition: all .35s ease-in-out;
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     background-color: #1346b3f8;
 }
+
 #sidebar.expand{
-    width: 260px;
-    min-width: 260px;
+    width: 15%;
+    min-width: 15%;
 }
+
 #toggle-btn{
     background-color: transparent;
     cursor: pointer;
@@ -165,102 +172,4 @@ button.btn-login{
 
 .btn-login:hover{
     background-color: #0995f3;    
-}
-
-/*SLIDER*/
-
-#slider {
-    margin-top: 8em;
-    margin-bottom: 1em;
-}
-
-#slider .carousel-caption{
-    bottom: 3em;
-}
-
-#slider .carousel-caption h5{
-    font-size: 2.5em;
-    text-shadow: #000 2px 2px;
-}
-
-.btn{
-    border-radius: 0;
-    background-color: #007ee5;
-    box-shadow: #000 2px 3px;
-}
-
-#slider .btn {
-    padding: 0.3 0.8em;
-    font-size: 1em;
-    margin-top: 1em;
-}
-
-.carousel-control-prev i,
-.carousel-control-next i {
-color: #111;
-font-size: 3em;
-}
-
-.carousel-indicators [data-bs-target] {
-    background-color: #222;
-    opacity: 0.8;
-}
-
-.carousel-indicators .active {
-    background-color: #000;
-}
-
-@media(min-width: 768px) {
-    #slider .carousel-caption{
-        bottom: 15em;
-        
-    }
-
-    #slider .carousel-caption h5{
-        font-size: 4em;
-        text-shadow: #000 3px 4px;
-    }
-
-    #slider .btn {
-        padding: 0.6 1.6em;
-        font-size: 1.2em;
-        background-color: #007ee5;
-        
-    }
-
-    .carousel-indicators{
-        bottom: 7em;
-    }
- 
-}
-
-/* MINI BANNERS */
-
-#mini-banners {
-    margin-bottom: 4em;
-}
-
-.mini-banners .card{
-    padding: 2em 0.3em;
-    border-radius: 0;
-    margin-bottom:  1em;
-}
-
-#mini-banners i{
-    font-size: 4em;
-}
-
-#mini-banners .card-title{
-    margin-bottom: 1.5em;
-}
-
-#mini-banners .btn{
-    margin-top: 1.5em;
-    padding: .6em 1.2em;
-}
-
-@media (min-width: 768px){
-    #mini-banners{
-        margin-top: -6em;
-    }
 }
