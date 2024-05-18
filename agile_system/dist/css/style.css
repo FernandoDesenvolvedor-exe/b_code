@@ -24,7 +24,6 @@ body{
     width: 100%;
 }
 .main{
-    left: 5%;    
     min-height: 100%; 
     width: 100%;
     transition: all 0.35s ease-in-out;
@@ -48,6 +47,10 @@ body{
     min-width: 15%;
 }
 @media (max-width: 1300px){
+    .main{
+        left: 5%;
+        margin-left: 5%;
+    }
     #sidebar{
         width:5%;
         height: 100%;
@@ -87,7 +90,7 @@ body{
     }
     #sidebar.expand{
         width: 40%;
-        min-width: 15%;
+        min-width: 40%;
     }
 }
 
