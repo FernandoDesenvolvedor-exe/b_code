@@ -24,7 +24,8 @@ body{
     width: 100%;
 }
 .main{
-    min-height: 100%; 
+    min-height: 100vh; 
+    margin-left:5%;
     width: 100%;
     transition: all 0.35s ease-in-out;
     background-color:lightblue; 
@@ -40,91 +41,44 @@ body{
     display: flex;
     flex-direction:column;
     background-color: #1346b3f8;
+    background-image: url('../img/index/CaminhaoAzul3.png');
 }
 
 #sidebar.expand{
     width: 15%;
     min-width: 15%;
 }
-@media (max-width: 1300px){
-    .main{
-        left: 5%;
-        margin-left: 5%;
-    }
+
+@media (max-width: 1440px){
     #sidebar{
         width:5%;
         height: 100%;
     }
     #sidebar.expand{
         width: 20%;
-        min-width: 15%;
+        min-width: 20%;
     }
 }
 
-@media(max-width: 1000px){
-    #sidebar{
-        width:5%;
-        height: 100%;
-    }
-    #sidebar.expand{
-        width: 25%;
-        min-width: 25%;
-    }
-}
-
-@media (max-width: 820px){
+@media (max-width: 834px){
     #sidebar{
         width:5%;
         height: 100%;
     }
     #sidebar.expand{
         width: 30%;
-        min-width: 15%;
+        min-width: 30%;
     }
 }
 
-@media (max-width: 700px){
-    #sidebar{
-        width:5%;
-        height: 100%;
-    }
-    #sidebar.expand{
-        width: 40%;
-        min-width: 40%;
-    }
-}
-
-@media (max-width: 650px){
-    #sidebar{
-        width:5%;
-        height: 100%;
-    }
-    #sidebar.expand{
-        width: 40%;
-        min-width: 15%;
-    
-    }
-}
-@media (max-width: 500px){
-    #sidebar{
-        width:5%;
-        height: 100%;
-    }
-    #sidebar.expand{
-        width: 50%;
-        min-width: 15%;
-    
-    }
-}
-@media (max-width: 400px){
+@media (max-width: 480px){
     #sidebar{
         width:5%;
         height: 100%;
     }
     #sidebar.expand{
         width: 60%;
-        min-width: 15%;
-    
+        min-width: 60%;    
     }
 }
 
@@ -179,11 +133,13 @@ a.sidebar-link{
 #menu_logo:hover{
     background-color: #092b5f;
     border-left: 3px solid #0d6efd;
+    opacity: 0.7;
 }
 
 a.sidebar-link:hover{
     background-color: #092b5f;
     border-left: 3px solid #0d6efd;
+    opacity: 0.5;
 }
 .sidebar-item{
     position: relative;
