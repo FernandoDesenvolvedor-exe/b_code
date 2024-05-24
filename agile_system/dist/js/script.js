@@ -4,7 +4,7 @@ const main = document.getElementById('principal');
 if(sessionStorage.getItem('menuOpen') == 'true'){
     document.querySelector("#sidebar").classList.add("expand");    
     main.style.marginLeft = '20%';
-}  
+}
 
 menu.addEventListener("click", function(){
     document.querySelector("#sidebar").classList.toggle("expand");
@@ -17,3 +17,7 @@ menu.addEventListener("click", function(){
         sessionStorage.setItem('menuOpen', false);
     }        
 });
+
+function ativaItem(element){    
+    element.classList.add('active');
+}

@@ -28,7 +28,7 @@ body{
     margin-left:5%;
     width: 100%;
     transition: all 0.35s ease-in-out;
-    background-color:lightblue; 
+    background-color:rgb(249, 250, 250); 
 }
 
 #sidebar{ 
@@ -44,14 +44,23 @@ body{
     background-image: url('../img/index/CaminhaoAzul3.png');
 }
 
-li.active{
-    opacity: 1;
-    background-color: #092b5f;
-}
-
 #sidebar.expand{
     width: 15%;
     min-width: 15%;
+}
+
+.active{
+    opacity: 1;
+    background-color: #0449dd;
+    border-radius: 10px;
+
+}
+
+.subActive{
+    opacity: 1;
+    background-color: #0c62e2;
+    border-radius: 20px;
+
 }
 
 @media (max-width: 1440px){
