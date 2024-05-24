@@ -44,6 +44,11 @@ body{
     background-image: url('../img/index/CaminhaoAzul3.png');
 }
 
+li.active{
+    opacity: 1;
+    background-color: #092b5f;
+}
+
 #sidebar.expand{
     width: 15%;
     min-width: 15%;
