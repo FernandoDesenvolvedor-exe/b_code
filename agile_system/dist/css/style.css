@@ -59,8 +59,8 @@ body{
 .subActive{
     opacity: 1;
     background-color: #0c62e2;
-    border-radius: 20px;
-
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 @media (max-width: 1440px){
@@ -78,10 +78,17 @@ body{
     #sidebar{
         width:5%;
         height: 100%;
+        min-width: 4rem;
     }
     #sidebar.expand{
         width: 30%;
         min-width: 30%;
+    }
+    
+    .main{
+        min-height: 100vh; 
+        margin-left:12%;
+        width: 100%;
     }
 }
 
@@ -93,6 +100,11 @@ body{
     #sidebar.expand{
         width: 60%;
         min-width: 60%;    
+    }
+    .main{
+        min-height: 100vh; 
+        margin-left:15%;
+        width: 100%;
     }
 }
 
