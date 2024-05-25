@@ -41,7 +41,7 @@ body{
     display: flex;
     flex-direction:column;
     background-color: #1346b3f8;
-    background-image: url('../img/index/caminhao\ -\ Copia\ \(2\).jpg');
+    background-image: url('../img/index/menu-imagem.jpg');
 }
 
 #sidebar.expand{
