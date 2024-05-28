@@ -233,3 +233,8 @@ button.btn-login{
 .btn-login:hover{
     background-color: #0995f3;    
 }
+
+div.card-header{
+    background-color: rgb(18, 101, 224);
+    color: white;
+}
