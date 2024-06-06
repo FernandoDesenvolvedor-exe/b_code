@@ -123,4 +123,19 @@ function loadLibrary(){
     }
 }
 
+function searchClick(){
+    if(searchTerm.value === '') return;
+    motoristas = motoristas.filter((motorista) => motorista.Name.includes (searchTerm.value));
+    loadLibrary();
+}
+
+function resetFilter(){
+    if(searchTerm.value !== '') return;
+    motoristas = [...motoristasLibrary];
+    loadLibrary();
+}
+
+searchBtn.addEventListener('click', searchClick);
+searchTerm.addEventListener('input', resetFilter);
+
 loadLibrary();
