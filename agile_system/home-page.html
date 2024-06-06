@@ -80,21 +80,21 @@
                         <div class="card-body"> 
                             <div class="carousel slide" id="slider" data-bs-ride="carousel" style="margin-top: 20px; padding: 0rem 5rem;">
                                 <div class="carousel-inner" style="height: 400px;">
-                                    <div class="carousel-item active">
+                                    <div id="slide1" class="carousel-item active">
                                         <img src="dist/img/Banner-1-carousel.webp" alt="img 1" class="d-block w-100" >
                                         <div class="carousel-caption">
                                         <h5>Rotas Organizadas</h5>
                                         <a href="#" class="btn btn-dark">Ver Rotas</a>
                                         </div>
                                     </div>
-                                    <div class="carousel-item">
+                                    <div id="slide2" class="carousel-item">
                                         <img src="dist/img/Banner-2-carousel.jpg" alt="img 2" class="w-100" style="display:flexbox;">
                                         <div class="carousel-caption">
                                         <h5>Criacao de Rotas</h5>
                                         <a href="#" class="btn btn-dark">Ver Rotas</a>
                                         </div>
                                     </div>
-                                    <div class="carousel-item">
+                                    <div id="slide3" class="carousel-item">
                                         <img src="dist/img/Banner-3-carousel.jpeg" alt="img 3" class="d-block w-100" >
                                         <div class="carousel-caption">
                                         <h5>Rastreamento de Rotas</h5>
@@ -169,43 +169,45 @@
                         </div>    
                     </div>
 
-                    <div id="gereRota" class="card m-2" hidden>
-                        <div class="card-header d-flex justify-content-start p-2">
-                            <h1 class="card-title">Gerenciamento de Rotas</h1>
-                            <i class="lni lni-road pt-2"></i>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                O <b><i>Agile System</i></b> oferece um monitoramento de rotas de ponta, através de checkpoints, que serão as paradas que o caminhoneiro fará durante uma viagem. 
-                            </p>
-                        </div>    
-                    </div>
-                    
-                    
-                    <div id="moniGastos" class="card m-2" hidden>
-                        <div class="card-header d-flex justify-content-start p-2">
-                            <h1 class="card-title">Monitoramento de Gastos</h1>
-                            <i class="lni lni-credit-cards pt-2"></i>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Também geramos relatórios de gastos, com um cartão de débito, que pode ser recarregado pela empresa empregadora, e será utilizado pelo motorista para os gastos da viagem. 
-                            </p>
-                        </div>    
-                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <div id="gereRota" class="card m-2" hidden>
+                                <div class="card-header d-flex justify-content-start p-2">
+                                    <h1 class="card-title">Gerenciamento de Rotas</h1>
+                                    <i class="lni lni-road pt-2"></i>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        O <b><i>Agile System</i></b> oferece um monitoramento de rotas de ponta, através de checkpoints, que serão as paradas que o caminhoneiro fará durante uma viagem. 
+                                    </p>
+                                </div>    
+                            </div>  
 
-                    <div id="supMot" class="card m-2" hidden>
-                        <div class="card-header d-flex justify-content-start p-2">
-                            <h1 class="card-title">Suporte ao motorista</h1>
-                            <i class="lni lni-consulting pt-2"></i>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                A <b><i>Agile System</i></b> cuida de seus colaboradores, oferecendo um suporte 24 horas para os motoristas em vaigem.
-                            </p>
-                        </div>    
-                    </div>                                    
-
+                            <div id="moniGastos" class="card m-2" hidden>
+                                <div class="card-header d-flex justify-content-start p-2">
+                                    <h1 class="card-title">Monitoramento de Gastos</h1>
+                                    <i class="lni lni-credit-cards pt-2"></i>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        Também geramos relatórios de gastos, com um cartão de débito, que pode ser recarregado pela empresa empregadora, e será utilizado pelo motorista para os gastos da viagem. 
+                                    </p>
+                                </div>    
+                            </div>
+        
+                            <div id="supMot" class="card m-2" hidden>
+                                <div class="card-header d-flex justify-content-start p-2">
+                                    <h1 class="card-title">Suporte ao motorista</h1>
+                                    <i class="lni lni-consulting pt-2"></i>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        A <b><i>Agile System</i></b> cuida de seus colaboradores, oferecendo um suporte 24 horas para os motoristas em vaigem.
+                                    </p>
+                                </div>    
+                            </div> 
+                        </div> 
+                    </div>  
                 </div>
             </div>
 
@@ -221,21 +223,49 @@
             const gastosBtn = document.getElementById('btnMGastos');
             const suporteBtn = document.getElementById('btnSuporte');
 
-            rotaBtn.addEventListener('click', function(){
-                rotaBtn.style.backgroundColor = 'rgb(18, 101, 224)';
-                document.getElementById('gereRota').removeAttribute('false');
+            rotaBtn.addEventListener('click', function(){  
+                if(rotaBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
+                    document.getElementById('gereRota').hidden = true;
+                    rotaBtn.style.backgroundColor = '#212529';
+                } else {
+                    rotaBtn.style.backgroundColor = 'rgb(18, 101, 224)';
+                    gastosBtn.style.backgroundColor = '#212529';
+                    suporteBtn.style.backgroundColor = '#212529';
+
+                    document.getElementById('gereRota').hidden = false;
+                    document.getElementById('moniGastos').hidden = true;
+                    document.getElementById('supMot').hidden = true;
+                }
             });
 
             gastosBtn.addEventListener('click', function(){
-                document.getElementById('gereRota').style.backgroundColor = 'rgb(18, 101, 224)';
-                document.getElementById('moniGastos').style.backgroundColor = 'rgb(55, 176, 224)';
-                document.getElementById('supMot').style.backgroundColor = 'rgb(18, 101, 224)';
+                if(gastosBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
+                    document.getElementById('moniGastos').hidden = true;
+                    gastosBtn.style.backgroundColor = '#212529';
+                } else {
+                    rotaBtn.style.backgroundColor = '#212529';
+                    gastosBtn.style.backgroundColor = 'rgb(18, 101, 224)';
+                    suporteBtn.style.backgroundColor = '#212529';
+
+                    document.getElementById('gereRota').hidden = true;
+                    document.getElementById('moniGastos').hidden = false;
+                    document.getElementById('supMot').hidden = true;
+                }
             });
 
             suporteBtn.addEventListener('click', function(){
-                document.getElementById('gereRota').style.backgroundColor = 'rgb(18, 101, 224)';
-                document.getElementById('moniGastos').style.backgroundColor = 'rgb(18, 101, 224)';
-                document.getElementById('supMot').style.backgroundColor = 'rgb(55, 176, 224)';
+                if(suporteBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
+                    document.getElementById('supMot').hidden = true;
+                    suporteBtn.style.backgroundColor = '#212529';
+                } else {
+                    rotaBtn.style.backgroundColor = '#212529';
+                    gastosBtn.style.backgroundColor = '#212529';
+                    suporteBtn.style.backgroundColor = 'rgb(18, 101, 224)';
+
+                    document.getElementById('gereRota').hidden = true;
+                    document.getElementById('moniGastos').hidden = true;
+                    document.getElementById('supMot').hidden = false;
+                }
             });
 
         </script>
