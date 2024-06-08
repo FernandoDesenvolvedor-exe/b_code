@@ -101,18 +101,23 @@ const searchBtn = document.getElementById('search-button');
 function loadLibrary(){
     pagebody.innerHTML = '';
     for(let index = 0; index < motoristas.length; index ++){
+
         pagebody.innerHTML += `
-        <div class="card d-flex flex-column align-items-center" style="width: 18rem; height: 40rem">
-            <img src="dist/img/${motoristas[index].fotoMotorista}" class="card-img-top" style= "width: 18rem; height: 225px" alt="Foto Motorista">
+        <div class="card d-flex flex-column align-items-center pt-3" style="width: 18rem; margin-top: 3rem;">
+            <img  src="dist/img/${motoristas[index].fotoMotorista}" class="card-img-top" style= "width: 10rem;" alt="Foto Motorista">
             <div class="card-body d-flex flex-column ">
                 <h5 class="card-title border-top border-dark">NOME:</h5>
                 <p class="border-bottom border-dark">${motoristas[index].Name}</p>
-                <h5 class="card-text border-top border-dark">IDADE</h5>
-                <p class="border-bottom border-dark">${motoristas[index].Idade}</p>
-                <h5 class="card-text border-top border-dark">DOCUMENTO</h5>
-                <p class="border-bottom border-dark">${motoristas[index].Documento}</p>
-                <h5 class="card-text border-top border-dark">PRAÇA DE EXPERIENCIA</h5>
-                <p class="border-bottom border-dark">${motoristas[index].pracaExperiencia}</p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <h5 class="card-text border-top border-dark">IDADE</h5>
+                        <p class="border-bottom border-dark">${motoristas[index].Idade}</p>
+                        <h5 class="card-text border-top border-dark">DOCUMENTO</h5>
+                        <p class="border-bottom border-dark">${motoristas[index].Documento}</p>
+                        <h5 class="card-text border-top border-dark">PRAÇA DE EXPERIENCIA</h5>
+                        <p class="border-bottom border-dark">${motoristas[index].pracaExperiencia}</p>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-between">
                     <button  class="btn btn-outline-primary">Adicionar Rota<i class="bi bi-geo-alt"></i></button>
                     <button  class="btn btn-outline-primary">Editar Motorista<i class="bi bi-person-gear"></i></button>
