@@ -1,0 +1,141 @@
+/*<!-- Button trigger modal -->
+1
+<button type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#Modal1">
+    View Popup
+</button>
+
+2
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning margin-5 text-white" data-toggle="modal" data-target="#Modal2">
+    Alert
+</button>
+
+3
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#Modal3">
+    Image Popup
+</button>
+*/
+
+/*
+1
+<!-- Modal -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+    <div class="modal-dialog" role="document ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Popup Header</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Here is the text coming you can put also image if you want…
+            </div>
+        </div>
+    </div>
+</div>
+
+2
+<!-- Modal -->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alert Model</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+3
+<!-- Modal -->
+<div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image Header</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/background/img5.jpg" width="100% ">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+*/
+
+Cria table com checkBox e salva localmente
+--------------------------------------------------------------------------------------------------------------------------------
+<form action="" method="POST">    
+    <table width="500" border="0"  bordercolor="#B9B3B3" cellspacing=0 cellpadding=2 align="center">
+        <tbody>
+            <tr align="center">
+            <?php
+
+            $getfamilia = "SELECT * FROM $tabela";
+            $getfamiliaquery = $mysqli->query($getfamilia);
+
+            while($getfamilialine = mysqli_fetch_array($getfamiliaquery)) {
+                if($getfamilialine["finalizado"] == "Em Andamento") {
+                    echo "
+                        <tr>
+                            <td width='250' align='center'>".$getfamilialine["nome"]."</td>
+                            <td width='250' align='center'><input type='checkbox' value='".$getfamilialine["id"]."' name='op[]'></td>
+                        </tr>";
+                }
+            }
+
+            echo "</table>";
+            ?>
+            <br />
+            <input type="submit" name="salvar_ok" value="SALVAR" />
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <?php
+        // Aqui imprime o resultado retornado via POST
+        if($_POST["salvar_ok"]) { // Se clicar no botão SALVAR executa o bloco abaixo
+            for($i = 0; $i < count($_POST["op"]); $i++) { // Loop enquanto houver conteúdo na array
+                echo $_POST["op"][$i]."<br />"; // $_POST["op"][0], $_POST["op"][1], $_POST["op"][2], $_POST["op"][3]........ 
+            }
+        }
+    ?>
+</form>
+-------------------------------------------------------------------------------------------------------------------------------
+
+<<<<<<< HEAD
+
+
+
+
+=======
+<html>
+ <body>
+ <form action="home.php" method="get">
+  Digite algo: <input type="text" name="formulario"><br>
+  <input type="submit">
+ </form>
+ 
+ <?php 
+  echo "Você digitou: ", $_GET["formulario"], "<br>";
+ ?>
+ </body>
+</html>
+>>>>>>> 84ad844662b23c12c63e499832471c53ae9e3840

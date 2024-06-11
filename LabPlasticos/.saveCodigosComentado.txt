@@ -1,0 +1,234 @@
+/*<!-- Button trigger modal -->
+1
+<button type="button" class="btn btn-success margin-5" data-toggle="modal" data-target="#Modal1">
+    View Popup
+</button>
+
+2
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning margin-5 text-white" data-toggle="modal" data-target="#Modal2">
+    Alert
+</button>
+
+3
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#Modal3">
+    Image Popup
+</button>
+*/
+
+/*
+1
+<!-- Modal -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+    <div class="modal-dialog" role="document ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Popup Header</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Here is the text coming you can put also image if you want…
+            </div>
+        </div>
+    </div>
+</div>
+
+2
+<!-- Modal -->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alert Model</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+3
+<!-- Modal -->
+<div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image Header</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/background/img5.jpg" width="100% ">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+*/
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Cria table com checkBox e salva localmente
+
+<form action="" method="POST">    
+    <table width="500" border="0"  bordercolor="#B9B3B3" cellspacing=0 cellpadding=2 align="center">
+        <tbody>
+            <tr align="center">
+            <?php
+
+            $getfamilia = "SELECT * FROM $tabela";
+            $getfamiliaquery = $mysqli->query($getfamilia);
+
+            while($getfamilialine = mysqli_fetch_array($getfamiliaquery)) {
+                if($getfamilialine["finalizado"] == "Em Andamento") {
+                    echo "
+                        <tr>
+                            <td width='250' align='center'>".$getfamilialine["nome"]."</td>
+                            <td width='250' align='center'><input type='checkbox' value='".$getfamilialine["id"]."' name='op[]'></td>
+                        </tr>";
+                }
+            }
+
+            echo "</table>";
+            ?>
+            <br />
+            <input type="submit" name="salvar_ok" value="SALVAR" />
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <?php
+        // Aqui imprime o resultado retornado via POST
+        if($_POST["salvar_ok"]) { // Se clicar no botão SALVAR executa o bloco abaixo
+            for($i = 0; $i < count($_POST["op"]); $i++) { // Loop enquanto houver conteúdo na array
+                echo $_POST["op"][$i]."<br />"; // $_POST["op"][0], $_POST["op"][1], $_POST["op"][2], $_POST["op"][3]........ 
+            }
+        }
+    ?>
+</form>
+-------------------------------------------------------------------------------------------------------------------------------
+
+<html>
+ <body>
+ <form action="home.php" method="get">
+  Digite algo: <input type="text" name="formulario"><br>
+  <input type="submit">
+ </form>
+ 
+ <?php 
+  echo "Você digitou: ", $_GET["formulario"], "<br>";
+ ?>
+ </body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------
+Vetor em php
+
+<?php
+$arr = array(5 => 1, 12 => 2);
+
+$arr[] = 56;    // Isto é o mesmo que $arr[13] = 56;
+                // nesse ponto do script
+
+$arr["x"] = 42; // Isto acrescenta um novo elemento
+                // para o array com a chave "x"
+
+unset($arr[5]); // Isto remove um elemento do array
+
+unset($arr);    // E isto apaga todo o array
+?>
+
+
+$_SESSION['materiais'] = $vet; Salva vetor na var SESSION
+for($i=0 ; $i<count($vet); $i++){
+    echo $vet[$i];
+};
+//echo $vet;
+for($i=0; $i<count($_SESSION['materiais']); $i++){
+    echo $_SESSION['materiais'][$i];
+};
+//echo $_SESSION['materiais'];
+unset($vet);
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+create database escolas;
+
+use escolas;
+#Cria tabela
+create table aluno(
+	idAluno int primary key auto_increment,
+    nome varchar(50),
+    dataNasc date not null
+);
+#Altera tabela
+alter table aluno add column cpf varchar(15) not null;
+
+#Deleta banco 
+#drop database escolas;
+#inserir dados
+insert into aluno(nome,dataNasc,cpf) values ('José da Silva','2001-03-10',''),
+											('Pedro sa Silva','2015-01-01','');
+#pesquisa
+select * from aluno;
+#deletar dados
+delete from aluno;
+
+insert into aluno(nome,dataNasc,cpf) values ('José da Silva','2001-03-10','');
+#deleta dados e histórico, o auto_increment reinicia.
+truncate aluno;
+update aluno set cpf='' where idAluno=1;
+begin;
+update aluno set cpf='123.456.789-00' where idAluno=1;
+
+rollback;                           
+create view viewAluno as 
+select idAluno as ID, cpf as cpfAluno from aluno;
+select * from viewAluno;
+drop view viewAluno;
+
+-------------------------------------------------------------------------------------------------------------------------------
+TROCAR DADOS ENTRE JS E PHP
+<script>
+  var usuario = {
+    'nome': 'João',
+    'profissao': 'Engenheiro',
+    'cidade': 'São Paulo'
+  }
+  
+  var dados = JSON.stringify(usuario);
+  
+  $.ajax({
+    url: 'recebe.php',
+    type: 'POST',
+    data: {data: dados},
+    success: function(result){
+      // Retorno se tudo ocorreu normalmente
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      // Retorno caso algum erro ocorra
+    }
+  });
+</script>
+
+<?php
+  $usuario = $_POST['data'];
+
+  $dados = json_decode($usuario, true);
+
+  var_dump($dados);
+?>
