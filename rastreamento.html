@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="dist/css/rastreamento.css">        
+        <link rel="icon" type="image/png" sizes="16x16" href="dist/img/index/cabecalho.png">
+        
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <aside id="sidebar">
+
+                <div class="d-flex" id="menu_logo">
+                    <button id="toggle-btn" type="button">
+                        <i class="lni lni-menu"></i>
+                    </button>
+                    <div class="sidebar-logo">
+                        <a href="index.html">
+                            <img src="dist/img/index/text_logo.png" alt="Logo" width="80%">
+                        </a>
+                    </div> 
+                </div>
+
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-user"></i>
+                            <span>Perfil</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" id="menu-dropdown" class="sidebar-link has-dropdown collapsed active" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                            <i class="lni lni-protection"></i>
+                            <span>Monitoramento</span>
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">                            
+                            <li class="sidebar-item dropdown-item">
+                                <a href="monitoramento-gastos.html" class="sidebar-link">Gastos</a>
+                            </li>
+                            <li class="sidebar-item  dropdown-item">
+                                <a href="monitoramento-motoristas.html" class="sidebar-link">Motoristas</a>
+                            </li>
+                            <li class="sidebar-item  dropdown-item">
+                                <a href="rastreamento.html" class="sidebar-link subActive">Rastreamento</a>
+                            </li>
+                            <li class="sidebar-item  dropdown-item">
+                                <a href="monitoramento-viagens.html" class="sidebar-link">Viagens</a>
+                            </li>
+                        </ul> 
+                    </li>                    
+                    <li class="sidebar-item">
+                        <a href="suporte.html" class="sidebar-link">
+                            <i class="lni lni-popup"></i>
+                            <span>Suporte</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="configuracoes.html" class="sidebar-link">
+                            <i class="lni lni-cog"></i>
+                            <span>Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <a href="login.html" class="sidebar-link">
+                        <i class="lni lni-exit"></i>
+                        <span>Sair</span>
+                    </a>
+                </div>
+
+            </aside>
+
+             <div id="principal" class="main">
+                <div id="principal" class="main-content">
+                    <!-- Rastreamento -->
+                    <div class="container tracking-container">
+                        <h3 class="text-center">Rastreamento</h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Digite o código da Rota">
+                            <div class="input-group-append">
+                                <button id="btn-pesquisar" class="btn btn-primary" type="button">Pesquisar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Motorista">
+                                    <p class="mt-2">Motorista</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-4 label">Nome do Motorista:</div>
+                                        <div class="col-md-8 value" id="motorista-nome">---</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 label">Código da Rota:</div>
+                                        <div class="col-md-8 value" id="codigo-rota">---</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 label">Tempo Estimado:</div>
+                                        <div class="col-md-8 value" id="tempo-estimado">---</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 label">Local de Chegada:</div>
+                                        <div class="col-md-8 value" id="local-chegada">---</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 label">Número de Placas:</div>
+                                        <div class="col-md-8 value" id="numero-placas">---</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5 class="text-center">Objeto Encontrado</h5>
+                                    <div class="row">
+                                        <div class="col-md-4">Data, Hora, Estado:</div>
+                                        <div class="col-md-8" id="objeto-encontrado-1">---</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">Data, Hora, Estado:</div>
+                                        <div class="col-md-8" id="objeto-encontrado-2">---</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-container text-center">
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarRotaModal">Criar Rota</button>
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#motoristasEmRotaModal">Motoristas em Rota</button>
+                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaDeRotasModal">Lista de Rotas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Criar Rota -->
+            <div class="modal fade" id="criarRotaModal" tabindex="-1" aria-labelledby="criarRotaModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="criarRotaModalLabel">Criar Rota</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formCriarRota" >
+                                <div class="mb-3">
+                                    <label for="nomeMotorista" class="form-label">Nome do Motorista</label>
+                                    <select class="form-control" id="nomeMotorista"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="codigoRota" class="form-label">Código da Rota</label>
+                                    <input type="text" class="form-control" id="codigoRota">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tempoEstimado" class="form-label">Tempo Estimado</label>
+                                    <input type="text" class="form-control" id="tempoEstimado">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="localChegada" class="form-label">Local de Chegada</label>
+                                    <input type="text" class="form-control" id="localChegada">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numeroPlacas" class="form-label">Número de Placas</label>
+                                    <input type="text" class="form-control" id="numeroPlacas">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">Salvar Rota</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+         <!-- Modal Motoristas em Rota -->
+            <div class="modal fade" id="motoristasEmRotaModal" tabindex="-1" aria-labelledby="motoristasEmRotaModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="motoristasEmRotaModalLabel">Motoristas em Rota</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select id="motoristaSelect" class="form-select mb-3" aria-label="Selecione o motorista">
+                                <option selected>Selecione o motorista</option>
+                                <!-- As opções serão adicionadas dinamicamente -->
+                            </select>
+                            <div id="detalhesRota" style="display:none;">
+                                <!-- Detalhes do motorista serão preenchidos aqui -->
+                                <p><strong>Nome do Motorista:</strong></p>
+                                <p><strong>Código da Rota:</strong></p>
+                                <p><strong>Tempo Estimado:</strong></p>
+                                <p><strong>Local de Chegada:</strong></p>
+                                <p><strong>Número de Placas:</strong></p>
+                                <p><strong>Objeto Encontrado:</strong></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary" id="voltar">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Lista de Rotas -->
+            <div class="modal fade" id="listaDeRotasModal" tabindex="-1" aria-labelledby="listaDeRotasModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="listaDeRotasModalLabel">Lista de Rotas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Rota</th>
+                                        <th>Caminhão</th>
+                                        <th>Placa</th>
+                                        <th>Cidade/Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>123456</td>
+                                        <td>Volvo FH</td>
+                                        <td>XYZ-1234</td>
+                                        <td>São Paulo - SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td>654321</td>
+                                        <td>Mercedes-Benz Actros</td>
+                                        <td>ABC-5678</td>
+                                        <td>Rio de Janeiro - RJ</td>
+                                    </tr>
+                                    <!-- Adicione mais linhas conforme necessário -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="dist/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="dist/js/script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const motoristas = [
+                    { nome: "João Silva", codigo_rota: "123456", tempo_estimado: "2 horas", local_chegada: "São Paulo - SP", numero_placas: "XYZ-1234" },
+                    { nome: "Maria Oliveira", codigo_rota: "654321", tempo_estimado: "3 horas", local_chegada: "Rio de Janeiro - RJ", numero_placas: "ABC-5678" },
+                    { nome: "Carlos Sousa", codigo_rota: "789012", tempo_estimado: "1.5 horas", local_chegada: "Belo Horizonte - MG", numero_placas: "DEF-9012" },
+                    { nome: "Ana Costa", codigo_rota: "345678", tempo_estimado: "4 horas", local_chegada: "Curitiba - PR", numero_placas: "GHI-3456" },
+                    { nome: "Pedro Lima", codigo_rota: "901234", tempo_estimado: "2.5 horas", local_chegada: "Salvador - BA", numero_placas: "JKL-7890" },
+                    { nome: "Julia Santos", codigo_rota: "567890", tempo_estimado: "3.5 horas", local_chegada: "Fortaleza - CE", numero_placas: "MNO-2345" },
+                    { nome: "Lucas Rocha", codigo_rota: "234567", tempo_estimado: "1 hora", local_chegada: "Recife - PE", numero_placas: "PQR-6789" },
+                    { nome: "Fernanda Alves", codigo_rota: "890123", tempo_estimado: "5 horas", local_chegada: "Porto Alegre - RS", numero_placas: "STU-0123" },
+                    { nome: "Roberto Nunes", codigo_rota: "012345", tempo_estimado: "2 horas", local_chegada: "Manaus - AM", numero_placas: "VWX-4567" },
+                    { nome: "Mariana Teixeira", codigo_rota: "678901", tempo_estimado: "4.5 horas", local_chegada: "Brasília - DF", numero_placas: "YZA-8901" }
+                ];
+            
+                const motoristaSelect = document.getElementById('motoristaSelect');
+                const voltarBtn = document.getElementById('voltar');
+                const btnPesquisar = document.getElementById('btn-pesquisar');
+                const formCriarRota = document.getElementById('formCriarRota');
+                const listaRotas = document.getElementById('lista-rotas');
+            
+                motoristas.forEach(motorista => {
+                    const option = document.createElement('option');
+                    option.textContent = motorista.nome;
+                    option.value = motorista.codigo_rota;
+                    motoristaSelect.appendChild(option);
+                });
+            
+                motoristaSelect.addEventListener('change', function() {
+                    const codigoRota = this.value;
+                    const motorista = motoristas.find(m => m.codigo_rota === codigoRota);
+            
+                    if (motorista) {
+                        const modalBody = document.querySelector('#motoristasEmRotaModal .modal-body');
+                        modalBody.innerHTML = `
+                            <p><strong>Nome do Motorista:</strong> ${motorista.nome}</p>
+                            <p><strong>Código da Rota:</strong> ${motorista.codigo_rota}</p>
+                            <p><strong>Tempo Estimado:</strong> ${motorista.tempo_estimado}</p>
+                            <p><strong>Local de Chegada:</strong> ${motorista.local_chegada}</p>
+                            <p><strong>Número de Placas:</strong> ${motorista.numero_placas}</p>
+                            <p><strong>Objeto Encontrado:</strong></p>
+                            <p>10/06/2024, 14:00, Em trânsito</p>
+                            <p>11/06/2024, 09:00, Entregue</p>
+                        `;
+                        const modal = new bootstrap.Modal(document.getElementById('motoristasEmRotaModal'));
+                        modal.show();
+                    } else {
+                        alert('Motorista não encontrado!');
+                    }
+                });
+            
+                voltarBtn.addEventListener('click', function() {
+                    const modalElement = document.getElementById('motoristasEmRotaModal');
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            
+                formCriarRota.addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    const nomeMotorista = document.getElementById('nomeMotorista').value;
+                    const codigoRota = document.getElementById('codigoRota').value;
+                    const tempoEstimado = document.getElementById('tempoEstimado').value;
+                    const localChegada = document.getElementById('localChegada').value;
+                    const numeroPlacas = document.getElementById('numeroPlacas').value;
+            
+                    const novaRota = {
+                        nome: nomeMotorista,
+                        codigo_rota: codigoRota,
+                        tempo_estimado: tempoEstimado,
+                        local_chegada: localChegada,
+                        numero_placas: numeroPlacas
+                    };
+            
+                    motoristas.push(novaRota);
+                    alert('Rota criada com sucesso!');
+                    formCriarRota.reset();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalCriarRota'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            
+                btnPesquisar.addEventListener('click', function() {
+                    const rotaCodigo = document.querySelector('.form-control').value;
+                    const motorista = motoristas.find(m => m.codigo_rota === rotaCodigo);
+            
+                    if (motorista) {
+                        document.getElementById('motorista-nome').textContent = motorista.nome;
+                        document.getElementById('codigo-rota').textContent = motorista.codigo_rota;
+                        document.getElementById('tempo-estimado').textContent = motorista.tempo_estimado;
+                        document.getElementById('local-chegada').textContent = motorista.local_chegada;
+                        document.getElementById('numero-placas').textContent = motorista.numero_placas;
+                        document.getElementById('objeto-encontrado-1').textContent = '10/06/2024, 14:00, Em trânsito';
+                        document.getElementById('objeto-encontrado-2').textContent = '11/06/2024, 09:00, Entregue';
+                    } else {
+                        alert('Rota não encontrada!');
+                    }
+                });
+            
+                motoristas.forEach(motorista => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${motorista.nome}</td>
+                        <td>${motorista.codigo_rota}</td>
+                        <td>---</td>
+                        <td>${motorista.numero_placas}</td>
+                        <td>${motorista.local_chegada}</td>
+                    `;
+                    listaRotas.appendChild(row);
+                });
+            });
+            
+            // Array fictício de motoristas
+            const motoristas = [
+            "João Silva",
+            "Maria Oliveira",
+            "Carlos Souza",
+            "Ana Lima",
+            "Pedro Santos",
+            "Mariana Almeida",
+            "Rafael Costa",
+            "Bianca Rodrigues",
+            "Fernando Moreira",
+            "Larissa Barbosa"
+        ];
+
+        // Função para preencher o dropdown de motoristas
+        function preencherDropdownMotoristas() {
+            const dropdown = document.getElementById('nomeMotorista');
+            motoristas.forEach(motorista => {
+                const option = document.createElement('option');
+                option.textContent = motorista;
+                option.value = motorista;
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Chama a função para preencher o dropdown quando o documento estiver carregado
+        document.addEventListener('DOMContentLoaded', preencherDropdownMotoristas);
+           
+        </script>
+    </body>
+</html>
