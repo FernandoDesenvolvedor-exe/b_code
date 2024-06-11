@@ -73,6 +73,11 @@ body{
     }
 }
 
+div.card-header{
+    background-color: rgb(18, 101, 224);
+    color: white;
+}
+
 @media (max-width: 834px){
     #sidebar{
         width:5%;
