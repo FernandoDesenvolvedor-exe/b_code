@@ -41,7 +41,6 @@ body{
     display: flex;
     flex-direction:column;
     background-color: #1346b3f8;
-    background-image: url('../img/index/CaminhaoAzul3.png');
 }
 
 #sidebar.expand{

@@ -238,3 +238,29 @@ div.card-header{
     background-color: rgb(18, 101, 224);
     color: white;
 }
+
+
+.tracking-container {
+    margin-top: 20px;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.info-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.info-card .row + .row {
+    margin-top: 10px;
+}
+.info-card .label {
+    font-weight: bold;
+}
+.info-card .value {
+    font-size: 1.1em;
+}
+.btn-container {
+    margin-top: 20px;
+}
