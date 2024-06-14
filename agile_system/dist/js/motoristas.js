@@ -120,7 +120,7 @@ function loadLibrary(){
                 </div>
                 <div class="d-flex justify-content-between">
                     <button  class="btn btn-outline-primary">Adicionar Rota<i class="bi bi-geo-alt"></i></button>
-                    <button  class="btn btn-outline-primary">Editar Motorista<i class="bi bi-person-gear"></i></button>
+                    <button  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Editar Motorista<i class="bi bi-person-gear"></i></button>
                 </div>
             </div>
         </div>
