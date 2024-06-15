@@ -1,15 +1,10 @@
-const rotaBtn = document.getElementById('btnRota');
-const gastosBtn = document.getElementById('btnMGastos');
-const suporteBtn = document.getElementById('btnSuporte');
+const carousel = document.getElementsByClassName('carousel-item');
 
-rotaBtn.addEventListener('click', function(){  
-    if(rotaBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
-        document.getElementById('gereRota').hidden = true;
-        rotaBtn.style.backgroundColor = '#212529';
-    } else {
-        rotaBtn.style.backgroundColor = 'rgb(18, 101, 224)';
-        gastosBtn.style.backgroundColor = '#212529';
-        suporteBtn.style.backgroundColor = '#212529';
+function ativaSlide(num){   
+    if(num === 0){
+        document.getElementById('btnRota').style.backgroundColor = 'rgb(18, 101, 224)';
+        document.getElementById('btnGastos').style.backgroundColor = '#212529';
+        document.getElementById('btnSuporte').style.backgroundColor = '#212529';
 
         document.getElementById('gereRota').hidden = false;
         document.getElementById('moniGastos').hidden = true;
@@ -18,17 +13,11 @@ rotaBtn.addEventListener('click', function(){
         document.getElementById('slide1').classList.add('active');
         document.getElementById('slide2').classList.remove('active');
         document.getElementById('slide3').classList.remove('active');
-    }
-});
 
-gastosBtn.addEventListener('click', function(){
-    if(gastosBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
-        document.getElementById('moniGastos').hidden = true;
-        gastosBtn.style.backgroundColor = '#212529';
-    } else {
-        rotaBtn.style.backgroundColor = '#212529';
-        gastosBtn.style.backgroundColor = 'rgb(18, 101, 224)';
-        suporteBtn.style.backgroundColor = '#212529';
+    } else if(num === 1){ 
+        document.getElementById('btnRota').style.backgroundColor = '#212529';
+        document.getElementById('btnGastos').style.backgroundColor = 'rgb(18, 101, 224)';
+        document.getElementById('btnSuporte').style.backgroundColor = '#212529';
 
         document.getElementById('gereRota').hidden = true;
         document.getElementById('moniGastos').hidden = false;
@@ -37,17 +26,11 @@ gastosBtn.addEventListener('click', function(){
         document.getElementById('slide1').classList.remove('active');
         document.getElementById('slide2').classList.add('active');
         document.getElementById('slide3').classList.remove('active');
-    }
-});
-
-suporteBtn.addEventListener('click', function(){
-    if(suporteBtn.style.backgroundColor == 'rgb(18, 101, 224)'){
-        document.getElementById('supMot').hidden = true;
-        suporteBtn.style.backgroundColor = '#212529';
-    } else {
-        rotaBtn.style.backgroundColor = '#212529';
-        gastosBtn.style.backgroundColor = '#212529';
-        suporteBtn.style.backgroundColor = 'rgb(18, 101, 224)';
+        
+    } else if(num === 2){
+        document.getElementById('btnRota').style.backgroundColor = '#212529';
+        document.getElementById('btnGastos').style.backgroundColor = '#212529';
+        document.getElementById('btnSuporte').style.backgroundColor = 'rgb(18, 101, 224)';
 
         document.getElementById('gereRota').hidden = true;
         document.getElementById('moniGastos').hidden = true;
@@ -57,4 +40,17 @@ suporteBtn.addEventListener('click', function(){
         document.getElementById('slide2').classList.remove('active');
         document.getElementById('slide3').classList.add('active');
     }
+}
+
+document.getElementById('btnRota').addEventListener('click', function(){  
+    ativaSlide(0);
 });
+
+document.getElementById('btnGastos').addEventListener('click', function(){    
+    ativaSlide(1);
+});
+
+document.getElementById('btnSuporte').addEventListener('click', function(){
+    ativaSlide(2);
+});
+
