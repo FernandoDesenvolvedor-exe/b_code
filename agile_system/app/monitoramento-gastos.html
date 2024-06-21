@@ -20,6 +20,14 @@
             white-space: nowrap;
         }
     </style>
+
+    <script>
+        logado = essionStorage.getItem('logado');
+        if(!logado){
+            window.location.href = "index.html";
+            alert('Não é possível entrar sem login!');
+        }
+    </script>
 </head>
 
 <body>
@@ -77,7 +85,7 @@
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="login.html" class="sidebar-link">
+                <a onclick="sairSistema()" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Sair</span>
                 </a>
@@ -454,7 +462,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="dist/js/script.js"></script>
-    
+    <script>         
+        acessoIndevido();
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const searchInput = document.getElementById('searchInput');

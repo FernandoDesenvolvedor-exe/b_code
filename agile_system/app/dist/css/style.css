@@ -39,8 +39,8 @@ body{
     z-index: 1000;
     transition: all .35s ease-in-out;
     display: flex;
-    flex-direction:column;
-    background-color: #1346b3f8;
+    flex-direction:column;    
+    background-image: url('../img/index/menu-imagem.jpg');
 }
 
 #sidebar.expand{
@@ -243,8 +243,8 @@ div.card-header{
     color: white;
 }
 
-.bg-painel-verde {
-    background-image: url('../img/bgPainelVerde.png');
+.bg-login {
+    background-image: url('../img/road.jfif');
     background-repeat: no-repeat;
     background-size: 100%;
     bottom: 0;

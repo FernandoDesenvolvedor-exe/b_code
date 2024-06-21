@@ -33,3 +33,17 @@ menu.addEventListener("click", function(event){
 function ativaItem(element){    
     element.classList.add('active');
 }
+
+function sairSistema(){
+    window.location.href = "index.html";
+    sessionStorage.setItem('logout', true);
+}
+
+function acessoIndevido(){
+    var logado = sessionStorage.getItem('logado');  
+
+    if(logado != 'true'){
+        window.location.href = "index.html";
+        sessionStorage.setItem('acesso_indevido',true);
+    }
+}
