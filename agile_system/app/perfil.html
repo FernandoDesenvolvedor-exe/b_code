@@ -90,10 +90,10 @@
                     </div>
                     
                     <div class="user-info">
-                        <p><label>Nome:</label> João da Silva</p>
-                        <p><label>CPF:</label> 123.456.789-00</p>
-                        <p><label>E-mail:</label> exemplo@email.com</p>
-                        <p><label>Telefone:</label> (00) 1234-5678</p>
+                        <p><label>Nome:</label><label id="iNome"></label></p>
+                        <p><label>CPF:</label> <label id="iCpf"></label></p>
+                        <p><label>E-mail:</label> <label id="iEmail"></label></p>
+                        <p><label>Telefone:</label> <label id="iTelefone"></label></p>
                         <!-- Adicione mais informações do usuário conforme necessário -->
                     </div>
                     <div class="col-md-12">
@@ -126,6 +126,17 @@
         
         <script>         
             acessoIndevido();
+
+            const nome = document.getElementById("iNome");
+            const cpf = document.getElementById('iCpf');
+            const email = document.getElementById('iEmail');
+            const telefone = document.getElementById('iTelefone');
+
+            nome.innerHTML = sessionStorage.getItem('nome_usuario');
+            cpf.innerHTML = sessionStorage.getItem('CPF');
+            email.innerHTML = sessionStorage.getItem('email');
+            telefone.innerHTML = sessionStorage.getItem('telefone');
+
         </script>
 
     </body>

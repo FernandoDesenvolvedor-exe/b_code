@@ -69,6 +69,10 @@
                     if(senha == '123'){                        
                         sessionStorage.setItem('logado', true);
                         sessionStorage.setItem('nome_usuario', 'Luis Fernando Pereira');
+                        sessionStorage.setItem('CPF', '123.456.789-00');
+                        sessionStorage.setItem('email', 'Luis@gmail.com');
+                        sessionStorage.setItem('telefone', '(00) 1234-5678');
+
                         window.location.href = "perfil.html";
                     } else {
                         alert('Senha incorreta.');
