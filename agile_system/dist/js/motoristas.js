@@ -8,7 +8,7 @@ const Motorista1 = {
 };
 const Motorista2 = {
     id: '1',
-    Name: 'Luis Fernando',
+    Name: 'Luis Fernando pereira pereira ',
     Idade: '24',
     Documento: '234.432.489-79',
     pracaExperiencia: 'SC,PR',
@@ -16,7 +16,7 @@ const Motorista2 = {
 };
 const Motorista3 = {
     id: '2',
-    Name: 'Miguel Angelo Duflow',
+    Name: 'Miguel Angelo Duflow duflow ',
     Idade: '19',
     Documento: '678.432.489-79',
     pracaExperiencia: 'RJ,PR',
@@ -24,7 +24,7 @@ const Motorista3 = {
 };
 const Motorista4 = {
     id: '3',
-    Name: 'Alisson Vida Loka',
+    Name: 'Alisson da silva  souza Souza',
     Idade: '26',
     Documento: '123.432.489-79',
     pracaExperiencia: 'SP,PR',
@@ -32,7 +32,7 @@ const Motorista4 = {
 };
 const Motorista5 = {
     id: '4',
-    Name: 'Vinicius O cara',
+    Name: 'Vinicius Candido da silva Souza ',
     Idade: '28',
     Documento: '801.432.489-79',
     pracaExperiencia: 'SC,PR',
@@ -40,7 +40,7 @@ const Motorista5 = {
 };
 const Motorista6 = {
     id: '5',
-    Name: 'Lucca Beludo',
+    Name: 'Lucca Gomez Ferney do Socorro',
     Idade: '25',
     Documento: '801.231.489-79',
     pracaExperiencia: 'PE,PR',
@@ -48,7 +48,7 @@ const Motorista6 = {
 };
 const Motorista7 = {
     id: '6',
-    Name: 'Lucas de Ferney',
+    Name: 'Lucas Heineken Aristizabal ',
     Idade: '22',
     Documento: '801.432.867-79',
     pracaExperiencia: 'GO,MT',
@@ -56,7 +56,7 @@ const Motorista7 = {
 };
 const Motorista8 = {
     id: '7',
-    Name: 'Marcus Ramiro',
+    Name: 'Marcus Ramiro Escandido Bedoya ',
     Idade: '45',
     Documento: '343.432.489-79',
     pracaExperiencia: 'DF,PR',
@@ -64,7 +64,7 @@ const Motorista8 = {
 };
 const Motorista9= {
     id: '8',
-    Name: 'Casimiro ou naomiro',
+    Name: 'Casimiro Guzman Huertas ',
     Idade: '78',
     Documento: '801.432.999-79',
     pracaExperiencia: 'SC,BA',
@@ -72,7 +72,7 @@ const Motorista9= {
 };
 const Motorista10 = {
     id: '9',
-    Name: 'Joao Pedro Antonio',
+    Name: 'Joao Pedro Antonio Guzman',
     Idade: '67',
     Documento: '801.567.489-79',
     pracaExperiencia: 'MT,PR',
@@ -97,6 +97,8 @@ let motoristas = [...motoristasLibrary]
 const pagebody = document.getElementById('page-body');
 const searchTerm = document.getElementById('search-term');
 const searchBtn = document.getElementById('search-button');
+const dadosMotorista = document.getElementById('dadosMotorista');
+
 
 function loadLibrary(){
     pagebody.innerHTML = '';
@@ -105,26 +107,41 @@ function loadLibrary(){
         pagebody.innerHTML += `
         <div class="card d-flex flex-column align-items-center pt-3" style="width: 18rem; margin-top: 3rem;">
             <img  src="dist/img/${motoristas[index].fotoMotorista}" class="card-img-top" style= "width: 10rem;" alt="Foto Motorista">
-            <div class="card-body d-flex flex-column ">
-                <h5 class="card-title border-top border-dark">NOME:</h5>
-                <p class="border-bottom border-dark">${motoristas[index].Name}</p>
+            <div class="card-body">
+                <h5 class="card-title">NOME:</h5>
+                <p class="d-flex align-items-center justify-content-between border-bottom border-dark p-3">
+                    ${motoristas[index].Name} 
+                    <button class="btn btn-outline-primary">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                </p>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                         <h5 class="card-text border-top border-dark">IDADE</h5>
-                        <p class="border-bottom border-dark">${motoristas[index].Idade}</p>
+                        <p class=" d-flex justify-content-between border-bottom border-dark p-3">
+                            ${motoristas[index].Idade}
+                            <button class="btn btn-outline-primary">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                        </p>
                         <h5 class="card-text border-top border-dark">DOCUMENTO</h5>
-                        <p class="border-bottom border-dark">${motoristas[index].Documento}</p>
+                        <p class=" d-flex justify-content-between border-bottom border-dark p-3">
+                            ${motoristas[index].Documento}
+                            <button class="btn btn-outline-primary">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                        </p>
                         <h5 class="card-text border-top border-dark">PRAÇA DE EXPERIENCIA</h5>
-                        <p class="border-bottom border-dark">${motoristas[index].pracaExperiencia}</p>
+                        <p class=" d-flex justify-content-between border-bottom border-dark p-3">
+                             ${motoristas[index].pracaExperiencia}
+                             <button class="btn btn-outline-primary">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                        </p>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <button  class="btn btn-outline-primary">Adicionar Rota<i class="bi bi-geo-alt"></i></button>
-                    <button  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Editar Motorista<i class="bi bi-person-gear"></i></button>
-                </div>
-            </div>
-        </div>
-        `;
+                <div class="d-flex justify-content-center pt-3">
+                    <button  class="btn btn-outline-primary">Adicionar Rota<i class="bi bi-geo-alt"></i></button> `;
     }
 }
 
