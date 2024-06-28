@@ -77,9 +77,22 @@
                     } else {
                         alert('Senha incorreta.');
                     }
+                } 
+                else if(email === "miguel.dufloth"){
+                    if(senha == '123'){                        
+                        sessionStorage.setItem('logado', true);
+                        sessionStorage.setItem('nome_usuario', 'Miguel Angelo Dufloth Filho');
+                        sessionStorage.setItem('CPF', '123.456.789-00');
+                        sessionStorage.setItem('email', 'miguelduflow@gmail.com');
+                        sessionStorage.setItem('telefone', '(00) 1234-5678');
+
+                        window.location.href = "perfil.html";
+                    } else {
+                        alert('Senha incorreta.');
+                    }
                 } else {
                     alert('Login não encontrado no sistema.');
-                }
+                } 
             }
         </script>
     </body>
