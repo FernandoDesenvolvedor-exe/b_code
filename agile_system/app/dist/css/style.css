@@ -39,8 +39,8 @@ body{
     z-index: 1000;
     transition: all .35s ease-in-out;
     display: flex;
-    flex-direction:column;
-    background-color: #1346b3f8;
+    flex-direction:column;    
+    background-image: url('../img/index/menu-imagem.jpg');
 }
 
 #sidebar.expand{
@@ -241,4 +241,20 @@ button.btn-login{
 div.card-header{
     background-color: rgb(18, 101, 224);
     color: white;
+}
+
+.bg-login {
+    background-image: url('../img/road.jfif');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    padding: 3em;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    background-size: cover;
 }

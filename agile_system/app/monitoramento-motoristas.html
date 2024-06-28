@@ -27,6 +27,15 @@
       sizes="16x16"
       href="dist/img/index/cabecalho.png"
     />
+    
+
+    <script>
+        logado = essionStorage.getItem('logado');
+        if(!logado){
+            window.location.href = "index.html";
+            alert('Não é possível entrar sem login!');
+        }
+    </script>
   </head>
 
   <body>
@@ -106,7 +115,7 @@
           </li>
         </ul>
         <div class="sidebar-footer">
-          <a href="login.html" class="sidebar-link">
+          <a onclick="sairSistema()" class="sidebar-link">
             <i class="lni lni-exit"></i>
             <span>Sair</span>
           </a>
@@ -260,5 +269,8 @@
     ></script>
     <script src="dist/js/script.js"></script>
     <script src="dist/js/motoristas.js"></script>
+    <script>         
+      acessoIndevido();
+    </script>
   </body>
 </html>
