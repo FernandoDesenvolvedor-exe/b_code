@@ -19,15 +19,18 @@ dropdown.addEventListener('click', function(){
 });
 
 menu.addEventListener("click", function(event){
+
     document.querySelector("#sidebar").classList.toggle("expand");    
         
-    if(document.querySelector('#sidebar').classList.contains("expand")){
-        main.style.marginLeft = '20%';            
-        sessionStorage.setItem('menuOpen', true);
-    } else {  
-        main.style.marginLeft = '5%';   
-        sessionStorage.setItem('menuOpen', false);
-    }      
+    if(janela > 576){
+        if(document.querySelector('#sidebar').classList.contains("expand")){
+            main.style.marginLeft = '20%';
+            sessionStorage.setItem('menuOpen', true);
+        } else {
+            main.style.marginLeft = '5%';
+            sessionStorage.setItem('menuOpen', false);
+        }  
+    }    
 });
 
 function ativaItem(element){    

@@ -62,23 +62,47 @@ body{
     border-bottom-right-radius: 10px;
 }
 
-@media (max-width: 1440px){
-    #sidebar{
-        width:5%;
-        height: 100%;
-    }
-    #sidebar.expand{
-        width: 20%;
-        min-width: 20%;
-    }
-}
 
 div.card-header{
     background-color: rgb(18, 101, 224);
     color: white;
 }
 
-@media (max-width: 834px){
+
+@media (min-width: 1200px){
+    #sidebar{
+        width:5%;
+        height: 100%;
+        min-width: 4rem;
+    }
+    #sidebar.expand{
+        width: 20%;
+        min-width: 20%;
+    }    
+    .main{
+        min-height: 100vh;
+        margin-left:5.4%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 1200px){
+    #sidebar{
+        width:5%;
+        height: 100%;
+        min-width: 4rem;
+    }
+    #sidebar.expand{
+        width: 20%;
+        min-width: 20%;
+    }
+    
+    .main{
+        min-height: 100vh;
+        margin-left:5.4%;
+    }
+}
+@media (max-width: 992px){
     #sidebar{
         width:5%;
         height: 100%;
@@ -86,19 +110,37 @@ div.card-header{
     }
     #sidebar.expand{
         width: 30%;
-        min-width: 30%;
+        min-width: 10%;
     }
     
     .main{
-        min-height: 100vh; 
-        margin-left:12%;
+        min-height: 100vh;
+        margin-left:6.4%;
         width: 100%;
     }
 }
 
-@media (max-width: 480px){
+@media (max-width: 768px){
     #sidebar{
-        width:5%;
+        width:10%;
+        height: 100%;
+        min-width: 4rem;
+    }
+    #sidebar.expand{
+        width: 40%;
+        min-width: 40%;
+    }
+    
+    .main{
+        min-height: 100vh; 
+        margin-left:10%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px){
+    #sidebar{
+        width:12%;
         height: 100%;
     }
     #sidebar.expand{
@@ -107,11 +149,10 @@ div.card-header{
     }
     .main{
         min-height: 100vh; 
-        margin-left:15%;
+        margin-left:13.9%;
         width: 100%;
     }
 }
-
 #toggle-btn{
     background-color: transparent;
     cursor: pointer;
