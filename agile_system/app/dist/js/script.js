@@ -27,7 +27,7 @@ menu.addEventListener("click", function(event){
         main.style.width = '85%';
         sessionStorage.setItem('menuOpen', true);
     } else {
-        main.style.left = '5%';
+        main.style.left = '4.8%';
         main.style.width = '95%';
         sessionStorage.setItem('menuOpen', false);
     }  
