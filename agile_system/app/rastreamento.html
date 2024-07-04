@@ -86,66 +86,65 @@
 
             </aside>
 
-             <div id="principal" class="main">
-                <div id="principal" class="main-content">
-                    <!-- Rastreamento -->
-                    <div class="container tracking-container">
-                        <h3 class="text-center">Rastreamento</h3>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Digite o código da Rota">
-                            <div class="input-group-append">
-                                <button id="btn-pesquisar" class="btn btn-primary" type="button">Pesquisar</button>
-                            </div>
+            <div id="principal" class="main">
+                <!-- Rastreamento -->
+                <div class="container">
+                    <h3 class="text-center">Rastreamento</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Digite o código da Rota">
+                        <div class="input-group-append">
+                            <button id="btn-pesquisar" class="btn btn-primary" type="button">Pesquisar</button>
                         </div>
-                        
-                        <div class="info-card">
-                            <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Motorista">
-                                    <p class="mt-2">Motorista</p>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="col-md-4 label">Nome do Motorista:</div>
-                                        <div class="col-md-8 value" id="motorista-nome">---</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 label">Código da Rota:</div>
-                                        <div class="col-md-8 value" id="codigo-rota">---</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 label">Tempo Estimado:</div>
-                                        <div class="col-md-8 value" id="tempo-estimado">---</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 label">Local de Chegada:</div>
-                                        <div class="col-md-8 value" id="local-chegada">---</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 label">Número de Placas:</div>
-                                        <div class="col-md-8 value" id="numero-placas">---</div>
-                                    </div>
-                                </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Motorista">
+                                <p class="mt-2">Motorista</p>
                             </div>
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <h5 class="text-center">Objeto Encontrado</h5>
-                                    <div class="row">
-                                        <div class="col-md-4">Data, Hora, Estado:</div>
-                                        <div class="col-md-8" id="objeto-encontrado-1">---</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">Data, Hora, Estado:</div>
-                                        <div class="col-md-8" id="objeto-encontrado-2">---</div>
-                                    </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4 label">Nome do Motorista:</div>
+                                    <div class="col-md-8 value" id="motorista-nome">---</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 label">Código da Rota:</div>
+                                    <div class="col-md-8 value" id="codigo-rota">---</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 label">Tempo Estimado:</div>
+                                    <div class="col-md-8 value" id="tempo-estimado">---</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 label">Local de Chegada:</div>
+                                    <div class="col-md-8 value" id="local-chegada">---</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 label">Número de Placas:</div>
+                                    <div class="col-md-8 value" id="numero-placas">---</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn-container text-center">
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarRotaModal">Criar Rota</button>
-                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#motoristasEmRotaModal">Motoristas em Rota</button>
-                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaDeRotasModal">Lista de Rotas</button>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <h5 class="text-center">Objeto Encontrado</h5>
+                                <div class="row">
+                                    <div class="col-md-4">Data, Hora, Estado:</div>
+                                    <div class="col-md-8" id="objeto-encontrado-1">---</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">Data, Hora, Estado:</div>
+                                    <div class="col-md-8" id="objeto-encontrado-2">---</div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="btn-container text-center">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#criarRotaModal">Criar Rota</button>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#motoristasEmRotaModal">Motoristas em Rota</button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaDeRotasModal">Lista de Rotas</button>
                     </div>
                 </div>
             </div>
