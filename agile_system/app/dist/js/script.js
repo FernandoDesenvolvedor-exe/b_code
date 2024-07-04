@@ -1,11 +1,11 @@
 const menu = document.querySelector('#toggle-btn');
 const main = document.getElementById('principal');
 const dropdown = document.getElementById('menu-dropdown');
-const janela = window.innerWidth;
 
 if(sessionStorage.getItem('menuOpen') == 'true'){
     document.querySelector("#sidebar").classList.add("expand");    
-    main.style.marginLeft = '20%';
+    main.style.left = '15%';
+    main.style.width = '85%';
 }
 
 if(sessionStorage.getItem('menu_dropdown') == 'true'){
@@ -20,17 +20,18 @@ dropdown.addEventListener('click', function(){
 
 menu.addEventListener("click", function(event){
 
-    document.querySelector("#sidebar").classList.toggle("expand");    
+    document.querySelector("#sidebar").classList.toggle("expand");
+    
+    if(document.querySelector('#sidebar').classList.contains("expand")){
+        main.style.left = '15%';
+        main.style.width = '85%';
+        sessionStorage.setItem('menuOpen', true);
+    } else {
+        main.style.left = '5%';
+        main.style.width = '95%';
+        sessionStorage.setItem('menuOpen', false);
+    }  
         
-    if(janela > 576){
-        if(document.querySelector('#sidebar').classList.contains("expand")){
-            main.style.marginLeft = '20%';
-            sessionStorage.setItem('menuOpen', true);
-        } else {
-            main.style.marginLeft = '5%';
-            sessionStorage.setItem('menuOpen', false);
-        }  
-    }    
 });
 
 function ativaItem(element){    
