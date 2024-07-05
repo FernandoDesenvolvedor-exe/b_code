@@ -141,8 +141,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
             <!-- Modal Criar Rota -->
             <div class="modal fade" id="criarRotaModal" tabindex="-1" aria-labelledby="criarRotaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -182,7 +181,6 @@
                     </div>
                 </div>
             </div>
-
          <!-- Modal Motoristas em Rota -->
             <div class="modal fade" id="motoristasEmRotaModal" tabindex="-1" aria-labelledby="motoristasEmRotaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -214,7 +212,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Modal Lista de Rotas -->
             <div class="modal fade" id="listaDeRotasModal" tabindex="-1" aria-labelledby="listaDeRotasModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -267,18 +264,35 @@
 
             document.addEventListener("DOMContentLoaded", function() {
                 const motoristas = [
-                    { nome: "João Silva", codigo_rota: "123456", tempo_estimado: "2 horas", local_chegada: "São Paulo - SP", numero_placas: "XYZ-1234" },
-                    { nome: "Maria Oliveira", codigo_rota: "654321", tempo_estimado: "3 horas", local_chegada: "Rio de Janeiro - RJ", numero_placas: "ABC-5678" },
-                    { nome: "Carlos Sousa", codigo_rota: "789012", tempo_estimado: "1.5 horas", local_chegada: "Belo Horizonte - MG", numero_placas: "DEF-9012" },
-                    { nome: "Ana Costa", codigo_rota: "345678", tempo_estimado: "4 horas", local_chegada: "Curitiba - PR", numero_placas: "GHI-3456" },
-                    { nome: "Pedro Lima", codigo_rota: "901234", tempo_estimado: "2.5 horas", local_chegada: "Salvador - BA", numero_placas: "JKL-7890" },
-                    { nome: "Julia Santos", codigo_rota: "567890", tempo_estimado: "3.5 horas", local_chegada: "Fortaleza - CE", numero_placas: "MNO-2345" },
-                    { nome: "Lucas Rocha", codigo_rota: "234567", tempo_estimado: "1 hora", local_chegada: "Recife - PE", numero_placas: "PQR-6789" },
-                    { nome: "Fernanda Alves", codigo_rota: "890123", tempo_estimado: "5 horas", local_chegada: "Porto Alegre - RS", numero_placas: "STU-0123" },
-                    { nome: "Roberto Nunes", codigo_rota: "012345", tempo_estimado: "2 horas", local_chegada: "Manaus - AM", numero_placas: "VWX-4567" },
-                    { nome: "Mariana Teixeira", codigo_rota: "678901", tempo_estimado: "4.5 horas", local_chegada: "Brasília - DF", numero_placas: "YZA-8901" }
-                ];
-            
+                { nome: "Alisson Anderle", placa: "LOk-0000", veiculo: "Scania G420", implemento: "Carga Seca", tempo: "4hrs m/s", whatsapp: "+55123456789", codigo_rota: "123456", tempo_estimado: "2 horas", local_chegada: "São Paulo - SP" },
+                { nome: "Carlos Andrade", placa: "ABC-1234", veiculo: "Volvo FH540", implemento: "Baú Frigorífico", tempo: "6hrs m/s", whatsapp: "+55123456789", codigo_rota: "654321", tempo_estimado: "3 horas", local_chegada: "Rio de Janeiro - RJ" },
+                { nome: "Fernanda Souza", placa: "XYZ-7890", veiculo: "Iveco Hi-Way", implemento: "Baú Carga Geral", tempo: "5hrs m/s", whatsapp: "+55123456789", codigo_rota: "789012", tempo_estimado: "1.5 horas", local_chegada: "Belo Horizonte - MG" },
+                { nome: "Bruno Lima", placa: "QWE-5678", veiculo: "DAF XF105", implemento: "Graneleiro", tempo: "7hrs m/s", whatsapp: "+55123456789", codigo_rota: "345678", tempo_estimado: "4 horas", local_chegada: "Curitiba - PR" },
+                { nome: "Marina Alves", placa: "RTY-1234", veiculo: "Mercedes-Benz Axor", implemento: "Sider", tempo: "8hrs m/s", whatsapp: "+55123456789", codigo_rota: "901234", tempo_estimado: "2.5 horas", local_chegada: "Salvador - BA" },
+                { nome: "João Ferreira", placa: "UIJ-3456", veiculo: "Volkswagen Constellation", implemento: "Porta Container", tempo: "3hrs m/s", whatsapp: "+55123456789", codigo_rota: "567890", tempo_estimado: "3.5 horas", local_chegada: "Fortaleza - CE" },
+                { nome: "Larissa Mendes", placa: "POK-6789", veiculo: "Ford Cargo", implemento: "Tanque", tempo: "9hrs m/s", whatsapp: "+55123456789", codigo_rota: "234567", tempo_estimado: "1 hora", local_chegada: "Recife - PE" },
+                { nome: "Marcelo Tavares", placa: "LKU-4567", veiculo: "MAN TGX", implemento: "Baú Refrigerado", tempo: "6hrs m/s", whatsapp: "+55123456789", codigo_rota: "890123", tempo_estimado: "5 horas", local_chegada: "Porto Alegre - RS" },
+                { nome: "Patrícia Souza", placa: "IOH-8901", veiculo: "Scania R450", implemento: "Bitrem", tempo: "5hrs m/s", whatsapp: "+55123456789", codigo_rota: "012345", tempo_estimado: "2 horas", local_chegada: "Manaus - AM" },
+                { nome: "Roberto Silva", placa: "MNB-2345", veiculo: "Volvo FH460", implemento: "Caçamba Basculante", tempo: "2hrs m/s", whatsapp: "+55123456789", codigo_rota: "678901", tempo_estimado: "4.5 horas", local_chegada: "Brasília - DF" },
+                { nome: "Ricardo Oliveira", placa: "ZAQ-6789", veiculo: "Mercedes-Benz Actros", implemento: "Pipa", tempo: "3hrs m/s", whatsapp: "+55123456789", codigo_rota: "135792", tempo_estimado: "3.5 horas", local_chegada: "Campinas - SP" },
+                { nome: "Eduardo Santos", placa: "WSX-3456", veiculo: "Iveco Stralis", implemento: "Toco", tempo: "4hrs m/s", whatsapp: "+55123456789", codigo_rota: "246813", tempo_estimado: "2.5 horas", local_chegada: "Ribeirão Preto - SP" },
+                { nome: "Amanda Costa", placa: "POI-7890", veiculo: "Ford Cargo", implemento: "Silo", tempo: "7hrs m/s", whatsapp: "+55123456789", codigo_rota: "357924", tempo_estimado: "6 horas", local_chegada: "Florianópolis - SC" },
+                { nome: "Lucas Oliveira", placa: "JUY-1234", veiculo: "Volvo FH540", implemento: "Toco", tempo: "5hrs m/s", whatsapp: "+55123456789", codigo_rota: "468135", tempo_estimado: "4 horas", local_chegada: "Vitória - ES" },
+                { nome: "Juliana Santos", placa: "HTG-5678", veiculo: "Scania G380", implemento: "Baú Lonado", tempo: "4hrs m/s", whatsapp: "+55123456789", codigo_rota: "579246", tempo_estimado: "3 horas", local_chegada: "Belém - PA" },
+                { nome: "Rodrigo Almeida", placa: "FDS-9012", veiculo: "Mercedes-Benz Axor", implemento: "Sider", tempo: "8hrs m/s", whatsapp: "+55123456789", codigo_rota: "680357", tempo_estimado: "7 horas", local_chegada: "Natal - RN" },
+                { nome: "Carla Lima", placa: "LKN-3456", veiculo: "Volkswagen Constellation", implemento: "Porta Container", tempo: "3hrs m/s", whatsapp: "+55123456789", codigo_rota: "791468", tempo_estimado: "2 horas", local_chegada: "João Pessoa - PB" },
+                { nome: "Marcos Silva", placa: "UJH-6789", veiculo: "MAN TGX", implemento: "Tanque", tempo: "9hrs m/s", whatsapp: "+55123456789", codigo_rota: "802579", tempo_estimado: "8 horas", local_chegada: "Teresina - PI" },
+                { nome: "Ana Souza", placa: "YTR-2345", veiculo: "Scania R450", implemento: "Baú Refrigerado", tempo: "6hrs m/s", whatsapp: "+55123456789", codigo_rota: "913680", tempo_estimado: "5 horas", local_chegada: "Aracaju - SE" },
+                { nome: "João Pereira", placa: "DFG-8901", veiculo: "Volvo FH460", implemento: "Bitrem", tempo: "5hrs m/s", whatsapp: "+55123456789", codigo_rota: "024791", tempo_estimado: "4 horas", local_chegada: "Maceió - AL" },
+                { nome: "Luana Oliveira", placa: "TGB-6789", veiculo: "Mercedes-Benz Actros", implemento: "Caçamba Basculante", tempo: "2hrs m/s", whatsapp: "+55123456789", codigo_rota: "135802", tempo_estimado: "3 horas", local_chegada: "Goiânia - GO" },
+                { nome: "Daniel Santos", placa: "CVB-3456", veiculo: "Iveco Stralis", implemento: "Pipa", tempo: "3hrs m/s", whatsapp: "+55123456789", codigo_rota: "246913", tempo_estimado: "2 horas", local_chegada: "Campo Grande - MS" },
+                { nome: "Camila Costa", placa: "YHN-7890", veiculo: "Ford Cargo", implemento: "Silo", tempo: "7hrs m/s", whatsapp: "+55123456789", codigo_rota: "357024", tempo_estimado: "5 horas", local_chegada: "Cuiabá - MT" },
+                { nome: "Pedro Oliveira", placa: "BGT-1234", veiculo: "Volvo FH540", implemento: "Toco", tempo: "5hrs m/s", whatsapp: "+55123456789", codigo_rota: "468135", tempo_estimado: "3 horas", local_chegada: "Palmas - TO" },
+                { nome: "Mariana Almeida", placa: "ZXC-5678", veiculo: "Scania G380", implemento: "Baú Lonado", tempo: "4hrs m/s", whatsapp: "+55123456789", codigo_rota: "579246", tempo_estimado: "4 horas", local_chegada: "Boa Vista - RR" },
+                { nome: "Gabriel Lima", placa: "NMB-9012", veiculo: "Mercedes-Benz Axor", implemento: "Sider", tempo: "8hrs m/s", whatsapp: "+55123456789", codigo_rota: "680357", tempo_estimado: "7 horas", local_chegada: "Macapá - AP" },
+                { nome: "Fernanda Oliveira", placa: "WQE-3456", veiculo: "Volkswagen Constellation", implemento: "Porta Container", tempo: "3hrs m/s", whatsapp: "+55123456789", codigo_rota: "791468", tempo_estimado: "3 horas", local_chegada: "Rio Branco - AC" }
+            ];
+                
                 const motoristaSelect = document.getElementById('motoristaSelect');
                 const voltarBtn = document.getElementById('voltar');
                 const btnPesquisar = document.getElementById('btn-pesquisar');
@@ -379,19 +393,36 @@
                 });
             });
             
-            // Array fictício de motoristas
             const motoristas = [
-            "João Silva",
-            "Maria Oliveira",
-            "Carlos Souza",
-            "Ana Lima",
-            "Pedro Santos",
-            "Mariana Almeida",
-            "Rafael Costa",
-            "Bianca Rodrigues",
-            "Fernando Moreira",
-            "Larissa Barbosa"
-        ];
+                "Alisson Anderle",
+                "Carlos Andrade",
+                "Fernanda Souza",
+                "Bruno Lima",
+                "Marina Alves",
+                "João Ferreira",
+                "Larissa Mendes",
+                "Marcelo Tavares",
+                "Patrícia Souza",
+                "Roberto Silva",
+                "Ricardo Oliveira",
+                "Eduardo Santos",
+                "Amanda Costa",
+                "Lucas Oliveira",
+                "Juliana Santos",
+                "Rodrigo Almeida",
+                "Carla Lima",
+                "Marcos Silva",
+                "Ana Souza",
+                "João Pereira",
+                "Luana Oliveira",
+                "Daniel Santos",
+                "Camila Costa",
+                "Pedro Oliveira",
+                "Mariana Almeida",
+                "Gabriel Lima",
+                "Fernanda Oliveira"
+            ];
+
 
         // Função para preencher o dropdown de motoristas
         function preencherDropdownMotoristas() {

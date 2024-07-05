@@ -45,14 +45,12 @@
                     left: 5%;
                     top: 2%;
                 }
-                .leaflet-container { font-size: 1rem; }
-            </style>
-        
+            .leaflet-container { font-size: 1rem; } 
+            </style>        
 </head>
 <body>
     <div class="wrapper">            
         <aside id="sidebar">
-
             <div class="d-flex" id="menu_logo">
                 <button id="toggle-btn" type="button">
                     <i class="lni lni-menu"></i>
@@ -63,7 +61,6 @@
                     </a>
                 </div> 
             </div>
-
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
@@ -110,44 +107,43 @@
                     <span>Sair</span>
                 </a>
             </div>
-
         </aside>
         </div>
         <div class="row">
             <div class="col-md-6">               
             </div>
               <div class="col-md-6 feature">
-                <h4 style="color:#00689D">Selecione um de nossos <br><b style="color:#00689D">Motoristas</b>, e rastreie a sua </h3>
+                <h4 style="color:#00689D">Selecione o motorista<br><b style="color:#00689D">Motoristas</b>, e rastreie a sua </h3>
                 <p><b style="background-color:#00689D;color:white;font-size:1.5em">Rota</b></p><br>
                 <select id="seletorCombo" style="width: 50%;">
-                <option>Selecione um Estado</option>
-                  <option value="1">Acre</option>
-                  <option value="2">Alagoas</option>
-                  <option value="3">Amapa</option>
-                  <option value="4">Amazonas</option>
-                  <option value="5">Bahia</option>
-                  <option value="6">Ceara</option>
-                  <option value="7">Distrito Federal</option>
-                  <option value="8">Espirito Santo</option>
-                  <option value="9">Goias</option>
-                  <option value="10">Maranhão</option>
-                  <option value="11">Mato Grosso</option>
-                  <option value="12">Mato Grosso do Sul</option>
-                  <option value="13">Minas Gerais</option>
-                  <option value="14">Para</option>
-                  <option value="15">Paraíba</option>
-                  <option value="16">Parana</option>
-                  <option value="17">Pernambuco</option>
-                  <option value="18">Piaui</option>
-                  <option value="19">Rio de Janeiro</option>
-                  <option value="20">Rio Grande do Norte</option>
-                  <option value="21">Rio Grande do Sul</option>
-                  <option value="22">Rondonia</option>
-                  <option value="23">Roraima</option>
-                  <option value="24">Santa Catarina</option>
-                  <option value="25">Sao Paulo</option>
-                  <option value="26">Sergipe</option>
-                  <option value="27">Tocantins</option>
+                <option>Selecione o Motorista</option>
+                  <option value="1">Alisson Anderle</option>
+                  <option value="2">Carlos Andrade</option>
+                  <option value="3">Fernanda Souza</option>
+                  <option value="4">Bruno Lima</option>
+                  <option value="5">Marina Alves</option>
+                  <option value="6">João Ferreira</option>
+                  <option value="7">Larissa Mendes</option>
+                  <option value="8">Marcelo Tavares</option>
+                  <option value="9">Patrícia Souza</option>
+                  <option value="10">Roberto Silva</option>
+                  <option value="11">Ricardo Oliveira</option>
+                  <option value="12">Eduardo Santos</option>
+                  <option value="13">Amanda Costa</option>
+                  <option value="14">Lucas Oliveira</option>
+                  <option value="15">Juliana Santos</option>
+                  <option value="16">Rodrigo Almeida</option>
+                  <option value="17">Carla Lima</option>
+                  <option value="18">Marcos Silva</option>
+                  <option value="19">Ana Souza</option>
+                  <option value="20">João Pereira</option>
+                  <option value="21">Luana Oliveira</option>
+                  <option value="22">Daniel Santos</option>
+                  <option value="23">Camila Costa</option>
+                  <option value="24">Pedro Oliveira</option>
+                  <option value="25">Mariana Almeida</option>
+                  <option value="26">Gabriel Lima</option>
+                  <option value="27">Fernanda Oliveira</option>
                 </select>
                 <h4>Localização <span id="estado"></span>:<h4>
             </div>
@@ -174,7 +170,7 @@
 var map = L.map("map_6146f48e63c26298b0cdfeb6cf7cb288", {
     center: [-15.7797, -47.9297], // Centraliza o mapa no Distrito Federal
     zoom: 5,
-    zoomControl: true,
+    zoomControl: false,
     preferCanvas: false,
 });
 
@@ -300,7 +296,7 @@ var estadosCoordenadas = {
 // Objeto contendo informações fictícias de motoristas para cada estado
 var motoristasInfo = {
     1: {
-        nome: "Alisson Rebite",
+        nome: "Alisson Anderle",
         placa: "LOk-0000",
         veiculo: "Scania G420",
         implemento: "Carga Seca",
@@ -517,9 +513,9 @@ var motoristasInfo = {
     },
 };
 
-// Adiciona um seletor de estados no HTML
 var selectEstado = document.createElement('select');
 selectEstado.id = 'seletorCombo';
+selectEstado.style.display = 'none';  // Esconde o seletor
 
 // Cria a opção padrão
 var defaultOption = document.createElement('option');
