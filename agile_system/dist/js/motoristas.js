@@ -139,9 +139,7 @@ function loadLibrary(){
                             </button>
                         </p>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center pt-3">
-                    <button  class="btn btn-outline-primary">Adicionar Rota<i class="bi bi-geo-alt"></i></button> `;
+                </div>`;
     }
 }
 

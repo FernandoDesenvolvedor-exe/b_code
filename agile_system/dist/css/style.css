@@ -23,6 +23,7 @@ body{
     display: flex;
     width: 100%;
 }
+
 .main{
     position: absolute;
     left: 4.8%;
@@ -30,7 +31,7 @@ body{
     overflow-y: auto;
     min-height: 100vh; 
     transition: all 0.35s ease-in-out;
-    background-color:rgb(249, 250, 250);
+    background-color:rgb(245, 245, 245);
 }
 
 #sidebar{ 
@@ -70,6 +71,10 @@ div.card-header{
     color: white;
 }
 
+.container {
+    align-self: center;
+    margin-top: 2%;
+}
 
 @media (max-width: 768px){
     #sidebar{
