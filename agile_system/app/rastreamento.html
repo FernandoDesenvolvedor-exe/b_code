@@ -10,7 +10,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="dist/css/rastreamento.css">        
+        <link rel="stylesheet" href="dist/css/style.css">
+        <link rel="stylesheet" href="dist/css/rastreamento.css">
         <link rel="icon" type="image/png" sizes="16x16" href="dist/img/index/cabecalho.png">
             
         <script>
@@ -147,8 +148,8 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#listaDeRotasModal">Lista de Rotas</button>
                     </div>
                 </div>
-            </div>
-            
+            </div>  
+
             <!-- Modal Criar Rota -->
             <div class="modal fade" id="criarRotaModal" tabindex="-1" aria-labelledby="criarRotaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -189,7 +190,7 @@
                 </div>
             </div>
 
-         <!-- Modal Motoristas em Rota -->
+            <!-- Modal Motoristas em Rota -->
             <div class="modal fade" id="motoristasEmRotaModal" tabindex="-1" aria-labelledby="motoristasEmRotaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -263,159 +264,158 @@
                 </div>
             </div>
 
-       
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="dist/js/script.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>         
-            acessoIndevido();
-        </script>
-        
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="dist/js/script.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script>         
+                acessoIndevido();
+            </script>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const motoristas = [
+                        { nome: "João Silva", codigo_rota: "123456", tempo_estimado: "2 horas", local_chegada: "São Paulo - SP", numero_placas: "XYZ-1234" },
+                        { nome: "Maria Oliveira", codigo_rota: "654321", tempo_estimado: "3 horas", local_chegada: "Rio de Janeiro - RJ", numero_placas: "ABC-5678" },
+                        { nome: "Carlos Sousa", codigo_rota: "789012", tempo_estimado: "1.5 horas", local_chegada: "Belo Horizonte - MG", numero_placas: "DEF-9012" },
+                        { nome: "Ana Costa", codigo_rota: "345678", tempo_estimado: "4 horas", local_chegada: "Curitiba - PR", numero_placas: "GHI-3456" },
+                        { nome: "Pedro Lima", codigo_rota: "901234", tempo_estimado: "2.5 horas", local_chegada: "Salvador - BA", numero_placas: "JKL-7890" },
+                        { nome: "Julia Santos", codigo_rota: "567890", tempo_estimado: "3.5 horas", local_chegada: "Fortaleza - CE", numero_placas: "MNO-2345" },
+                        { nome: "Lucas Rocha", codigo_rota: "234567", tempo_estimado: "1 hora", local_chegada: "Recife - PE", numero_placas: "PQR-6789" },
+                        { nome: "Fernanda Alves", codigo_rota: "890123", tempo_estimado: "5 horas", local_chegada: "Porto Alegre - RS", numero_placas: "STU-0123" },
+                        { nome: "Roberto Nunes", codigo_rota: "012345", tempo_estimado: "2 horas", local_chegada: "Manaus - AM", numero_placas: "VWX-4567" },
+                        { nome: "Mariana Teixeira", codigo_rota: "678901", tempo_estimado: "4.5 horas", local_chegada: "Brasília - DF", numero_placas: "YZA-8901" }
+                    ];
+                
+                    const motoristaSelect = document.getElementById('motoristaSelect');
+                    const voltarBtn = document.getElementById('voltar');
+                    const btnPesquisar = document.getElementById('btn-pesquisar');
+                    const formCriarRota = document.getElementById('formCriarRota');
+                    const listaRotas = document.getElementById('lista-rotas');
+                
+                    motoristas.forEach(motorista => {
+                        const option = document.createElement('option');
+                        option.textContent = motorista.nome;
+                        option.value = motorista.codigo_rota;
+                        motoristaSelect.appendChild(option);
+                    });
+                
+                    motoristaSelect.addEventListener('change', function() {
+                        const codigoRota = this.value;
+                        const motorista = motoristas.find(m => m.codigo_rota === codigoRota);
+                
+                        if (motorista) {
+                            const modalBody = document.querySelector('#motoristasEmRotaModal .modal-body');
+                            modalBody.innerHTML = `
+                                <p><strong>Nome do Motorista:</strong> ${motorista.nome}</p>
+                                <p><strong>Código da Rota:</strong> ${motorista.codigo_rota}</p>
+                                <p><strong>Tempo Estimado:</strong> ${motorista.tempo_estimado}</p>
+                                <p><strong>Local de Chegada:</strong> ${motorista.local_chegada}</p>
+                                <p><strong>Número de Placas:</strong> ${motorista.numero_placas}</p>
+                                <p><strong>Objeto Encontrado:</strong></p>
+                                <p>10/06/2024, 14:00, Em trânsito</p>
+                                <p>11/06/2024, 09:00, Entregue</p>
+                            `;
+                            const modal = new bootstrap.Modal(document.getElementById('motoristasEmRotaModal'));
+                        } else {
+                            alert('Motorista não encontrado!');
+                        }
+                    });
+                
+                    voltarBtn.addEventListener('click', function() {
+                        const modalElement = document.getElementById('motoristasEmRotaModal');
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        if (modal) {
+                            modal.hide();
+                        }
+                    });
+                
+                    formCriarRota.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                
+                        const nomeMotorista = document.getElementById('nomeMotorista').value;
+                        const codigoRota = document.getElementById('codigoRota').value;
+                        const tempoEstimado = document.getElementById('tempoEstimado').value;
+                        const localChegada = document.getElementById('localChegada').value;
+                        const numeroPlacas = document.getElementById('numeroPlacas').value;
+                
+                        const novaRota = {
+                            nome: nomeMotorista,
+                            codigo_rota: codigoRota,
+                            tempo_estimado: tempoEstimado,
+                            local_chegada: localChegada,
+                            numero_placas: numeroPlacas
+                        };
+                
+                        motoristas.push(novaRota);
+                        alert('Rota criada com sucesso!');
+                        formCriarRota.reset();
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('modalCriarRota'));
+                        if (modal) {
+                            modal.hide();
+                        }
+                    });
+                
+                    btnPesquisar.addEventListener('click', function() {
+                        const rotaCodigo = document.querySelector('.form-control').value;
+                        const motorista = motoristas.find(m => m.codigo_rota === rotaCodigo);
+                
+                        if (motorista) {
+                            document.getElementById('motorista-nome').textContent = motorista.nome;
+                            document.getElementById('codigo-rota').textContent = motorista.codigo_rota;
+                            document.getElementById('tempo-estimado').textContent = motorista.tempo_estimado;
+                            document.getElementById('local-chegada').textContent = motorista.local_chegada;
+                            document.getElementById('numero-placas').textContent = motorista.numero_placas;
+                            document.getElementById('objeto-encontrado-1').textContent = '10/06/2024, 14:00, Em trânsito';
+                            document.getElementById('objeto-encontrado-2').textContent = '11/06/2024, 09:00, Entregue';
+                        } else {
+                            alert('Rota não encontrada!');
+                        }
+                    });
+                
+                    motoristas.forEach(motorista => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${motorista.nome}</td>
+                            <td>${motorista.codigo_rota}</td>
+                            <td>---</td>
+                            <td>${motorista.numero_placas}</td>
+                            <td>${motorista.local_chegada}</td>
+                        `;
+                        listaRotas.appendChild(row);
+                    });
+                });
+                
+                // Array fictício de motoristas
                 const motoristas = [
-                    { nome: "João Silva", codigo_rota: "123456", tempo_estimado: "2 horas", local_chegada: "São Paulo - SP", numero_placas: "XYZ-1234" },
-                    { nome: "Maria Oliveira", codigo_rota: "654321", tempo_estimado: "3 horas", local_chegada: "Rio de Janeiro - RJ", numero_placas: "ABC-5678" },
-                    { nome: "Carlos Sousa", codigo_rota: "789012", tempo_estimado: "1.5 horas", local_chegada: "Belo Horizonte - MG", numero_placas: "DEF-9012" },
-                    { nome: "Ana Costa", codigo_rota: "345678", tempo_estimado: "4 horas", local_chegada: "Curitiba - PR", numero_placas: "GHI-3456" },
-                    { nome: "Pedro Lima", codigo_rota: "901234", tempo_estimado: "2.5 horas", local_chegada: "Salvador - BA", numero_placas: "JKL-7890" },
-                    { nome: "Julia Santos", codigo_rota: "567890", tempo_estimado: "3.5 horas", local_chegada: "Fortaleza - CE", numero_placas: "MNO-2345" },
-                    { nome: "Lucas Rocha", codigo_rota: "234567", tempo_estimado: "1 hora", local_chegada: "Recife - PE", numero_placas: "PQR-6789" },
-                    { nome: "Fernanda Alves", codigo_rota: "890123", tempo_estimado: "5 horas", local_chegada: "Porto Alegre - RS", numero_placas: "STU-0123" },
-                    { nome: "Roberto Nunes", codigo_rota: "012345", tempo_estimado: "2 horas", local_chegada: "Manaus - AM", numero_placas: "VWX-4567" },
-                    { nome: "Mariana Teixeira", codigo_rota: "678901", tempo_estimado: "4.5 horas", local_chegada: "Brasília - DF", numero_placas: "YZA-8901" }
-                ];
-            
-                const motoristaSelect = document.getElementById('motoristaSelect');
-                const voltarBtn = document.getElementById('voltar');
-                const btnPesquisar = document.getElementById('btn-pesquisar');
-                const formCriarRota = document.getElementById('formCriarRota');
-                const listaRotas = document.getElementById('lista-rotas');
-            
+                "João Silva",
+                "Maria Oliveira",
+                "Carlos Souza",
+                "Ana Lima",
+                "Pedro Santos",
+                "Mariana Almeida",
+                "Rafael Costa",
+                "Bianca Rodrigues",
+                "Fernando Moreira",
+                "Larissa Barbosa"
+            ];
+
+            // Função para preencher o dropdown de motoristas
+            function preencherDropdownMotoristas() {
+                const dropdown = document.getElementById('nomeMotorista');
                 motoristas.forEach(motorista => {
                     const option = document.createElement('option');
-                    option.textContent = motorista.nome;
-                    option.value = motorista.codigo_rota;
-                    motoristaSelect.appendChild(option);
+                    option.textContent = motorista;
+                    option.value = motorista;
+                    dropdown.appendChild(option);
                 });
-            
-                motoristaSelect.addEventListener('change', function() {
-                    const codigoRota = this.value;
-                    const motorista = motoristas.find(m => m.codigo_rota === codigoRota);
-            
-                    if (motorista) {
-                        const modalBody = document.querySelector('#motoristasEmRotaModal .modal-body');
-                        modalBody.innerHTML = `
-                            <p><strong>Nome do Motorista:</strong> ${motorista.nome}</p>
-                            <p><strong>Código da Rota:</strong> ${motorista.codigo_rota}</p>
-                            <p><strong>Tempo Estimado:</strong> ${motorista.tempo_estimado}</p>
-                            <p><strong>Local de Chegada:</strong> ${motorista.local_chegada}</p>
-                            <p><strong>Número de Placas:</strong> ${motorista.numero_placas}</p>
-                            <p><strong>Objeto Encontrado:</strong></p>
-                            <p>10/06/2024, 14:00, Em trânsito</p>
-                            <p>11/06/2024, 09:00, Entregue</p>
-                        `;
-                        const modal = new bootstrap.Modal(document.getElementById('motoristasEmRotaModal'));
-                    } else {
-                        alert('Motorista não encontrado!');
-                    }
-                });
-            
-                voltarBtn.addEventListener('click', function() {
-                    const modalElement = document.getElementById('motoristasEmRotaModal');
-                    const modal = bootstrap.Modal.getInstance(modalElement);
-                    if (modal) {
-                        modal.hide();
-                    }
-                });
-            
-                formCriarRota.addEventListener('submit', function(event) {
-                    event.preventDefault();
-            
-                    const nomeMotorista = document.getElementById('nomeMotorista').value;
-                    const codigoRota = document.getElementById('codigoRota').value;
-                    const tempoEstimado = document.getElementById('tempoEstimado').value;
-                    const localChegada = document.getElementById('localChegada').value;
-                    const numeroPlacas = document.getElementById('numeroPlacas').value;
-            
-                    const novaRota = {
-                        nome: nomeMotorista,
-                        codigo_rota: codigoRota,
-                        tempo_estimado: tempoEstimado,
-                        local_chegada: localChegada,
-                        numero_placas: numeroPlacas
-                    };
-            
-                    motoristas.push(novaRota);
-                    alert('Rota criada com sucesso!');
-                    formCriarRota.reset();
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalCriarRota'));
-                    if (modal) {
-                        modal.hide();
-                    }
-                });
-            
-                btnPesquisar.addEventListener('click', function() {
-                    const rotaCodigo = document.querySelector('.form-control').value;
-                    const motorista = motoristas.find(m => m.codigo_rota === rotaCodigo);
-            
-                    if (motorista) {
-                        document.getElementById('motorista-nome').textContent = motorista.nome;
-                        document.getElementById('codigo-rota').textContent = motorista.codigo_rota;
-                        document.getElementById('tempo-estimado').textContent = motorista.tempo_estimado;
-                        document.getElementById('local-chegada').textContent = motorista.local_chegada;
-                        document.getElementById('numero-placas').textContent = motorista.numero_placas;
-                        document.getElementById('objeto-encontrado-1').textContent = '10/06/2024, 14:00, Em trânsito';
-                        document.getElementById('objeto-encontrado-2').textContent = '11/06/2024, 09:00, Entregue';
-                    } else {
-                        alert('Rota não encontrada!');
-                    }
-                });
-            
-                motoristas.forEach(motorista => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${motorista.nome}</td>
-                        <td>${motorista.codigo_rota}</td>
-                        <td>---</td>
-                        <td>${motorista.numero_placas}</td>
-                        <td>${motorista.local_chegada}</td>
-                    `;
-                    listaRotas.appendChild(row);
-                });
-            });
-            
-            // Array fictício de motoristas
-            const motoristas = [
-            "João Silva",
-            "Maria Oliveira",
-            "Carlos Souza",
-            "Ana Lima",
-            "Pedro Santos",
-            "Mariana Almeida",
-            "Rafael Costa",
-            "Bianca Rodrigues",
-            "Fernando Moreira",
-            "Larissa Barbosa"
-        ];
+            }
 
-        // Função para preencher o dropdown de motoristas
-        function preencherDropdownMotoristas() {
-            const dropdown = document.getElementById('nomeMotorista');
-            motoristas.forEach(motorista => {
-                const option = document.createElement('option');
-                option.textContent = motorista;
-                option.value = motorista;
-                dropdown.appendChild(option);
-            });
-        }
-
-        // Chama a função para preencher o dropdown quando o documento estiver carregado
-        document.addEventListener('DOMContentLoaded', preencherDropdownMotoristas);
-           
-        </script>
+            // Chama a função para preencher o dropdown quando o documento estiver carregado
+            document.addEventListener('DOMContentLoaded', preencherDropdownMotoristas);
+                
+            </script>
+        </div>
     </body>
 </html>

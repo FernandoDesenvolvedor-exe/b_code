@@ -24,7 +24,6 @@ body{
     width: 100%;
 }
 .main{
-    z-index: 10001;
     position: absolute;
     left: 4.8%;
     width: 95%;    
